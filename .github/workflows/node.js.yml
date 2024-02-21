@@ -20,4 +20,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: npm install
+    - run: export NODE_ENV=production  
     - run: npm run build:payload 
+    - run: npm run build:server
+    - run: npm run build:server
+    - run: npm run copyfiles
+    - run: npm run build:next
+    
