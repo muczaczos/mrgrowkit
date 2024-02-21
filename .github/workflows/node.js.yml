@@ -10,6 +10,7 @@ jobs:
     runs-on: self-hosted
 
     strategy:
+    
       matrix:
         node-version: [20.11.1]
         
@@ -25,6 +26,14 @@ jobs:
       NEXT_PRIVATE_REVALIDATION_KEY: ${{secrets.NEXT_PRIVATE_REVALIDATION_KEY}}
     
     steps:
+    - uses: actions/cache@v3
+      with:
+        path: |
+         ~/.npm
+         ${{ github.workspace }}/.next/cache
+        key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+        restore-keys: | 
+         ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -34,7 +43,6 @@ jobs:
     - run: npm install
     - run: export NODE_ENV=production  
     - run: npm run build:payload 
-    - run: npm run build:server
     - run: npm run build:server
     - run: npm run copyfiles
     - run: npm run build:next
