@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 
 import { Footer } from '../../../../payload/payload-types'
 import { inclusions, noHeaderFooterUrls, profileNavItems } from '../../../constants'
+import { Button } from '../../Button'
 import { Gutter } from '../../Gutter'
 
 import classes from './index.module.scss'
@@ -46,7 +47,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                 const icon = ''
 
                 return (
-                  <button
+                  <Button
                     key={item.link.label}
                     el="link"
                     href={item.link.url}
@@ -54,7 +55,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                     className={classes.socialLinkItem}
                   >
                     {item.link.label}
-                  </button>
+                  </Button>
                 )
               })}
             </div>
