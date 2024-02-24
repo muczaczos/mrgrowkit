@@ -5,6 +5,7 @@
   grid-template-columns: 50% 1fr;
   gap: 30px;
   margin-bottom: 30px;
+  margin-top: 24px;
 
   @include small-break {
     grid-template-columns: 1fr;
