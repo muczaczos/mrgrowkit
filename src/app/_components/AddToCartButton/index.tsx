@@ -13,11 +13,10 @@ export const AddToCartButton: React.FC<{
   product: Product
   quantity?: number
   className?: string
-  id: string
-  subtotal: number
+  subtotal: string
   appearance?: Props['appearance']
 }> = props => {
-  const { id, subtotal, product, quantity = 1, className, appearance = 'primary' } = props
+  const { subtotal, product, quantity = 1, className, appearance = 'primary' } = props
 
   const { cart, addItemToCart, isProductInCart, hasInitializedCart } = useCart()
 
@@ -49,7 +48,6 @@ export const AddToCartButton: React.FC<{
               addItemToCart({
                 product,
                 quantity,
-                id,
                 subtotal,
               })
 

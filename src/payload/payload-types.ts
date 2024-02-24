@@ -15,7 +15,7 @@ export type CartItems =
       product?: (string | null) | Product;
       quantity?: number | null;
       id?: string | null;
-      subtotal: number | null;
+      subtotal: string | null;
     }[]
   | null;
 
