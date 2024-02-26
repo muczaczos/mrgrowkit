@@ -5,11 +5,7 @@ import Link from 'next/link'
 
 import { Page, Settings } from '../../../../payload/payload-types'
 import { Button } from '../../../_components/Button'
-import { HR } from '../../../_components/HR'
 import { LoadingShimmer } from '../../../_components/LoadingShimmer'
-import { Media } from '../../../_components/Media'
-import { Price } from '../../../_components/Price'
-import { RemoveFromCartButton } from '../../../_components/RemoveFromCartButton'
 import { useAuth } from '../../../_providers/Auth'
 import { useCart } from '../../../_providers/Cart'
 import CartItem from '../CartItem'
@@ -26,6 +22,7 @@ export const CartPage: React.FC<{
   const { user } = useAuth()
 
   const { cart, cartIsEmpty, addItemToCart, totalAmount, hasInitializedCart } = useCart()
+  let subtotal = 0
 
   return (
     <Fragment>
@@ -75,9 +72,8 @@ export const CartPage: React.FC<{
                         quantity,
                         product,
                         product: { price, id, title, meta, stripeProductID },
-                        subtotal = Number(price) * quantity,
                       } = item
-
+                      subtotal = Number(price) * quantity
                       const isLast = index === (cart?.items?.length || 0) - 1
 
                       const metaImage = meta?.image
