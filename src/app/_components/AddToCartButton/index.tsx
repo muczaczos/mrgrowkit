@@ -13,10 +13,9 @@ export const AddToCartButton: React.FC<{
   product: Product
   quantity?: number
   className?: string
-  subtotal: string
   appearance?: Props['appearance']
 }> = props => {
-  const { subtotal, product, quantity = 1, className, appearance = 'primary' } = props
+  const { product, quantity = 1, className, appearance = 'primary' } = props
 
   const { cart, addItemToCart, isProductInCart, hasInitializedCart } = useCart()
 
@@ -48,7 +47,6 @@ export const AddToCartButton: React.FC<{
               addItemToCart({
                 product,
                 quantity,
-                subtotal,
               })
 
               router.push('/cart')
