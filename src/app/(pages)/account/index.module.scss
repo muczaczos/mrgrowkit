@@ -14,10 +14,8 @@
   gap: var(--base);
 }
 
-.purchase {
-  > * {
-    margin: 0;
-  }
+.purchase > * {
+  margin: 0;
 }
 
 .noPurchases {

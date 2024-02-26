@@ -1,8 +1,6 @@
 'use client'
 
 import React, { Fragment, useEffect } from 'react'
-import { Elements } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
@@ -15,11 +13,11 @@ import { useTheme } from '../../../_providers/Theme'
 import cssVariables from '../../../cssVariables'
 import { CheckoutForm } from '../CheckoutForm'
 import { CheckoutItem } from '../CheckoutItem'
+import CustomCheckoutForm from '../CustomCheckoutForm'
+import PaymentMethods from './PaymentMethods'
+import ShippingDetails from './ShippingDetails'
 
 import classes from './index.module.scss'
-
-const apiKey = `${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
-const stripe = loadStripe(apiKey)
 
 export const CheckoutPage: React.FC<{
   settings: Settings
@@ -27,6 +25,7 @@ export const CheckoutPage: React.FC<{
   const {
     settings: { productsPage },
   } = props
+  const [method, setMethod] = React.useState('')
 
   const { user } = useAuth()
   const router = useRouter()
@@ -35,8 +34,8 @@ export const CheckoutPage: React.FC<{
   const hasMadePaymentIntent = React.useRef(false)
   const { theme } = useTheme()
 
-  const { cart, cartIsEmpty, cartTotal } = useCart()
-
+  const { cart, cartIsEmpty, cartTotal, totalAmount } = useCart()
+  var subtotal = 0
   useEffect(() => {
     if (user !== null && cartIsEmpty) {
       router.push('/cart')
@@ -74,7 +73,7 @@ export const CheckoutPage: React.FC<{
     }
   }, [cart, user])
 
-  if (!user || !stripe) return null
+  //if (!user || !stripe) return null
 
   return (
     <Fragment>
@@ -108,9 +107,9 @@ export const CheckoutPage: React.FC<{
                 const {
                   quantity,
                   product,
-                  product: { title, meta },
+                  product: { price, title, meta },
                 } = item
-
+                subtotal = Number(price) * quantity
                 if (!quantity) return null
 
                 const metaImage = meta?.image
@@ -123,6 +122,8 @@ export const CheckoutPage: React.FC<{
                       metaImage={metaImage}
                       quantity={quantity}
                       index={index}
+                      price={price}
+                      subtotal={subtotal}
                     />
                   </Fragment>
                 )
@@ -131,54 +132,27 @@ export const CheckoutPage: React.FC<{
             })}
             <div className={classes.orderTotal}>
               <p>Order Total</p>
-              <p>{cartTotal.formatted}</p>
+              <p>{totalAmount}</p>
             </div>
           </ul>
         </div>
       )}
-      {!clientSecret && !error && (
-        <div className={classes.loading}>
-          <LoadingShimmer number={2} />
-        </div>
-      )}
-      {!clientSecret && error && (
-        <div className={classes.error}>
-          <p>{`Error: ${error}`}</p>
-          <Button label="Back to cart" href="/cart" appearance="secondary" />
-        </div>
-      )}
-      {clientSecret && (
-        <Fragment>
-          <h3 className={classes.payment}>Payment Details</h3>
-          {error && <p>{`Error: ${error}`}</p>}
-          <Elements
-            stripe={stripe}
-            options={{
-              clientSecret,
-              appearance: {
-                theme: 'stripe',
-                variables: {
-                  colorText:
-                    theme === 'dark' ? cssVariables.colors.base0 : cssVariables.colors.base1000,
-                  fontSizeBase: '16px',
-                  fontWeightNormal: '500',
-                  fontWeightBold: '600',
-                  colorBackground:
-                    theme === 'dark' ? cssVariables.colors.base850 : cssVariables.colors.base0,
-                  fontFamily: 'Inter, sans-serif',
-                  colorTextPlaceholder: cssVariables.colors.base500,
-                  colorIcon:
-                    theme === 'dark' ? cssVariables.colors.base0 : cssVariables.colors.base1000,
-                  borderRadius: '0px',
-                  colorDanger: cssVariables.colors.error500,
-                  colorDangerText: cssVariables.colors.error500,
-                },
-              },
-            }}
-          >
-            <CheckoutForm />
-          </Elements>
-        </Fragment>
+
+      {!cartIsEmpty && (
+        <>
+          <form className={classes.sections}>
+            <div className={classes.shippingSection}>
+              <h3 className={classes.shipping}>Shipping Details</h3>
+              <ShippingDetails />
+            </div>
+            <div className={classes.paymentSection}>
+              <h3 className={classes.payment}>Payment Methods</h3>
+              <PaymentMethods method={method} setMethod={setMethod} />
+            </div>
+          </form>
+          <CustomCheckoutForm method={method} setMethod={setMethod} />
+          {method}
+        </>
       )}
     </Fragment>
   )

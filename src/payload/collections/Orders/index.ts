@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload/types'
 
 import { admins } from '../../access/admins'
-import { adminsOrLoggedIn } from '../../access/adminsOrLoggedIn'
+import { anyone } from '../../access/anyone'
 import { adminsOrOrderedBy } from './access/adminsOrOrderedBy'
 import { clearUserCart } from './hooks/clearUserCart'
 import { populateOrderedBy } from './hooks/populateOrderedBy'
@@ -21,7 +21,7 @@ export const Orders: CollectionConfig = {
   access: {
     read: adminsOrOrderedBy,
     update: admins,
-    create: adminsOrLoggedIn,
+    create: anyone,
     delete: admins,
   },
   fields: [
@@ -69,6 +69,34 @@ export const Orders: CollectionConfig = {
           name: 'quantity',
           type: 'number',
           min: 0,
+        },
+        {
+          name: 'fullname',
+          type: 'text',
+        },
+        {
+          name: 'streetAddress',
+          type: 'text',
+        },
+        {
+          name: 'city',
+          type: 'text',
+        },
+        {
+          name: 'postalCode',
+          type: 'text',
+        },
+        {
+          name: 'country',
+          type: 'text',
+        },
+        {
+          name: 'phoneNumber',
+          type: 'text',
+        },
+        {
+          name: 'email',
+          type: 'text',
         },
       ],
     },

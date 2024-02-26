@@ -5,7 +5,7 @@ import { Price } from '../../../_components/Price'
 
 import classes from './index.module.scss'
 
-export const CheckoutItem = ({ product, title, metaImage, quantity, index }) => {
+export const CheckoutItem = ({ product, title, metaImage, quantity, index, price, subtotal }) => {
   return (
     <li className={classes.item} key={index}>
       <Link href={`/products/${product.slug}`} className={classes.mediaWrapper}>
@@ -17,15 +17,12 @@ export const CheckoutItem = ({ product, title, metaImage, quantity, index }) => 
 
       <div className={classes.itemDetails}>
         <div className={classes.titleWrapper}>
-          <h6>{title}</h6>
-          <Price product={product} button={false} />
+          <h6>{title}</h6>${price}
         </div>
         <p className={classes.quantity}>x{quantity}</p>
       </div>
 
-      <div className={classes.subtotal}>
-        <Price product={product} button={false} quantity={quantity} />
-      </div>
+      <div className={classes.subtotal}>${subtotal}</div>
     </li>
   )
 }

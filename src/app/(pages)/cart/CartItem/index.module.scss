@@ -1,8 +1,7 @@
-@import '../../../_css/common';
-
 .item {
   display: grid;
-  grid-template-columns: 100px 2fr 1fr;  padding: 24px 0;
+  grid-template-columns: 100px 2fr 1fr;
+  padding: 24px 0;
   gap: 24px;
   border-bottom: 1px solid var(--color-dark-50);
 }
@@ -22,7 +21,7 @@
 .image {
   object-fit: contain;
   max-width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/1;
 }
 
 .itemDetails {
@@ -30,8 +29,9 @@
   grid-template-columns: 2fr 1fr;
   gap: 16px;
   align-items: center;
-
-  @include small-break {
+}
+@media (max-width: 768px) {
+  .itemDetails {
     grid-template-columns: 1fr;
   }
 }
@@ -39,12 +39,11 @@
 .titleWrapper {
   overflow: hidden;
   text-overflow: ellipsis;
-
   overflow-wrap: break-word;
-  h6 {
-    line-height: 20px;
-    margin-bottom: 8px;
-  }
+}
+.titleWrapper h6 {
+  line-height: 20px;
+  margin-bottom: 8px;
 }
 
 .quantity {
@@ -82,11 +81,12 @@
   align-items: center;
   justify-content: flex-start;
   gap: 60px;
-
-  @include small-break {
+}
+@media (max-width: 768px) {
+  .subtotalWrapper {
     align-items: end;
     justify-content: space-between;
     flex-direction: row-reverse;
     flex-wrap: wrap;
   }
-}
+}/*# sourceMappingURL=index.module.css.map */
