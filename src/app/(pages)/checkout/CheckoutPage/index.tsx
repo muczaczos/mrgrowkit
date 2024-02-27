@@ -124,16 +124,16 @@ export const CheckoutPage: React.FC<{
         body: JSON.stringify({
           total: totalAmount,
           stripePaymentIntentID: '',
+          fullname: fullName,
+          streetAddress: address,
+          city: city,
+          postalCode: postalCode,
+          country: country,
+          phoneNumber: phone,
+          email: email,
           items: (cart?.items || [])?.map(({ product, quantity }) => ({
             product: typeof product === 'string' ? product : product.id,
             quantity,
-            fullname: fullName,
-            streetAddress: address,
-            city: city,
-            postalCode: postalCode,
-            country: country,
-            phoneNumber: phone,
-            email: email,
             price:
               typeof product === 'object' ? priceFromJSON(product.priceJSON, 1, true) : undefined,
           })),

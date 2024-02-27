@@ -51,6 +51,34 @@ export const Orders: CollectionConfig = {
       min: 0,
     },
     {
+      name: 'fullname',
+      type: 'text',
+    },
+    {
+      name: 'streetAddress',
+      type: 'text',
+    },
+    {
+      name: 'city',
+      type: 'text',
+    },
+    {
+      name: 'postalCode',
+      type: 'text',
+    },
+    {
+      name: 'country',
+      type: 'text',
+    },
+    {
+      name: 'phoneNumber',
+      type: 'text',
+    },
+    {
+      name: 'email',
+      type: 'text',
+    },
+    {
       name: 'items',
       type: 'array',
       fields: [
@@ -69,34 +97,6 @@ export const Orders: CollectionConfig = {
           name: 'quantity',
           type: 'number',
           min: 0,
-        },
-        {
-          name: 'fullname',
-          type: 'text',
-        },
-        {
-          name: 'streetAddress',
-          type: 'text',
-        },
-        {
-          name: 'city',
-          type: 'text',
-        },
-        {
-          name: 'postalCode',
-          type: 'text',
-        },
-        {
-          name: 'country',
-          type: 'text',
-        },
-        {
-          name: 'phoneNumber',
-          type: 'text',
-        },
-        {
-          name: 'email',
-          type: 'text',
         },
       ],
     },

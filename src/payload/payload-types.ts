@@ -424,18 +424,18 @@ export interface Order {
   orderedBy?: (string | null) | User;
   stripePaymentIntentID?: string | null;
   total: number;
+  fullname?: string | null;
+  streetAddress?: string | null;
+  city?: string | null;
+  postalCode?: string | null;
+  country?: string | null;
+  phoneNumber?: string | null;
+  email?: string | null;
   items?:
     | {
         product: string | Product;
         price?: number | null;
         quantity?: number | null;
-        fullname?: string | null;
-        streetAddress?: string | null;
-        city?: string | null;
-        postalCode?: string | null;
-        country?: string | null;
-        phoneNumber?: string | null;
-        email?: string | null;
         id?: string | null;
       }[]
     | null;
