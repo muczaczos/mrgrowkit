@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 
 import { Button } from '../../../_components/Button'
 import { Message } from '../../../_components/Message'
+import { useAuth } from '../../../_providers/Auth'
 import { useCart } from '../../../_providers/Cart'
 
 import classes from './index.module.scss'
@@ -19,6 +20,8 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
   useEffect(() => {
     clearCart()
   }, [clearCart])
+
+  const { user } = useAuth()
 
   return (
     <div>
@@ -44,12 +47,29 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
             {`Your order has been confirmed. You will receive an email confirmation shortly. Your order ID is ${orderID}.`}
           </p>
           <div className={classes.actions}>
-            <Button href={`/orders/${orderID}`} label="View order" appearance="primary" />
-            <Button
-              href={`${process.env.NEXT_PUBLIC_SERVER_URL}/orders`}
-              label="View all orders"
-              appearance="secondary"
-            />
+            {user && (
+              <>
+                <Button
+                  href={`/account/orders/${orderID}`}
+                  label="View order"
+                  appearance="primary"
+                />
+                <Button
+                  href={`${process.env.NEXT_PUBLIC_SERVER_URL}/account/orders`}
+                  label="View all orders"
+                  appearance="secondary"
+                />
+              </>
+            )}
+            {!user && (
+              <>
+                <Button
+                  href={`${process.env.NEXT_PUBLIC_SERVER_URL}/products`}
+                  label="Back To Shop"
+                  appearance="secondary"
+                />
+              </>
+            )}
           </div>
         </Fragment>
       )}

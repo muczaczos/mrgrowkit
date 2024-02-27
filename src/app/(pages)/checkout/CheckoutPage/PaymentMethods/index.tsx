@@ -12,7 +12,8 @@ const PaymentMethods = ({ method, setMethod }) => {
   }
 
   return (
-    <div className={classes.paymentOptions}>
+    <div className={classes.paymentSection}>
+      <h3 className={classes.payment}>Payment Methods</h3>
       <RadioButton
         label="Bank Trafser"
         value="transfer"
