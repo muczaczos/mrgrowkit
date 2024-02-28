@@ -221,20 +221,32 @@ export interface Product {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: 'products' | null;
+            relationTo?: ('products' | 'posts') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
-              | {
-                  relationTo: 'products';
-                  value: string | Product;
-                }[]
+              | (
+                  | {
+                      relationTo: 'products';
+                      value: string | Product;
+                    }
+                  | {
+                      relationTo: 'posts';
+                      value: string | Post;
+                    }
+                )[]
               | null;
             populatedDocs?:
-              | {
-                  relationTo: 'products';
-                  value: string | Product;
-                }[]
+              | (
+                  | {
+                      relationTo: 'products';
+                      value: string | Product;
+                    }
+                  | {
+                      relationTo: 'posts';
+                      value: string | Post;
+                    }
+                )[]
               | null;
             populatedDocsTotal?: number | null;
             id?: string | null;
@@ -315,20 +327,32 @@ export interface Product {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: 'products' | null;
+            relationTo?: ('products' | 'posts') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
-              | {
-                  relationTo: 'products';
-                  value: string | Product;
-                }[]
+              | (
+                  | {
+                      relationTo: 'products';
+                      value: string | Product;
+                    }
+                  | {
+                      relationTo: 'posts';
+                      value: string | Post;
+                    }
+                )[]
               | null;
             populatedDocs?:
-              | {
-                  relationTo: 'products';
-                  value: string | Product;
-                }[]
+              | (
+                  | {
+                      relationTo: 'products';
+                      value: string | Product;
+                    }
+                  | {
+                      relationTo: 'posts';
+                      value: string | Post;
+                    }
+                )[]
               | null;
             populatedDocsTotal?: number | null;
             id?: string | null;
@@ -450,20 +474,32 @@ export interface Page {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: 'products' | null;
+        relationTo?: ('products' | 'posts') | null;
         categories?: (string | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
-          | {
-              relationTo: 'products';
-              value: string | Product;
-            }[]
+          | (
+              | {
+                  relationTo: 'products';
+                  value: string | Product;
+                }
+              | {
+                  relationTo: 'posts';
+                  value: string | Post;
+                }
+            )[]
           | null;
         populatedDocs?:
-          | {
-              relationTo: 'products';
-              value: string | Product;
-            }[]
+          | (
+              | {
+                  relationTo: 'products';
+                  value: string | Product;
+                }
+              | {
+                  relationTo: 'posts';
+                  value: string | Post;
+                }
+            )[]
           | null;
         populatedDocsTotal?: number | null;
         id?: string | null;
