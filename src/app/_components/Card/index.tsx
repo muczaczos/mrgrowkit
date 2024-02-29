@@ -3,7 +3,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
 
-import { Product } from '../../../payload/payload-types'
+import { Post, Product } from '../../../payload/payload-types'
 import { Media } from '../Media'
 import { Price } from '../Price'
 
@@ -39,14 +39,16 @@ export const Card: React.FC<{
   showCategories?: boolean
   hideImagesOnMobile?: boolean
   title?: string
-  relationTo?: 'products'
-  doc?: Product
+  relationTo?: 'products' | 'posts'
+  doc?: Product | Post
 }> = props => {
   const {
+    relationTo,
     showCategories,
     title: titleFromProps,
     doc,
-    doc: { slug, title, categories, meta, priceJSON } = {},
+    doc: { slug, title, categories, meta } = doc || {},
+    //doc: { slug, title, categories, meta, priceJSON } = {},
     className,
   } = props
 
@@ -55,9 +57,9 @@ export const Card: React.FC<{
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const href = `/products/${slug}`
+  const href = `/${relationTo}/${slug}`
 
-  const [
+  /*const [
     price, // eslint-disable-line no-unused-vars
     setPrice,
   ] = useState(() => priceFromJSON(priceJSON))
@@ -65,6 +67,7 @@ export const Card: React.FC<{
   useEffect(() => {
     setPrice(priceFromJSON(priceJSON))
   }, [priceJSON])
+  */
 
   return (
     <Link href={href} className={[classes.card, className].filter(Boolean).join(' ')}>

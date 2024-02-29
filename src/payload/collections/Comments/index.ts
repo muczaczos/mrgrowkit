@@ -10,7 +10,8 @@ const Comments: CollectionConfig = {
   admin: {
     useAsTitle: 'comment',
     preview: (comment: Partial<Comment>) =>
-      `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/posts/${comment?.doc && typeof comment?.doc === 'object' ? comment?.doc?.slug : comment?.doc
+      `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/posts/${
+        comment?.doc && typeof comment?.doc === 'object' ? comment?.doc?.slug : comment?.doc
       }`,
   },
   hooks: {
@@ -24,8 +25,8 @@ const Comments: CollectionConfig = {
     read: ({ data, req: { user } }) => {
       return Boolean(
         data?.status === 'published' ||
-        checkRole(['admin'], user) ||
-        (typeof data?.user === 'string' ? data?.user : data?.user?.id) === user?.id,
+          checkRole(['admin'], user) ||
+          (typeof data?.user === 'string' ? data?.user : data?.user?.id) === user?.id,
       )
     },
     // Public users should not be able to create published comments
@@ -34,8 +35,8 @@ const Comments: CollectionConfig = {
     create: ({ data, req: { user } }) => {
       return Boolean(
         checkRole(['admin'], user) ||
-        (data?.status === 'draft' &&
-          (typeof data?.user === 'string' ? data?.user : data?.user?.id) === user?.id),
+          (data?.status === 'draft' &&
+            (typeof data?.user === 'string' ? data?.user : data?.user?.id) === user?.id),
       )
     },
     // Public users should not be able to update published comments
@@ -44,8 +45,8 @@ const Comments: CollectionConfig = {
     update: ({ data, req: { user } }) => {
       return Boolean(
         checkRole(['admin'], user) ||
-        (data?.status === 'draft' &&
-          (typeof data?.user === 'string' ? data?.user : data?.user?.id) === user?.id),
+          (data?.status === 'draft' &&
+            (typeof data?.user === 'string' ? data?.user : data?.user?.id) === user?.id),
       )
     },
     // Only admins can delete comments
