@@ -17,7 +17,7 @@ export type CommentsBlockProps = {
   blockType: 'comments'
   blockName: string
   introContent?: any
-  doc: Post | Project
+  doc: Post 
   relationTo: 'posts' | 'projects'
   comments: Comment[]
 }
