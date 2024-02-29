@@ -12,6 +12,7 @@ import path from 'path'
 import { buildConfig } from 'payload/config'
 
 import Categories from './collections/Categories'
+import Comments from './collections/Comments'
 import { Media } from './collections/Media'
 import { Orders } from './collections/Orders'
 import { Pages } from './collections/Pages'
@@ -68,6 +69,7 @@ export default buildConfig({
             [path.resolve(__dirname, 'endpoints/create-payment-intent')]: mockModulePath,
             [path.resolve(__dirname, 'endpoints/customers')]: mockModulePath,
             [path.resolve(__dirname, 'endpoints/products')]: mockModulePath,
+            [path.resolve(__dirname, 'endpoints/posts')]: mockModulePath,
             [path.resolve(__dirname, 'endpoints/seed')]: mockModulePath,
             stripe: mockModulePath,
             express: mockModulePath,
@@ -81,7 +83,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Tags, Posts, Pages, Products, Orders, Media, Categories, Users],
+  collections: [Tags, Posts, Pages, Products, Orders, Media, Categories, Users, Comments],
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
@@ -132,13 +134,13 @@ export default buildConfig({
       },
     }),
     redirects({
-      collections: ['pages', 'products'],
+      collections: ['pages', 'products', 'posts'],
     }),
     nestedDocs({
       collections: ['categories'],
     }),
     seo({
-      collections: ['pages', 'products'],
+      collections: ['pages', 'products', 'posts'],
       generateTitle,
       uploadsCollection: 'media',
     }),

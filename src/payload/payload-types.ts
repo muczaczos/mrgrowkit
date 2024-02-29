@@ -28,6 +28,7 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    comments: Comment;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -54,46 +55,273 @@ export interface Tag {
  */
 export interface Post {
   id: string;
-  postMeta: {
-    title: string;
-    description: string;
-    keywords?: string | null;
-  };
   title: string;
-  postImage: string | Media;
-  layout?:
+  categories?: (string | Category)[] | null;
+  publishedAt?: string | null;
+  authors?: (string | User)[] | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'customHero';
+    richText: {
+      [k: string]: unknown;
+    }[];
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?: {
+              relationTo: 'pages';
+              value: string | Page;
+            } | null;
+            url?: string | null;
+            label: string;
+            icon?: string | Media | null;
+            appearance?: ('default' | 'primary' | 'secondary') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: string | Media | null;
+  };
+  layout: (
+    | {
+        invertBackground?: boolean | null;
+        richText: {
+          [k: string]: unknown;
+        }[];
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                icon?: string | Media | null;
+                appearance?: ('primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'cta';
+      }
+    | {
+        invertBackground?: boolean | null;
+        columns?:
+          | {
+              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+              richText: {
+                [k: string]: unknown;
+              }[];
+              enableLink?: boolean | null;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null;
+                url?: string | null;
+                label: string;
+                icon?: string | Media | null;
+                appearance?: ('default' | 'primary' | 'secondary') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'content';
+      }
+    | {
+        invertBackground?: boolean | null;
+        position?: ('default' | 'fullscreen') | null;
+        media: string | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mediaBlock';
+      }
+    | {
+        introContent: {
+          [k: string]: unknown;
+        }[];
+        populateBy?: ('collection' | 'selection') | null;
+        relationTo?: ('products' | 'posts') | null;
+        categories?: (string | Category)[] | null;
+        limit?: number | null;
+        selectedDocs?:
+          | (
+              | {
+                  relationTo: 'products';
+                  value: string | Product;
+                }
+              | {
+                  relationTo: 'posts';
+                  value: string | Post;
+                }
+            )[]
+          | null;
+        populatedDocs?:
+          | (
+              | {
+                  relationTo: 'products';
+                  value: string | Product;
+                }
+              | {
+                  relationTo: 'posts';
+                  value: string | Post;
+                }
+            )[]
+          | null;
+        populatedDocsTotal?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'archive';
+      }
+  )[];
+  enablePremiumContent?: boolean | null;
+  premiumContent?:
     | (
         | {
-            quote?: string | null;
-            author?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'quote';
-          }
-        | {
-            postContent?:
+            invertBackground?: boolean | null;
+            richText: {
+              [k: string]: unknown;
+            }[];
+            links?:
               | {
-                  [k: string]: unknown;
+                  link: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?: {
+                      relationTo: 'pages';
+                      value: string | Page;
+                    } | null;
+                    url?: string | null;
+                    label: string;
+                    icon?: string | Media | null;
+                    appearance?: ('primary' | 'secondary') | null;
+                  };
+                  id?: string | null;
                 }[]
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'postContent';
+            blockType: 'cta';
           }
         | {
-            type?: ('info' | 'success' | 'warning' | 'danger') | null;
-            message?: string | null;
+            invertBackground?: boolean | null;
+            columns?:
+              | {
+                  size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+                  richText: {
+                    [k: string]: unknown;
+                  }[];
+                  enableLink?: boolean | null;
+                  link?: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?: {
+                      relationTo: 'pages';
+                      value: string | Page;
+                    } | null;
+                    url?: string | null;
+                    label: string;
+                    icon?: string | Media | null;
+                    appearance?: ('default' | 'primary' | 'secondary') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'alert';
+            blockType: 'content';
+          }
+        | {
+            invertBackground?: boolean | null;
+            position?: ('default' | 'fullscreen') | null;
+            media: string | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaBlock';
+          }
+        | {
+            introContent: {
+              [k: string]: unknown;
+            }[];
+            populateBy?: ('collection' | 'selection') | null;
+            relationTo?: ('products' | 'posts') | null;
+            categories?: (string | Category)[] | null;
+            limit?: number | null;
+            selectedDocs?:
+              | (
+                  | {
+                      relationTo: 'products';
+                      value: string | Product;
+                    }
+                  | {
+                      relationTo: 'posts';
+                      value: string | Post;
+                    }
+                )[]
+              | null;
+            populatedDocs?:
+              | (
+                  | {
+                      relationTo: 'products';
+                      value: string | Product;
+                    }
+                  | {
+                      relationTo: 'posts';
+                      value: string | Post;
+                    }
+                )[]
+              | null;
+            populatedDocsTotal?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'archive';
           }
       )[]
     | null;
-  status?: ('draft' | 'published') | null;
-  publishedDate?: string | null;
-  author?: (string | null) | User;
-  category?: (string | null) | Category;
-  tags?: (string | Tag)[] | null;
+  relatedPosts?: (string | Post)[] | null;
+  slug?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: string | Media | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: string;
+  title: string;
+  media?: string | Media | null;
+  parent?: (string | null) | Category;
+  breadcrumbs?:
+    | {
+        doc?: (string | null) | Category;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -519,26 +747,6 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: string;
-  title: string;
-  media?: string | Media | null;
-  parent?: (string | null) | Category;
-  breadcrumbs?:
-    | {
-        doc?: (string | null) | Category;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders".
  */
 export interface Order {
@@ -566,6 +774,23 @@ export interface Order {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comments".
+ */
+export interface Comment {
+  id: string;
+  user?: (string | null) | User;
+  populatedUser?: {
+    id?: string | null;
+    name?: string | null;
+  };
+  doc?: (string | null) | Post;
+  comment?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -581,6 +806,10 @@ export interface Redirect {
       | ({
           relationTo: 'products';
           value: string | Product;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: string | Post;
         } | null);
     url?: string | null;
   };
