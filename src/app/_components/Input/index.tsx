@@ -9,8 +9,9 @@ type Props = {
   register: UseFormRegister<FieldValues & any>
   required?: boolean
   error: any
-  type?: 'text' | 'number' | 'password' | 'email'
+  type?: 'text' | 'number' | 'password' | 'email' | 'textarea'
   validate?: (value: string) => boolean | string
+  placeholder?: string
   disabled?: boolean
   onChange?: (e) => void
 }
@@ -23,6 +24,7 @@ export const Input: React.FC<Props> = ({
   error,
   type = 'text',
   validate,
+  placeholder,
   disabled,
   onChange,
 }) => {
@@ -35,6 +37,7 @@ export const Input: React.FC<Props> = ({
       <input
         className={[classes.input, error && classes.error].filter(Boolean).join(' ')}
         {...{ type }}
+        placeholder={placeholder}
         {...register(name, {
           required,
           validate,
