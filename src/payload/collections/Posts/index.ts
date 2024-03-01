@@ -14,13 +14,21 @@ import { populateAuthors } from './hooks/populateAuthors'
 import { revalidatePost } from './hooks/revalidatePost'
 
 export const Posts: CollectionConfig = {
+  endpoints: [
+    {
+      path: '/posts',
+      method: 'get',
+      handler: async () => { },
+    },
+  ],
+
   slug: 'posts',
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
     preview: doc => {
       return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/next/preview?url=${encodeURIComponent(
-        `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/posts/${doc?.slug}`,
+        `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/${doc?.slug}`,
       )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
     },
   },

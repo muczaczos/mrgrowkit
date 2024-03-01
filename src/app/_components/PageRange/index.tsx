@@ -9,6 +9,10 @@ const defaultLabels = {
 
 const defaultCollectionLabels = {
   posts: {
+    plural: 'Posts',
+    singular: 'Post',
+  },
+  products: {
     plural: 'Products',
     singular: 'Product',
   },
