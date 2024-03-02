@@ -1,52 +1,52 @@
 type Query {
-  Tag(id: String!, draft: Boolean): Tag
-  Tags(draft: Boolean, where: Tag_where, limit: Int, page: Int, sort: String): Tags
+  Tag(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Tag
+  Tags(draft: Boolean, where: Tag_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Tags
   docAccessTag(id: String!): tagsDocAccess
-  Post(id: String!, draft: Boolean): Post
-  Posts(draft: Boolean, where: Post_where, limit: Int, page: Int, sort: String): Posts
+  Post(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Post
+  Posts(draft: Boolean, where: Post_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Posts
   docAccessPost(id: String!): postsDocAccess
-  versionPost(id: String): PostVersion
-  versionsPosts(where: versionsPost_where, limit: Int, page: Int, sort: String): versionsPosts
-  Page(id: String!, draft: Boolean): Page
-  Pages(draft: Boolean, where: Page_where, limit: Int, page: Int, sort: String): Pages
+  versionPost(id: String, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PostVersion
+  versionsPosts(where: versionsPost_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): versionsPosts
+  Page(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Page
+  Pages(draft: Boolean, where: Page_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Pages
   docAccessPage(id: String!): pagesDocAccess
-  versionPage(id: String): PageVersion
-  versionsPages(where: versionsPage_where, limit: Int, page: Int, sort: String): versionsPages
-  Product(id: String!, draft: Boolean): Product
-  Products(draft: Boolean, where: Product_where, limit: Int, page: Int, sort: String): Products
+  versionPage(id: String, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PageVersion
+  versionsPages(where: versionsPage_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): versionsPages
+  Product(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Product
+  Products(draft: Boolean, where: Product_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Products
   docAccessProduct(id: String!): productsDocAccess
-  versionProduct(id: String): ProductVersion
-  versionsProducts(where: versionsProduct_where, limit: Int, page: Int, sort: String): versionsProducts
-  Order(id: String!, draft: Boolean): Order
-  Orders(draft: Boolean, where: Order_where, limit: Int, page: Int, sort: String): Orders
+  versionProduct(id: String, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): ProductVersion
+  versionsProducts(where: versionsProduct_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): versionsProducts
+  Order(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Order
+  Orders(draft: Boolean, where: Order_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Orders
   docAccessOrder(id: String!): ordersDocAccess
-  Media(id: String!, draft: Boolean): Media
-  allMedia(draft: Boolean, where: Media_where, limit: Int, page: Int, sort: String): allMedia
+  Media(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Media
+  allMedia(draft: Boolean, where: Media_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): allMedia
   docAccessMedia(id: String!): mediaDocAccess
-  Category(id: String!, draft: Boolean): Category
-  Categories(draft: Boolean, where: Category_where, limit: Int, page: Int, sort: String): Categories
+  Category(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Category
+  Categories(draft: Boolean, where: Category_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Categories
   docAccessCategory(id: String!): categoriesDocAccess
-  User(id: String!, draft: Boolean): User
-  Users(draft: Boolean, where: User_where, limit: Int, page: Int, sort: String): Users
+  User(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): User
+  Users(draft: Boolean, where: User_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Users
   docAccessUser(id: String!): usersDocAccess
   meUser: usersMe
   initializedUser: Boolean
-  Comment(id: String!, draft: Boolean): Comment
-  Comments(draft: Boolean, where: Comment_where, limit: Int, page: Int, sort: String): Comments
+  Comment(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Comment
+  Comments(draft: Boolean, where: Comment_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Comments
   docAccessComment(id: String!): commentsDocAccess
-  versionComment(id: String): CommentVersion
-  versionsComments(where: versionsComment_where, limit: Int, page: Int, sort: String): versionsComments
-  Redirect(id: String!, draft: Boolean): Redirect
-  Redirects(draft: Boolean, where: Redirect_where, limit: Int, page: Int, sort: String): Redirects
+  versionComment(id: String, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): CommentVersion
+  versionsComments(where: versionsComment_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): versionsComments
+  Redirect(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Redirect
+  Redirects(draft: Boolean, where: Redirect_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Redirects
   docAccessRedirect(id: String!): redirectsDocAccess
-  PayloadPreference(id: String!, draft: Boolean): PayloadPreference
-  PayloadPreferences(draft: Boolean, where: PayloadPreference_where, limit: Int, page: Int, sort: String): PayloadPreferences
+  PayloadPreference(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PayloadPreference
+  PayloadPreferences(draft: Boolean, where: PayloadPreference_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): PayloadPreferences
   docAccessPayloadPreference(id: String!): payload_preferencesDocAccess
-  Settings(draft: Boolean): Settings
+  Settings(draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Settings
   docAccessSettings: settingsDocAccess
-  Header(draft: Boolean): Header
+  Header(draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Header
   docAccessHeader: headerDocAccess
-  Footer(draft: Boolean): Footer
+  Footer(draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Footer
   docAccessFooter: footerDocAccess
   Access: Access
 }
@@ -62,6 +62,17 @@ type Tag {
 A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
 scalar DateTime
+
+enum FallbackLocaleInputType {
+  en
+  pl
+  none
+}
+
+enum LocaleInputType {
+  en
+  pl
+}
 
 type Tags {
   docs: [Tag]
@@ -258,15 +269,15 @@ type TagsDeleteDocAccess {
 type Post {
   id: String
   title: String
-  categories: [Category!]
+  categories(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Category!]
   publishedAt: DateTime
-  authors: [User!]
+  authors(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [User!]
   populatedAuthors: [Post_PopulatedAuthors!]
   hero: Post_Hero
-  layout: [Post_Layout!]!
+  layout: [Post_Layout!]
   enablePremiumContent: Boolean
   premiumContent: [Post_PremiumContent!]
-  relatedPosts: [Post!]
+  relatedPosts(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Post!]
   slug: String
   meta: Post_Meta
   updatedAt: DateTime
@@ -276,9 +287,9 @@ type Post {
 
 type Category {
   id: String
-  title: String!
-  media(where: Category_Media_where): Media
-  parent: Category
+  title: String
+  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Category_Media_where): Media
+  parent(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Category
   breadcrumbs: [Category_Breadcrumbs!]
   updatedAt: DateTime
   createdAt: DateTime
@@ -466,7 +477,7 @@ input Category_Media_where_or {
 }
 
 type Category_Breadcrumbs {
-  doc: Category
+  doc(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Category
   url: String
   label: String
   id: String
@@ -476,7 +487,7 @@ type User {
   id: String
   name: String
   roles: [User_roles!]
-  purchases: [Product!]
+  purchases(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Product!]
   stripeCustomerID: String
   cart: User_Cart
   skipSync: Boolean
@@ -507,8 +518,8 @@ type Product {
   priceJSON: String
   enablePaywall: Boolean
   paywall: [Product_Paywall!]
-  categories: [Category!]
-  relatedProducts: [Product!]
+  categories(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Category!]
+  relatedProducts(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Product!]
   slug: String
   skipSync: Boolean
   meta: Product_Meta
@@ -536,10 +547,10 @@ type Cta_Links {
 type Cta_Links_Link {
   type: Cta_Links_Link_type
   newTab: Boolean
-  reference: Cta_Links_Link_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Cta_Links_Link_Reference_Relationship
   url: String
   label: String
-  icon(where: Cta_Links_Link_Icon_where): Media
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Cta_Links_Link_Icon_where): Media
   appearance: Cta_Links_Link_appearance
 }
 
@@ -576,7 +587,7 @@ type Page_Hero {
   type: Page_Hero_type
   richText(depth: Int): JSON
   links: [Page_Hero_Links!]
-  media(where: Page_Hero_Media_where): Media
+  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Page_Hero_Media_where): Media
 }
 
 enum Page_Hero_type {
@@ -595,10 +606,10 @@ type Page_Hero_Links {
 type Page_Hero_Links_Link {
   type: Page_Hero_Links_Link_type
   newTab: Boolean
-  reference: Page_Hero_Links_Link_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Page_Hero_Links_Link_Reference_Relationship
   url: String
   label: String
-  icon(where: Page_Hero_Links_Link_Icon_where): Media
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Page_Hero_Links_Link_Icon_where): Media
   appearance: Page_Hero_Links_Link_appearance
 }
 
@@ -976,10 +987,10 @@ enum Content_Columns_size {
 type Content_Columns_Link {
   type: Content_Columns_Link_type
   newTab: Boolean
-  reference: Content_Columns_Link_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Content_Columns_Link_Reference_Relationship
   url: String
   label: String
-  icon(where: Content_Columns_Link_Icon_where): Media
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Content_Columns_Link_Icon_where): Media
   appearance: Content_Columns_Link_appearance
 }
 
@@ -1170,7 +1181,7 @@ enum Content_Columns_Link_appearance {
 type MediaBlock {
   invertBackground: Boolean
   position: MediaBlock_position
-  media(where: MediaBlock_Media_where): Media
+  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: MediaBlock_Media_where): Media
   id: String
   blockName: String
   blockType: String
@@ -1347,10 +1358,10 @@ type Archive {
   introContent(depth: Int): JSON
   populateBy: Archive_populateBy
   relationTo: Archive_relationTo
-  categories: [Category!]
+  categories(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Category!]
   limit: Float
-  selectedDocs: [Archive_SelectedDocs_Relationship!]
-  populatedDocs: [Archive_PopulatedDocs_Relationship!]
+  selectedDocs(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Archive_SelectedDocs_Relationship!]
+  populatedDocs(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Archive_PopulatedDocs_Relationship!]
   populatedDocsTotal: Float
   id: String
   blockName: String
@@ -1394,7 +1405,7 @@ union Archive_PopulatedDocs = Product | Post
 type Page_Meta {
   title: String
   description: String
-  image(where: Page_Meta_Image_where): Media
+  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Page_Meta_Image_where): Media
 }
 
 input Page_Meta_Image_where {
@@ -1736,7 +1747,7 @@ union Product_Paywall = Cta | Content | MediaBlock | Archive
 type Product_Meta {
   title: String
   description: String
-  image(where: Product_Meta_Image_where): Media
+  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Product_Meta_Image_where): Media
 }
 
 input Product_Meta_Image_where {
@@ -1911,7 +1922,7 @@ type User_Cart {
 }
 
 type CartItems {
-  product: Product
+  product(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Product
   quantity: Float
   id: String
 }
@@ -1930,7 +1941,7 @@ type Post_Hero {
   type: Post_Hero_type
   richText(depth: Int): JSON
   links: [Post_Hero_Links!]
-  media(where: Post_Hero_Media_where): Media
+  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Post_Hero_Media_where): Media
 }
 
 enum Post_Hero_type {
@@ -1949,10 +1960,10 @@ type Post_Hero_Links {
 type Post_Hero_Links_Link {
   type: Post_Hero_Links_Link_type
   newTab: Boolean
-  reference: Post_Hero_Links_Link_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Post_Hero_Links_Link_Reference_Relationship
   url: String
   label: String
-  icon(where: Post_Hero_Links_Link_Icon_where): Media
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Post_Hero_Links_Link_Icon_where): Media
   appearance: Post_Hero_Links_Link_appearance
 }
 
@@ -2309,7 +2320,7 @@ union Post_PremiumContent = Cta | Content | MediaBlock | Archive
 type Post_Meta {
   title: String
   description: String
-  image(where: Post_Meta_Image_where): Media
+  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Post_Meta_Image_where): Media
 }
 
 input Post_Meta_Image_where {
@@ -3706,7 +3717,7 @@ type PostsReadVersionsDocAccess {
 }
 
 type PostVersion {
-  parent: Post
+  parent(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Post
   version: PostVersion_Version
   createdAt: DateTime
   updatedAt: DateTime
@@ -3716,15 +3727,15 @@ type PostVersion {
 
 type PostVersion_Version {
   title: String
-  categories: [Category!]
+  categories(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Category!]
   publishedAt: DateTime
-  authors: [User!]
+  authors(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [User!]
   populatedAuthors: [PostVersion_Version_PopulatedAuthors!]
   hero: PostVersion_Version_Hero
-  layout: [PostVersion_Version_Layout!]!
+  layout: [PostVersion_Version_Layout!]
   enablePremiumContent: Boolean
   premiumContent: [PostVersion_Version_PremiumContent!]
-  relatedPosts: [Post!]
+  relatedPosts(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Post!]
   slug: String
   meta: PostVersion_Version_Meta
   updatedAt: DateTime
@@ -3741,7 +3752,7 @@ type PostVersion_Version_Hero {
   type: PostVersion_Version_Hero_type
   richText(depth: Int): JSON
   links: [PostVersion_Version_Hero_Links!]
-  media(where: PostVersion_Version_Hero_Media_where): Media
+  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: PostVersion_Version_Hero_Media_where): Media
 }
 
 enum PostVersion_Version_Hero_type {
@@ -3760,10 +3771,10 @@ type PostVersion_Version_Hero_Links {
 type PostVersion_Version_Hero_Links_Link {
   type: PostVersion_Version_Hero_Links_Link_type
   newTab: Boolean
-  reference: PostVersion_Version_Hero_Links_Link_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): PostVersion_Version_Hero_Links_Link_Reference_Relationship
   url: String
   label: String
-  icon(where: PostVersion_Version_Hero_Links_Link_Icon_where): Media
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: PostVersion_Version_Hero_Links_Link_Icon_where): Media
   appearance: PostVersion_Version_Hero_Links_Link_appearance
 }
 
@@ -4120,7 +4131,7 @@ union PostVersion_Version_PremiumContent = Cta | Content | MediaBlock | Archive
 type PostVersion_Version_Meta {
   title: String
   description: String
-  image(where: PostVersion_Version_Meta_Image_where): Media
+  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: PostVersion_Version_Meta_Image_where): Media
 }
 
 input PostVersion_Version_Meta_Image_where {
@@ -5674,7 +5685,7 @@ type PagesReadVersionsDocAccess {
 }
 
 type PageVersion {
-  parent: Page
+  parent(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Page
   version: PageVersion_Version
   createdAt: DateTime
   updatedAt: DateTime
@@ -5698,7 +5709,7 @@ type PageVersion_Version_Hero {
   type: PageVersion_Version_Hero_type
   richText(depth: Int): JSON
   links: [PageVersion_Version_Hero_Links!]
-  media(where: PageVersion_Version_Hero_Media_where): Media
+  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: PageVersion_Version_Hero_Media_where): Media
 }
 
 enum PageVersion_Version_Hero_type {
@@ -5717,10 +5728,10 @@ type PageVersion_Version_Hero_Links {
 type PageVersion_Version_Hero_Links_Link {
   type: PageVersion_Version_Hero_Links_Link_type
   newTab: Boolean
-  reference: PageVersion_Version_Hero_Links_Link_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): PageVersion_Version_Hero_Links_Link_Reference_Relationship
   url: String
   label: String
-  icon(where: PageVersion_Version_Hero_Links_Link_Icon_where): Media
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: PageVersion_Version_Hero_Links_Link_Icon_where): Media
   appearance: PageVersion_Version_Hero_Links_Link_appearance
 }
 
@@ -6075,7 +6086,7 @@ union PageVersion_Version_Layout = Cta | Content | MediaBlock | Archive
 type PageVersion_Version_Meta {
   title: String
   description: String
-  image(where: PageVersion_Version_Meta_Image_where): Media
+  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: PageVersion_Version_Meta_Image_where): Media
 }
 
 input PageVersion_Version_Meta_Image_where {
@@ -7339,7 +7350,7 @@ type ProductsReadVersionsDocAccess {
 }
 
 type ProductVersion {
-  parent: Product
+  parent(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Product
   version: ProductVersion_Version
   createdAt: DateTime
   updatedAt: DateTime
@@ -7356,8 +7367,8 @@ type ProductVersion_Version {
   priceJSON: String
   enablePaywall: Boolean
   paywall: [ProductVersion_Version_Paywall!]
-  categories: [Category!]
-  relatedProducts: [Product!]
+  categories(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Category!]
+  relatedProducts(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Product!]
   slug: String
   skipSync: Boolean
   meta: ProductVersion_Version_Meta
@@ -7373,7 +7384,7 @@ union ProductVersion_Version_Paywall = Cta | Content | MediaBlock | Archive
 type ProductVersion_Version_Meta {
   title: String
   description: String
-  image(where: ProductVersion_Version_Meta_Image_where): Media
+  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: ProductVersion_Version_Meta_Image_where): Media
 }
 
 input ProductVersion_Version_Meta_Image_where {
@@ -7837,7 +7848,7 @@ input versionsProduct_where_or {
 
 type Order {
   id: String
-  orderedBy: User
+  orderedBy(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   stripePaymentIntentID: String
   total: Float!
   fullname: String
@@ -7853,7 +7864,7 @@ type Order {
 }
 
 type Order_Items {
-  product: Product
+  product(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Product
   price: Float
   quantity: Float
   id: String
@@ -10020,9 +10031,9 @@ type usersMe {
 
 type Comment {
   id: String
-  user: User
+  user(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   populatedUser: Comment_PopulatedUser
-  doc: Post
+  doc(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Post
   comment: String
   updatedAt: DateTime
   createdAt: DateTime
@@ -10448,7 +10459,7 @@ type CommentsReadVersionsDocAccess {
 }
 
 type CommentVersion {
-  parent: Comment
+  parent(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Comment
   version: CommentVersion_Version
   createdAt: DateTime
   updatedAt: DateTime
@@ -10457,9 +10468,9 @@ type CommentVersion {
 }
 
 type CommentVersion_Version {
-  user: User
+  user(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   populatedUser: CommentVersion_Version_PopulatedUser
-  doc: Post
+  doc(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Post
   comment: String
   updatedAt: DateTime
   createdAt: DateTime
@@ -10686,7 +10697,7 @@ type Redirect {
 
 type Redirect_To {
   type: Redirect_To_type
-  reference: Redirect_To_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Redirect_To_Reference_Relationship
   url: String
 }
 
@@ -11040,7 +11051,7 @@ type RedirectsDeleteDocAccess {
 
 type PayloadPreference {
   id: String
-  user: PayloadPreference_User_Relationship!
+  user(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): PayloadPreference_User_Relationship!
   key: String
   value: JSON
   updatedAt: DateTime
@@ -11320,7 +11331,7 @@ type PayloadPreferencesDeleteDocAccess {
 }
 
 type Settings {
-  productsPage: Page
+  productsPage(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Page
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -11430,10 +11441,10 @@ type Header_NavItems {
 type Header_NavItems_Link {
   type: Header_NavItems_Link_type
   newTab: Boolean
-  reference: Header_NavItems_Link_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Header_NavItems_Link_Reference_Relationship
   url: String
   label: String
-  icon(where: Header_NavItems_Link_Icon_where): Media
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Header_NavItems_Link_Icon_where): Media
 }
 
 enum Header_NavItems_Link_type {
@@ -11920,10 +11931,10 @@ type Footer_NavItems {
 type Footer_NavItems_Link {
   type: Footer_NavItems_Link_type
   newTab: Boolean
-  reference: Footer_NavItems_Link_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Footer_NavItems_Link_Reference_Relationship
   url: String
   label: String
-  icon(where: Footer_NavItems_Link_Icon_where): Media
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Footer_NavItems_Link_Icon_where): Media
 }
 
 enum Footer_NavItems_Link_type {
@@ -17218,32 +17229,32 @@ type FooterUpdateAccess {
 }
 
 type Mutation {
-  createTag(data: mutationTagInput!, draft: Boolean): Tag
-  updateTag(id: String!, autosave: Boolean, data: mutationTagUpdateInput!, draft: Boolean): Tag
+  createTag(data: mutationTagInput!, draft: Boolean, locale: LocaleInputType): Tag
+  updateTag(id: String!, autosave: Boolean, data: mutationTagUpdateInput!, draft: Boolean, locale: LocaleInputType): Tag
   deleteTag(id: String!): Tag
-  createPost(data: mutationPostInput!, draft: Boolean): Post
-  updatePost(id: String!, autosave: Boolean, data: mutationPostUpdateInput!, draft: Boolean): Post
+  createPost(data: mutationPostInput!, draft: Boolean, locale: LocaleInputType): Post
+  updatePost(id: String!, autosave: Boolean, data: mutationPostUpdateInput!, draft: Boolean, locale: LocaleInputType): Post
   deletePost(id: String!): Post
   restoreVersionPost(id: String): Post
-  createPage(data: mutationPageInput!, draft: Boolean): Page
-  updatePage(id: String!, autosave: Boolean, data: mutationPageUpdateInput!, draft: Boolean): Page
+  createPage(data: mutationPageInput!, draft: Boolean, locale: LocaleInputType): Page
+  updatePage(id: String!, autosave: Boolean, data: mutationPageUpdateInput!, draft: Boolean, locale: LocaleInputType): Page
   deletePage(id: String!): Page
   restoreVersionPage(id: String): Page
-  createProduct(data: mutationProductInput!, draft: Boolean): Product
-  updateProduct(id: String!, autosave: Boolean, data: mutationProductUpdateInput!, draft: Boolean): Product
+  createProduct(data: mutationProductInput!, draft: Boolean, locale: LocaleInputType): Product
+  updateProduct(id: String!, autosave: Boolean, data: mutationProductUpdateInput!, draft: Boolean, locale: LocaleInputType): Product
   deleteProduct(id: String!): Product
   restoreVersionProduct(id: String): Product
-  createOrder(data: mutationOrderInput!, draft: Boolean): Order
-  updateOrder(id: String!, autosave: Boolean, data: mutationOrderUpdateInput!, draft: Boolean): Order
+  createOrder(data: mutationOrderInput!, draft: Boolean, locale: LocaleInputType): Order
+  updateOrder(id: String!, autosave: Boolean, data: mutationOrderUpdateInput!, draft: Boolean, locale: LocaleInputType): Order
   deleteOrder(id: String!): Order
-  createMedia(data: mutationMediaInput!, draft: Boolean): Media
-  updateMedia(id: String!, autosave: Boolean, data: mutationMediaUpdateInput!, draft: Boolean): Media
+  createMedia(data: mutationMediaInput!, draft: Boolean, locale: LocaleInputType): Media
+  updateMedia(id: String!, autosave: Boolean, data: mutationMediaUpdateInput!, draft: Boolean, locale: LocaleInputType): Media
   deleteMedia(id: String!): Media
-  createCategory(data: mutationCategoryInput!, draft: Boolean): Category
-  updateCategory(id: String!, autosave: Boolean, data: mutationCategoryUpdateInput!, draft: Boolean): Category
+  createCategory(data: mutationCategoryInput!, draft: Boolean, locale: LocaleInputType): Category
+  updateCategory(id: String!, autosave: Boolean, data: mutationCategoryUpdateInput!, draft: Boolean, locale: LocaleInputType): Category
   deleteCategory(id: String!): Category
-  createUser(data: mutationUserInput!, draft: Boolean): User
-  updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, draft: Boolean): User
+  createUser(data: mutationUserInput!, draft: Boolean, locale: LocaleInputType): User
+  updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, draft: Boolean, locale: LocaleInputType): User
   deleteUser(id: String!): User
   refreshTokenUser(token: String): usersRefreshedUser
   logoutUser: String
@@ -17252,19 +17263,19 @@ type Mutation {
   forgotPasswordUser(disableEmail: Boolean, email: String!, expiration: Int): Boolean!
   resetPasswordUser(password: String, token: String): usersResetPassword
   verifyEmailUser(token: String): Boolean
-  createComment(data: mutationCommentInput!, draft: Boolean): Comment
-  updateComment(id: String!, autosave: Boolean, data: mutationCommentUpdateInput!, draft: Boolean): Comment
+  createComment(data: mutationCommentInput!, draft: Boolean, locale: LocaleInputType): Comment
+  updateComment(id: String!, autosave: Boolean, data: mutationCommentUpdateInput!, draft: Boolean, locale: LocaleInputType): Comment
   deleteComment(id: String!): Comment
   restoreVersionComment(id: String): Comment
-  createRedirect(data: mutationRedirectInput!, draft: Boolean): Redirect
-  updateRedirect(id: String!, autosave: Boolean, data: mutationRedirectUpdateInput!, draft: Boolean): Redirect
+  createRedirect(data: mutationRedirectInput!, draft: Boolean, locale: LocaleInputType): Redirect
+  updateRedirect(id: String!, autosave: Boolean, data: mutationRedirectUpdateInput!, draft: Boolean, locale: LocaleInputType): Redirect
   deleteRedirect(id: String!): Redirect
-  createPayloadPreference(data: mutationPayloadPreferenceInput!, draft: Boolean): PayloadPreference
-  updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, draft: Boolean): PayloadPreference
+  createPayloadPreference(data: mutationPayloadPreferenceInput!, draft: Boolean, locale: LocaleInputType): PayloadPreference
+  updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, draft: Boolean, locale: LocaleInputType): PayloadPreference
   deletePayloadPreference(id: String!): PayloadPreference
-  updateSettings(data: mutationSettingsInput!, draft: Boolean): Settings
-  updateHeader(data: mutationHeaderInput!, draft: Boolean): Header
-  updateFooter(data: mutationFooterInput!, draft: Boolean): Footer
+  updateSettings(data: mutationSettingsInput!, draft: Boolean, locale: LocaleInputType): Settings
+  updateHeader(data: mutationHeaderInput!, draft: Boolean, locale: LocaleInputType): Header
+  updateFooter(data: mutationFooterInput!, draft: Boolean, locale: LocaleInputType): Footer
 }
 
 input mutationTagInput {
@@ -17280,7 +17291,7 @@ input mutationTagUpdateInput {
 }
 
 input mutationPostInput {
-  title: String!
+  title: String
   categories: [String]
   publishedAt: String
   authors: [String]
@@ -17438,7 +17449,7 @@ enum PostUpdate__status_MutationInput {
 }
 
 input mutationPageInput {
-  title: String!
+  title: String
   publishedOn: String
   hero: mutationPage_HeroInput!
   layout: JSON
@@ -17706,7 +17717,7 @@ input mutationMediaUpdateInput {
 }
 
 input mutationCategoryInput {
-  title: String!
+  title: String
   media: String
   parent: String
   breadcrumbs: [mutationCategory_BreadcrumbsInput]

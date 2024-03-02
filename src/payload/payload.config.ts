@@ -83,6 +83,26 @@ export default buildConfig({
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   collections: [Tags, Posts, Pages, Products, Orders, Media, Categories, Users, Comments],
+  localization: {
+    locales: [
+      {
+        label: {
+          en: 'English',
+          pl: 'Angielski',
+        },
+        code: 'en',
+      },
+      {
+        label: {
+          en: 'Polish',
+          pl: 'Polski',
+        },
+        code: 'pl',
+      },
+    ],
+    defaultLocale: 'en',
+    fallback: true,
+  },
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

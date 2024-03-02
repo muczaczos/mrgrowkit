@@ -43,6 +43,7 @@ export const Posts: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'categories',
@@ -121,6 +122,7 @@ export const Posts: CollectionConfig = {
               type: 'blocks',
               required: true,
               blocks: [CallToAction, Content, MediaBlock, Archive],
+              localized: true,
             },
             {
               name: 'enablePremiumContent',
