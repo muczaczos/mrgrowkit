@@ -7,11 +7,10 @@ import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
 import { Gutter } from '../../_components/Gutter'
 import { HR } from '../../_components/HR'
-import Filters from './Filters'
 
 import classes from './index.module.scss'
 
-const Products = async () => {
+const Posts = async () => {
   const { isEnabled: isDraftMode } = draftMode()
 
   let page: Page | null = null //Page for layout
@@ -19,10 +18,10 @@ const Products = async () => {
 
   try {
     //fetch page and categories
-    //1 fetch page with slug 'products'
+    //1 fetch page with slug 'posts'
     page = await fetchDoc<Page>({
       collection: 'pages',
-      slug: 'products',
+      slug: 'posts',
       draft: isDraftMode,
       /*drafts allow you to build on top of versions functionality
         to make changes to your collection, documents and globals but
@@ -37,8 +36,7 @@ const Products = async () => {
   }
   return (
     <div className={classes.container}>
-      <Gutter className={classes.products}>
-        <Filters categories={categories} />
+      <Gutter className={classes.posts}>
         <Blocks blocks={page.layout} disableTopPadding={true} />
       </Gutter>
       <HR />
@@ -46,4 +44,4 @@ const Products = async () => {
   )
 }
 
-export default Products
+export default Posts

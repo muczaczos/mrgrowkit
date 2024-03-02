@@ -14,14 +14,6 @@ import { populateAuthors } from './hooks/populateAuthors'
 import { revalidatePost } from './hooks/revalidatePost'
 
 export const Posts: CollectionConfig = {
-  endpoints: [
-    {
-      path: '/posts',
-      method: 'get',
-      handler: async () => { },
-    },
-  ],
-
   slug: 'posts',
   admin: {
     useAsTitle: 'title',

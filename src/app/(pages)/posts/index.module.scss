@@ -1,0 +1,13 @@
+@import '../../_css/common';
+
+.container {
+  width: 100%;
+}
+
+.posts {
+  
+    @include large-break {
+      grid-template-columns: 100%;
+      gap: 48px;
+    }
+  }
