@@ -15,6 +15,10 @@ const ShippingMethods = () => {
     setShowAdditionalInfo(event.target.value === 'paczkomat')
   }
 
+  const afterPointSelected = point => {
+    alert('Selected point: ' + point.name)
+  }
+
   return (
     <div>
       <label>
@@ -64,7 +68,7 @@ const ShippingMethods = () => {
             }
             language="pl"
             config="parcelcollect"
-            onPoint={null}
+            onPoint={afterPointSelected}
           />
         </div>
       )}
