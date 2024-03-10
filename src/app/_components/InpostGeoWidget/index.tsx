@@ -39,6 +39,10 @@ export const InpostGeoWidget = ({
 
   useEffect(() => {
     window.onPoint = callback
+    function afterPointSelected(point) {
+      alert('Wybrany punkt: ' + point.name)
+      //console.log('dupa')
+    }
   }, [callback])
 
   return React.createElement('inpost-geowidget', {
