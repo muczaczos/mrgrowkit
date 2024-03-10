@@ -23,7 +23,7 @@ const ShippingMethods = setLockerCode => {
   }
 
   const afterPointSelected = point => {
-    //alert('Selected point: ' + point.name)
+    alert('Selected point: ' + point.name)
     setLockerCode(point.name)
   }
 
