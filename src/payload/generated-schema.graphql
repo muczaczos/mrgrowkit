@@ -7858,6 +7858,7 @@ type Order {
   country: String
   phoneNumber: String
   email: String
+  lockerCode: String
   items: [Order_Items!]
   updatedAt: DateTime
   createdAt: DateTime
@@ -7895,6 +7896,7 @@ input Order_where {
   country: Order_country_operator
   phoneNumber: Order_phoneNumber_operator
   email: Order_email_operator
+  lockerCode: Order_lockerCode_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
   items__quantity: Order_items__quantity_operator
@@ -8012,6 +8014,17 @@ input Order_email_operator {
   exists: Boolean
 }
 
+input Order_lockerCode_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Order_items__product_operator {
   equals: JSON
   not_equals: JSON
@@ -8095,6 +8108,7 @@ input Order_where_and {
   country: Order_country_operator
   phoneNumber: Order_phoneNumber_operator
   email: Order_email_operator
+  lockerCode: Order_lockerCode_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
   items__quantity: Order_items__quantity_operator
@@ -8117,6 +8131,7 @@ input Order_where_or {
   country: Order_country_operator
   phoneNumber: Order_phoneNumber_operator
   email: Order_email_operator
+  lockerCode: Order_lockerCode_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
   items__quantity: Order_items__quantity_operator
@@ -8147,6 +8162,7 @@ type OrdersDocAccessFields {
   country: OrdersDocAccessFields_country
   phoneNumber: OrdersDocAccessFields_phoneNumber
   email: OrdersDocAccessFields_email
+  lockerCode: OrdersDocAccessFields_lockerCode
   items: OrdersDocAccessFields_items
   updatedAt: OrdersDocAccessFields_updatedAt
   createdAt: OrdersDocAccessFields_createdAt
@@ -8379,6 +8395,29 @@ type OrdersDocAccessFields_email_Update {
 }
 
 type OrdersDocAccessFields_email_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_lockerCode {
+  create: OrdersDocAccessFields_lockerCode_Create
+  read: OrdersDocAccessFields_lockerCode_Read
+  update: OrdersDocAccessFields_lockerCode_Update
+  delete: OrdersDocAccessFields_lockerCode_Delete
+}
+
+type OrdersDocAccessFields_lockerCode_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_lockerCode_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_lockerCode_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_lockerCode_Delete {
   permission: Boolean!
 }
 
@@ -14569,6 +14608,7 @@ type OrdersFields {
   country: OrdersFields_country
   phoneNumber: OrdersFields_phoneNumber
   email: OrdersFields_email
+  lockerCode: OrdersFields_lockerCode
   items: OrdersFields_items
   updatedAt: OrdersFields_updatedAt
   createdAt: OrdersFields_createdAt
@@ -14801,6 +14841,29 @@ type OrdersFields_email_Update {
 }
 
 type OrdersFields_email_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_lockerCode {
+  create: OrdersFields_lockerCode_Create
+  read: OrdersFields_lockerCode_Read
+  update: OrdersFields_lockerCode_Update
+  delete: OrdersFields_lockerCode_Delete
+}
+
+type OrdersFields_lockerCode_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_lockerCode_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_lockerCode_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_lockerCode_Delete {
   permission: Boolean!
 }
 
@@ -17655,6 +17718,7 @@ input mutationOrderInput {
   country: String
   phoneNumber: String
   email: String
+  lockerCode: String
   items: [mutationOrder_ItemsInput]
   updatedAt: String
   createdAt: String
@@ -17678,6 +17742,7 @@ input mutationOrderUpdateInput {
   country: String
   phoneNumber: String
   email: String
+  lockerCode: String
   items: [mutationOrderUpdate_ItemsInput]
   updatedAt: String
   createdAt: String

@@ -79,6 +79,10 @@ export const Orders: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'lockerCode',
+      type: 'text',
+    },
+    {
       name: 'items',
       type: 'array',
       fields: [

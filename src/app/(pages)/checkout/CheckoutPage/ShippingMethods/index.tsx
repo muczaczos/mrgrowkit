@@ -6,7 +6,7 @@ import { InpostGeoWidget } from '../../../../_components/InpostGeoWidget'
 
 import classes from './index.module.scss'
 
-const ShippingMethods = () => {
+const ShippingMethods = setLockerCode => {
   const [selectedCourier, setSelectedCourier] = useState('')
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false)
 
@@ -16,7 +16,8 @@ const ShippingMethods = () => {
   }
 
   const afterPointSelected = point => {
-    alert('Selected point: ' + point.name)
+    //alert('Selected point: ' + point.name)
+    setLockerCode(point.name)
   }
 
   return (

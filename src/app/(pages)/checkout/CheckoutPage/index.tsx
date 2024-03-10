@@ -44,6 +44,7 @@ export const CheckoutPage: React.FC<{
   const [country, setCountry] = React.useState()
   const [email, setEmail] = React.useState()
   const [method, setMethod] = React.useState()
+  const [lockerCode, setLockerCode] = React.useState()
   const { cart, cartIsEmpty, cartTotal, totalAmount } = useCart()
   var subtotal = 0
 
@@ -130,6 +131,7 @@ export const CheckoutPage: React.FC<{
           country: country,
           phoneNumber: phone,
           email: email,
+          lockerCode: lockerCode,
           items: (cart?.items || [])?.map(({ product, quantity }) => ({
             product: typeof product === 'string' ? product : product.id,
             quantity,
@@ -209,7 +211,7 @@ export const CheckoutPage: React.FC<{
             />
             <PaymentMethods method={method} setMethod={setMethod} />
           </div>
-          <ShippingMethods />
+          <ShippingMethods setLockerCode={setLockerCode} />
         </>
       )}
       {cartIsEmpty && (
