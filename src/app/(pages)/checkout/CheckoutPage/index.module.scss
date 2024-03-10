@@ -1,6 +1,7 @@
 @import '../../../_css/common';
 
 .sections {
+  margin-bottom: 24px;
   display: flex;
   column-gap: 24px;
   @include small-break {

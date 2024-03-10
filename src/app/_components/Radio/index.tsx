@@ -29,6 +29,7 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
         onChange={handleRadioChange}
         className={classes.radio}
         name={groupName}
+        value={value}
       />
       {label}
     </label>
