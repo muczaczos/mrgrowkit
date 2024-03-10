@@ -7,6 +7,8 @@ const policies = {
     'https://checkout.stripe.com',
     'https://js.stripe.com',
     'https://maps.googleapis.com',
+    'https://geowidget.inpost.pl/inpost-geowidget.js',
+    
   ],
   'child-src': ["'self'"],
   'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
@@ -17,6 +19,7 @@ const policies = {
     'https://checkout.stripe.com',
     'https://js.stripe.com',
     'https://hooks.stripe.com',
+    'https://geowidget-app.inpost.pl/',
   ],
   'connect-src': [
     "'self'",
@@ -24,6 +27,7 @@ const policies = {
     'https://api.stripe.com',
     'https://maps.googleapis.com',
   ],
+  
 }
 
 module.exports = Object.entries(policies)
