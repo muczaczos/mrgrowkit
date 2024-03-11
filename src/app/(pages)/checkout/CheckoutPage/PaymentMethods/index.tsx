@@ -1,8 +1,6 @@
 import React from 'react'
 import { BsBank, BsCreditCard2Back, BsCurrencyBitcoin } from 'react-icons/bs'
 
-import { HR } from '../../../../_components/HR'
-import { Media } from '../../../../_components/Media'
 import { RadioButton } from '../../../../_components/Radio'
 
 import classes from './index.module.scss'
@@ -25,7 +23,7 @@ const PaymentMethods = ({ method, setMethod }) => {
         />
         <BsBank className={classes.icon} />
       </div>
-      <HR></HR>
+      <hr className={classes.hr}></hr>
       <div className={classes.radioAndIcon}>
         <RadioButton
           label="Payment Gateway"
@@ -36,7 +34,7 @@ const PaymentMethods = ({ method, setMethod }) => {
         />
         <BsCreditCard2Back className={classes.icon} />
       </div>
-      <HR></HR>
+      <hr className={classes.hr}></hr>
       <div className={classes.radioAndIcon}>
         <RadioButton
           label="Cryptocurrency ETH"
@@ -47,6 +45,7 @@ const PaymentMethods = ({ method, setMethod }) => {
         />
         <BsCurrencyBitcoin className={classes.icon} />
       </div>
+      <hr className={classes.hr}></hr>
     </div>
   )
 }

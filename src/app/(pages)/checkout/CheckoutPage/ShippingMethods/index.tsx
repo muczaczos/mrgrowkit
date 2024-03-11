@@ -45,7 +45,7 @@ const ShippingMethods = ({ setLockerCode }) => {
             />
           </div>
         </label>
-        <HR></HR>
+        <hr className={classes.hr}></hr>
         <label className={classes.radioWrapper}>
           <input
             type="radio"
@@ -64,7 +64,7 @@ const ShippingMethods = ({ setLockerCode }) => {
             />
           </div>
         </label>
-        <HR></HR>
+        <hr className={classes.hr}></hr>
 
         <label className={classes.radioWrapper}>
           <input
@@ -84,7 +84,7 @@ const ShippingMethods = ({ setLockerCode }) => {
             />
           </div>
         </label>
-        <HR></HR>
+        <hr className={classes.hr}></hr>
         <label className={classes.radioWrapper}>
           <input
             type="radio"
@@ -103,6 +103,7 @@ const ShippingMethods = ({ setLockerCode }) => {
             />
           </div>
         </label>
+        <hr className={classes.hr}></hr>
       </div>
       <div className={classes.bannerSection}>
         {showAdditionalInfo && (
