@@ -45,6 +45,7 @@ export const CheckoutPage: React.FC<{
   const [email, setEmail] = React.useState()
   const [method, setMethod] = React.useState()
   const [lockerCode, setLockerCode] = React.useState()
+  const [showDisplayCode, setShowDisplayCode] = React.useState()
   const { cart, cartIsEmpty, cartTotal, totalAmount } = useCart()
   var subtotal = 0
 
@@ -211,7 +212,10 @@ export const CheckoutPage: React.FC<{
             />
             <PaymentMethods method={method} setMethod={setMethod} />
           </div>
-          <ShippingMethods setLockerCode={setLockerCode} />
+          <ShippingMethods setLockerCode={setLockerCode} setShowDisplayCode={setShowDisplayCode} />
+          {showDisplayCode && (
+            <h3 className={classes.showCode}>Wybrany paczkomat to: {lockerCode}</h3>
+          )}
         </>
       )}
       {cartIsEmpty && (
