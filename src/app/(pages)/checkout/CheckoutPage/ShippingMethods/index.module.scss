@@ -65,6 +65,9 @@
 
 .geowidget {
     height: 600px;
+    @include small-break {
+      height: 500px;
+    }
 }
 
 .dpd { 
