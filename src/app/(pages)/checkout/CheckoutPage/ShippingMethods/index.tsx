@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 import { HR } from '../../../../_components/HR'
 import { InpostGeoWidget } from '../../../../_components/InpostGeoWidget'
@@ -10,16 +11,10 @@ import classes from './index.module.scss'
 const ShippingMethods = ({ setLockerCode }) => {
   const [selectedCourier, setSelectedCourier] = useState('')
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false)
-  const [showDpd, setDpd] = useState(false)
-  const [showDhl, setDhl] = useState(false)
-  const [showInpost, setInpost] = useState(false)
 
   const handleCourierChange = event => {
     setSelectedCourier(event.target.value)
     setShowAdditionalInfo(event.target.value === 'paczkomat')
-    setDpd(event.target.value === 'kurier-dpd')
-    setDhl(event.target.value === 'kurier-dhl')
-    setInpost(event.target.value === 'kurier-inpost')
   }
 
   const afterPointSelected = point => {
@@ -40,7 +35,15 @@ const ShippingMethods = ({ setLockerCode }) => {
             onChange={handleCourierChange}
             className={classes.radio}
           />
-          Kurier DPD
+          <div className={classes.labelAndLogo}>
+            Kurier DPD
+            <Image
+              src="/../../../../../../media/dpd.png"
+              width={100}
+              height={100}
+              alt="Logo firmy DHL"
+            />
+          </div>
         </label>
         <HR></HR>
         <label className={classes.radioWrapper}>
@@ -51,7 +54,15 @@ const ShippingMethods = ({ setLockerCode }) => {
             onChange={handleCourierChange}
             className={classes.radio}
           />
-          Kurier DHL
+          <div className={classes.labelAndLogo}>
+            Kurier DHL
+            <Image
+              src="/../../../../../../media/dhl.jpg"
+              width={100}
+              height={100}
+              alt="Logo firmy DHL"
+            />
+          </div>
         </label>
         <HR></HR>
 
@@ -63,7 +74,15 @@ const ShippingMethods = ({ setLockerCode }) => {
             onChange={handleCourierChange}
             className={classes.radio}
           />
-          Kurier InPost
+          <div className={classes.labelAndLogo}>
+            Kurier Inpost
+            <Image
+              src="/../../../../../../media/inpost.png"
+              width={100}
+              height={100}
+              alt="Logo firmy DHL"
+            />
+          </div>
         </label>
         <HR></HR>
         <label className={classes.radioWrapper}>
@@ -74,7 +93,15 @@ const ShippingMethods = ({ setLockerCode }) => {
             onChange={handleCourierChange}
             className={classes.radio}
           />
-          Paczkomat
+          <div className={classes.labelAndLogo}>
+            Paczkomat Inpostu
+            <Image
+              src="/../../../../../../media/paczkomat.png"
+              width={100}
+              height={100}
+              alt="Logo firmy DHL"
+            />
+          </div>
         </label>
       </div>
       <div className={classes.bannerSection}>
@@ -90,7 +117,6 @@ const ShippingMethods = ({ setLockerCode }) => {
             />
           </div>
         )}
-        {showDpd && <div className={classes.dpd}></div>}
       </div>
     </div>
   )

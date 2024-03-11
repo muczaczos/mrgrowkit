@@ -9,6 +9,11 @@
       }
 }
 
+.labelAndLogo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 .title { 
     padding-bottom: 30px;
 }
