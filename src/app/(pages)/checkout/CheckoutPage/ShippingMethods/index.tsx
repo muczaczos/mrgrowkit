@@ -14,7 +14,7 @@ const ShippingMethods = ({ setLockerCode, setShowDisplayCode, setShippingMethods
 
   const handleCourierChange = event => {
     setSelectedCourier(event.target.value)
-    setShippingMethods(selectedCourier)
+    setShippingMethods(event.target.value)
     setShowAdditionalInfo(event.target.value === 'paczkomat')
   }
 

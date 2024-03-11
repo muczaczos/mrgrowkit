@@ -136,7 +136,7 @@ export const CheckoutPage: React.FC<{
           phoneNumber: phone,
           email: email,
           lockerCode: lockerCode,
-          shippingMethods: shippingMethods,
+          shippingMethod: shippingMethods,
           additionalInfo: additionalInfo,
           items: (cart?.items || [])?.map(({ product, quantity }) => ({
             product: typeof product === 'string' ? product : product.id,
