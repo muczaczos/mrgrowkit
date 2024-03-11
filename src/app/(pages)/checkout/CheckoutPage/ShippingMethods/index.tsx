@@ -8,12 +8,13 @@ import { InpostGeoWidget } from '../../../../_components/InpostGeoWidget'
 
 import classes from './index.module.scss'
 
-const ShippingMethods = ({ setLockerCode, setShowDisplayCode }) => {
+const ShippingMethods = ({ setLockerCode, setShowDisplayCode, setShippingMethods }) => {
   const [selectedCourier, setSelectedCourier] = useState('')
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false)
 
   const handleCourierChange = event => {
     setSelectedCourier(event.target.value)
+    setShippingMethods(selectedCourier)
     setShowAdditionalInfo(event.target.value === 'paczkomat')
   }
 
@@ -106,8 +107,9 @@ const ShippingMethods = ({ setLockerCode, setShowDisplayCode }) => {
         </label>
         <hr className={classes.hr}></hr>
       </div>
-      <div className={classes.bannerSection}>
-        {showAdditionalInfo && (
+
+      {showAdditionalInfo && (
+        <div className={classes.bannerSection}>
           <div className={classes.geowidget}>
             <InpostGeoWidget
               token={
@@ -118,8 +120,8 @@ const ShippingMethods = ({ setLockerCode, setShowDisplayCode }) => {
               onPoint={afterPointSelected}
             />
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   )
 }

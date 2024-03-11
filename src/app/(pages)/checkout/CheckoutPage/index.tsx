@@ -16,6 +16,7 @@ import { useTheme } from '../../../_providers/Theme'
 import cssVariables from '../../../cssVariables'
 import { CheckoutForm } from '../CheckoutForm'
 import { CheckoutItem } from '../CheckoutItem'
+import AdditionalInfo from './AdditionalInfo'
 import PaymentMethods from './PaymentMethods'
 import ShippingDetails from './ShippingDetails'
 import ShippingMethods from './ShippingMethods'
@@ -46,6 +47,8 @@ export const CheckoutPage: React.FC<{
   const [method, setMethod] = React.useState()
   const [lockerCode, setLockerCode] = React.useState()
   const [showDisplayCode, setShowDisplayCode] = React.useState()
+  const [shippingMethods, setShippingMethods] = React.useState()
+  const [additionalInfo, setAdditionalInfo] = React.useState()
   const { cart, cartIsEmpty, cartTotal, totalAmount } = useCart()
   var subtotal = 0
 
@@ -133,6 +136,8 @@ export const CheckoutPage: React.FC<{
           phoneNumber: phone,
           email: email,
           lockerCode: lockerCode,
+          shippingMethods: shippingMethods,
+          additionalInfo: additionalInfo,
           items: (cart?.items || [])?.map(({ product, quantity }) => ({
             product: typeof product === 'string' ? product : product.id,
             quantity,
@@ -212,10 +217,15 @@ export const CheckoutPage: React.FC<{
             />
             <PaymentMethods method={method} setMethod={setMethod} />
           </div>
-          <ShippingMethods setLockerCode={setLockerCode} setShowDisplayCode={setShowDisplayCode} />
+          <ShippingMethods
+            setShippingMethods={setShippingMethods}
+            setLockerCode={setLockerCode}
+            setShowDisplayCode={setShowDisplayCode}
+          />
           {showDisplayCode && (
             <h3 className={classes.showCode}>Wybrany paczkomat to: {lockerCode}</h3>
           )}
+          <AdditionalInfo setAdditionalInfo={setAdditionalInfo} />
         </>
       )}
       {cartIsEmpty && (

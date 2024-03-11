@@ -7859,6 +7859,8 @@ type Order {
   phoneNumber: String
   email: String
   lockerCode: String
+  shippingMethod: String
+  additionalInfo: String
   items: [Order_Items!]
   updatedAt: DateTime
   createdAt: DateTime
@@ -7897,6 +7899,8 @@ input Order_where {
   phoneNumber: Order_phoneNumber_operator
   email: Order_email_operator
   lockerCode: Order_lockerCode_operator
+  shippingMethod: Order_shippingMethod_operator
+  additionalInfo: Order_additionalInfo_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
   items__quantity: Order_items__quantity_operator
@@ -8025,6 +8029,25 @@ input Order_lockerCode_operator {
   exists: Boolean
 }
 
+input Order_shippingMethod_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Order_additionalInfo_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
 input Order_items__product_operator {
   equals: JSON
   not_equals: JSON
@@ -8109,6 +8132,8 @@ input Order_where_and {
   phoneNumber: Order_phoneNumber_operator
   email: Order_email_operator
   lockerCode: Order_lockerCode_operator
+  shippingMethod: Order_shippingMethod_operator
+  additionalInfo: Order_additionalInfo_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
   items__quantity: Order_items__quantity_operator
@@ -8132,6 +8157,8 @@ input Order_where_or {
   phoneNumber: Order_phoneNumber_operator
   email: Order_email_operator
   lockerCode: Order_lockerCode_operator
+  shippingMethod: Order_shippingMethod_operator
+  additionalInfo: Order_additionalInfo_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
   items__quantity: Order_items__quantity_operator
@@ -8163,6 +8190,8 @@ type OrdersDocAccessFields {
   phoneNumber: OrdersDocAccessFields_phoneNumber
   email: OrdersDocAccessFields_email
   lockerCode: OrdersDocAccessFields_lockerCode
+  shippingMethod: OrdersDocAccessFields_shippingMethod
+  additionalInfo: OrdersDocAccessFields_additionalInfo
   items: OrdersDocAccessFields_items
   updatedAt: OrdersDocAccessFields_updatedAt
   createdAt: OrdersDocAccessFields_createdAt
@@ -8418,6 +8447,52 @@ type OrdersDocAccessFields_lockerCode_Update {
 }
 
 type OrdersDocAccessFields_lockerCode_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_shippingMethod {
+  create: OrdersDocAccessFields_shippingMethod_Create
+  read: OrdersDocAccessFields_shippingMethod_Read
+  update: OrdersDocAccessFields_shippingMethod_Update
+  delete: OrdersDocAccessFields_shippingMethod_Delete
+}
+
+type OrdersDocAccessFields_shippingMethod_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_shippingMethod_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_shippingMethod_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_shippingMethod_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_additionalInfo {
+  create: OrdersDocAccessFields_additionalInfo_Create
+  read: OrdersDocAccessFields_additionalInfo_Read
+  update: OrdersDocAccessFields_additionalInfo_Update
+  delete: OrdersDocAccessFields_additionalInfo_Delete
+}
+
+type OrdersDocAccessFields_additionalInfo_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_additionalInfo_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_additionalInfo_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_additionalInfo_Delete {
   permission: Boolean!
 }
 
@@ -14609,6 +14684,8 @@ type OrdersFields {
   phoneNumber: OrdersFields_phoneNumber
   email: OrdersFields_email
   lockerCode: OrdersFields_lockerCode
+  shippingMethod: OrdersFields_shippingMethod
+  additionalInfo: OrdersFields_additionalInfo
   items: OrdersFields_items
   updatedAt: OrdersFields_updatedAt
   createdAt: OrdersFields_createdAt
@@ -14864,6 +14941,52 @@ type OrdersFields_lockerCode_Update {
 }
 
 type OrdersFields_lockerCode_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_shippingMethod {
+  create: OrdersFields_shippingMethod_Create
+  read: OrdersFields_shippingMethod_Read
+  update: OrdersFields_shippingMethod_Update
+  delete: OrdersFields_shippingMethod_Delete
+}
+
+type OrdersFields_shippingMethod_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_shippingMethod_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_shippingMethod_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_shippingMethod_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_additionalInfo {
+  create: OrdersFields_additionalInfo_Create
+  read: OrdersFields_additionalInfo_Read
+  update: OrdersFields_additionalInfo_Update
+  delete: OrdersFields_additionalInfo_Delete
+}
+
+type OrdersFields_additionalInfo_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_additionalInfo_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_additionalInfo_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_additionalInfo_Delete {
   permission: Boolean!
 }
 
@@ -17719,6 +17842,8 @@ input mutationOrderInput {
   phoneNumber: String
   email: String
   lockerCode: String
+  shippingMethod: String
+  additionalInfo: String
   items: [mutationOrder_ItemsInput]
   updatedAt: String
   createdAt: String
@@ -17743,6 +17868,8 @@ input mutationOrderUpdateInput {
   phoneNumber: String
   email: String
   lockerCode: String
+  shippingMethod: String
+  additionalInfo: String
   items: [mutationOrderUpdate_ItemsInput]
   updatedAt: String
   createdAt: String

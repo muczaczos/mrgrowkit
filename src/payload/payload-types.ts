@@ -762,6 +762,8 @@ export interface Order {
   phoneNumber?: string | null;
   email?: string | null;
   lockerCode?: string | null;
+  shippingMethod?: string | null;
+  additionalInfo?: string | null;
   items?:
     | {
         product: string | Product;

@@ -83,6 +83,14 @@ export const Orders: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'shippingMethod',
+      type: 'text',
+    },
+    {
+      name: 'additionalInfo',
+      type: 'textarea',
+    },
+    {
       name: 'items',
       type: 'array',
       fields: [
