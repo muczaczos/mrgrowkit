@@ -31,8 +31,8 @@ const start = async (): Promise<void> => {
         auth: {
           type: "OAuth2",
           user: process.env.SMTP_USER,
-          clientId: '410992622228-ribppec1ut6argksrjg48jpgfrum18p3.apps.googleusercontent.com',
-          clientSecret: "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",
+          clientId: process.env.CLIENT_ID,
+          clientSecret: process.env.CLIENT_SECRET,
         },
       },
       fromName: 'MrGrowkit',
