@@ -22,6 +22,20 @@ const start = async (): Promise<void> => {
     onInit: () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
     },
+    email: {
+      transportOptions: {
+        host: process.env.SMTP_HOST,
+        port: Number(process.env.SMTP_PORT),
+        secure: true,
+        auth: {
+          type: 'OAuth2',
+          user: process.env.SMTP_USER,
+          accessToken: process.env.ACCESS_TOKEN,
+        },
+      },
+      fromName: 'MrGrowkit',
+      fromAddress: 'muczaczos@gmail.com',
+    },
   })
 
   if (process.env.PAYLOAD_SEED === 'true') {
