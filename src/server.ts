@@ -24,13 +24,15 @@ const start = async (): Promise<void> => {
     },
     email: {
       transportOptions: {
+        service: "gmail",
         host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT),
         secure: true,
+        port: 465,
         auth: {
-          type: 'OAuth2',
+          type: "OAuth2",
           user: process.env.SMTP_USER,
-          accessToken: process.env.ACCESS_TOKEN,
+          clientId: '410992622228-ribppec1ut6argksrjg48jpgfrum18p3.apps.googleusercontent.com',
+          clientSecret: "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",
         },
       },
       fromName: 'MrGrowkit',
