@@ -5,13 +5,6 @@ import type { Order } from '../../../payload-types'
 export const updateUserPurchases: AfterChangeHook<Order> = async ({ doc, req, operation }) => {
   const { payload } = req
 
-  await payload.sendEmail({
-    to: 'muczaczos@gmail.com',
-    from: 'shop@planet-of-mushrooms.com',
-    subject: 'New Order',
-    html: '<b>Hey there!</b><br/>Thank you for your order!',
-  })
-
   if ((operation === 'create' || operation === 'update') && doc.orderedBy && doc.items) {
     const orderedBy = typeof doc.orderedBy === 'object' ? doc.orderedBy.id : doc.orderedBy
 
