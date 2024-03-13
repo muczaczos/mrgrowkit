@@ -3,15 +3,20 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
+import { Input } from '../../Input'
 import { Footer, Media } from '../../../../payload/payload-types'
 import { inclusions, noHeaderFooterUrls, profileNavItems } from '../../../constants'
-import { Button } from '../../Button'
+import { Button } from '../../../_components/Button'
 import { Gutter } from '../../Gutter'
-
+import { useForm } from 'react-hook-form'
 import classes from './index.module.scss'
 
 const FooterComponent = ({ footer }: { footer: Footer }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isLoading },
+  } = useForm<FormData>()
   const pathname = usePathname()
   const navItems = footer?.navItems || []
   return (
@@ -37,6 +42,30 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
 
       <div className={classes.footer}>
         <Gutter>
+          <div className={classes.newsletter}>
+          
+          <Input
+            name="subscribe"
+            type="email"
+            label=""
+            placeholder="Subscribe to newsletter"
+            register={register}
+            error={null}
+            disabled={false}
+            onChange={null}
+            className={classes.newsletterInput}
+          />
+          <Button className={classes.newsButton} label="Subscribe" href="/cart" appearance="primary" />
+          </div>
+          <div className={classes.menu}>
+
+          </div>
+          <div className={classes.payments}>
+
+          </div>
+          <div className={classes.privacy}>
+
+          </div>
           <div className={classes.wrap}>
             <Link href="/">
               <Image src="/logo-white.svg" alt="logo" width={170} height={50} />

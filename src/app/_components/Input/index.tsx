@@ -14,6 +14,7 @@ type Props = {
   placeholder?: string
   disabled?: boolean
   onChange?: (e) => void
+  className?: string
 }
 
 export const Input: React.FC<Props> = ({
@@ -27,6 +28,7 @@ export const Input: React.FC<Props> = ({
   placeholder,
   disabled,
   onChange,
+  className,
 }) => {
   return (
     <div className={classes.inputWrap}>
@@ -35,7 +37,7 @@ export const Input: React.FC<Props> = ({
         {required ? <span className={classes.asterisk}>&nbsp;*</span> : ''}
       </label>
       <input
-        className={[classes.input, error && classes.error].filter(Boolean).join(' ')}
+        className={[className, classes.input, error && classes.error].filter(Boolean).join(' ')}
         {...{ type }}
         placeholder={placeholder}
         {...register(name, {
