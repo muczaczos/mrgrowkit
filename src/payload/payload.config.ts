@@ -36,6 +36,21 @@ const generateTitle: GenerateTitle = () => {
   return 'My Store'
 }
 
+export const email = {
+  transportOptions: {
+    host: process.env.SMTP_HOST,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+    port: Number(process.env.SMTP_HOST),
+    secure: Number(process.env.SMTP_PORT) === 465, // true for port 465, false (the default) for 587 and others
+    requireTLS: true,
+  },
+  fromName: 'hello',
+  fromAddress: 'shop@planet-of-mushrooms.com',
+}
+
 const mockModulePath = path.resolve(__dirname, './emptyModuleMock.js')
 
 dotenv.config({
@@ -83,6 +98,7 @@ export default buildConfig({
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   collections: [Tags, Posts, Pages, Products, Orders, Media, Categories, Users, Comments],
+  email,
   localization: {
     locales: [
       {
