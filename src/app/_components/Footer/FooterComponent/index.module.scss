@@ -4,7 +4,7 @@
   padding: 30px 0;
   background-color: var(--theme-elevation-1000);
   color: var(--theme-elevation-0);
-
+  padding: calc(var(--base) * 2) 0;
   @include small-break {
     padding: calc(var(--base) * 2) 0;
   }
@@ -12,25 +12,90 @@
 
 .newsletterInput {
   background-color: black !important;
+  border: none !important;
+  margin-bottom: 16px !important;
+
 }
 
 .newsletter {
   display: flex !important;
-  align-items: baseline !important;
   gap: 24px;
+  border: solid 1px whitesmoke !important;
+  border-radius: 10px;
+  margin-bottom: 48px;
 }
 
 .newsButton {
   width: 200px;
-  border: solid 1px var(--color-gray-500) !important;
   color: var(--color-gray-500) !important;
-  padding-bottom: 12px !important;
-  padding-top: 14px !important;
+  font-weight: 800;
 }
 
 .newsletterInput:focus {
-  border: 1px solid var(--color-gray-500) !important;
   color: var(--color-gray-500) ;
+}
+
+.menuCol {
+  width: 100%;
+  display: flex;
+  gap: 96px;
+  font-size:24px;
+  font-weight: 100 !important;
+  color: var(--color-gray-500);
+
+  a {
+    color: var(--color-gray-500);
+  }
+  label {
+    color: whitesmoke;
+  }
+  ul {
+    padding-top: 20px;
+  }
+  li {
+    padding-bottom: 12px;   
+  }
+  @include small-break {
+    font-size: 24px;
+    gap: 48px;
+   }
+}
+
+.rules {
+  width: 100%;
+  justify-content: end;
+  @include small-break {
+    justify-content: start;
+   }
+}
+
+.menu {
+  display: flex;
+  gap: 96px;
+  margin-bottom: 48px;
+  @include small-break {
+   flex-direction: column;
+   gap: 12px;
+  }
+}
+
+.payments {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.paymentOptions {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: var(--color-gray-500);
+  border-bottom: solid 1px rgba(128, 128, 128, 0.568);
+  border-top: solid 1px rgba(128, 128, 128, 0.568);
+  opacity: 70%;
+  padding: 24px;
 }
 
 .inclusions {

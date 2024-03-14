@@ -1,14 +1,16 @@
 'use client'
 import React from 'react'
+import { useForm } from 'react-hook-form'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Input } from '../../Input'
+
 import { Footer, Media } from '../../../../payload/payload-types'
-import { inclusions, noHeaderFooterUrls, profileNavItems } from '../../../constants'
 import { Button } from '../../../_components/Button'
+import { inclusions, noHeaderFooterUrls, profileNavItems } from '../../../constants'
 import { Gutter } from '../../Gutter'
-import { useForm } from 'react-hook-form'
+import { Input } from '../../Input'
+
 import classes from './index.module.scss'
 
 const FooterComponent = ({ footer }: { footer: Footer }) => {
@@ -43,29 +45,102 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
       <div className={classes.footer}>
         <Gutter>
           <div className={classes.newsletter}>
-          
-          <Input
-            name="subscribe"
-            type="email"
-            label=""
-            placeholder="Subscribe to newsletter"
-            register={register}
-            error={null}
-            disabled={false}
-            onChange={null}
-            className={classes.newsletterInput}
-          />
-          <Button className={classes.newsButton} label="Subscribe" href="/cart" appearance="primary" />
+            <Input
+              name="subscribe"
+              type="email"
+              label=""
+              placeholder="Subscribe to newsletter"
+              register={register}
+              error={null}
+              disabled={false}
+              onChange={null}
+              className={classes.newsletterInput}
+            />
+            <Button
+              className={classes.newsButton}
+              label="Subscribe"
+              href="/cart"
+              appearance="primary"
+            />
           </div>
           <div className={classes.menu}>
-
+            <div className={classes.menuCol}>
+              <section>
+                <label>Products</label>
+                <ul>
+                  <li>
+                    <Link href="/products">Growkits</Link>
+                  </li>
+                  <li>
+                    <Link href="/Spores">Spores</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Liquid cultures</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Equipment</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Best Products</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Wholesale</Link>
+                  </li>
+                </ul>
+              </section>
+              <section>
+                <label>Informations</label>
+                <ul>
+                  <li>
+                    <Link href="/products">About Us</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Shipping</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Payments</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Contact</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Blog</Link>
+                  </li>
+                </ul>
+              </section>
+            </div>
+            <div className={`${classes.menuCol} ${classes.rules}`}>
+              <section>
+                <label>Rules</label>
+                <ul>
+                  <li>
+                    <Link href="/products">Terms & Conditions</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Privacy Policy</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Payments</Link>
+                  </li>
+                  <li>
+                    <Link href="/products">Contact</Link>
+                  </li>
+                </ul>
+              </section>
+            </div>
           </div>
           <div className={classes.payments}>
-
+            <div className={classes.paymentOptions}>
+              <p>Ideal</p>
+              <p>Sofort</p>
+              <p>Bank deposit (SEPA)</p>
+              <p>Cypto currency</p>
+              <p>Bancontact</p>
+              <p>Giropay</p>
+              <p>Mybank</p>
+            </div>
           </div>
-          <div className={classes.privacy}>
-
-          </div>
+          <div className={classes.privacy}></div>
           <div className={classes.wrap}>
             <Link href="/">
               <Image src="/logo-white.svg" alt="logo" width={170} height={50} />
