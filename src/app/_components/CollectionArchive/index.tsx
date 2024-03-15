@@ -3,7 +3,7 @@
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import qs from 'qs'
 
-import type { Post, Product } from '../../../payload/payload-types'
+import type { Blog, Post, Product } from '../../../payload/payload-types'
 import type { ArchiveBlockProps } from '../../_blocks/ArchiveBlock/types'
 import { useFilter } from '../../_providers/Filter'
 import { Card } from '../Card'
@@ -14,7 +14,7 @@ import { Pagination } from '../Pagination'
 import classes from './index.module.scss'
 
 type Result = {
-  docs: (Post | Product | string)[]
+  docs: (Post | Product | Blog | string)[]
   hasNextPage: boolean
   hasPrevPage: boolean
   nextPage: number
@@ -32,7 +32,7 @@ export type Props = {
   populateBy?: 'collection' | 'selection'
   populatedDocs?: ArchiveBlockProps['populatedDocs']
   populatedDocsTotal?: ArchiveBlockProps['populatedDocsTotal']
-  relationTo?: 'posts' | 'products'
+  relationTo?: 'posts' | 'products' | 'blog'
   selectedDocs?: ArchiveBlockProps['selectedDocs']
   showPageRange?: boolean
   sort?: string
@@ -58,8 +58,8 @@ export const CollectionArchive: React.FC<Props> = props => {
     docs: (populateBy === 'collection'
       ? populatedDocs
       : populateBy === 'selection'
-      ? selectedDocs
-      : []
+        ? selectedDocs
+        : []
     )?.map(doc => doc.value),
     hasNextPage: false,
     hasPrevPage: false,
@@ -120,13 +120,13 @@ export const CollectionArchive: React.FC<Props> = props => {
           where: {
             ...(categoryFilters && categoryFilters?.length > 0
               ? {
-                  categories: {
-                    in:
-                      typeof categoryFilters === 'string'
-                        ? [categoryFilters]
-                        : categoryFilters.map((cat: string) => cat).join(','),
-                  },
-                }
+                categories: {
+                  in:
+                    typeof categoryFilters === 'string'
+                      ? [categoryFilters]
+                      : categoryFilters.map((cat: string) => cat).join(','),
+                },
+              }
               : {}),
           },
         },
