@@ -1380,6 +1380,7 @@ enum Archive_populateBy {
 enum Archive_relationTo {
   products
   posts
+  blog
 }
 
 type Archive_SelectedDocs_Relationship {
