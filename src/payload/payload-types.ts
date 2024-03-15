@@ -158,7 +158,7 @@ export interface Blog {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('products' | 'posts') | null;
+        relationTo?: ('products' | 'posts' | 'blog') | null;
         categories?: (string | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -261,7 +261,7 @@ export interface Blog {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'posts') | null;
+            relationTo?: ('products' | 'posts' | 'blog') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -445,7 +445,7 @@ export interface Product {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'posts') | null;
+            relationTo?: ('products' | 'posts' | 'blog') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -551,7 +551,7 @@ export interface Product {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'posts') | null;
+            relationTo?: ('products' | 'posts' | 'blog') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -698,7 +698,7 @@ export interface Page {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('products' | 'posts') | null;
+        relationTo?: ('products' | 'posts' | 'blog') | null;
         categories?: (string | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -849,7 +849,7 @@ export interface Post {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('products' | 'posts') | null;
+        relationTo?: ('products' | 'posts' | 'blog') | null;
         categories?: (string | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -952,7 +952,7 @@ export interface Post {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'posts') | null;
+            relationTo?: ('products' | 'posts' | 'blog') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
