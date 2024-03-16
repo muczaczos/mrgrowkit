@@ -3,7 +3,7 @@
 import React, { Fragment } from 'react'
 import Link from 'next/link'
 
-import { Blog, Comment, Post } from '../../../payload/payload-types'
+import { Comment, Post } from '../../../payload/payload-types'
 import { Gutter } from '../../_components/Gutter'
 import { HR } from '../../_components/HR'
 import { Message } from '../../_components/Message'
@@ -18,7 +18,7 @@ export type CommentsBlockProps = {
   blockName: string
   introContent?: any
   doc: Post
-  relationTo: 'posts' | 'projects' | 'blog'
+  relationTo: 'posts' | 'projects'
   comments: Comment[]
 }
 

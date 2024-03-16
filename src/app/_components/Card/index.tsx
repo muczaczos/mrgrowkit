@@ -39,7 +39,7 @@ export const Card: React.FC<{
   showCategories?: boolean
   hideImagesOnMobile?: boolean
   title?: string
-  relationTo?: 'products' | 'posts' | 'blog'
+  relationTo?: 'products' | 'posts' 
   doc?: Product | Post
 }> = props => {
   const {

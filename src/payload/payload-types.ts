@@ -21,7 +21,7 @@ export type CartItems =
 export interface Config {
   collections: {
     tags: Tag;
-    blog: Blog;
+    blogs: Blog;
     posts: Post;
     pages: Page;
     products: Product;
@@ -52,7 +52,7 @@ export interface Tag {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog".
+ * via the `definition` "blogs".
  */
 export interface Blog {
   id: string;
@@ -158,7 +158,7 @@ export interface Blog {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('products' | 'posts' | 'blog') | null;
+        relationTo?: ('products' | 'blogs') | null;
         categories?: (string | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -168,8 +168,8 @@ export interface Blog {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'posts';
-                  value: string | Post;
+                  relationTo: 'blogs';
+                  value: string | Blog;
                 }
             )[]
           | null;
@@ -180,8 +180,8 @@ export interface Blog {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'posts';
-                  value: string | Post;
+                  relationTo: 'blogs';
+                  value: string | Blog;
                 }
             )[]
           | null;
@@ -261,7 +261,7 @@ export interface Blog {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'posts' | 'blog') | null;
+            relationTo?: ('products' | 'blogs') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -271,8 +271,8 @@ export interface Blog {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'blogs';
+                      value: string | Blog;
                     }
                 )[]
               | null;
@@ -283,8 +283,8 @@ export interface Blog {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'blogs';
+                      value: string | Blog;
                     }
                 )[]
               | null;
@@ -295,8 +295,13 @@ export interface Blog {
           }
       )[]
     | null;
-  relatedPosts?: (string | Blog)[] | null;
+  relatedBlogs?: (string | Blog)[] | null;
   slug?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: string | Media | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -445,7 +450,7 @@ export interface Product {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'posts' | 'blog') | null;
+            relationTo?: ('products' | 'blogs') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -455,8 +460,8 @@ export interface Product {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'blogs';
+                      value: string | Blog;
                     }
                 )[]
               | null;
@@ -467,8 +472,8 @@ export interface Product {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'blogs';
+                      value: string | Blog;
                     }
                 )[]
               | null;
@@ -551,7 +556,7 @@ export interface Product {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'posts' | 'blog') | null;
+            relationTo?: ('products' | 'blogs') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -561,8 +566,8 @@ export interface Product {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'blogs';
+                      value: string | Blog;
                     }
                 )[]
               | null;
@@ -573,8 +578,8 @@ export interface Product {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'blogs';
+                      value: string | Blog;
                     }
                 )[]
               | null;
@@ -698,7 +703,7 @@ export interface Page {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('products' | 'posts' | 'blog') | null;
+        relationTo?: ('products' | 'blogs') | null;
         categories?: (string | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -708,8 +713,8 @@ export interface Page {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'posts';
-                  value: string | Post;
+                  relationTo: 'blogs';
+                  value: string | Blog;
                 }
             )[]
           | null;
@@ -720,8 +725,8 @@ export interface Page {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'posts';
-                  value: string | Post;
+                  relationTo: 'blogs';
+                  value: string | Blog;
                 }
             )[]
           | null;
@@ -849,7 +854,7 @@ export interface Post {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('products' | 'posts' | 'blog') | null;
+        relationTo?: ('products' | 'blogs') | null;
         categories?: (string | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -859,8 +864,8 @@ export interface Post {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'posts';
-                  value: string | Post;
+                  relationTo: 'blogs';
+                  value: string | Blog;
                 }
             )[]
           | null;
@@ -871,8 +876,8 @@ export interface Post {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'posts';
-                  value: string | Post;
+                  relationTo: 'blogs';
+                  value: string | Blog;
                 }
             )[]
           | null;
@@ -952,7 +957,7 @@ export interface Post {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'posts' | 'blog') | null;
+            relationTo?: ('products' | 'blogs') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -962,8 +967,8 @@ export interface Post {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'blogs';
+                      value: string | Blog;
                     }
                 )[]
               | null;
@@ -974,8 +979,8 @@ export interface Post {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'posts';
-                      value: string | Post;
+                      relationTo: 'blogs';
+                      value: string | Blog;
                     }
                 )[]
               | null;
@@ -988,11 +993,6 @@ export interface Post {
     | null;
   relatedPosts?: (string | Post)[] | null;
   slug?: string | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: string | Media | null;
-  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -1063,8 +1063,8 @@ export interface Redirect {
           value: string | Product;
         } | null)
       | ({
-          relationTo: 'posts';
-          value: string | Post;
+          relationTo: 'blogs';
+          value: string | Blog;
         } | null);
     url?: string | null;
   };

@@ -2,11 +2,6 @@ type Query {
   Tag(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Tag
   Tags(draft: Boolean, where: Tag_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Tags
   docAccessTag(id: String!): tagsDocAccess
-  Blog(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Blog
-  Blogs(draft: Boolean, where: Blog_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Blogs
-  docAccessBlog(id: String!): blogDocAccess
-  versionBlog(id: String, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): BlogVersion
-  versionsBlogs(where: versionsBlog_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): versionsBlogs
   Post(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Post
   Posts(draft: Boolean, where: Post_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Posts
   docAccessPost(id: String!): postsDocAccess
@@ -271,22 +266,22 @@ type TagsDeleteDocAccess {
   where: JSONObject
 }
 
-type Blog {
+type Post {
   id: String
   title: String
   categories(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Category!]
   publishedAt: DateTime
   authors(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [User!]
-  populatedAuthors: [Blog_PopulatedAuthors!]
-  hero: Blog_Hero
-  layout: [Blog_Layout!]
+  populatedAuthors: [Post_PopulatedAuthors!]
+  hero: Post_Hero
+  layout: [Post_Layout!]
   enablePremiumContent: Boolean
-  premiumContent: [Blog_PremiumContent!]
-  relatedPosts(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Blog!]
+  premiumContent: [Post_PremiumContent!]
+  relatedPosts(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Post!]
   slug: String
   updatedAt: DateTime
   createdAt: DateTime
-  _status: Blog__status
+  _status: Post__status
 }
 
 type Category {
@@ -1379,8 +1374,6 @@ enum Archive_populateBy {
 
 enum Archive_relationTo {
   products
-  posts
-  blog
 }
 
 type Archive_SelectedDocs_Relationship {
@@ -1390,587 +1383,9 @@ type Archive_SelectedDocs_Relationship {
 
 enum Archive_SelectedDocs_RelationTo {
   products
-  posts
 }
 
-union Archive_SelectedDocs = Product | Post
-
-type Post {
-  id: String
-  title: String
-  categories(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Category!]
-  publishedAt: DateTime
-  authors(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [User!]
-  populatedAuthors: [Post_PopulatedAuthors!]
-  hero: Post_Hero
-  layout: [Post_Layout!]
-  enablePremiumContent: Boolean
-  premiumContent: [Post_PremiumContent!]
-  relatedPosts(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Post!]
-  slug: String
-  meta: Post_Meta
-  updatedAt: DateTime
-  createdAt: DateTime
-  _status: Post__status
-}
-
-type Post_PopulatedAuthors {
-  id: String
-  name: String
-}
-
-type Post_Hero {
-  type: Post_Hero_type
-  richText(depth: Int): JSON
-  links: [Post_Hero_Links!]
-  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Post_Hero_Media_where): Media
-}
-
-enum Post_Hero_type {
-  none
-  highImpact
-  mediumImpact
-  lowImpact
-  customHero
-}
-
-type Post_Hero_Links {
-  link: Post_Hero_Links_Link
-  id: String
-}
-
-type Post_Hero_Links_Link {
-  type: Post_Hero_Links_Link_type
-  newTab: Boolean
-  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Post_Hero_Links_Link_Reference_Relationship
-  url: String
-  label: String
-  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Post_Hero_Links_Link_Icon_where): Media
-  appearance: Post_Hero_Links_Link_appearance
-}
-
-enum Post_Hero_Links_Link_type {
-  reference
-  custom
-}
-
-type Post_Hero_Links_Link_Reference_Relationship {
-  relationTo: Post_Hero_Links_Link_Reference_RelationTo
-  value: Post_Hero_Links_Link_Reference
-}
-
-enum Post_Hero_Links_Link_Reference_RelationTo {
-  pages
-}
-
-union Post_Hero_Links_Link_Reference = Page
-
-input Post_Hero_Links_Link_Icon_where {
-  alt: Post_Hero_Links_Link_Icon_alt_operator
-  caption: Post_Hero_Links_Link_Icon_caption_operator
-  updatedAt: Post_Hero_Links_Link_Icon_updatedAt_operator
-  createdAt: Post_Hero_Links_Link_Icon_createdAt_operator
-  url: Post_Hero_Links_Link_Icon_url_operator
-  filename: Post_Hero_Links_Link_Icon_filename_operator
-  mimeType: Post_Hero_Links_Link_Icon_mimeType_operator
-  filesize: Post_Hero_Links_Link_Icon_filesize_operator
-  width: Post_Hero_Links_Link_Icon_width_operator
-  height: Post_Hero_Links_Link_Icon_height_operator
-  id: Post_Hero_Links_Link_Icon_id_operator
-  AND: [Post_Hero_Links_Link_Icon_where_and]
-  OR: [Post_Hero_Links_Link_Icon_where_or]
-}
-
-input Post_Hero_Links_Link_Icon_alt_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input Post_Hero_Links_Link_Icon_caption_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_filename_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_mimeType_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_filesize_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_width_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_height_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Hero_Links_Link_Icon_where_and {
-  alt: Post_Hero_Links_Link_Icon_alt_operator
-  caption: Post_Hero_Links_Link_Icon_caption_operator
-  updatedAt: Post_Hero_Links_Link_Icon_updatedAt_operator
-  createdAt: Post_Hero_Links_Link_Icon_createdAt_operator
-  url: Post_Hero_Links_Link_Icon_url_operator
-  filename: Post_Hero_Links_Link_Icon_filename_operator
-  mimeType: Post_Hero_Links_Link_Icon_mimeType_operator
-  filesize: Post_Hero_Links_Link_Icon_filesize_operator
-  width: Post_Hero_Links_Link_Icon_width_operator
-  height: Post_Hero_Links_Link_Icon_height_operator
-  id: Post_Hero_Links_Link_Icon_id_operator
-  AND: [Post_Hero_Links_Link_Icon_where_and]
-  OR: [Post_Hero_Links_Link_Icon_where_or]
-}
-
-input Post_Hero_Links_Link_Icon_where_or {
-  alt: Post_Hero_Links_Link_Icon_alt_operator
-  caption: Post_Hero_Links_Link_Icon_caption_operator
-  updatedAt: Post_Hero_Links_Link_Icon_updatedAt_operator
-  createdAt: Post_Hero_Links_Link_Icon_createdAt_operator
-  url: Post_Hero_Links_Link_Icon_url_operator
-  filename: Post_Hero_Links_Link_Icon_filename_operator
-  mimeType: Post_Hero_Links_Link_Icon_mimeType_operator
-  filesize: Post_Hero_Links_Link_Icon_filesize_operator
-  width: Post_Hero_Links_Link_Icon_width_operator
-  height: Post_Hero_Links_Link_Icon_height_operator
-  id: Post_Hero_Links_Link_Icon_id_operator
-  AND: [Post_Hero_Links_Link_Icon_where_and]
-  OR: [Post_Hero_Links_Link_Icon_where_or]
-}
-
-enum Post_Hero_Links_Link_appearance {
-  default
-  primary
-  secondary
-}
-
-input Post_Hero_Media_where {
-  alt: Post_Hero_Media_alt_operator
-  caption: Post_Hero_Media_caption_operator
-  updatedAt: Post_Hero_Media_updatedAt_operator
-  createdAt: Post_Hero_Media_createdAt_operator
-  url: Post_Hero_Media_url_operator
-  filename: Post_Hero_Media_filename_operator
-  mimeType: Post_Hero_Media_mimeType_operator
-  filesize: Post_Hero_Media_filesize_operator
-  width: Post_Hero_Media_width_operator
-  height: Post_Hero_Media_height_operator
-  id: Post_Hero_Media_id_operator
-  AND: [Post_Hero_Media_where_and]
-  OR: [Post_Hero_Media_where_or]
-}
-
-input Post_Hero_Media_alt_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input Post_Hero_Media_caption_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
-  exists: Boolean
-}
-
-input Post_Hero_Media_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Post_Hero_Media_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Post_Hero_Media_url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Hero_Media_filename_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Hero_Media_mimeType_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Hero_Media_filesize_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input Post_Hero_Media_width_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input Post_Hero_Media_height_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input Post_Hero_Media_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Hero_Media_where_and {
-  alt: Post_Hero_Media_alt_operator
-  caption: Post_Hero_Media_caption_operator
-  updatedAt: Post_Hero_Media_updatedAt_operator
-  createdAt: Post_Hero_Media_createdAt_operator
-  url: Post_Hero_Media_url_operator
-  filename: Post_Hero_Media_filename_operator
-  mimeType: Post_Hero_Media_mimeType_operator
-  filesize: Post_Hero_Media_filesize_operator
-  width: Post_Hero_Media_width_operator
-  height: Post_Hero_Media_height_operator
-  id: Post_Hero_Media_id_operator
-  AND: [Post_Hero_Media_where_and]
-  OR: [Post_Hero_Media_where_or]
-}
-
-input Post_Hero_Media_where_or {
-  alt: Post_Hero_Media_alt_operator
-  caption: Post_Hero_Media_caption_operator
-  updatedAt: Post_Hero_Media_updatedAt_operator
-  createdAt: Post_Hero_Media_createdAt_operator
-  url: Post_Hero_Media_url_operator
-  filename: Post_Hero_Media_filename_operator
-  mimeType: Post_Hero_Media_mimeType_operator
-  filesize: Post_Hero_Media_filesize_operator
-  width: Post_Hero_Media_width_operator
-  height: Post_Hero_Media_height_operator
-  id: Post_Hero_Media_id_operator
-  AND: [Post_Hero_Media_where_and]
-  OR: [Post_Hero_Media_where_or]
-}
-
-union Post_Layout = Cta | Content | MediaBlock | Archive
-
-union Post_PremiumContent = Cta | Content | MediaBlock | Archive
-
-type Post_Meta {
-  title: String
-  description: String
-  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Post_Meta_Image_where): Media
-}
-
-input Post_Meta_Image_where {
-  alt: Post_Meta_Image_alt_operator
-  caption: Post_Meta_Image_caption_operator
-  updatedAt: Post_Meta_Image_updatedAt_operator
-  createdAt: Post_Meta_Image_createdAt_operator
-  url: Post_Meta_Image_url_operator
-  filename: Post_Meta_Image_filename_operator
-  mimeType: Post_Meta_Image_mimeType_operator
-  filesize: Post_Meta_Image_filesize_operator
-  width: Post_Meta_Image_width_operator
-  height: Post_Meta_Image_height_operator
-  id: Post_Meta_Image_id_operator
-  AND: [Post_Meta_Image_where_and]
-  OR: [Post_Meta_Image_where_or]
-}
-
-input Post_Meta_Image_alt_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input Post_Meta_Image_caption_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
-  exists: Boolean
-}
-
-input Post_Meta_Image_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Post_Meta_Image_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Post_Meta_Image_url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Meta_Image_filename_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Meta_Image_mimeType_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Meta_Image_filesize_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input Post_Meta_Image_width_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input Post_Meta_Image_height_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input Post_Meta_Image_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_Meta_Image_where_and {
-  alt: Post_Meta_Image_alt_operator
-  caption: Post_Meta_Image_caption_operator
-  updatedAt: Post_Meta_Image_updatedAt_operator
-  createdAt: Post_Meta_Image_createdAt_operator
-  url: Post_Meta_Image_url_operator
-  filename: Post_Meta_Image_filename_operator
-  mimeType: Post_Meta_Image_mimeType_operator
-  filesize: Post_Meta_Image_filesize_operator
-  width: Post_Meta_Image_width_operator
-  height: Post_Meta_Image_height_operator
-  id: Post_Meta_Image_id_operator
-  AND: [Post_Meta_Image_where_and]
-  OR: [Post_Meta_Image_where_or]
-}
-
-input Post_Meta_Image_where_or {
-  alt: Post_Meta_Image_alt_operator
-  caption: Post_Meta_Image_caption_operator
-  updatedAt: Post_Meta_Image_updatedAt_operator
-  createdAt: Post_Meta_Image_createdAt_operator
-  url: Post_Meta_Image_url_operator
-  filename: Post_Meta_Image_filename_operator
-  mimeType: Post_Meta_Image_mimeType_operator
-  filesize: Post_Meta_Image_filesize_operator
-  width: Post_Meta_Image_width_operator
-  height: Post_Meta_Image_height_operator
-  id: Post_Meta_Image_id_operator
-  AND: [Post_Meta_Image_where_and]
-  OR: [Post_Meta_Image_where_or]
-}
-
-enum Post__status {
-  draft
-  published
-}
+union Archive_SelectedDocs = Product
 
 type Archive_PopulatedDocs_Relationship {
   relationTo: Archive_PopulatedDocs_RelationTo
@@ -1979,10 +1394,9 @@ type Archive_PopulatedDocs_Relationship {
 
 enum Archive_PopulatedDocs_RelationTo {
   products
-  posts
 }
 
-union Archive_PopulatedDocs = Product | Post
+union Archive_PopulatedDocs = Product
 
 type Page_Meta {
   title: String
@@ -2514,19 +1928,19 @@ A field whose value conforms to the standard internet email address format as sp
 """
 scalar EmailAddress @specifiedBy(url: "https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address")
 
-type Blog_PopulatedAuthors {
+type Post_PopulatedAuthors {
   id: String
   name: String
 }
 
-type Blog_Hero {
-  type: Blog_Hero_type
+type Post_Hero {
+  type: Post_Hero_type
   richText(depth: Int): JSON
-  links: [Blog_Hero_Links!]
-  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Blog_Hero_Media_where): Media
+  links: [Post_Hero_Links!]
+  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Post_Hero_Media_where): Media
 }
 
-enum Blog_Hero_type {
+enum Post_Hero_type {
   none
   highImpact
   mediumImpact
@@ -2534,54 +1948,54 @@ enum Blog_Hero_type {
   customHero
 }
 
-type Blog_Hero_Links {
-  link: Blog_Hero_Links_Link
+type Post_Hero_Links {
+  link: Post_Hero_Links_Link
   id: String
 }
 
-type Blog_Hero_Links_Link {
-  type: Blog_Hero_Links_Link_type
+type Post_Hero_Links_Link {
+  type: Post_Hero_Links_Link_type
   newTab: Boolean
-  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Blog_Hero_Links_Link_Reference_Relationship
+  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Post_Hero_Links_Link_Reference_Relationship
   url: String
   label: String
-  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Blog_Hero_Links_Link_Icon_where): Media
-  appearance: Blog_Hero_Links_Link_appearance
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: Post_Hero_Links_Link_Icon_where): Media
+  appearance: Post_Hero_Links_Link_appearance
 }
 
-enum Blog_Hero_Links_Link_type {
+enum Post_Hero_Links_Link_type {
   reference
   custom
 }
 
-type Blog_Hero_Links_Link_Reference_Relationship {
-  relationTo: Blog_Hero_Links_Link_Reference_RelationTo
-  value: Blog_Hero_Links_Link_Reference
+type Post_Hero_Links_Link_Reference_Relationship {
+  relationTo: Post_Hero_Links_Link_Reference_RelationTo
+  value: Post_Hero_Links_Link_Reference
 }
 
-enum Blog_Hero_Links_Link_Reference_RelationTo {
+enum Post_Hero_Links_Link_Reference_RelationTo {
   pages
 }
 
-union Blog_Hero_Links_Link_Reference = Page
+union Post_Hero_Links_Link_Reference = Page
 
-input Blog_Hero_Links_Link_Icon_where {
-  alt: Blog_Hero_Links_Link_Icon_alt_operator
-  caption: Blog_Hero_Links_Link_Icon_caption_operator
-  updatedAt: Blog_Hero_Links_Link_Icon_updatedAt_operator
-  createdAt: Blog_Hero_Links_Link_Icon_createdAt_operator
-  url: Blog_Hero_Links_Link_Icon_url_operator
-  filename: Blog_Hero_Links_Link_Icon_filename_operator
-  mimeType: Blog_Hero_Links_Link_Icon_mimeType_operator
-  filesize: Blog_Hero_Links_Link_Icon_filesize_operator
-  width: Blog_Hero_Links_Link_Icon_width_operator
-  height: Blog_Hero_Links_Link_Icon_height_operator
-  id: Blog_Hero_Links_Link_Icon_id_operator
-  AND: [Blog_Hero_Links_Link_Icon_where_and]
-  OR: [Blog_Hero_Links_Link_Icon_where_or]
+input Post_Hero_Links_Link_Icon_where {
+  alt: Post_Hero_Links_Link_Icon_alt_operator
+  caption: Post_Hero_Links_Link_Icon_caption_operator
+  updatedAt: Post_Hero_Links_Link_Icon_updatedAt_operator
+  createdAt: Post_Hero_Links_Link_Icon_createdAt_operator
+  url: Post_Hero_Links_Link_Icon_url_operator
+  filename: Post_Hero_Links_Link_Icon_filename_operator
+  mimeType: Post_Hero_Links_Link_Icon_mimeType_operator
+  filesize: Post_Hero_Links_Link_Icon_filesize_operator
+  width: Post_Hero_Links_Link_Icon_width_operator
+  height: Post_Hero_Links_Link_Icon_height_operator
+  id: Post_Hero_Links_Link_Icon_id_operator
+  AND: [Post_Hero_Links_Link_Icon_where_and]
+  OR: [Post_Hero_Links_Link_Icon_where_or]
 }
 
-input Blog_Hero_Links_Link_Icon_alt_operator {
+input Post_Hero_Links_Link_Icon_alt_operator {
   equals: String
   not_equals: String
   like: String
@@ -2591,7 +2005,7 @@ input Blog_Hero_Links_Link_Icon_alt_operator {
   all: [String]
 }
 
-input Blog_Hero_Links_Link_Icon_caption_operator {
+input Post_Hero_Links_Link_Icon_caption_operator {
   equals: JSON
   not_equals: JSON
   like: JSON
@@ -2599,7 +2013,7 @@ input Blog_Hero_Links_Link_Icon_caption_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_updatedAt_operator {
+input Post_Hero_Links_Link_Icon_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -2610,7 +2024,7 @@ input Blog_Hero_Links_Link_Icon_updatedAt_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_createdAt_operator {
+input Post_Hero_Links_Link_Icon_createdAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -2621,7 +2035,7 @@ input Blog_Hero_Links_Link_Icon_createdAt_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_url_operator {
+input Post_Hero_Links_Link_Icon_url_operator {
   equals: String
   not_equals: String
   like: String
@@ -2632,7 +2046,7 @@ input Blog_Hero_Links_Link_Icon_url_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_filename_operator {
+input Post_Hero_Links_Link_Icon_filename_operator {
   equals: String
   not_equals: String
   like: String
@@ -2643,7 +2057,7 @@ input Blog_Hero_Links_Link_Icon_filename_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_mimeType_operator {
+input Post_Hero_Links_Link_Icon_mimeType_operator {
   equals: String
   not_equals: String
   like: String
@@ -2654,7 +2068,7 @@ input Blog_Hero_Links_Link_Icon_mimeType_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_filesize_operator {
+input Post_Hero_Links_Link_Icon_filesize_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -2664,7 +2078,7 @@ input Blog_Hero_Links_Link_Icon_filesize_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_width_operator {
+input Post_Hero_Links_Link_Icon_width_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -2674,7 +2088,7 @@ input Blog_Hero_Links_Link_Icon_width_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_height_operator {
+input Post_Hero_Links_Link_Icon_height_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -2684,7 +2098,7 @@ input Blog_Hero_Links_Link_Icon_height_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_id_operator {
+input Post_Hero_Links_Link_Icon_id_operator {
   equals: String
   not_equals: String
   like: String
@@ -2695,61 +2109,61 @@ input Blog_Hero_Links_Link_Icon_id_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Links_Link_Icon_where_and {
-  alt: Blog_Hero_Links_Link_Icon_alt_operator
-  caption: Blog_Hero_Links_Link_Icon_caption_operator
-  updatedAt: Blog_Hero_Links_Link_Icon_updatedAt_operator
-  createdAt: Blog_Hero_Links_Link_Icon_createdAt_operator
-  url: Blog_Hero_Links_Link_Icon_url_operator
-  filename: Blog_Hero_Links_Link_Icon_filename_operator
-  mimeType: Blog_Hero_Links_Link_Icon_mimeType_operator
-  filesize: Blog_Hero_Links_Link_Icon_filesize_operator
-  width: Blog_Hero_Links_Link_Icon_width_operator
-  height: Blog_Hero_Links_Link_Icon_height_operator
-  id: Blog_Hero_Links_Link_Icon_id_operator
-  AND: [Blog_Hero_Links_Link_Icon_where_and]
-  OR: [Blog_Hero_Links_Link_Icon_where_or]
+input Post_Hero_Links_Link_Icon_where_and {
+  alt: Post_Hero_Links_Link_Icon_alt_operator
+  caption: Post_Hero_Links_Link_Icon_caption_operator
+  updatedAt: Post_Hero_Links_Link_Icon_updatedAt_operator
+  createdAt: Post_Hero_Links_Link_Icon_createdAt_operator
+  url: Post_Hero_Links_Link_Icon_url_operator
+  filename: Post_Hero_Links_Link_Icon_filename_operator
+  mimeType: Post_Hero_Links_Link_Icon_mimeType_operator
+  filesize: Post_Hero_Links_Link_Icon_filesize_operator
+  width: Post_Hero_Links_Link_Icon_width_operator
+  height: Post_Hero_Links_Link_Icon_height_operator
+  id: Post_Hero_Links_Link_Icon_id_operator
+  AND: [Post_Hero_Links_Link_Icon_where_and]
+  OR: [Post_Hero_Links_Link_Icon_where_or]
 }
 
-input Blog_Hero_Links_Link_Icon_where_or {
-  alt: Blog_Hero_Links_Link_Icon_alt_operator
-  caption: Blog_Hero_Links_Link_Icon_caption_operator
-  updatedAt: Blog_Hero_Links_Link_Icon_updatedAt_operator
-  createdAt: Blog_Hero_Links_Link_Icon_createdAt_operator
-  url: Blog_Hero_Links_Link_Icon_url_operator
-  filename: Blog_Hero_Links_Link_Icon_filename_operator
-  mimeType: Blog_Hero_Links_Link_Icon_mimeType_operator
-  filesize: Blog_Hero_Links_Link_Icon_filesize_operator
-  width: Blog_Hero_Links_Link_Icon_width_operator
-  height: Blog_Hero_Links_Link_Icon_height_operator
-  id: Blog_Hero_Links_Link_Icon_id_operator
-  AND: [Blog_Hero_Links_Link_Icon_where_and]
-  OR: [Blog_Hero_Links_Link_Icon_where_or]
+input Post_Hero_Links_Link_Icon_where_or {
+  alt: Post_Hero_Links_Link_Icon_alt_operator
+  caption: Post_Hero_Links_Link_Icon_caption_operator
+  updatedAt: Post_Hero_Links_Link_Icon_updatedAt_operator
+  createdAt: Post_Hero_Links_Link_Icon_createdAt_operator
+  url: Post_Hero_Links_Link_Icon_url_operator
+  filename: Post_Hero_Links_Link_Icon_filename_operator
+  mimeType: Post_Hero_Links_Link_Icon_mimeType_operator
+  filesize: Post_Hero_Links_Link_Icon_filesize_operator
+  width: Post_Hero_Links_Link_Icon_width_operator
+  height: Post_Hero_Links_Link_Icon_height_operator
+  id: Post_Hero_Links_Link_Icon_id_operator
+  AND: [Post_Hero_Links_Link_Icon_where_and]
+  OR: [Post_Hero_Links_Link_Icon_where_or]
 }
 
-enum Blog_Hero_Links_Link_appearance {
+enum Post_Hero_Links_Link_appearance {
   default
   primary
   secondary
 }
 
-input Blog_Hero_Media_where {
-  alt: Blog_Hero_Media_alt_operator
-  caption: Blog_Hero_Media_caption_operator
-  updatedAt: Blog_Hero_Media_updatedAt_operator
-  createdAt: Blog_Hero_Media_createdAt_operator
-  url: Blog_Hero_Media_url_operator
-  filename: Blog_Hero_Media_filename_operator
-  mimeType: Blog_Hero_Media_mimeType_operator
-  filesize: Blog_Hero_Media_filesize_operator
-  width: Blog_Hero_Media_width_operator
-  height: Blog_Hero_Media_height_operator
-  id: Blog_Hero_Media_id_operator
-  AND: [Blog_Hero_Media_where_and]
-  OR: [Blog_Hero_Media_where_or]
+input Post_Hero_Media_where {
+  alt: Post_Hero_Media_alt_operator
+  caption: Post_Hero_Media_caption_operator
+  updatedAt: Post_Hero_Media_updatedAt_operator
+  createdAt: Post_Hero_Media_createdAt_operator
+  url: Post_Hero_Media_url_operator
+  filename: Post_Hero_Media_filename_operator
+  mimeType: Post_Hero_Media_mimeType_operator
+  filesize: Post_Hero_Media_filesize_operator
+  width: Post_Hero_Media_width_operator
+  height: Post_Hero_Media_height_operator
+  id: Post_Hero_Media_id_operator
+  AND: [Post_Hero_Media_where_and]
+  OR: [Post_Hero_Media_where_or]
 }
 
-input Blog_Hero_Media_alt_operator {
+input Post_Hero_Media_alt_operator {
   equals: String
   not_equals: String
   like: String
@@ -2759,7 +2173,7 @@ input Blog_Hero_Media_alt_operator {
   all: [String]
 }
 
-input Blog_Hero_Media_caption_operator {
+input Post_Hero_Media_caption_operator {
   equals: JSON
   not_equals: JSON
   like: JSON
@@ -2767,7 +2181,7 @@ input Blog_Hero_Media_caption_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_updatedAt_operator {
+input Post_Hero_Media_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -2778,7 +2192,7 @@ input Blog_Hero_Media_updatedAt_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_createdAt_operator {
+input Post_Hero_Media_createdAt_operator {
   equals: DateTime
   not_equals: DateTime
   greater_than_equal: DateTime
@@ -2789,7 +2203,7 @@ input Blog_Hero_Media_createdAt_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_url_operator {
+input Post_Hero_Media_url_operator {
   equals: String
   not_equals: String
   like: String
@@ -2800,7 +2214,7 @@ input Blog_Hero_Media_url_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_filename_operator {
+input Post_Hero_Media_filename_operator {
   equals: String
   not_equals: String
   like: String
@@ -2811,7 +2225,7 @@ input Blog_Hero_Media_filename_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_mimeType_operator {
+input Post_Hero_Media_mimeType_operator {
   equals: String
   not_equals: String
   like: String
@@ -2822,7 +2236,7 @@ input Blog_Hero_Media_mimeType_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_filesize_operator {
+input Post_Hero_Media_filesize_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -2832,7 +2246,7 @@ input Blog_Hero_Media_filesize_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_width_operator {
+input Post_Hero_Media_width_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -2842,7 +2256,7 @@ input Blog_Hero_Media_width_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_height_operator {
+input Post_Hero_Media_height_operator {
   equals: Float
   not_equals: Float
   greater_than_equal: Float
@@ -2852,7 +2266,7 @@ input Blog_Hero_Media_height_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_id_operator {
+input Post_Hero_Media_id_operator {
   equals: String
   not_equals: String
   like: String
@@ -2863,1945 +2277,45 @@ input Blog_Hero_Media_id_operator {
   exists: Boolean
 }
 
-input Blog_Hero_Media_where_and {
-  alt: Blog_Hero_Media_alt_operator
-  caption: Blog_Hero_Media_caption_operator
-  updatedAt: Blog_Hero_Media_updatedAt_operator
-  createdAt: Blog_Hero_Media_createdAt_operator
-  url: Blog_Hero_Media_url_operator
-  filename: Blog_Hero_Media_filename_operator
-  mimeType: Blog_Hero_Media_mimeType_operator
-  filesize: Blog_Hero_Media_filesize_operator
-  width: Blog_Hero_Media_width_operator
-  height: Blog_Hero_Media_height_operator
-  id: Blog_Hero_Media_id_operator
-  AND: [Blog_Hero_Media_where_and]
-  OR: [Blog_Hero_Media_where_or]
+input Post_Hero_Media_where_and {
+  alt: Post_Hero_Media_alt_operator
+  caption: Post_Hero_Media_caption_operator
+  updatedAt: Post_Hero_Media_updatedAt_operator
+  createdAt: Post_Hero_Media_createdAt_operator
+  url: Post_Hero_Media_url_operator
+  filename: Post_Hero_Media_filename_operator
+  mimeType: Post_Hero_Media_mimeType_operator
+  filesize: Post_Hero_Media_filesize_operator
+  width: Post_Hero_Media_width_operator
+  height: Post_Hero_Media_height_operator
+  id: Post_Hero_Media_id_operator
+  AND: [Post_Hero_Media_where_and]
+  OR: [Post_Hero_Media_where_or]
 }
 
-input Blog_Hero_Media_where_or {
-  alt: Blog_Hero_Media_alt_operator
-  caption: Blog_Hero_Media_caption_operator
-  updatedAt: Blog_Hero_Media_updatedAt_operator
-  createdAt: Blog_Hero_Media_createdAt_operator
-  url: Blog_Hero_Media_url_operator
-  filename: Blog_Hero_Media_filename_operator
-  mimeType: Blog_Hero_Media_mimeType_operator
-  filesize: Blog_Hero_Media_filesize_operator
-  width: Blog_Hero_Media_width_operator
-  height: Blog_Hero_Media_height_operator
-  id: Blog_Hero_Media_id_operator
-  AND: [Blog_Hero_Media_where_and]
-  OR: [Blog_Hero_Media_where_or]
+input Post_Hero_Media_where_or {
+  alt: Post_Hero_Media_alt_operator
+  caption: Post_Hero_Media_caption_operator
+  updatedAt: Post_Hero_Media_updatedAt_operator
+  createdAt: Post_Hero_Media_createdAt_operator
+  url: Post_Hero_Media_url_operator
+  filename: Post_Hero_Media_filename_operator
+  mimeType: Post_Hero_Media_mimeType_operator
+  filesize: Post_Hero_Media_filesize_operator
+  width: Post_Hero_Media_width_operator
+  height: Post_Hero_Media_height_operator
+  id: Post_Hero_Media_id_operator
+  AND: [Post_Hero_Media_where_and]
+  OR: [Post_Hero_Media_where_or]
 }
 
-union Blog_Layout = Cta | Content | MediaBlock | Archive
+union Post_Layout = Cta | Content | MediaBlock | Archive
 
-union Blog_PremiumContent = Cta | Content | MediaBlock | Archive
+union Post_PremiumContent = Cta | Content | MediaBlock | Archive
 
-enum Blog__status {
+enum Post__status {
   draft
   published
-}
-
-type Blogs {
-  docs: [Blog]
-  hasNextPage: Boolean
-  hasPrevPage: Boolean
-  limit: Int
-  nextPage: Int
-  offset: Int
-  page: Int
-  pagingCounter: Int
-  prevPage: Int
-  totalDocs: Int
-  totalPages: Int
-}
-
-input Blog_where {
-  title: Blog_title_operator
-  categories: Blog_categories_operator
-  publishedAt: Blog_publishedAt_operator
-  authors: Blog_authors_operator
-  populatedAuthors__id: Blog_populatedAuthors__id_operator
-  populatedAuthors__name: Blog_populatedAuthors__name_operator
-  hero__type: Blog_hero__type_operator
-  hero__richText: Blog_hero__richText_operator
-  hero__links__link__type: Blog_hero__links__link__type_operator
-  hero__links__link__newTab: Blog_hero__links__link__newTab_operator
-  hero__links__link__reference: Blog_hero__links__link__reference_Relation
-  hero__links__link__url: Blog_hero__links__link__url_operator
-  hero__links__link__label: Blog_hero__links__link__label_operator
-  hero__links__link__icon: Blog_hero__links__link__icon_operator
-  hero__links__link__appearance: Blog_hero__links__link__appearance_operator
-  hero__links__id: Blog_hero__links__id_operator
-  hero__media: Blog_hero__media_operator
-  enablePremiumContent: Blog_enablePremiumContent_operator
-  relatedPosts: Blog_relatedPosts_operator
-  slug: Blog_slug_operator
-  updatedAt: Blog_updatedAt_operator
-  createdAt: Blog_createdAt_operator
-  _status: Blog__status_operator
-  id: Blog_id_operator
-  AND: [Blog_where_and]
-  OR: [Blog_where_or]
-}
-
-input Blog_title_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input Blog_categories_operator {
-  equals: JSON
-  not_equals: JSON
-  in: [JSON]
-  not_in: [JSON]
-  all: [JSON]
-  exists: Boolean
-}
-
-input Blog_publishedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Blog_authors_operator {
-  equals: JSON
-  not_equals: JSON
-  in: [JSON]
-  not_in: [JSON]
-  all: [JSON]
-  exists: Boolean
-}
-
-input Blog_populatedAuthors__id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Blog_populatedAuthors__name_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Blog_hero__type_operator {
-  equals: Blog_hero__type_Input
-  not_equals: Blog_hero__type_Input
-  in: [Blog_hero__type_Input]
-  not_in: [Blog_hero__type_Input]
-  all: [Blog_hero__type_Input]
-}
-
-enum Blog_hero__type_Input {
-  none
-  highImpact
-  mediumImpact
-  lowImpact
-  customHero
-}
-
-input Blog_hero__richText_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
-}
-
-input Blog_hero__links__link__type_operator {
-  equals: Blog_hero__links__link__type_Input
-  not_equals: Blog_hero__links__link__type_Input
-  like: Blog_hero__links__link__type_Input
-  contains: Blog_hero__links__link__type_Input
-  exists: Boolean
-}
-
-enum Blog_hero__links__link__type_Input {
-  reference
-  custom
-}
-
-input Blog_hero__links__link__newTab_operator {
-  equals: Boolean
-  not_equals: Boolean
-  exists: Boolean
-}
-
-input Blog_hero__links__link__reference_Relation {
-  relationTo: Blog_hero__links__link__reference_Relation_RelationTo
-  value: JSON
-}
-
-enum Blog_hero__links__link__reference_Relation_RelationTo {
-  pages
-}
-
-input Blog_hero__links__link__url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input Blog_hero__links__link__label_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input Blog_hero__links__link__icon_operator {
-  equals: String
-  not_equals: String
-  exists: Boolean
-}
-
-input Blog_hero__links__link__appearance_operator {
-  equals: Blog_hero__links__link__appearance_Input
-  not_equals: Blog_hero__links__link__appearance_Input
-  in: [Blog_hero__links__link__appearance_Input]
-  not_in: [Blog_hero__links__link__appearance_Input]
-  all: [Blog_hero__links__link__appearance_Input]
-  exists: Boolean
-}
-
-enum Blog_hero__links__link__appearance_Input {
-  default
-  primary
-  secondary
-}
-
-input Blog_hero__links__id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Blog_hero__media_operator {
-  equals: String
-  not_equals: String
-}
-
-input Blog_enablePremiumContent_operator {
-  equals: Boolean
-  not_equals: Boolean
-  exists: Boolean
-}
-
-input Blog_relatedPosts_operator {
-  equals: JSON
-  not_equals: JSON
-  in: [JSON]
-  not_in: [JSON]
-  all: [JSON]
-  exists: Boolean
-}
-
-input Blog_slug_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Blog_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Blog_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input Blog__status_operator {
-  equals: Blog__status_Input
-  not_equals: Blog__status_Input
-  in: [Blog__status_Input]
-  not_in: [Blog__status_Input]
-  all: [Blog__status_Input]
-  exists: Boolean
-}
-
-enum Blog__status_Input {
-  draft
-  published
-}
-
-input Blog_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Blog_where_and {
-  title: Blog_title_operator
-  categories: Blog_categories_operator
-  publishedAt: Blog_publishedAt_operator
-  authors: Blog_authors_operator
-  populatedAuthors__id: Blog_populatedAuthors__id_operator
-  populatedAuthors__name: Blog_populatedAuthors__name_operator
-  hero__type: Blog_hero__type_operator
-  hero__richText: Blog_hero__richText_operator
-  hero__links__link__type: Blog_hero__links__link__type_operator
-  hero__links__link__newTab: Blog_hero__links__link__newTab_operator
-  hero__links__link__reference: Blog_hero__links__link__reference_Relation
-  hero__links__link__url: Blog_hero__links__link__url_operator
-  hero__links__link__label: Blog_hero__links__link__label_operator
-  hero__links__link__icon: Blog_hero__links__link__icon_operator
-  hero__links__link__appearance: Blog_hero__links__link__appearance_operator
-  hero__links__id: Blog_hero__links__id_operator
-  hero__media: Blog_hero__media_operator
-  enablePremiumContent: Blog_enablePremiumContent_operator
-  relatedPosts: Blog_relatedPosts_operator
-  slug: Blog_slug_operator
-  updatedAt: Blog_updatedAt_operator
-  createdAt: Blog_createdAt_operator
-  _status: Blog__status_operator
-  id: Blog_id_operator
-  AND: [Blog_where_and]
-  OR: [Blog_where_or]
-}
-
-input Blog_where_or {
-  title: Blog_title_operator
-  categories: Blog_categories_operator
-  publishedAt: Blog_publishedAt_operator
-  authors: Blog_authors_operator
-  populatedAuthors__id: Blog_populatedAuthors__id_operator
-  populatedAuthors__name: Blog_populatedAuthors__name_operator
-  hero__type: Blog_hero__type_operator
-  hero__richText: Blog_hero__richText_operator
-  hero__links__link__type: Blog_hero__links__link__type_operator
-  hero__links__link__newTab: Blog_hero__links__link__newTab_operator
-  hero__links__link__reference: Blog_hero__links__link__reference_Relation
-  hero__links__link__url: Blog_hero__links__link__url_operator
-  hero__links__link__label: Blog_hero__links__link__label_operator
-  hero__links__link__icon: Blog_hero__links__link__icon_operator
-  hero__links__link__appearance: Blog_hero__links__link__appearance_operator
-  hero__links__id: Blog_hero__links__id_operator
-  hero__media: Blog_hero__media_operator
-  enablePremiumContent: Blog_enablePremiumContent_operator
-  relatedPosts: Blog_relatedPosts_operator
-  slug: Blog_slug_operator
-  updatedAt: Blog_updatedAt_operator
-  createdAt: Blog_createdAt_operator
-  _status: Blog__status_operator
-  id: Blog_id_operator
-  AND: [Blog_where_and]
-  OR: [Blog_where_or]
-}
-
-type blogDocAccess {
-  fields: BlogDocAccessFields
-  create: BlogCreateDocAccess
-  read: BlogReadDocAccess
-  update: BlogUpdateDocAccess
-  delete: BlogDeleteDocAccess
-  readVersions: BlogReadVersionsDocAccess
-}
-
-type BlogDocAccessFields {
-  title: BlogDocAccessFields_title
-  categories: BlogDocAccessFields_categories
-  publishedAt: BlogDocAccessFields_publishedAt
-  authors: BlogDocAccessFields_authors
-  populatedAuthors: BlogDocAccessFields_populatedAuthors
-  hero: BlogDocAccessFields_hero
-  layout: BlogDocAccessFields_layout
-  enablePremiumContent: BlogDocAccessFields_enablePremiumContent
-  premiumContent: BlogDocAccessFields_premiumContent
-  relatedPosts: BlogDocAccessFields_relatedPosts
-  slug: BlogDocAccessFields_slug
-  updatedAt: BlogDocAccessFields_updatedAt
-  createdAt: BlogDocAccessFields_createdAt
-  _status: BlogDocAccessFields__status
-}
-
-type BlogDocAccessFields_title {
-  create: BlogDocAccessFields_title_Create
-  read: BlogDocAccessFields_title_Read
-  update: BlogDocAccessFields_title_Update
-  delete: BlogDocAccessFields_title_Delete
-}
-
-type BlogDocAccessFields_title_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_title_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_title_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_title_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_categories {
-  create: BlogDocAccessFields_categories_Create
-  read: BlogDocAccessFields_categories_Read
-  update: BlogDocAccessFields_categories_Update
-  delete: BlogDocAccessFields_categories_Delete
-}
-
-type BlogDocAccessFields_categories_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_categories_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_categories_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_categories_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_publishedAt {
-  create: BlogDocAccessFields_publishedAt_Create
-  read: BlogDocAccessFields_publishedAt_Read
-  update: BlogDocAccessFields_publishedAt_Update
-  delete: BlogDocAccessFields_publishedAt_Delete
-}
-
-type BlogDocAccessFields_publishedAt_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_publishedAt_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_publishedAt_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_publishedAt_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_authors {
-  create: BlogDocAccessFields_authors_Create
-  read: BlogDocAccessFields_authors_Read
-  update: BlogDocAccessFields_authors_Update
-  delete: BlogDocAccessFields_authors_Delete
-}
-
-type BlogDocAccessFields_authors_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_authors_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_authors_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_authors_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors {
-  create: BlogDocAccessFields_populatedAuthors_Create
-  read: BlogDocAccessFields_populatedAuthors_Read
-  update: BlogDocAccessFields_populatedAuthors_Update
-  delete: BlogDocAccessFields_populatedAuthors_Delete
-  fields: BlogDocAccessFields_populatedAuthors_Fields
-}
-
-type BlogDocAccessFields_populatedAuthors_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_Fields {
-  id: BlogDocAccessFields_populatedAuthors_id
-  name: BlogDocAccessFields_populatedAuthors_name
-}
-
-type BlogDocAccessFields_populatedAuthors_id {
-  create: BlogDocAccessFields_populatedAuthors_id_Create
-  read: BlogDocAccessFields_populatedAuthors_id_Read
-  update: BlogDocAccessFields_populatedAuthors_id_Update
-  delete: BlogDocAccessFields_populatedAuthors_id_Delete
-}
-
-type BlogDocAccessFields_populatedAuthors_id_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_id_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_id_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_id_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_name {
-  create: BlogDocAccessFields_populatedAuthors_name_Create
-  read: BlogDocAccessFields_populatedAuthors_name_Read
-  update: BlogDocAccessFields_populatedAuthors_name_Update
-  delete: BlogDocAccessFields_populatedAuthors_name_Delete
-}
-
-type BlogDocAccessFields_populatedAuthors_name_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_name_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_name_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_populatedAuthors_name_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero {
-  create: BlogDocAccessFields_hero_Create
-  read: BlogDocAccessFields_hero_Read
-  update: BlogDocAccessFields_hero_Update
-  delete: BlogDocAccessFields_hero_Delete
-  fields: BlogDocAccessFields_hero_Fields
-}
-
-type BlogDocAccessFields_hero_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_Fields {
-  type: BlogDocAccessFields_hero_type
-  richText: BlogDocAccessFields_hero_richText
-  links: BlogDocAccessFields_hero_links
-  media: BlogDocAccessFields_hero_media
-}
-
-type BlogDocAccessFields_hero_type {
-  create: BlogDocAccessFields_hero_type_Create
-  read: BlogDocAccessFields_hero_type_Read
-  update: BlogDocAccessFields_hero_type_Update
-  delete: BlogDocAccessFields_hero_type_Delete
-}
-
-type BlogDocAccessFields_hero_type_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_type_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_type_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_type_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_richText {
-  create: BlogDocAccessFields_hero_richText_Create
-  read: BlogDocAccessFields_hero_richText_Read
-  update: BlogDocAccessFields_hero_richText_Update
-  delete: BlogDocAccessFields_hero_richText_Delete
-}
-
-type BlogDocAccessFields_hero_richText_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_richText_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_richText_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_richText_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links {
-  create: BlogDocAccessFields_hero_links_Create
-  read: BlogDocAccessFields_hero_links_Read
-  update: BlogDocAccessFields_hero_links_Update
-  delete: BlogDocAccessFields_hero_links_Delete
-  fields: BlogDocAccessFields_hero_links_Fields
-}
-
-type BlogDocAccessFields_hero_links_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_Fields {
-  link: BlogDocAccessFields_hero_links_link
-  id: BlogDocAccessFields_hero_links_id
-}
-
-type BlogDocAccessFields_hero_links_link {
-  create: BlogDocAccessFields_hero_links_link_Create
-  read: BlogDocAccessFields_hero_links_link_Read
-  update: BlogDocAccessFields_hero_links_link_Update
-  delete: BlogDocAccessFields_hero_links_link_Delete
-  fields: BlogDocAccessFields_hero_links_link_Fields
-}
-
-type BlogDocAccessFields_hero_links_link_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_Fields {
-  type: BlogDocAccessFields_hero_links_link_type
-  newTab: BlogDocAccessFields_hero_links_link_newTab
-  reference: BlogDocAccessFields_hero_links_link_reference
-  url: BlogDocAccessFields_hero_links_link_url
-  label: BlogDocAccessFields_hero_links_link_label
-  icon: BlogDocAccessFields_hero_links_link_icon
-  appearance: BlogDocAccessFields_hero_links_link_appearance
-}
-
-type BlogDocAccessFields_hero_links_link_type {
-  create: BlogDocAccessFields_hero_links_link_type_Create
-  read: BlogDocAccessFields_hero_links_link_type_Read
-  update: BlogDocAccessFields_hero_links_link_type_Update
-  delete: BlogDocAccessFields_hero_links_link_type_Delete
-}
-
-type BlogDocAccessFields_hero_links_link_type_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_type_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_type_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_type_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_newTab {
-  create: BlogDocAccessFields_hero_links_link_newTab_Create
-  read: BlogDocAccessFields_hero_links_link_newTab_Read
-  update: BlogDocAccessFields_hero_links_link_newTab_Update
-  delete: BlogDocAccessFields_hero_links_link_newTab_Delete
-}
-
-type BlogDocAccessFields_hero_links_link_newTab_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_newTab_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_newTab_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_newTab_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_reference {
-  create: BlogDocAccessFields_hero_links_link_reference_Create
-  read: BlogDocAccessFields_hero_links_link_reference_Read
-  update: BlogDocAccessFields_hero_links_link_reference_Update
-  delete: BlogDocAccessFields_hero_links_link_reference_Delete
-}
-
-type BlogDocAccessFields_hero_links_link_reference_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_reference_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_reference_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_reference_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_url {
-  create: BlogDocAccessFields_hero_links_link_url_Create
-  read: BlogDocAccessFields_hero_links_link_url_Read
-  update: BlogDocAccessFields_hero_links_link_url_Update
-  delete: BlogDocAccessFields_hero_links_link_url_Delete
-}
-
-type BlogDocAccessFields_hero_links_link_url_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_url_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_url_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_url_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_label {
-  create: BlogDocAccessFields_hero_links_link_label_Create
-  read: BlogDocAccessFields_hero_links_link_label_Read
-  update: BlogDocAccessFields_hero_links_link_label_Update
-  delete: BlogDocAccessFields_hero_links_link_label_Delete
-}
-
-type BlogDocAccessFields_hero_links_link_label_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_label_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_label_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_label_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_icon {
-  create: BlogDocAccessFields_hero_links_link_icon_Create
-  read: BlogDocAccessFields_hero_links_link_icon_Read
-  update: BlogDocAccessFields_hero_links_link_icon_Update
-  delete: BlogDocAccessFields_hero_links_link_icon_Delete
-}
-
-type BlogDocAccessFields_hero_links_link_icon_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_icon_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_icon_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_icon_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_appearance {
-  create: BlogDocAccessFields_hero_links_link_appearance_Create
-  read: BlogDocAccessFields_hero_links_link_appearance_Read
-  update: BlogDocAccessFields_hero_links_link_appearance_Update
-  delete: BlogDocAccessFields_hero_links_link_appearance_Delete
-}
-
-type BlogDocAccessFields_hero_links_link_appearance_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_appearance_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_appearance_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_link_appearance_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_id {
-  create: BlogDocAccessFields_hero_links_id_Create
-  read: BlogDocAccessFields_hero_links_id_Read
-  update: BlogDocAccessFields_hero_links_id_Update
-  delete: BlogDocAccessFields_hero_links_id_Delete
-}
-
-type BlogDocAccessFields_hero_links_id_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_id_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_id_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_links_id_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_media {
-  create: BlogDocAccessFields_hero_media_Create
-  read: BlogDocAccessFields_hero_media_Read
-  update: BlogDocAccessFields_hero_media_Update
-  delete: BlogDocAccessFields_hero_media_Delete
-}
-
-type BlogDocAccessFields_hero_media_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_media_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_media_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_hero_media_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_layout {
-  create: BlogDocAccessFields_layout_Create
-  read: BlogDocAccessFields_layout_Read
-  update: BlogDocAccessFields_layout_Update
-  delete: BlogDocAccessFields_layout_Delete
-}
-
-type BlogDocAccessFields_layout_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_layout_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_layout_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_layout_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_enablePremiumContent {
-  create: BlogDocAccessFields_enablePremiumContent_Create
-  read: BlogDocAccessFields_enablePremiumContent_Read
-  update: BlogDocAccessFields_enablePremiumContent_Update
-  delete: BlogDocAccessFields_enablePremiumContent_Delete
-}
-
-type BlogDocAccessFields_enablePremiumContent_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_enablePremiumContent_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_enablePremiumContent_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_enablePremiumContent_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_premiumContent {
-  create: BlogDocAccessFields_premiumContent_Create
-  read: BlogDocAccessFields_premiumContent_Read
-  update: BlogDocAccessFields_premiumContent_Update
-  delete: BlogDocAccessFields_premiumContent_Delete
-}
-
-type BlogDocAccessFields_premiumContent_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_premiumContent_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_premiumContent_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_premiumContent_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_relatedPosts {
-  create: BlogDocAccessFields_relatedPosts_Create
-  read: BlogDocAccessFields_relatedPosts_Read
-  update: BlogDocAccessFields_relatedPosts_Update
-  delete: BlogDocAccessFields_relatedPosts_Delete
-}
-
-type BlogDocAccessFields_relatedPosts_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_relatedPosts_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_relatedPosts_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_relatedPosts_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_slug {
-  create: BlogDocAccessFields_slug_Create
-  read: BlogDocAccessFields_slug_Read
-  update: BlogDocAccessFields_slug_Update
-  delete: BlogDocAccessFields_slug_Delete
-}
-
-type BlogDocAccessFields_slug_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_slug_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_slug_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_slug_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_updatedAt {
-  create: BlogDocAccessFields_updatedAt_Create
-  read: BlogDocAccessFields_updatedAt_Read
-  update: BlogDocAccessFields_updatedAt_Update
-  delete: BlogDocAccessFields_updatedAt_Delete
-}
-
-type BlogDocAccessFields_updatedAt_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_updatedAt_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_updatedAt_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_updatedAt_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_createdAt {
-  create: BlogDocAccessFields_createdAt_Create
-  read: BlogDocAccessFields_createdAt_Read
-  update: BlogDocAccessFields_createdAt_Update
-  delete: BlogDocAccessFields_createdAt_Delete
-}
-
-type BlogDocAccessFields_createdAt_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_createdAt_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_createdAt_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields_createdAt_Delete {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields__status {
-  create: BlogDocAccessFields__status_Create
-  read: BlogDocAccessFields__status_Read
-  update: BlogDocAccessFields__status_Update
-  delete: BlogDocAccessFields__status_Delete
-}
-
-type BlogDocAccessFields__status_Create {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields__status_Read {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields__status_Update {
-  permission: Boolean!
-}
-
-type BlogDocAccessFields__status_Delete {
-  permission: Boolean!
-}
-
-type BlogCreateDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type BlogReadDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type BlogUpdateDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type BlogDeleteDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type BlogReadVersionsDocAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type BlogVersion {
-  parent(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Blog
-  version: BlogVersion_Version
-  createdAt: DateTime
-  updatedAt: DateTime
-  latest: Boolean
-  id: String
-}
-
-type BlogVersion_Version {
-  title: String
-  categories(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Category!]
-  publishedAt: DateTime
-  authors(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [User!]
-  populatedAuthors: [BlogVersion_Version_PopulatedAuthors!]
-  hero: BlogVersion_Version_Hero
-  layout: [BlogVersion_Version_Layout!]
-  enablePremiumContent: Boolean
-  premiumContent: [BlogVersion_Version_PremiumContent!]
-  relatedPosts(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Blog!]
-  slug: String
-  updatedAt: DateTime
-  createdAt: DateTime
-  _status: BlogVersion_Version__status
-}
-
-type BlogVersion_Version_PopulatedAuthors {
-  id: String
-  name: String
-}
-
-type BlogVersion_Version_Hero {
-  type: BlogVersion_Version_Hero_type
-  richText(depth: Int): JSON
-  links: [BlogVersion_Version_Hero_Links!]
-  media(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: BlogVersion_Version_Hero_Media_where): Media
-}
-
-enum BlogVersion_Version_Hero_type {
-  none
-  highImpact
-  mediumImpact
-  lowImpact
-  customHero
-}
-
-type BlogVersion_Version_Hero_Links {
-  link: BlogVersion_Version_Hero_Links_Link
-  id: String
-}
-
-type BlogVersion_Version_Hero_Links_Link {
-  type: BlogVersion_Version_Hero_Links_Link_type
-  newTab: Boolean
-  reference(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): BlogVersion_Version_Hero_Links_Link_Reference_Relationship
-  url: String
-  label: String
-  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: BlogVersion_Version_Hero_Links_Link_Icon_where): Media
-  appearance: BlogVersion_Version_Hero_Links_Link_appearance
-}
-
-enum BlogVersion_Version_Hero_Links_Link_type {
-  reference
-  custom
-}
-
-type BlogVersion_Version_Hero_Links_Link_Reference_Relationship {
-  relationTo: BlogVersion_Version_Hero_Links_Link_Reference_RelationTo
-  value: BlogVersion_Version_Hero_Links_Link_Reference
-}
-
-enum BlogVersion_Version_Hero_Links_Link_Reference_RelationTo {
-  pages
-}
-
-union BlogVersion_Version_Hero_Links_Link_Reference = Page
-
-input BlogVersion_Version_Hero_Links_Link_Icon_where {
-  alt: BlogVersion_Version_Hero_Links_Link_Icon_alt_operator
-  caption: BlogVersion_Version_Hero_Links_Link_Icon_caption_operator
-  updatedAt: BlogVersion_Version_Hero_Links_Link_Icon_updatedAt_operator
-  createdAt: BlogVersion_Version_Hero_Links_Link_Icon_createdAt_operator
-  url: BlogVersion_Version_Hero_Links_Link_Icon_url_operator
-  filename: BlogVersion_Version_Hero_Links_Link_Icon_filename_operator
-  mimeType: BlogVersion_Version_Hero_Links_Link_Icon_mimeType_operator
-  filesize: BlogVersion_Version_Hero_Links_Link_Icon_filesize_operator
-  width: BlogVersion_Version_Hero_Links_Link_Icon_width_operator
-  height: BlogVersion_Version_Hero_Links_Link_Icon_height_operator
-  id: BlogVersion_Version_Hero_Links_Link_Icon_id_operator
-  AND: [BlogVersion_Version_Hero_Links_Link_Icon_where_and]
-  OR: [BlogVersion_Version_Hero_Links_Link_Icon_where_or]
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_alt_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_caption_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_filename_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_mimeType_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_filesize_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_width_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_height_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_where_and {
-  alt: BlogVersion_Version_Hero_Links_Link_Icon_alt_operator
-  caption: BlogVersion_Version_Hero_Links_Link_Icon_caption_operator
-  updatedAt: BlogVersion_Version_Hero_Links_Link_Icon_updatedAt_operator
-  createdAt: BlogVersion_Version_Hero_Links_Link_Icon_createdAt_operator
-  url: BlogVersion_Version_Hero_Links_Link_Icon_url_operator
-  filename: BlogVersion_Version_Hero_Links_Link_Icon_filename_operator
-  mimeType: BlogVersion_Version_Hero_Links_Link_Icon_mimeType_operator
-  filesize: BlogVersion_Version_Hero_Links_Link_Icon_filesize_operator
-  width: BlogVersion_Version_Hero_Links_Link_Icon_width_operator
-  height: BlogVersion_Version_Hero_Links_Link_Icon_height_operator
-  id: BlogVersion_Version_Hero_Links_Link_Icon_id_operator
-  AND: [BlogVersion_Version_Hero_Links_Link_Icon_where_and]
-  OR: [BlogVersion_Version_Hero_Links_Link_Icon_where_or]
-}
-
-input BlogVersion_Version_Hero_Links_Link_Icon_where_or {
-  alt: BlogVersion_Version_Hero_Links_Link_Icon_alt_operator
-  caption: BlogVersion_Version_Hero_Links_Link_Icon_caption_operator
-  updatedAt: BlogVersion_Version_Hero_Links_Link_Icon_updatedAt_operator
-  createdAt: BlogVersion_Version_Hero_Links_Link_Icon_createdAt_operator
-  url: BlogVersion_Version_Hero_Links_Link_Icon_url_operator
-  filename: BlogVersion_Version_Hero_Links_Link_Icon_filename_operator
-  mimeType: BlogVersion_Version_Hero_Links_Link_Icon_mimeType_operator
-  filesize: BlogVersion_Version_Hero_Links_Link_Icon_filesize_operator
-  width: BlogVersion_Version_Hero_Links_Link_Icon_width_operator
-  height: BlogVersion_Version_Hero_Links_Link_Icon_height_operator
-  id: BlogVersion_Version_Hero_Links_Link_Icon_id_operator
-  AND: [BlogVersion_Version_Hero_Links_Link_Icon_where_and]
-  OR: [BlogVersion_Version_Hero_Links_Link_Icon_where_or]
-}
-
-enum BlogVersion_Version_Hero_Links_Link_appearance {
-  default
-  primary
-  secondary
-}
-
-input BlogVersion_Version_Hero_Media_where {
-  alt: BlogVersion_Version_Hero_Media_alt_operator
-  caption: BlogVersion_Version_Hero_Media_caption_operator
-  updatedAt: BlogVersion_Version_Hero_Media_updatedAt_operator
-  createdAt: BlogVersion_Version_Hero_Media_createdAt_operator
-  url: BlogVersion_Version_Hero_Media_url_operator
-  filename: BlogVersion_Version_Hero_Media_filename_operator
-  mimeType: BlogVersion_Version_Hero_Media_mimeType_operator
-  filesize: BlogVersion_Version_Hero_Media_filesize_operator
-  width: BlogVersion_Version_Hero_Media_width_operator
-  height: BlogVersion_Version_Hero_Media_height_operator
-  id: BlogVersion_Version_Hero_Media_id_operator
-  AND: [BlogVersion_Version_Hero_Media_where_and]
-  OR: [BlogVersion_Version_Hero_Media_where_or]
-}
-
-input BlogVersion_Version_Hero_Media_alt_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input BlogVersion_Version_Hero_Media_caption_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_filename_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_mimeType_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_filesize_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_width_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_height_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input BlogVersion_Version_Hero_Media_where_and {
-  alt: BlogVersion_Version_Hero_Media_alt_operator
-  caption: BlogVersion_Version_Hero_Media_caption_operator
-  updatedAt: BlogVersion_Version_Hero_Media_updatedAt_operator
-  createdAt: BlogVersion_Version_Hero_Media_createdAt_operator
-  url: BlogVersion_Version_Hero_Media_url_operator
-  filename: BlogVersion_Version_Hero_Media_filename_operator
-  mimeType: BlogVersion_Version_Hero_Media_mimeType_operator
-  filesize: BlogVersion_Version_Hero_Media_filesize_operator
-  width: BlogVersion_Version_Hero_Media_width_operator
-  height: BlogVersion_Version_Hero_Media_height_operator
-  id: BlogVersion_Version_Hero_Media_id_operator
-  AND: [BlogVersion_Version_Hero_Media_where_and]
-  OR: [BlogVersion_Version_Hero_Media_where_or]
-}
-
-input BlogVersion_Version_Hero_Media_where_or {
-  alt: BlogVersion_Version_Hero_Media_alt_operator
-  caption: BlogVersion_Version_Hero_Media_caption_operator
-  updatedAt: BlogVersion_Version_Hero_Media_updatedAt_operator
-  createdAt: BlogVersion_Version_Hero_Media_createdAt_operator
-  url: BlogVersion_Version_Hero_Media_url_operator
-  filename: BlogVersion_Version_Hero_Media_filename_operator
-  mimeType: BlogVersion_Version_Hero_Media_mimeType_operator
-  filesize: BlogVersion_Version_Hero_Media_filesize_operator
-  width: BlogVersion_Version_Hero_Media_width_operator
-  height: BlogVersion_Version_Hero_Media_height_operator
-  id: BlogVersion_Version_Hero_Media_id_operator
-  AND: [BlogVersion_Version_Hero_Media_where_and]
-  OR: [BlogVersion_Version_Hero_Media_where_or]
-}
-
-union BlogVersion_Version_Layout = Cta | Content | MediaBlock | Archive
-
-union BlogVersion_Version_PremiumContent = Cta | Content | MediaBlock | Archive
-
-enum BlogVersion_Version__status {
-  draft
-  published
-}
-
-type versionsBlogs {
-  docs: [BlogVersion]
-  hasNextPage: Boolean
-  hasPrevPage: Boolean
-  limit: Int
-  nextPage: Int
-  offset: Int
-  page: Int
-  pagingCounter: Int
-  prevPage: Int
-  totalDocs: Int
-  totalPages: Int
-}
-
-input versionsBlog_where {
-  parent: versionsBlog_parent_operator
-  version__title: versionsBlog_version__title_operator
-  version__categories: versionsBlog_version__categories_operator
-  version__publishedAt: versionsBlog_version__publishedAt_operator
-  version__authors: versionsBlog_version__authors_operator
-  version__populatedAuthors__id: versionsBlog_version__populatedAuthors__id_operator
-  version__populatedAuthors__name: versionsBlog_version__populatedAuthors__name_operator
-  version__hero__type: versionsBlog_version__hero__type_operator
-  version__hero__richText: versionsBlog_version__hero__richText_operator
-  version__hero__links__link__type: versionsBlog_version__hero__links__link__type_operator
-  version__hero__links__link__newTab: versionsBlog_version__hero__links__link__newTab_operator
-  version__hero__links__link__reference: versionsBlog_version__hero__links__link__reference_Relation
-  version__hero__links__link__url: versionsBlog_version__hero__links__link__url_operator
-  version__hero__links__link__label: versionsBlog_version__hero__links__link__label_operator
-  version__hero__links__link__icon: versionsBlog_version__hero__links__link__icon_operator
-  version__hero__links__link__appearance: versionsBlog_version__hero__links__link__appearance_operator
-  version__hero__links__id: versionsBlog_version__hero__links__id_operator
-  version__hero__media: versionsBlog_version__hero__media_operator
-  version__enablePremiumContent: versionsBlog_version__enablePremiumContent_operator
-  version__relatedPosts: versionsBlog_version__relatedPosts_operator
-  version__slug: versionsBlog_version__slug_operator
-  version__updatedAt: versionsBlog_version__updatedAt_operator
-  version__createdAt: versionsBlog_version__createdAt_operator
-  version___status: versionsBlog_version___status_operator
-  createdAt: versionsBlog_createdAt_operator
-  updatedAt: versionsBlog_updatedAt_operator
-  latest: versionsBlog_latest_operator
-  id: versionsBlog_id_operator
-  AND: [versionsBlog_where_and]
-  OR: [versionsBlog_where_or]
-}
-
-input versionsBlog_parent_operator {
-  equals: JSON
-  not_equals: JSON
-  in: [JSON]
-  not_in: [JSON]
-  all: [JSON]
-  exists: Boolean
-}
-
-input versionsBlog_version__title_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input versionsBlog_version__categories_operator {
-  equals: JSON
-  not_equals: JSON
-  in: [JSON]
-  not_in: [JSON]
-  all: [JSON]
-  exists: Boolean
-}
-
-input versionsBlog_version__publishedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input versionsBlog_version__authors_operator {
-  equals: JSON
-  not_equals: JSON
-  in: [JSON]
-  not_in: [JSON]
-  all: [JSON]
-  exists: Boolean
-}
-
-input versionsBlog_version__populatedAuthors__id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input versionsBlog_version__populatedAuthors__name_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input versionsBlog_version__hero__type_operator {
-  equals: versionsBlog_version__hero__type_Input
-  not_equals: versionsBlog_version__hero__type_Input
-  in: [versionsBlog_version__hero__type_Input]
-  not_in: [versionsBlog_version__hero__type_Input]
-  all: [versionsBlog_version__hero__type_Input]
-}
-
-enum versionsBlog_version__hero__type_Input {
-  none
-  highImpact
-  mediumImpact
-  lowImpact
-  customHero
-}
-
-input versionsBlog_version__hero__richText_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
-}
-
-input versionsBlog_version__hero__links__link__type_operator {
-  equals: versionsBlog_version__hero__links__link__type_Input
-  not_equals: versionsBlog_version__hero__links__link__type_Input
-  like: versionsBlog_version__hero__links__link__type_Input
-  contains: versionsBlog_version__hero__links__link__type_Input
-  exists: Boolean
-}
-
-enum versionsBlog_version__hero__links__link__type_Input {
-  reference
-  custom
-}
-
-input versionsBlog_version__hero__links__link__newTab_operator {
-  equals: Boolean
-  not_equals: Boolean
-  exists: Boolean
-}
-
-input versionsBlog_version__hero__links__link__reference_Relation {
-  relationTo: versionsBlog_version__hero__links__link__reference_Relation_RelationTo
-  value: JSON
-}
-
-enum versionsBlog_version__hero__links__link__reference_Relation_RelationTo {
-  pages
-}
-
-input versionsBlog_version__hero__links__link__url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input versionsBlog_version__hero__links__link__label_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input versionsBlog_version__hero__links__link__icon_operator {
-  equals: String
-  not_equals: String
-  exists: Boolean
-}
-
-input versionsBlog_version__hero__links__link__appearance_operator {
-  equals: versionsBlog_version__hero__links__link__appearance_Input
-  not_equals: versionsBlog_version__hero__links__link__appearance_Input
-  in: [versionsBlog_version__hero__links__link__appearance_Input]
-  not_in: [versionsBlog_version__hero__links__link__appearance_Input]
-  all: [versionsBlog_version__hero__links__link__appearance_Input]
-  exists: Boolean
-}
-
-enum versionsBlog_version__hero__links__link__appearance_Input {
-  default
-  primary
-  secondary
-}
-
-input versionsBlog_version__hero__links__id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input versionsBlog_version__hero__media_operator {
-  equals: String
-  not_equals: String
-}
-
-input versionsBlog_version__enablePremiumContent_operator {
-  equals: Boolean
-  not_equals: Boolean
-  exists: Boolean
-}
-
-input versionsBlog_version__relatedPosts_operator {
-  equals: JSON
-  not_equals: JSON
-  in: [JSON]
-  not_in: [JSON]
-  all: [JSON]
-  exists: Boolean
-}
-
-input versionsBlog_version__slug_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input versionsBlog_version__updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input versionsBlog_version__createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input versionsBlog_version___status_operator {
-  equals: versionsBlog_version___status_Input
-  not_equals: versionsBlog_version___status_Input
-  in: [versionsBlog_version___status_Input]
-  not_in: [versionsBlog_version___status_Input]
-  all: [versionsBlog_version___status_Input]
-  exists: Boolean
-}
-
-enum versionsBlog_version___status_Input {
-  draft
-  published
-}
-
-input versionsBlog_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input versionsBlog_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input versionsBlog_latest_operator {
-  equals: Boolean
-  not_equals: Boolean
-  exists: Boolean
-}
-
-input versionsBlog_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input versionsBlog_where_and {
-  parent: versionsBlog_parent_operator
-  version__title: versionsBlog_version__title_operator
-  version__categories: versionsBlog_version__categories_operator
-  version__publishedAt: versionsBlog_version__publishedAt_operator
-  version__authors: versionsBlog_version__authors_operator
-  version__populatedAuthors__id: versionsBlog_version__populatedAuthors__id_operator
-  version__populatedAuthors__name: versionsBlog_version__populatedAuthors__name_operator
-  version__hero__type: versionsBlog_version__hero__type_operator
-  version__hero__richText: versionsBlog_version__hero__richText_operator
-  version__hero__links__link__type: versionsBlog_version__hero__links__link__type_operator
-  version__hero__links__link__newTab: versionsBlog_version__hero__links__link__newTab_operator
-  version__hero__links__link__reference: versionsBlog_version__hero__links__link__reference_Relation
-  version__hero__links__link__url: versionsBlog_version__hero__links__link__url_operator
-  version__hero__links__link__label: versionsBlog_version__hero__links__link__label_operator
-  version__hero__links__link__icon: versionsBlog_version__hero__links__link__icon_operator
-  version__hero__links__link__appearance: versionsBlog_version__hero__links__link__appearance_operator
-  version__hero__links__id: versionsBlog_version__hero__links__id_operator
-  version__hero__media: versionsBlog_version__hero__media_operator
-  version__enablePremiumContent: versionsBlog_version__enablePremiumContent_operator
-  version__relatedPosts: versionsBlog_version__relatedPosts_operator
-  version__slug: versionsBlog_version__slug_operator
-  version__updatedAt: versionsBlog_version__updatedAt_operator
-  version__createdAt: versionsBlog_version__createdAt_operator
-  version___status: versionsBlog_version___status_operator
-  createdAt: versionsBlog_createdAt_operator
-  updatedAt: versionsBlog_updatedAt_operator
-  latest: versionsBlog_latest_operator
-  id: versionsBlog_id_operator
-  AND: [versionsBlog_where_and]
-  OR: [versionsBlog_where_or]
-}
-
-input versionsBlog_where_or {
-  parent: versionsBlog_parent_operator
-  version__title: versionsBlog_version__title_operator
-  version__categories: versionsBlog_version__categories_operator
-  version__publishedAt: versionsBlog_version__publishedAt_operator
-  version__authors: versionsBlog_version__authors_operator
-  version__populatedAuthors__id: versionsBlog_version__populatedAuthors__id_operator
-  version__populatedAuthors__name: versionsBlog_version__populatedAuthors__name_operator
-  version__hero__type: versionsBlog_version__hero__type_operator
-  version__hero__richText: versionsBlog_version__hero__richText_operator
-  version__hero__links__link__type: versionsBlog_version__hero__links__link__type_operator
-  version__hero__links__link__newTab: versionsBlog_version__hero__links__link__newTab_operator
-  version__hero__links__link__reference: versionsBlog_version__hero__links__link__reference_Relation
-  version__hero__links__link__url: versionsBlog_version__hero__links__link__url_operator
-  version__hero__links__link__label: versionsBlog_version__hero__links__link__label_operator
-  version__hero__links__link__icon: versionsBlog_version__hero__links__link__icon_operator
-  version__hero__links__link__appearance: versionsBlog_version__hero__links__link__appearance_operator
-  version__hero__links__id: versionsBlog_version__hero__links__id_operator
-  version__hero__media: versionsBlog_version__hero__media_operator
-  version__enablePremiumContent: versionsBlog_version__enablePremiumContent_operator
-  version__relatedPosts: versionsBlog_version__relatedPosts_operator
-  version__slug: versionsBlog_version__slug_operator
-  version__updatedAt: versionsBlog_version__updatedAt_operator
-  version__createdAt: versionsBlog_version__createdAt_operator
-  version___status: versionsBlog_version___status_operator
-  createdAt: versionsBlog_createdAt_operator
-  updatedAt: versionsBlog_updatedAt_operator
-  latest: versionsBlog_latest_operator
-  id: versionsBlog_id_operator
-  AND: [versionsBlog_where_and]
-  OR: [versionsBlog_where_or]
 }
 
 type Posts {
@@ -4839,9 +2353,6 @@ input Post_where {
   enablePremiumContent: Post_enablePremiumContent_operator
   relatedPosts: Post_relatedPosts_operator
   slug: Post_slug_operator
-  meta__title: Post_meta__title_operator
-  meta__description: Post_meta__description_operator
-  meta__image: Post_meta__image_operator
   updatedAt: Post_updatedAt_operator
   createdAt: Post_createdAt_operator
   _status: Post__status_operator
@@ -5045,31 +2556,6 @@ input Post_slug_operator {
   exists: Boolean
 }
 
-input Post_meta__title_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input Post_meta__description_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  exists: Boolean
-}
-
-input Post_meta__image_operator {
-  equals: String
-  not_equals: String
-  exists: Boolean
-}
-
 input Post_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -5138,9 +2624,6 @@ input Post_where_and {
   enablePremiumContent: Post_enablePremiumContent_operator
   relatedPosts: Post_relatedPosts_operator
   slug: Post_slug_operator
-  meta__title: Post_meta__title_operator
-  meta__description: Post_meta__description_operator
-  meta__image: Post_meta__image_operator
   updatedAt: Post_updatedAt_operator
   createdAt: Post_createdAt_operator
   _status: Post__status_operator
@@ -5170,9 +2653,6 @@ input Post_where_or {
   enablePremiumContent: Post_enablePremiumContent_operator
   relatedPosts: Post_relatedPosts_operator
   slug: Post_slug_operator
-  meta__title: Post_meta__title_operator
-  meta__description: Post_meta__description_operator
-  meta__image: Post_meta__image_operator
   updatedAt: Post_updatedAt_operator
   createdAt: Post_createdAt_operator
   _status: Post__status_operator
@@ -5202,7 +2682,6 @@ type PostsDocAccessFields {
   premiumContent: PostsDocAccessFields_premiumContent
   relatedPosts: PostsDocAccessFields_relatedPosts
   slug: PostsDocAccessFields_slug
-  meta: PostsDocAccessFields_meta
   updatedAt: PostsDocAccessFields_updatedAt
   createdAt: PostsDocAccessFields_createdAt
   _status: PostsDocAccessFields__status
@@ -5837,105 +3316,6 @@ type PostsDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
-type PostsDocAccessFields_meta {
-  create: PostsDocAccessFields_meta_Create
-  read: PostsDocAccessFields_meta_Read
-  update: PostsDocAccessFields_meta_Update
-  delete: PostsDocAccessFields_meta_Delete
-  fields: PostsDocAccessFields_meta_Fields
-}
-
-type PostsDocAccessFields_meta_Create {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_Read {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_Update {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_Delete {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_Fields {
-  title: PostsDocAccessFields_meta_title
-  description: PostsDocAccessFields_meta_description
-  image: PostsDocAccessFields_meta_image
-}
-
-type PostsDocAccessFields_meta_title {
-  create: PostsDocAccessFields_meta_title_Create
-  read: PostsDocAccessFields_meta_title_Read
-  update: PostsDocAccessFields_meta_title_Update
-  delete: PostsDocAccessFields_meta_title_Delete
-}
-
-type PostsDocAccessFields_meta_title_Create {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_title_Read {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_title_Update {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_title_Delete {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_description {
-  create: PostsDocAccessFields_meta_description_Create
-  read: PostsDocAccessFields_meta_description_Read
-  update: PostsDocAccessFields_meta_description_Update
-  delete: PostsDocAccessFields_meta_description_Delete
-}
-
-type PostsDocAccessFields_meta_description_Create {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_description_Read {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_description_Update {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_description_Delete {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_image {
-  create: PostsDocAccessFields_meta_image_Create
-  read: PostsDocAccessFields_meta_image_Read
-  update: PostsDocAccessFields_meta_image_Update
-  delete: PostsDocAccessFields_meta_image_Delete
-}
-
-type PostsDocAccessFields_meta_image_Create {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_image_Read {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_image_Update {
-  permission: Boolean!
-}
-
-type PostsDocAccessFields_meta_image_Delete {
-  permission: Boolean!
-}
-
 type PostsDocAccessFields_updatedAt {
   create: PostsDocAccessFields_updatedAt_Create
   read: PostsDocAccessFields_updatedAt_Read
@@ -6051,7 +3431,6 @@ type PostVersion_Version {
   premiumContent: [PostVersion_Version_PremiumContent!]
   relatedPosts(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [Post!]
   slug: String
-  meta: PostVersion_Version_Meta
   updatedAt: DateTime
   createdAt: DateTime
   _status: PostVersion_Version__status
@@ -6442,174 +3821,6 @@ union PostVersion_Version_Layout = Cta | Content | MediaBlock | Archive
 
 union PostVersion_Version_PremiumContent = Cta | Content | MediaBlock | Archive
 
-type PostVersion_Version_Meta {
-  title: String
-  description: String
-  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType, where: PostVersion_Version_Meta_Image_where): Media
-}
-
-input PostVersion_Version_Meta_Image_where {
-  alt: PostVersion_Version_Meta_Image_alt_operator
-  caption: PostVersion_Version_Meta_Image_caption_operator
-  updatedAt: PostVersion_Version_Meta_Image_updatedAt_operator
-  createdAt: PostVersion_Version_Meta_Image_createdAt_operator
-  url: PostVersion_Version_Meta_Image_url_operator
-  filename: PostVersion_Version_Meta_Image_filename_operator
-  mimeType: PostVersion_Version_Meta_Image_mimeType_operator
-  filesize: PostVersion_Version_Meta_Image_filesize_operator
-  width: PostVersion_Version_Meta_Image_width_operator
-  height: PostVersion_Version_Meta_Image_height_operator
-  id: PostVersion_Version_Meta_Image_id_operator
-  AND: [PostVersion_Version_Meta_Image_where_and]
-  OR: [PostVersion_Version_Meta_Image_where_or]
-}
-
-input PostVersion_Version_Meta_Image_alt_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input PostVersion_Version_Meta_Image_caption_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_filename_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_mimeType_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_filesize_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_width_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_height_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input PostVersion_Version_Meta_Image_where_and {
-  alt: PostVersion_Version_Meta_Image_alt_operator
-  caption: PostVersion_Version_Meta_Image_caption_operator
-  updatedAt: PostVersion_Version_Meta_Image_updatedAt_operator
-  createdAt: PostVersion_Version_Meta_Image_createdAt_operator
-  url: PostVersion_Version_Meta_Image_url_operator
-  filename: PostVersion_Version_Meta_Image_filename_operator
-  mimeType: PostVersion_Version_Meta_Image_mimeType_operator
-  filesize: PostVersion_Version_Meta_Image_filesize_operator
-  width: PostVersion_Version_Meta_Image_width_operator
-  height: PostVersion_Version_Meta_Image_height_operator
-  id: PostVersion_Version_Meta_Image_id_operator
-  AND: [PostVersion_Version_Meta_Image_where_and]
-  OR: [PostVersion_Version_Meta_Image_where_or]
-}
-
-input PostVersion_Version_Meta_Image_where_or {
-  alt: PostVersion_Version_Meta_Image_alt_operator
-  caption: PostVersion_Version_Meta_Image_caption_operator
-  updatedAt: PostVersion_Version_Meta_Image_updatedAt_operator
-  createdAt: PostVersion_Version_Meta_Image_createdAt_operator
-  url: PostVersion_Version_Meta_Image_url_operator
-  filename: PostVersion_Version_Meta_Image_filename_operator
-  mimeType: PostVersion_Version_Meta_Image_mimeType_operator
-  filesize: PostVersion_Version_Meta_Image_filesize_operator
-  width: PostVersion_Version_Meta_Image_width_operator
-  height: PostVersion_Version_Meta_Image_height_operator
-  id: PostVersion_Version_Meta_Image_id_operator
-  AND: [PostVersion_Version_Meta_Image_where_and]
-  OR: [PostVersion_Version_Meta_Image_where_or]
-}
-
 enum PostVersion_Version__status {
   draft
   published
@@ -6651,9 +3862,6 @@ input versionsPost_where {
   version__enablePremiumContent: versionsPost_version__enablePremiumContent_operator
   version__relatedPosts: versionsPost_version__relatedPosts_operator
   version__slug: versionsPost_version__slug_operator
-  version__meta__title: versionsPost_version__meta__title_operator
-  version__meta__description: versionsPost_version__meta__description_operator
-  version__meta__image: versionsPost_version__meta__image_operator
   version__updatedAt: versionsPost_version__updatedAt_operator
   version__createdAt: versionsPost_version__createdAt_operator
   version___status: versionsPost_version___status_operator
@@ -6869,31 +4077,6 @@ input versionsPost_version__slug_operator {
   exists: Boolean
 }
 
-input versionsPost_version__meta__title_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input versionsPost_version__meta__description_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  exists: Boolean
-}
-
-input versionsPost_version__meta__image_operator {
-  equals: String
-  not_equals: String
-  exists: Boolean
-}
-
 input versionsPost_version__updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -6991,9 +4174,6 @@ input versionsPost_where_and {
   version__enablePremiumContent: versionsPost_version__enablePremiumContent_operator
   version__relatedPosts: versionsPost_version__relatedPosts_operator
   version__slug: versionsPost_version__slug_operator
-  version__meta__title: versionsPost_version__meta__title_operator
-  version__meta__description: versionsPost_version__meta__description_operator
-  version__meta__image: versionsPost_version__meta__image_operator
   version__updatedAt: versionsPost_version__updatedAt_operator
   version__createdAt: versionsPost_version__createdAt_operator
   version___status: versionsPost_version___status_operator
@@ -7027,9 +4207,6 @@ input versionsPost_where_or {
   version__enablePremiumContent: versionsPost_version__enablePremiumContent_operator
   version__relatedPosts: versionsPost_version__relatedPosts_operator
   version__slug: versionsPost_version__slug_operator
-  version__meta__title: versionsPost_version__meta__title_operator
-  version__meta__description: versionsPost_version__meta__description_operator
-  version__meta__image: versionsPost_version__meta__image_operator
   version__updatedAt: versionsPost_version__updatedAt_operator
   version__createdAt: versionsPost_version__createdAt_operator
   version___status: versionsPost_version___status_operator
@@ -13142,10 +10319,9 @@ type Redirect_To_Reference_Relationship {
 enum Redirect_To_Reference_RelationTo {
   pages
   products
-  posts
 }
 
-union Redirect_To_Reference = Page | Product | Post
+union Redirect_To_Reference = Page | Product
 
 type Redirects {
   docs: [Redirect]
@@ -13204,7 +10380,6 @@ input Redirect_to__reference_Relation {
 enum Redirect_to__reference_Relation_RelationTo {
   pages
   products
-  posts
 }
 
 input Redirect_to__url_operator {
@@ -14861,7 +12036,6 @@ type FooterUpdateDocAccess {
 type Access {
   canAccessAdmin: Boolean!
   tags: tagsAccess
-  blog: blogAccess
   posts: postsAccess
   pages: pagesAccess
   products: productsAccess
@@ -14980,755 +12154,6 @@ type TagsDeleteAccess {
   where: JSONObject
 }
 
-type blogAccess {
-  fields: BlogFields
-  create: BlogCreateAccess
-  read: BlogReadAccess
-  update: BlogUpdateAccess
-  delete: BlogDeleteAccess
-  readVersions: BlogReadVersionsAccess
-}
-
-type BlogFields {
-  title: BlogFields_title
-  categories: BlogFields_categories
-  publishedAt: BlogFields_publishedAt
-  authors: BlogFields_authors
-  populatedAuthors: BlogFields_populatedAuthors
-  hero: BlogFields_hero
-  layout: BlogFields_layout
-  enablePremiumContent: BlogFields_enablePremiumContent
-  premiumContent: BlogFields_premiumContent
-  relatedPosts: BlogFields_relatedPosts
-  slug: BlogFields_slug
-  updatedAt: BlogFields_updatedAt
-  createdAt: BlogFields_createdAt
-  _status: BlogFields__status
-}
-
-type BlogFields_title {
-  create: BlogFields_title_Create
-  read: BlogFields_title_Read
-  update: BlogFields_title_Update
-  delete: BlogFields_title_Delete
-}
-
-type BlogFields_title_Create {
-  permission: Boolean!
-}
-
-type BlogFields_title_Read {
-  permission: Boolean!
-}
-
-type BlogFields_title_Update {
-  permission: Boolean!
-}
-
-type BlogFields_title_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_categories {
-  create: BlogFields_categories_Create
-  read: BlogFields_categories_Read
-  update: BlogFields_categories_Update
-  delete: BlogFields_categories_Delete
-}
-
-type BlogFields_categories_Create {
-  permission: Boolean!
-}
-
-type BlogFields_categories_Read {
-  permission: Boolean!
-}
-
-type BlogFields_categories_Update {
-  permission: Boolean!
-}
-
-type BlogFields_categories_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_publishedAt {
-  create: BlogFields_publishedAt_Create
-  read: BlogFields_publishedAt_Read
-  update: BlogFields_publishedAt_Update
-  delete: BlogFields_publishedAt_Delete
-}
-
-type BlogFields_publishedAt_Create {
-  permission: Boolean!
-}
-
-type BlogFields_publishedAt_Read {
-  permission: Boolean!
-}
-
-type BlogFields_publishedAt_Update {
-  permission: Boolean!
-}
-
-type BlogFields_publishedAt_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_authors {
-  create: BlogFields_authors_Create
-  read: BlogFields_authors_Read
-  update: BlogFields_authors_Update
-  delete: BlogFields_authors_Delete
-}
-
-type BlogFields_authors_Create {
-  permission: Boolean!
-}
-
-type BlogFields_authors_Read {
-  permission: Boolean!
-}
-
-type BlogFields_authors_Update {
-  permission: Boolean!
-}
-
-type BlogFields_authors_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors {
-  create: BlogFields_populatedAuthors_Create
-  read: BlogFields_populatedAuthors_Read
-  update: BlogFields_populatedAuthors_Update
-  delete: BlogFields_populatedAuthors_Delete
-  fields: BlogFields_populatedAuthors_Fields
-}
-
-type BlogFields_populatedAuthors_Create {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_Read {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_Update {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_Fields {
-  id: BlogFields_populatedAuthors_id
-  name: BlogFields_populatedAuthors_name
-}
-
-type BlogFields_populatedAuthors_id {
-  create: BlogFields_populatedAuthors_id_Create
-  read: BlogFields_populatedAuthors_id_Read
-  update: BlogFields_populatedAuthors_id_Update
-  delete: BlogFields_populatedAuthors_id_Delete
-}
-
-type BlogFields_populatedAuthors_id_Create {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_id_Read {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_id_Update {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_id_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_name {
-  create: BlogFields_populatedAuthors_name_Create
-  read: BlogFields_populatedAuthors_name_Read
-  update: BlogFields_populatedAuthors_name_Update
-  delete: BlogFields_populatedAuthors_name_Delete
-}
-
-type BlogFields_populatedAuthors_name_Create {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_name_Read {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_name_Update {
-  permission: Boolean!
-}
-
-type BlogFields_populatedAuthors_name_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero {
-  create: BlogFields_hero_Create
-  read: BlogFields_hero_Read
-  update: BlogFields_hero_Update
-  delete: BlogFields_hero_Delete
-  fields: BlogFields_hero_Fields
-}
-
-type BlogFields_hero_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_Fields {
-  type: BlogFields_hero_type
-  richText: BlogFields_hero_richText
-  links: BlogFields_hero_links
-  media: BlogFields_hero_media
-}
-
-type BlogFields_hero_type {
-  create: BlogFields_hero_type_Create
-  read: BlogFields_hero_type_Read
-  update: BlogFields_hero_type_Update
-  delete: BlogFields_hero_type_Delete
-}
-
-type BlogFields_hero_type_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_type_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_type_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_type_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_richText {
-  create: BlogFields_hero_richText_Create
-  read: BlogFields_hero_richText_Read
-  update: BlogFields_hero_richText_Update
-  delete: BlogFields_hero_richText_Delete
-}
-
-type BlogFields_hero_richText_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_richText_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_richText_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_richText_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links {
-  create: BlogFields_hero_links_Create
-  read: BlogFields_hero_links_Read
-  update: BlogFields_hero_links_Update
-  delete: BlogFields_hero_links_Delete
-  fields: BlogFields_hero_links_Fields
-}
-
-type BlogFields_hero_links_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_Fields {
-  link: BlogFields_hero_links_link
-  id: BlogFields_hero_links_id
-}
-
-type BlogFields_hero_links_link {
-  create: BlogFields_hero_links_link_Create
-  read: BlogFields_hero_links_link_Read
-  update: BlogFields_hero_links_link_Update
-  delete: BlogFields_hero_links_link_Delete
-  fields: BlogFields_hero_links_link_Fields
-}
-
-type BlogFields_hero_links_link_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_Fields {
-  type: BlogFields_hero_links_link_type
-  newTab: BlogFields_hero_links_link_newTab
-  reference: BlogFields_hero_links_link_reference
-  url: BlogFields_hero_links_link_url
-  label: BlogFields_hero_links_link_label
-  icon: BlogFields_hero_links_link_icon
-  appearance: BlogFields_hero_links_link_appearance
-}
-
-type BlogFields_hero_links_link_type {
-  create: BlogFields_hero_links_link_type_Create
-  read: BlogFields_hero_links_link_type_Read
-  update: BlogFields_hero_links_link_type_Update
-  delete: BlogFields_hero_links_link_type_Delete
-}
-
-type BlogFields_hero_links_link_type_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_type_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_type_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_type_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_newTab {
-  create: BlogFields_hero_links_link_newTab_Create
-  read: BlogFields_hero_links_link_newTab_Read
-  update: BlogFields_hero_links_link_newTab_Update
-  delete: BlogFields_hero_links_link_newTab_Delete
-}
-
-type BlogFields_hero_links_link_newTab_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_newTab_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_newTab_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_newTab_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_reference {
-  create: BlogFields_hero_links_link_reference_Create
-  read: BlogFields_hero_links_link_reference_Read
-  update: BlogFields_hero_links_link_reference_Update
-  delete: BlogFields_hero_links_link_reference_Delete
-}
-
-type BlogFields_hero_links_link_reference_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_reference_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_reference_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_reference_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_url {
-  create: BlogFields_hero_links_link_url_Create
-  read: BlogFields_hero_links_link_url_Read
-  update: BlogFields_hero_links_link_url_Update
-  delete: BlogFields_hero_links_link_url_Delete
-}
-
-type BlogFields_hero_links_link_url_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_url_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_url_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_url_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_label {
-  create: BlogFields_hero_links_link_label_Create
-  read: BlogFields_hero_links_link_label_Read
-  update: BlogFields_hero_links_link_label_Update
-  delete: BlogFields_hero_links_link_label_Delete
-}
-
-type BlogFields_hero_links_link_label_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_label_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_label_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_label_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_icon {
-  create: BlogFields_hero_links_link_icon_Create
-  read: BlogFields_hero_links_link_icon_Read
-  update: BlogFields_hero_links_link_icon_Update
-  delete: BlogFields_hero_links_link_icon_Delete
-}
-
-type BlogFields_hero_links_link_icon_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_icon_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_icon_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_icon_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_appearance {
-  create: BlogFields_hero_links_link_appearance_Create
-  read: BlogFields_hero_links_link_appearance_Read
-  update: BlogFields_hero_links_link_appearance_Update
-  delete: BlogFields_hero_links_link_appearance_Delete
-}
-
-type BlogFields_hero_links_link_appearance_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_appearance_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_appearance_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_link_appearance_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_id {
-  create: BlogFields_hero_links_id_Create
-  read: BlogFields_hero_links_id_Read
-  update: BlogFields_hero_links_id_Update
-  delete: BlogFields_hero_links_id_Delete
-}
-
-type BlogFields_hero_links_id_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_id_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_id_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_links_id_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_hero_media {
-  create: BlogFields_hero_media_Create
-  read: BlogFields_hero_media_Read
-  update: BlogFields_hero_media_Update
-  delete: BlogFields_hero_media_Delete
-}
-
-type BlogFields_hero_media_Create {
-  permission: Boolean!
-}
-
-type BlogFields_hero_media_Read {
-  permission: Boolean!
-}
-
-type BlogFields_hero_media_Update {
-  permission: Boolean!
-}
-
-type BlogFields_hero_media_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_layout {
-  create: BlogFields_layout_Create
-  read: BlogFields_layout_Read
-  update: BlogFields_layout_Update
-  delete: BlogFields_layout_Delete
-}
-
-type BlogFields_layout_Create {
-  permission: Boolean!
-}
-
-type BlogFields_layout_Read {
-  permission: Boolean!
-}
-
-type BlogFields_layout_Update {
-  permission: Boolean!
-}
-
-type BlogFields_layout_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_enablePremiumContent {
-  create: BlogFields_enablePremiumContent_Create
-  read: BlogFields_enablePremiumContent_Read
-  update: BlogFields_enablePremiumContent_Update
-  delete: BlogFields_enablePremiumContent_Delete
-}
-
-type BlogFields_enablePremiumContent_Create {
-  permission: Boolean!
-}
-
-type BlogFields_enablePremiumContent_Read {
-  permission: Boolean!
-}
-
-type BlogFields_enablePremiumContent_Update {
-  permission: Boolean!
-}
-
-type BlogFields_enablePremiumContent_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_premiumContent {
-  create: BlogFields_premiumContent_Create
-  read: BlogFields_premiumContent_Read
-  update: BlogFields_premiumContent_Update
-  delete: BlogFields_premiumContent_Delete
-}
-
-type BlogFields_premiumContent_Create {
-  permission: Boolean!
-}
-
-type BlogFields_premiumContent_Read {
-  permission: Boolean!
-}
-
-type BlogFields_premiumContent_Update {
-  permission: Boolean!
-}
-
-type BlogFields_premiumContent_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_relatedPosts {
-  create: BlogFields_relatedPosts_Create
-  read: BlogFields_relatedPosts_Read
-  update: BlogFields_relatedPosts_Update
-  delete: BlogFields_relatedPosts_Delete
-}
-
-type BlogFields_relatedPosts_Create {
-  permission: Boolean!
-}
-
-type BlogFields_relatedPosts_Read {
-  permission: Boolean!
-}
-
-type BlogFields_relatedPosts_Update {
-  permission: Boolean!
-}
-
-type BlogFields_relatedPosts_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_slug {
-  create: BlogFields_slug_Create
-  read: BlogFields_slug_Read
-  update: BlogFields_slug_Update
-  delete: BlogFields_slug_Delete
-}
-
-type BlogFields_slug_Create {
-  permission: Boolean!
-}
-
-type BlogFields_slug_Read {
-  permission: Boolean!
-}
-
-type BlogFields_slug_Update {
-  permission: Boolean!
-}
-
-type BlogFields_slug_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_updatedAt {
-  create: BlogFields_updatedAt_Create
-  read: BlogFields_updatedAt_Read
-  update: BlogFields_updatedAt_Update
-  delete: BlogFields_updatedAt_Delete
-}
-
-type BlogFields_updatedAt_Create {
-  permission: Boolean!
-}
-
-type BlogFields_updatedAt_Read {
-  permission: Boolean!
-}
-
-type BlogFields_updatedAt_Update {
-  permission: Boolean!
-}
-
-type BlogFields_updatedAt_Delete {
-  permission: Boolean!
-}
-
-type BlogFields_createdAt {
-  create: BlogFields_createdAt_Create
-  read: BlogFields_createdAt_Read
-  update: BlogFields_createdAt_Update
-  delete: BlogFields_createdAt_Delete
-}
-
-type BlogFields_createdAt_Create {
-  permission: Boolean!
-}
-
-type BlogFields_createdAt_Read {
-  permission: Boolean!
-}
-
-type BlogFields_createdAt_Update {
-  permission: Boolean!
-}
-
-type BlogFields_createdAt_Delete {
-  permission: Boolean!
-}
-
-type BlogFields__status {
-  create: BlogFields__status_Create
-  read: BlogFields__status_Read
-  update: BlogFields__status_Update
-  delete: BlogFields__status_Delete
-}
-
-type BlogFields__status_Create {
-  permission: Boolean!
-}
-
-type BlogFields__status_Read {
-  permission: Boolean!
-}
-
-type BlogFields__status_Update {
-  permission: Boolean!
-}
-
-type BlogFields__status_Delete {
-  permission: Boolean!
-}
-
-type BlogCreateAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type BlogReadAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type BlogUpdateAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type BlogDeleteAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
-type BlogReadVersionsAccess {
-  permission: Boolean!
-  where: JSONObject
-}
-
 type postsAccess {
   fields: PostsFields
   create: PostsCreateAccess
@@ -15750,7 +12175,6 @@ type PostsFields {
   premiumContent: PostsFields_premiumContent
   relatedPosts: PostsFields_relatedPosts
   slug: PostsFields_slug
-  meta: PostsFields_meta
   updatedAt: PostsFields_updatedAt
   createdAt: PostsFields_createdAt
   _status: PostsFields__status
@@ -16382,105 +12806,6 @@ type PostsFields_slug_Update {
 }
 
 type PostsFields_slug_Delete {
-  permission: Boolean!
-}
-
-type PostsFields_meta {
-  create: PostsFields_meta_Create
-  read: PostsFields_meta_Read
-  update: PostsFields_meta_Update
-  delete: PostsFields_meta_Delete
-  fields: PostsFields_meta_Fields
-}
-
-type PostsFields_meta_Create {
-  permission: Boolean!
-}
-
-type PostsFields_meta_Read {
-  permission: Boolean!
-}
-
-type PostsFields_meta_Update {
-  permission: Boolean!
-}
-
-type PostsFields_meta_Delete {
-  permission: Boolean!
-}
-
-type PostsFields_meta_Fields {
-  title: PostsFields_meta_title
-  description: PostsFields_meta_description
-  image: PostsFields_meta_image
-}
-
-type PostsFields_meta_title {
-  create: PostsFields_meta_title_Create
-  read: PostsFields_meta_title_Read
-  update: PostsFields_meta_title_Update
-  delete: PostsFields_meta_title_Delete
-}
-
-type PostsFields_meta_title_Create {
-  permission: Boolean!
-}
-
-type PostsFields_meta_title_Read {
-  permission: Boolean!
-}
-
-type PostsFields_meta_title_Update {
-  permission: Boolean!
-}
-
-type PostsFields_meta_title_Delete {
-  permission: Boolean!
-}
-
-type PostsFields_meta_description {
-  create: PostsFields_meta_description_Create
-  read: PostsFields_meta_description_Read
-  update: PostsFields_meta_description_Update
-  delete: PostsFields_meta_description_Delete
-}
-
-type PostsFields_meta_description_Create {
-  permission: Boolean!
-}
-
-type PostsFields_meta_description_Read {
-  permission: Boolean!
-}
-
-type PostsFields_meta_description_Update {
-  permission: Boolean!
-}
-
-type PostsFields_meta_description_Delete {
-  permission: Boolean!
-}
-
-type PostsFields_meta_image {
-  create: PostsFields_meta_image_Create
-  read: PostsFields_meta_image_Read
-  update: PostsFields_meta_image_Update
-  delete: PostsFields_meta_image_Delete
-}
-
-type PostsFields_meta_image_Create {
-  permission: Boolean!
-}
-
-type PostsFields_meta_image_Read {
-  permission: Boolean!
-}
-
-type PostsFields_meta_image_Update {
-  permission: Boolean!
-}
-
-type PostsFields_meta_image_Delete {
   permission: Boolean!
 }
 
@@ -20482,10 +16807,6 @@ type Mutation {
   createTag(data: mutationTagInput!, draft: Boolean, locale: LocaleInputType): Tag
   updateTag(id: String!, autosave: Boolean, data: mutationTagUpdateInput!, draft: Boolean, locale: LocaleInputType): Tag
   deleteTag(id: String!): Tag
-  createBlog(data: mutationBlogInput!, draft: Boolean, locale: LocaleInputType): Blog
-  updateBlog(id: String!, autosave: Boolean, data: mutationBlogUpdateInput!, draft: Boolean, locale: LocaleInputType): Blog
-  deleteBlog(id: String!): Blog
-  restoreVersionBlog(id: String): Blog
   createPost(data: mutationPostInput!, draft: Boolean, locale: LocaleInputType): Post
   updatePost(id: String!, autosave: Boolean, data: mutationPostUpdateInput!, draft: Boolean, locale: LocaleInputType): Post
   deletePost(id: String!): Post
@@ -20544,150 +16865,6 @@ input mutationTagUpdateInput {
   createdAt: String
 }
 
-input mutationBlogInput {
-  title: String
-  categories: [String]
-  publishedAt: String
-  authors: [String]
-  populatedAuthors: [mutationBlog_PopulatedAuthorsInput]
-  hero: mutationBlog_HeroInput!
-  layout: JSON
-  enablePremiumContent: Boolean
-  premiumContent: JSON
-  relatedPosts: [String]
-  slug: String
-  updatedAt: String
-  createdAt: String
-  _status: Blog__status_MutationInput
-}
-
-input mutationBlog_PopulatedAuthorsInput {
-  id: String
-  name: String
-}
-
-input mutationBlog_HeroInput {
-  type: Blog_Hero_type_MutationInput!
-  richText: JSON!
-  links: [mutationBlog_Hero_LinksInput]
-  media: String
-}
-
-enum Blog_Hero_type_MutationInput {
-  none
-  highImpact
-  mediumImpact
-  lowImpact
-  customHero
-}
-
-input mutationBlog_Hero_LinksInput {
-  link: mutationBlog_Hero_Links_LinkInput
-  id: String
-}
-
-input mutationBlog_Hero_Links_LinkInput {
-  type: String
-  newTab: Boolean
-  reference: Blog_Hero_Links_Link_ReferenceRelationshipInput
-  url: String
-  label: String!
-  icon: String
-  appearance: Blog_Hero_Links_Link_appearance_MutationInput
-}
-
-input Blog_Hero_Links_Link_ReferenceRelationshipInput {
-  relationTo: Blog_Hero_Links_Link_ReferenceRelationshipInputRelationTo
-  value: JSON
-}
-
-enum Blog_Hero_Links_Link_ReferenceRelationshipInputRelationTo {
-  pages
-}
-
-enum Blog_Hero_Links_Link_appearance_MutationInput {
-  default
-  primary
-  secondary
-}
-
-enum Blog__status_MutationInput {
-  draft
-  published
-}
-
-input mutationBlogUpdateInput {
-  title: String
-  categories: [String]
-  publishedAt: String
-  authors: [String]
-  populatedAuthors: [mutationBlogUpdate_PopulatedAuthorsInput]
-  hero: mutationBlogUpdate_HeroInput!
-  layout: JSON
-  enablePremiumContent: Boolean
-  premiumContent: JSON
-  relatedPosts: [String]
-  slug: String
-  updatedAt: String
-  createdAt: String
-  _status: BlogUpdate__status_MutationInput
-}
-
-input mutationBlogUpdate_PopulatedAuthorsInput {
-  id: String
-  name: String
-}
-
-input mutationBlogUpdate_HeroInput {
-  type: BlogUpdate_Hero_type_MutationInput!
-  richText: JSON!
-  links: [mutationBlogUpdate_Hero_LinksInput]
-  media: String
-}
-
-enum BlogUpdate_Hero_type_MutationInput {
-  none
-  highImpact
-  mediumImpact
-  lowImpact
-  customHero
-}
-
-input mutationBlogUpdate_Hero_LinksInput {
-  link: mutationBlogUpdate_Hero_Links_LinkInput
-  id: String
-}
-
-input mutationBlogUpdate_Hero_Links_LinkInput {
-  type: String
-  newTab: Boolean
-  reference: BlogUpdate_Hero_Links_Link_ReferenceRelationshipInput
-  url: String
-  label: String!
-  icon: String
-  appearance: BlogUpdate_Hero_Links_Link_appearance_MutationInput
-}
-
-input BlogUpdate_Hero_Links_Link_ReferenceRelationshipInput {
-  relationTo: BlogUpdate_Hero_Links_Link_ReferenceRelationshipInputRelationTo
-  value: JSON
-}
-
-enum BlogUpdate_Hero_Links_Link_ReferenceRelationshipInputRelationTo {
-  pages
-}
-
-enum BlogUpdate_Hero_Links_Link_appearance_MutationInput {
-  default
-  primary
-  secondary
-}
-
-enum BlogUpdate__status_MutationInput {
-  draft
-  published
-}
-
 input mutationPostInput {
   title: String
   categories: [String]
@@ -20700,7 +16877,6 @@ input mutationPostInput {
   premiumContent: JSON
   relatedPosts: [String]
   slug: String
-  meta: mutationPost_MetaInput
   updatedAt: String
   createdAt: String
   _status: Post__status_MutationInput
@@ -20756,12 +16932,6 @@ enum Post_Hero_Links_Link_appearance_MutationInput {
   secondary
 }
 
-input mutationPost_MetaInput {
-  title: String
-  description: String
-  image: String
-}
-
 enum Post__status_MutationInput {
   draft
   published
@@ -20779,7 +16949,6 @@ input mutationPostUpdateInput {
   premiumContent: JSON
   relatedPosts: [String]
   slug: String
-  meta: mutationPostUpdate_MetaInput
   updatedAt: String
   createdAt: String
   _status: PostUpdate__status_MutationInput
@@ -20833,12 +17002,6 @@ enum PostUpdate_Hero_Links_Link_appearance_MutationInput {
   default
   primary
   secondary
-}
-
-input mutationPostUpdate_MetaInput {
-  title: String
-  description: String
-  image: String
 }
 
 enum PostUpdate__status_MutationInput {
@@ -21303,7 +17466,6 @@ input Redirect_To_ReferenceRelationshipInput {
 enum Redirect_To_ReferenceRelationshipInputRelationTo {
   pages
   products
-  posts
 }
 
 input mutationRedirectUpdateInput {
@@ -21327,7 +17489,6 @@ input RedirectUpdate_To_ReferenceRelationshipInput {
 enum RedirectUpdate_To_ReferenceRelationshipInputRelationTo {
   pages
   products
-  posts
 }
 
 input mutationPayloadPreferenceInput {

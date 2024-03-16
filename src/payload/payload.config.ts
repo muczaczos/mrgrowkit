@@ -11,7 +11,6 @@ import dotenv from 'dotenv'
 import path from 'path'
 import { buildConfig } from 'payload/config'
 
-import { Blog } from './collections/Blog'
 import Categories from './collections/Categories'
 import Comments from './collections/Comments'
 import { Media } from './collections/Media'
@@ -98,7 +97,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Tags, Blog, Posts, Pages, Products, Orders, Media, Categories, Users, Comments],
+  collections: [Tags, Posts, Pages, Products, Orders, Media, Categories, Users, Comments],
   email,
   localization: {
     locales: [
@@ -170,13 +169,13 @@ export default buildConfig({
       },
     }),
     redirects({
-      collections: ['pages', 'products', 'posts'],
+      collections: ['pages', 'products'],
     }),
     nestedDocs({
       collections: ['categories'],
     }),
     seo({
-      collections: ['pages', 'products', 'posts'],
+      collections: ['pages', 'products'],
       generateTitle,
       uploadsCollection: 'media',
     }),
