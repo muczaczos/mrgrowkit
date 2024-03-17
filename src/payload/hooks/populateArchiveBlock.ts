@@ -1,6 +1,6 @@
 import type { AfterReadHook } from 'payload/dist/collections/config/types'
 
-import type { Page, Product } from '../payload-types'
+import type { Page, Post, Product } from '../payload-types'
 
 export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req: { payload } }) => {
   // pre-populate the archive block if `populateBy` is `collection`
@@ -11,34 +11,36 @@ export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req: {
       if (block.blockType === 'archive') {
         const archiveBlock = block as Extract<Page['layout'][0], { blockType: 'archive' }> & {
           populatedDocs: Array<{
-            relationTo: 'products' | 'pages' 
+            relationTo: 'products' | 'pages' | 'posts'
             value: string
           }>
         }
 
         if (archiveBlock.populateBy === 'collection' && !context.isPopulatingArchiveBlock) {
-          const res: { totalDocs: number; docs: Array<Page | Product> } = await payload.find({
-            collection: archiveBlock?.relationTo || 'products',
-            limit: archiveBlock.limit || 10,
-            context: {
-              isPopulatingArchiveBlock: true,
+          const res: { totalDocs: number; docs: Array<Page | Post | Product> } = await payload.find(
+            {
+              collection: archiveBlock?.relationTo || 'products',
+              limit: archiveBlock.limit || 10,
+              context: {
+                isPopulatingArchiveBlock: true,
+              },
+              where: {
+                ...((archiveBlock?.categories?.length || 0) > 0
+                  ? {
+                      categories: {
+                        in: archiveBlock?.categories
+                          ?.map(cat => {
+                            if (typeof cat === 'string' || typeof cat === 'number') return cat
+                            return cat.id
+                          })
+                          .join(','),
+                      },
+                    }
+                  : {}),
+              },
+              sort: '-publishedOn',
             },
-            where: {
-              ...((archiveBlock?.categories?.length || 0) > 0
-                ? {
-                    categories: {
-                      in: archiveBlock?.categories
-                        ?.map(cat => {
-                          if (typeof cat === 'string' || typeof cat === 'number') return cat
-                          return cat.id
-                        })
-                        .join(','),
-                    },
-                  }
-                : {}),
-            },
-            sort: '-publishedOn',
-          })
+          )
 
           return {
             ...block,

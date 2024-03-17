@@ -11,7 +11,7 @@ export type RelatedProductsProps = {
   blockName: string
   introContent?: any
   docs?: (string | Product)[]
-  relationTo: 'products'
+  relationTo: 'products' | 'posts'
 }
 
 export const RelatedProducts: React.FC<RelatedProductsProps> = props => {

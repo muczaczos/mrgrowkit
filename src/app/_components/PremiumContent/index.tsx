@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import Link from 'next/link'
 
 import { Page } from '../../../payload/payload-types'
+import { POST_PREMIUM_CONTENT } from '../../_graphql/posts'
 import { useAuth } from '../../_providers/Auth'
 import { Blocks } from '../Blocks'
 import { Gutter } from '../Gutter'

@@ -21,7 +21,6 @@ export type CartItems =
 export interface Config {
   collections: {
     tags: Tag;
-    blogs: Blog;
     posts: Post;
     pages: Page;
     products: Product;
@@ -52,9 +51,9 @@ export interface Tag {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blogs".
+ * via the `definition` "posts".
  */
-export interface Blog {
+export interface Post {
   id: string;
   title: string;
   categories?: (string | Category)[] | null;
@@ -158,7 +157,7 @@ export interface Blog {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('products' | 'blogs') | null;
+        relationTo?: ('products' | 'posts') | null;
         categories?: (string | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -168,8 +167,8 @@ export interface Blog {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'blogs';
-                  value: string | Blog;
+                  relationTo: 'posts';
+                  value: string | Post;
                 }
             )[]
           | null;
@@ -180,8 +179,8 @@ export interface Blog {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'blogs';
-                  value: string | Blog;
+                  relationTo: 'posts';
+                  value: string | Post;
                 }
             )[]
           | null;
@@ -261,7 +260,7 @@ export interface Blog {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'blogs') | null;
+            relationTo?: ('products' | 'posts') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -271,8 +270,8 @@ export interface Blog {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'blogs';
-                      value: string | Blog;
+                      relationTo: 'posts';
+                      value: string | Post;
                     }
                 )[]
               | null;
@@ -283,8 +282,8 @@ export interface Blog {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'blogs';
-                      value: string | Blog;
+                      relationTo: 'posts';
+                      value: string | Post;
                     }
                 )[]
               | null;
@@ -295,7 +294,7 @@ export interface Blog {
           }
       )[]
     | null;
-  relatedBlogs?: (string | Blog)[] | null;
+  relatedPosts?: (string | Post)[] | null;
   slug?: string | null;
   meta?: {
     title?: string | null;
@@ -450,7 +449,7 @@ export interface Product {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'blogs') | null;
+            relationTo?: ('products' | 'posts') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -460,8 +459,8 @@ export interface Product {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'blogs';
-                      value: string | Blog;
+                      relationTo: 'posts';
+                      value: string | Post;
                     }
                 )[]
               | null;
@@ -472,8 +471,8 @@ export interface Product {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'blogs';
-                      value: string | Blog;
+                      relationTo: 'posts';
+                      value: string | Post;
                     }
                 )[]
               | null;
@@ -556,7 +555,7 @@ export interface Product {
               [k: string]: unknown;
             }[];
             populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'blogs') | null;
+            relationTo?: ('products' | 'posts') | null;
             categories?: (string | Category)[] | null;
             limit?: number | null;
             selectedDocs?:
@@ -566,8 +565,8 @@ export interface Product {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'blogs';
-                      value: string | Blog;
+                      relationTo: 'posts';
+                      value: string | Post;
                     }
                 )[]
               | null;
@@ -578,8 +577,8 @@ export interface Product {
                       value: string | Product;
                     }
                   | {
-                      relationTo: 'blogs';
-                      value: string | Blog;
+                      relationTo: 'posts';
+                      value: string | Post;
                     }
                 )[]
               | null;
@@ -703,7 +702,7 @@ export interface Page {
           [k: string]: unknown;
         }[];
         populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('products' | 'blogs') | null;
+        relationTo?: ('products' | 'posts') | null;
         categories?: (string | Category)[] | null;
         limit?: number | null;
         selectedDocs?:
@@ -713,8 +712,8 @@ export interface Page {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'blogs';
-                  value: string | Blog;
+                  relationTo: 'posts';
+                  value: string | Post;
                 }
             )[]
           | null;
@@ -725,8 +724,8 @@ export interface Page {
                   value: string | Product;
                 }
               | {
-                  relationTo: 'blogs';
-                  value: string | Blog;
+                  relationTo: 'posts';
+                  value: string | Post;
                 }
             )[]
           | null;
@@ -742,257 +741,6 @@ export interface Page {
     description?: string | null;
     image?: string | Media | null;
   };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
- */
-export interface Post {
-  id: string;
-  title: string;
-  categories?: (string | Category)[] | null;
-  publishedAt?: string | null;
-  authors?: (string | User)[] | null;
-  populatedAuthors?:
-    | {
-        id?: string | null;
-        name?: string | null;
-      }[]
-    | null;
-  hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'customHero';
-    richText: {
-      [k: string]: unknown;
-    }[];
-    links?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?: {
-              relationTo: 'pages';
-              value: string | Page;
-            } | null;
-            url?: string | null;
-            label: string;
-            icon?: string | Media | null;
-            appearance?: ('default' | 'primary' | 'secondary') | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
-    media?: string | Media | null;
-  };
-  layout: (
-    | {
-        invertBackground?: boolean | null;
-        richText: {
-          [k: string]: unknown;
-        }[];
-        links?:
-          | {
-              link: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                icon?: string | Media | null;
-                appearance?: ('primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'cta';
-      }
-    | {
-        invertBackground?: boolean | null;
-        columns?:
-          | {
-              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-              richText: {
-                [k: string]: unknown;
-              }[];
-              enableLink?: boolean | null;
-              link?: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                icon?: string | Media | null;
-                appearance?: ('default' | 'primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'content';
-      }
-    | {
-        invertBackground?: boolean | null;
-        position?: ('default' | 'fullscreen') | null;
-        media: string | Media;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'mediaBlock';
-      }
-    | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
-        populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('products' | 'blogs') | null;
-        categories?: (string | Category)[] | null;
-        limit?: number | null;
-        selectedDocs?:
-          | (
-              | {
-                  relationTo: 'products';
-                  value: string | Product;
-                }
-              | {
-                  relationTo: 'blogs';
-                  value: string | Blog;
-                }
-            )[]
-          | null;
-        populatedDocs?:
-          | (
-              | {
-                  relationTo: 'products';
-                  value: string | Product;
-                }
-              | {
-                  relationTo: 'blogs';
-                  value: string | Blog;
-                }
-            )[]
-          | null;
-        populatedDocsTotal?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'archive';
-      }
-  )[];
-  enablePremiumContent?: boolean | null;
-  premiumContent?:
-    | (
-        | {
-            invertBackground?: boolean | null;
-            richText: {
-              [k: string]: unknown;
-            }[];
-            links?:
-              | {
-                  link: {
-                    type?: ('reference' | 'custom') | null;
-                    newTab?: boolean | null;
-                    reference?: {
-                      relationTo: 'pages';
-                      value: string | Page;
-                    } | null;
-                    url?: string | null;
-                    label: string;
-                    icon?: string | Media | null;
-                    appearance?: ('primary' | 'secondary') | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'cta';
-          }
-        | {
-            invertBackground?: boolean | null;
-            columns?:
-              | {
-                  size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-                  richText: {
-                    [k: string]: unknown;
-                  }[];
-                  enableLink?: boolean | null;
-                  link?: {
-                    type?: ('reference' | 'custom') | null;
-                    newTab?: boolean | null;
-                    reference?: {
-                      relationTo: 'pages';
-                      value: string | Page;
-                    } | null;
-                    url?: string | null;
-                    label: string;
-                    icon?: string | Media | null;
-                    appearance?: ('default' | 'primary' | 'secondary') | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'content';
-          }
-        | {
-            invertBackground?: boolean | null;
-            position?: ('default' | 'fullscreen') | null;
-            media: string | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'mediaBlock';
-          }
-        | {
-            introContent: {
-              [k: string]: unknown;
-            }[];
-            populateBy?: ('collection' | 'selection') | null;
-            relationTo?: ('products' | 'blogs') | null;
-            categories?: (string | Category)[] | null;
-            limit?: number | null;
-            selectedDocs?:
-              | (
-                  | {
-                      relationTo: 'products';
-                      value: string | Product;
-                    }
-                  | {
-                      relationTo: 'blogs';
-                      value: string | Blog;
-                    }
-                )[]
-              | null;
-            populatedDocs?:
-              | (
-                  | {
-                      relationTo: 'products';
-                      value: string | Product;
-                    }
-                  | {
-                      relationTo: 'blogs';
-                      value: string | Blog;
-                    }
-                )[]
-              | null;
-            populatedDocsTotal?: number | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'archive';
-          }
-      )[]
-    | null;
-  relatedPosts?: (string | Post)[] | null;
-  slug?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -1063,8 +811,8 @@ export interface Redirect {
           value: string | Product;
         } | null)
       | ({
-          relationTo: 'blogs';
-          value: string | Blog;
+          relationTo: 'posts';
+          value: string | Post;
         } | null);
     url?: string | null;
   };

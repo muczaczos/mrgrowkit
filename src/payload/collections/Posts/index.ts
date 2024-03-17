@@ -20,7 +20,7 @@ export const Posts: CollectionConfig = {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     preview: doc => {
       return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/next/preview?url=${encodeURIComponent(
-        `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/${doc?.slug}`,
+        `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/posts/${doc?.slug}`,
       )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
     },
   },
@@ -43,7 +43,6 @@ export const Posts: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
-      localized: true,
     },
     {
       name: 'categories',
@@ -122,7 +121,6 @@ export const Posts: CollectionConfig = {
               type: 'blocks',
               required: true,
               blocks: [CallToAction, Content, MediaBlock, Archive],
-              localized: true,
             },
             {
               name: 'enablePremiumContent',

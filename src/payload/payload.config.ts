@@ -169,13 +169,13 @@ export default buildConfig({
       },
     }),
     redirects({
-      collections: ['pages', 'products'],
+      collections: ['pages', 'products', 'posts'],
     }),
     nestedDocs({
       collections: ['categories'],
     }),
     seo({
-      collections: ['pages', 'products'],
+      collections: ['pages', 'products', 'posts'],
       generateTitle,
       uploadsCollection: 'media',
     }),
