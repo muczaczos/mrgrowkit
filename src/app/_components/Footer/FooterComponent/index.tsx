@@ -131,13 +131,16 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
           </div>
           <div className={classes.payments}>
             <div className={classes.paymentOptions}>
-              <p>Ideal</p>
-              <p>Sofort</p>
-              <p>Bank deposit (SEPA)</p>
-              <p>Cypto currency</p>
-              <p>Bancontact</p>
-              <p>Giropay</p>
-              <p>Mybank</p>
+              <div className={classes.payments1}>
+                <p>Ideal &nbsp;</p>
+                <p>Sofort &nbsp;</p>
+                <p>Cypto &nbsp;</p>
+              </div>
+              <div className={classes.payments2}>
+                <p>Bancontact &nbsp;</p>
+                <p>Giropay &nbsp;</p>
+                <p>Mybank &nbsp;</p>
+              </div>
             </div>
           </div>
           <div className={classes.privacy}></div>

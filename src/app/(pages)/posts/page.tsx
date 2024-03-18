@@ -7,6 +7,7 @@ import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
 import { Gutter } from '../../_components/Gutter'
 import { HR } from '../../_components/HR'
+import Filters from '../products/Filters'
 
 import classes from './index.module.scss'
 
@@ -36,9 +37,8 @@ const Posts = async () => {
   }
   return (
     <div className={classes.container}>
-      <Gutter className={classes.products}>
-        <Blocks blocks={page.layout} disableTopPadding={true} />
-      </Gutter>
+      <Blocks blocks={page.layout} disableTopPadding={true} />
+
       <HR />
     </div>
   )
