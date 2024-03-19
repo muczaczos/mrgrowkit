@@ -94,9 +94,9 @@ export default async function About() {
             <h3>Adiva</h3>
             <h4>Help Desk</h4>
             <p>
-              My name is Adiva and I am waiting for your e-mail. You can talk to me in English or Polish.
-              I will be happy to answer any questions about our store. My mission is to help people solve
-              their problems.
+              My name is Adiva and I am waiting for your e-mail. You can talk to me in English or
+              Polish. I will be happy to answer any questions about our store. My mission is to help
+              people solve their problems.
             </p>
           </div>
           <div className={classes.worker}>
@@ -110,8 +110,9 @@ export default async function About() {
             <h3>Arek</h3>
             <h4>IT Technican</h4>
             <p>
-              Hi, I’m Arek and apart from mushrooms I love computers. If you have any problems with payment,
-              the functioning of our website or the shipment, just give me a call. I will try to help you.
+              Hi, I’m Arek and apart from mushrooms I love computers. If you have any problems with
+              payment, the functioning of our website or the shipment, just give me a call. I will
+              try to help you.
             </p>
           </div>
         </section>

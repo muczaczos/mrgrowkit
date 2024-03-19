@@ -37,10 +37,11 @@
   }
 }
 .hero {
-  padding-top: 48px;
+  padding-top: 96px;
   display: flex;
   @include small-break {
     flex-direction: column;
+    padding-top: 48px;
   }
 }
 

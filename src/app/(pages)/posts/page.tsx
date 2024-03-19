@@ -28,7 +28,6 @@ const Posts = async () => {
         how something is currently working. 
       */
     })
-
   } catch (error) {
     // console.log(error)
   }

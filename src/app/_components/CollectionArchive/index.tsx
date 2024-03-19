@@ -58,8 +58,8 @@ export const CollectionArchive: React.FC<Props> = props => {
     docs: (populateBy === 'collection'
       ? populatedDocs
       : populateBy === 'selection'
-        ? selectedDocs
-        : []
+      ? selectedDocs
+      : []
     )?.map(doc => doc.value),
     hasNextPage: false,
     hasPrevPage: false,
@@ -120,13 +120,13 @@ export const CollectionArchive: React.FC<Props> = props => {
           where: {
             ...(categoryFilters && categoryFilters?.length > 0
               ? {
-                categories: {
-                  in:
-                    typeof categoryFilters === 'string'
-                      ? [categoryFilters]
-                      : categoryFilters.map((cat: string) => cat).join(','),
-                },
-              }
+                  categories: {
+                    in:
+                      typeof categoryFilters === 'string'
+                        ? [categoryFilters]
+                        : categoryFilters.map((cat: string) => cat).join(','),
+                  },
+                }
               : {}),
           },
         },
