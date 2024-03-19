@@ -313,6 +313,7 @@ export interface Category {
   id: string;
   title: string;
   media?: string | Media | null;
+  slug?: string | null;
   parent?: (string | null) | Category;
   breadcrumbs?:
     | {

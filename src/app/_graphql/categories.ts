@@ -1,6 +1,7 @@
 export const PRODUCT_CATEGORIES = `categories {
   title
   id
+  slug
   breadcrumbs {
     id
     label
@@ -19,6 +20,7 @@ export const CATEGORIES = `
           height
           url
         }
+        slug
       }
     }
 }`

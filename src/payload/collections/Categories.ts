@@ -20,6 +20,10 @@ const Categories: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
     },
+    {
+      name: 'slug',
+      type: 'text',
+    }
   ],
 }
 
