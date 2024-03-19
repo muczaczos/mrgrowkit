@@ -39,12 +39,12 @@ export default async function About() {
           <div className={classes.heroText}>
             <h2>Planet-of-Mushrooms Team</h2>
             <p className={classes.text}>
-              We are people from different parts of the world 🌏. We have different hobbies ⚽, different
-              religions 🧕, different tastes 🍟🌭🍕. We have a different skin color  and a different hair color
-              or we don’t have a hair 😁. We wear different clothes and speak different mother
-              tongues 🎏🏳‍🌈🏴, but we share the same passion. Passion for mushrooms 🍄. Mushrooms that have
-              developed our world for billions of years 🐱‍🐉. Now we want to infect your brain with this
-              passion.🍄
+              We are people from different parts of the world 🌏. We have different hobbies ⚽,
+              different religions 🧕, different tastes 🍟🌭🍕. We have a different skin color and a
+              different hair color or we don’t have a hair 😁. We wear different clothes and speak
+              different mother tongues 🎏🏳‍🌈🏴, but we share the same passion. Passion for
+              mushrooms 🍄. Mushrooms that have developed our world for billions of years 🐱‍🐉. Now
+              we want to infect your brain with this passion.🍄
             </p>
             <div className={classes.links}>
               <Link className={classes.link} href="http://facebook.com">

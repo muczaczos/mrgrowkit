@@ -143,7 +143,18 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
               </div>
             </div>
           </div>
-          <div className={classes.privacy}></div>
+          <div className={classes.disclamer}>
+            <h3>Disclamer</h3>
+            <p>
+              www.planet-of-mushrooms.com does not advice growing any illegal substance, such as
+              Psilocybe Cubensis (magic mushrooms). While our cubensis growkits, syringes of
+              cubensis spores and prints of cubensis spores are capable of growing Psilocybe
+              Cubensis mushrooms (magic mushrooms), it is not advised by www.planet-of-mushrooms.com
+              for anybody to do so unless legally licensed by their local agricultural or research
+              authorities. We sell that products only for microscopic research. Check your country's
+              laws and regulations regarding exotic species. Legal status of psilocybin mushrooms
+            </p>
+          </div>
           <div className={classes.wrap}>
             <Link href="/">
               <Image src="/logo-white.svg" alt="logo" width={170} height={50} />
