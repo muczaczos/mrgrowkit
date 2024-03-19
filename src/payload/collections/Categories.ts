@@ -23,7 +23,7 @@ const Categories: CollectionConfig = {
     {
       name: 'slug',
       type: 'text',
-    }
+    },
   ],
 }
 
