@@ -69,22 +69,22 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                 <label>Products</label>
                 <ul>
                   <li>
-                    <Link href="/products">Growkits</Link>
+                    <Link href="/grow-kits">Growkits</Link>
                   </li>
                   <li>
-                    <Link href="/Spores">Spores</Link>
+                    <Link href="/spores">Spores</Link>
                   </li>
                   <li>
-                    <Link href="/products">Liquid cultures</Link>
+                    <Link href="/cultures">Liquid cultures</Link>
                   </li>
                   <li>
-                    <Link href="/products">Equipment</Link>
+                    <Link href="/equipment">Equipment</Link>
                   </li>
                   <li>
-                    <Link href="/products">Best Products</Link>
+                    <Link href="/best-products">Best Products</Link>
                   </li>
                   <li>
-                    <Link href="/products">Wholesale</Link>
+                    <Link href="/wholesale">Wholesale</Link>
                   </li>
                 </ul>
               </section>
@@ -92,19 +92,19 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                 <label>Informations</label>
                 <ul>
                   <li>
-                    <Link href="/products">About Us</Link>
+                    <Link href="/about">About Us</Link>
                   </li>
                   <li>
-                    <Link href="/products">Shipping</Link>
+                    <Link href="/shipping">Shipping</Link>
                   </li>
                   <li>
-                    <Link href="/products">Payments</Link>
+                    <Link href="/payments">Payments</Link>
                   </li>
                   <li>
-                    <Link href="/products">Contact</Link>
+                    <Link href="/contact">Contact</Link>
                   </li>
                   <li>
-                    <Link href="/products">Blog</Link>
+                    <Link href="/posts">Blog</Link>
                   </li>
                 </ul>
               </section>
@@ -114,16 +114,16 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                 <label>Rules</label>
                 <ul>
                   <li>
-                    <Link href="/products">Terms & Conditions</Link>
+                    <Link href="/conditions">Terms & Conditions</Link>
                   </li>
                   <li>
-                    <Link href="/products">Privacy Policy</Link>
+                    <Link href="/privacy">Privacy Policy</Link>
                   </li>
                   <li>
-                    <Link href="/products">Payments</Link>
+                    <Link href="/discretion">Discretion</Link>
                   </li>
                   <li>
-                    <Link href="/products">Contact</Link>
+                    <Link href="/taxes">Taxes</Link>
                   </li>
                 </ul>
               </section>

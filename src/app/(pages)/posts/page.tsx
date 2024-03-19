@@ -7,7 +7,6 @@ import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
 import { Gutter } from '../../_components/Gutter'
 import { HR } from '../../_components/HR'
-import Filters from '../products/Filters'
 
 import classes from './index.module.scss'
 
@@ -15,7 +14,6 @@ const Posts = async () => {
   const { isEnabled: isDraftMode } = draftMode()
 
   let page: Page | null = null //Page for layout
-  let categories: Category[] | null = null //I need this for filters
 
   try {
     //fetch page and categories
@@ -31,7 +29,6 @@ const Posts = async () => {
       */
     })
 
-    categories = await fetchDocs<Category>('categories')
   } catch (error) {
     // console.log(error)
   }
