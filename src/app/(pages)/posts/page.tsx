@@ -32,11 +32,13 @@ const Posts = async () => {
     // console.log(error)
   }
   return (
-    <div className={classes.container}>
-      <Blocks blocks={page.layout} disableTopPadding={true} />
+    <Gutter>
+      <div className={classes.container}>
+        <Blocks blocks={page.layout} disableTopPadding={true} />
 
-      <HR />
-    </div>
+        <HR />
+      </div>
+    </Gutter>
   )
 }
 
