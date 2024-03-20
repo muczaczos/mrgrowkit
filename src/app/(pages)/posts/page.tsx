@@ -33,11 +33,9 @@ const Posts = async () => {
   }
   return (
     <Gutter>
-      <div className={classes.container}>
-        <Blocks blocks={page.layout} disableTopPadding={true} />
+      <Blocks blocks={page.layout} disableTopPadding={true} />
 
-        <HR />
-      </div>
+      <HR />
     </Gutter>
   )
 }

@@ -36,12 +36,10 @@ const GrowKits = async () => {
   }
   return (
     <Gutter>
-      <div className={classes.container}>
-        <Filters categories={categories} />
-        <Blocks blocks={page.layout} disableTopPadding={true} />
+      <Filters categories={categories} />
+      <Blocks blocks={page.layout} disableTopPadding={true} />
 
-        <HR />
-      </div>
+      <HR />
     </Gutter>
   )
 }
