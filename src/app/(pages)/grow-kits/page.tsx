@@ -1,5 +1,6 @@
 import React from 'react'
 import { draftMode } from 'next/headers'
+import payload from 'payload'
 
 import { Category, Page } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
@@ -16,6 +17,8 @@ const GrowKits = async () => {
   let page: Page | null = null //Page for layout
   let categories: Category[] | null = null //I need this for filters
 
+
+
   try {
     //fetch page and categories
     //1 fetch page with slug 'products'
@@ -29,13 +32,12 @@ const GrowKits = async () => {
         how something is currently working. 
       */
     })
-
-    categories = await fetchDocs<Category>('categories')
   } catch (error) {
     // console.log(error)
   }
   return (
     <Gutter>
+
       <Filters categories={categories} />
       <Blocks blocks={page.layout} disableTopPadding={true} />
 

@@ -1,20 +1,23 @@
 import React from 'react'
 import { draftMode } from 'next/headers'
 
-import { Category, Page } from '../../../payload/payload-types'
+import { Category, Page, Post } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
+import Categories from '../../_components/Categories'
 import { Gutter } from '../../_components/Gutter'
 import { Hero } from '../../_components/Hero'
 import { HR } from '../../_components/HR'
+import Filters from './Filters'
 
 import classes from './index.module.scss'
 
 const Posts = async () => {
   const { isEnabled: isDraftMode } = draftMode()
-
   let page: Page | null = null //Page for layout
+  let categories: Category[] | null = null //I need this for filters
+  let posts: Post[] | null = null
 
   try {
     //fetch page and categories
@@ -29,12 +32,11 @@ const Posts = async () => {
         how something is currently working. 
       */
     })
-  } catch (error) {
-    // console.log(error)
-  }
 
+    posts = await fetchDocs<Post>('posts')
+  } catch (error) { }
   const { hero, layout } = page
-
+  console.log(posts)
   return (
     <Gutter>
       <Hero {...hero} />

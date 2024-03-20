@@ -13,8 +13,8 @@ import classes from './index.module.scss'
 const Filters = ({ categories }: { categories: Category[] }) => {
   const { categoryFilters, sort, setCategoryFilters, setSort } = useFilter()
 
-  setCategoryFilters(['65e7730c3f429b083f97af6a'])
-
+  setCategoryFilters([...categoryFilters])
+  console.log(categoryFilters)
   return <div className={classes.filters}></div>
 }
 
