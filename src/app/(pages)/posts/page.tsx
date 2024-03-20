@@ -6,6 +6,7 @@ import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
 import { Gutter } from '../../_components/Gutter'
+import { Hero } from '../../_components/Hero'
 import { HR } from '../../_components/HR'
 
 import classes from './index.module.scss'
@@ -31,9 +32,14 @@ const Posts = async () => {
   } catch (error) {
     // console.log(error)
   }
+
+  const { hero, layout } = page
+
   return (
     <Gutter>
-      <Blocks blocks={page.layout} disableTopPadding={true} />
+      <Hero {...hero} />
+      <div className={classes.gap}></div>
+      <Blocks blocks={layout} disableTopPadding={true} />
 
       <HR />
     </Gutter>
