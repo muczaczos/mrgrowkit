@@ -11,6 +11,7 @@ import { HR } from '../../_components/HR'
 import Filters from './Filters'
 
 import classes from './index.module.scss'
+import GrowkitsCards from './GrowkitsCards'
 
 const GrowKits = async () => {
   const { isEnabled: isDraftMode } = draftMode()
@@ -18,20 +19,9 @@ const GrowKits = async () => {
   let categories: Category[] | null = null //I need this for filters
   let products: Product[] | null = null
   let pages = []
+  let growkitProducts = []
 
   try {
-    //fetch page and categories
-    //1 fetch page with slug 'products'
-    page = await fetchDoc<Page>({
-      collection: 'pages',
-      slug: 'products',
-      draft: isDraftMode,
-      /*drafts allow you to build on top of versions functionality
-        to make changes to your collection, documents and globals but
-        publish only when you're ready. It allows you to check out
-        how something is currently working. 
-      */
-    })
     products = await fetchDocs<Product>('products')
 
     for (let i = 0; i < products.length; i++) {
@@ -45,11 +35,15 @@ const GrowKits = async () => {
   } catch (error) {
     // console.log(error)
   }
-
-  console.log(pages[1].categories[0].slug)
+  let filteredPages = pages.filter((page) => {
+    return page.categories[0].slug === 'grow-kits'
+  });
+  filteredPages.map((element, index) => {
+    console.log(element.meta.description)
+  })
   return (
     <Gutter>
-
+        <GrowkitsCards pages={filteredPages} products={products} />
       <HR />
     </Gutter>
   )

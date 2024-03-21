@@ -4,20 +4,21 @@ import Link from 'next/link'
 
 import classes from './index.module.scss'
 
-const PostsCards = ({ pages, posts }) => {
+const GrowkitsCards = ({ pages, products }) => {
   return (
     <section className={classes.posts}>
       {pages.map((item, index) => {
-        if (pages !== null) {
-          if (!pages) return null
-          // console.log(pagesmages[index])
+        if (item !== null) {
+          if (!item) return null
+          //console.log(item)
           //  console.log('dupa')
           // console.log(posts[0].slug)
           // console.log(process.env.NEXT_PUBLIC_SERVER_URL + '/' + posts[index].slug)
-          const src = '/media/' + pages[index].meta.image.filename
-          const href = process.env.NEXT_PUBLIC_SERVER_URL + '/posts/' + posts[index].slug
-          const title = pages[index].title.substring(0, 35) + '...'
-          const description = pages[index].meta.description.substring(0, 40) + '...'
+          const src = '/media/' + item.meta.image.filename
+          const href = process.env.NEXT_PUBLIC_SERVER_URL + '/products/' + products[index+1].slug
+          const title = item.meta.title
+          const description = item.meta.description
+          const price = item.price
           return (
             <div className={classes.link}>
               <Link className={classes.link} href={href}>
@@ -25,7 +26,7 @@ const PostsCards = ({ pages, posts }) => {
                   <Image className={classes.image} alt="dupa" src={src} width="300" height="180" />
                 </div>
               </Link>
-              <h6 className={classes.title}>{title}</h6>
+              <div className={classes.priceTitle}><h6 className={classes.title}>{title}</h6><p>${price}</p></div>
               <p className={classes.description}>{description}</p>
             </div>
           )
@@ -36,4 +37,4 @@ const PostsCards = ({ pages, posts }) => {
   )
 }
 
-export default PostsCards
+export default GrowkitsCards
