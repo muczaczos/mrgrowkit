@@ -2,7 +2,7 @@ import React from 'react'
 import { draftMode } from 'next/headers'
 import payload from 'payload'
 
-import { Category, Page } from '../../../payload/payload-types'
+import { Category, Page, Product } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
@@ -16,6 +16,8 @@ const GrowKits = async () => {
   const { isEnabled: isDraftMode } = draftMode()
   let page: Page | null = null //Page for layout
   let categories: Category[] | null = null //I need this for filters
+  let products: Product[] | null = null
+  let pages = []
 
   try {
     //fetch page and categories
@@ -30,13 +32,23 @@ const GrowKits = async () => {
         how something is currently working. 
       */
     })
+    products = await fetchDocs<Product>('products')
+
+    for (let i = 0; i < products.length; i++) {
+      pages[i] = await fetchDoc<Page>({
+        collection: 'products',
+        slug: products[i].slug,
+        draft: isDraftMode,
+      })
+
+    }
   } catch (error) {
     // console.log(error)
   }
+
+  console.log(pages[1].categories[0].slug)
   return (
     <Gutter>
-      <Filters categories={categories} />
-      <Blocks blocks={page.layout} disableTopPadding={true} />
 
       <HR />
     </Gutter>
