@@ -1,5 +1,7 @@
 import React from 'react'
 import { draftMode } from 'next/headers'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import { Category, Page, Post } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
@@ -9,19 +11,18 @@ import Categories from '../../_components/Categories'
 import { Gutter } from '../../_components/Gutter'
 import { Hero } from '../../_components/Hero'
 import { HR } from '../../_components/HR'
-import Filters from './Filters'
+import PostsCards from './PostsCards'
 
 import classes from './index.module.scss'
 
 const Posts = async () => {
   const { isEnabled: isDraftMode } = draftMode()
   let page: Page | null = null //Page for layout
-  let categories: Category[] | null = null //I need this for filters
   let posts: Post[] | null = null
-
+  let pages = []
   try {
     //fetch page and categories
-    //1 fetch page with slug 'products'
+    //1 fetch page with slug 'posts'
     page = await fetchDoc<Page>({
       collection: 'pages',
       slug: 'posts',
@@ -32,17 +33,29 @@ const Posts = async () => {
         how something is currently working. 
       */
     })
-
     posts = await fetchDocs<Post>('posts')
-  } catch (error) { }
+
+    for (let i = 0; i < posts.length; i++) {
+      pages[i] = await fetchDoc<Page>({
+        collection: 'posts',
+        slug: posts[i].slug,
+        draft: isDraftMode,
+      })
+    }
+  } catch (error) {}
+
   const { hero, layout } = page
-  console.log(posts)
+
   return (
     <Gutter>
       <Hero {...hero} />
+      <p className={classes.heroText}>
+        You can find here many informations about mushrooms and their cultivating. Master the art of
+        mushrooms cultivation for a bountiful harvest. 🍄 Change your planet to
+        planet-of-mushrooms.com 🌎
+      </p>
       <div className={classes.gap}></div>
-      <Blocks blocks={layout} disableTopPadding={true} />
-
+      <PostsCards posts={posts} pages={pages} />
       <HR />
     </Gutter>
   )

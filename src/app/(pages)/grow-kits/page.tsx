@@ -17,8 +17,6 @@ const GrowKits = async () => {
   let page: Page | null = null //Page for layout
   let categories: Category[] | null = null //I need this for filters
 
-
-
   try {
     //fetch page and categories
     //1 fetch page with slug 'products'
@@ -37,7 +35,6 @@ const GrowKits = async () => {
   }
   return (
     <Gutter>
-
       <Filters categories={categories} />
       <Blocks blocks={page.layout} disableTopPadding={true} />
 

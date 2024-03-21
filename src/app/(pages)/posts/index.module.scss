@@ -16,6 +16,11 @@
     }
   }
 
-  .gap {
-    height: 48px;
+  .heroText {
+    padding-right: 150px;
+    padding-left: 150px;
+    padding-top: 100px;
+    @include small-break {
+      padding: 24px;
+    }
   }
