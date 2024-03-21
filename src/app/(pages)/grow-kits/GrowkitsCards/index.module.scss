@@ -17,7 +17,8 @@
   }
 }
 .title {
-  padding-top: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .frame {
   display: flex;
@@ -33,6 +34,16 @@
 }
 
 .priceTitle {
+  background-color: rgb(228, 228, 228);
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  border-top: 1px solid rgb(242, 242, 242);
+  background-color: rgb(228, 228, 228);
+  padding: 10px;
 }
