@@ -1,7 +1,8 @@
 'use client'
-
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import Select from 'react-select'
+import countryList from 'react-select-country-list'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 
@@ -9,6 +10,7 @@ import { Button } from '../../../../_components/Button'
 import { Input } from '../../../../_components/Input'
 import { Message } from '../../../../_components/Message'
 import { useAuth } from '../../../../_providers/Auth'
+import CountrySelector from './CountrySelector'
 
 import classes from './index.module.scss'
 
@@ -32,6 +34,9 @@ const ShippingDetails = ({
     formState: { errors, isLoading },
   } = useForm<FormData>()
 
+  const [value, setValue] = useState('')
+  const options = useMemo(() => countryList().getData(), [])
+
   const handleName = e => {
     setFullName(e.target.value)
     //console.log(e.target.value)
@@ -47,10 +52,6 @@ const ShippingDetails = ({
 
   const handlePostalCode = e => {
     setPostalCode(e.target.value)
-  }
-
-  const handleCountry = e => {
-    setCountry(e.target.value)
   }
 
   const handlePhone = e => {
@@ -107,14 +108,8 @@ const ShippingDetails = ({
           />
         </div>
         <div className={classes.country}>
-          <Input
-            name="country"
-            type="text"
-            label="Country"
-            register={register}
-            error={null}
-            onChange={handleCountry}
-          />
+          <p className={classes.countryLabel}>Country</p>
+          <CountrySelector setCountry={setCountry} />
         </div>
         <div className={classes.phone}>
           <Input
