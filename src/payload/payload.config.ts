@@ -20,6 +20,7 @@ import { Posts } from './collections/Posts'
 import Products from './collections/Products'
 import { Tags } from './collections/Tags'
 import Users from './collections/Users'
+import Zones from './collections/Zones'
 import BeforeDashboard from './components/BeforeDashboard'
 import BeforeLogin from './components/BeforeLogin'
 import { createPaymentIntent } from './endpoints/create-payment-intent'
@@ -97,7 +98,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Tags, Posts, Pages, Products, Orders, Media, Categories, Users, Comments],
+  collections: [Zones, Tags, Posts, Pages, Products, Orders, Media, Categories, Users, Comments],
   email,
   localization: {
     locales: [

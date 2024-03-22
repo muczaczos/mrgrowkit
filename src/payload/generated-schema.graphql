@@ -1,4 +1,7 @@
 type Query {
+  Zone(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Zone
+  Zones(draft: Boolean, where: Zone_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Zones
+  docAccessZone(id: String!): zonesDocAccess
   Tag(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Tag
   Tags(draft: Boolean, where: Tag_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Tags
   docAccessTag(id: String!): tagsDocAccess
@@ -51,11 +54,285 @@ type Query {
   Access: Access
 }
 
-type Tag {
+type Zone {
   id: String
   title: String!
+  selectedCountries: [Zone_selectedCountries!]
+  ranges: [Zone_Ranges!]
+  codes: [Zone_Codes!]
+  codesRanges: [Zone_CodesRanges!]
+  slug: String
   updatedAt: DateTime
   createdAt: DateTime
+}
+
+enum Zone_selectedCountries {
+  AF
+  AX
+  AL
+  DZ
+  AS
+  AD
+  AO
+  AI
+  AQ
+  AG
+  AR
+  AM
+  AW
+  AU
+  AT
+  AZ
+  BS
+  BH
+  BD
+  BB
+  BY
+  BE
+  BZ
+  BJ
+  BM
+  BT
+  BO
+  BQ
+  BA
+  BW
+  BV
+  BR
+  IO
+  BN
+  BG
+  BF
+  BI
+  CV
+  KH
+  CM
+  CA
+  KY
+  CF
+  TD
+  CL
+  CN
+  CX
+  CC
+  CO
+  KM
+  CG
+  CD
+  CK
+  CR
+  HR
+  CU
+  CW
+  CY
+  CZ
+  CI
+  DK
+  DJ
+  DM
+  DO
+  EC
+  EG
+  SV
+  GQ
+  ER
+  EE
+  SZ
+  ET
+  FK
+  FO
+  FJ
+  FI
+  FR
+  GF
+  PF
+  TF
+  GA
+  GM
+  GE
+  DE
+  GH
+  GI
+  GR
+  GL
+  GD
+  GP
+  GU
+  GT
+  GG
+  GN
+  GW
+  GY
+  HT
+  HM
+  VA
+  HN
+  HK
+  HU
+  IS
+  IN
+  ID
+  IR
+  IQ
+  IE
+  IM
+  IL
+  IT
+  JM
+  JP
+  JE
+  JO
+  KZ
+  KE
+  KI
+  KP
+  KR
+  KW
+  KG
+  LA
+  LV
+  LB
+  LS
+  LR
+  LY
+  LI
+  LT
+  LU
+  MO
+  MG
+  MW
+  MY
+  MV
+  ML
+  MT
+  MH
+  MQ
+  MR
+  MU
+  YT
+  MX
+  FM
+  MD
+  MC
+  MN
+  ME
+  MS
+  MA
+  MZ
+  MM
+  NA
+  NR
+  NP
+  NL
+  NC
+  NZ
+  NI
+  NE
+  NG
+  NU
+  NF
+  MK
+  MP
+  NO
+  OM
+  PK
+  PW
+  PS
+  PA
+  PG
+  PY
+  PE
+  PH
+  PN
+  PL
+  PT
+  PR
+  QA
+  RO
+  RU
+  RW
+  RE
+  BL
+  SH
+  KN
+  LC
+  MF
+  PM
+  VC
+  WS
+  SM
+  ST
+  SA
+  SN
+  RS
+  SC
+  SL
+  SG
+  SX
+  SK
+  SI
+  SB
+  SO
+  ZA
+  GS
+  SS
+  ES
+  LK
+  SD
+  SR
+  SJ
+  SE
+  CH
+  SY
+  TW
+  TJ
+  TZ
+  TH
+  TL
+  TG
+  TK
+  TO
+  TT
+  TN
+  TR
+  TM
+  TC
+  TV
+  UG
+  UA
+  AE
+  GB
+  UM
+  US
+  UY
+  UZ
+  VU
+  VE
+  VN
+  VG
+  VI
+  WF
+  EH
+  YE
+  ZM
+  ZW
+}
+
+type Zone_Ranges {
+  weigth: String
+  price: String
+  id: String
+}
+
+type Zone_Codes {
+  code: String
+  id: String
+}
+
+type Zone_CodesRanges {
+  from: String
+  to: String
+  id: String
 }
 
 """
@@ -72,6 +349,914 @@ enum FallbackLocaleInputType {
 enum LocaleInputType {
   en
   pl
+}
+
+type Zones {
+  docs: [Zone]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input Zone_where {
+  title: Zone_title_operator
+  selectedCountries: Zone_selectedCountries_operator
+  ranges__weigth: Zone_ranges__weigth_operator
+  ranges__price: Zone_ranges__price_operator
+  ranges__id: Zone_ranges__id_operator
+  codes__code: Zone_codes__code_operator
+  codes__id: Zone_codes__id_operator
+  codesRanges__from: Zone_codesRanges__from_operator
+  codesRanges__to: Zone_codesRanges__to_operator
+  codesRanges__id: Zone_codesRanges__id_operator
+  slug: Zone_slug_operator
+  updatedAt: Zone_updatedAt_operator
+  createdAt: Zone_createdAt_operator
+  id: Zone_id_operator
+  AND: [Zone_where_and]
+  OR: [Zone_where_or]
+}
+
+input Zone_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Zone_selectedCountries_operator {
+  equals: Zone_selectedCountries_Input
+  not_equals: Zone_selectedCountries_Input
+  in: [Zone_selectedCountries_Input]
+  not_in: [Zone_selectedCountries_Input]
+  all: [Zone_selectedCountries_Input]
+  exists: Boolean
+}
+
+enum Zone_selectedCountries_Input {
+  AF
+  AX
+  AL
+  DZ
+  AS
+  AD
+  AO
+  AI
+  AQ
+  AG
+  AR
+  AM
+  AW
+  AU
+  AT
+  AZ
+  BS
+  BH
+  BD
+  BB
+  BY
+  BE
+  BZ
+  BJ
+  BM
+  BT
+  BO
+  BQ
+  BA
+  BW
+  BV
+  BR
+  IO
+  BN
+  BG
+  BF
+  BI
+  CV
+  KH
+  CM
+  CA
+  KY
+  CF
+  TD
+  CL
+  CN
+  CX
+  CC
+  CO
+  KM
+  CG
+  CD
+  CK
+  CR
+  HR
+  CU
+  CW
+  CY
+  CZ
+  CI
+  DK
+  DJ
+  DM
+  DO
+  EC
+  EG
+  SV
+  GQ
+  ER
+  EE
+  SZ
+  ET
+  FK
+  FO
+  FJ
+  FI
+  FR
+  GF
+  PF
+  TF
+  GA
+  GM
+  GE
+  DE
+  GH
+  GI
+  GR
+  GL
+  GD
+  GP
+  GU
+  GT
+  GG
+  GN
+  GW
+  GY
+  HT
+  HM
+  VA
+  HN
+  HK
+  HU
+  IS
+  IN
+  ID
+  IR
+  IQ
+  IE
+  IM
+  IL
+  IT
+  JM
+  JP
+  JE
+  JO
+  KZ
+  KE
+  KI
+  KP
+  KR
+  KW
+  KG
+  LA
+  LV
+  LB
+  LS
+  LR
+  LY
+  LI
+  LT
+  LU
+  MO
+  MG
+  MW
+  MY
+  MV
+  ML
+  MT
+  MH
+  MQ
+  MR
+  MU
+  YT
+  MX
+  FM
+  MD
+  MC
+  MN
+  ME
+  MS
+  MA
+  MZ
+  MM
+  NA
+  NR
+  NP
+  NL
+  NC
+  NZ
+  NI
+  NE
+  NG
+  NU
+  NF
+  MK
+  MP
+  NO
+  OM
+  PK
+  PW
+  PS
+  PA
+  PG
+  PY
+  PE
+  PH
+  PN
+  PL
+  PT
+  PR
+  QA
+  RO
+  RU
+  RW
+  RE
+  BL
+  SH
+  KN
+  LC
+  MF
+  PM
+  VC
+  WS
+  SM
+  ST
+  SA
+  SN
+  RS
+  SC
+  SL
+  SG
+  SX
+  SK
+  SI
+  SB
+  SO
+  ZA
+  GS
+  SS
+  ES
+  LK
+  SD
+  SR
+  SJ
+  SE
+  CH
+  SY
+  TW
+  TJ
+  TZ
+  TH
+  TL
+  TG
+  TK
+  TO
+  TT
+  TN
+  TR
+  TM
+  TC
+  TV
+  UG
+  UA
+  AE
+  GB
+  UM
+  US
+  UY
+  UZ
+  VU
+  VE
+  VN
+  VG
+  VI
+  WF
+  EH
+  YE
+  ZM
+  ZW
+}
+
+input Zone_ranges__weigth_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Zone_ranges__price_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Zone_ranges__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Zone_codes__code_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Zone_codes__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Zone_codesRanges__from_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Zone_codesRanges__to_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Zone_codesRanges__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Zone_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Zone_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Zone_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Zone_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Zone_where_and {
+  title: Zone_title_operator
+  selectedCountries: Zone_selectedCountries_operator
+  ranges__weigth: Zone_ranges__weigth_operator
+  ranges__price: Zone_ranges__price_operator
+  ranges__id: Zone_ranges__id_operator
+  codes__code: Zone_codes__code_operator
+  codes__id: Zone_codes__id_operator
+  codesRanges__from: Zone_codesRanges__from_operator
+  codesRanges__to: Zone_codesRanges__to_operator
+  codesRanges__id: Zone_codesRanges__id_operator
+  slug: Zone_slug_operator
+  updatedAt: Zone_updatedAt_operator
+  createdAt: Zone_createdAt_operator
+  id: Zone_id_operator
+  AND: [Zone_where_and]
+  OR: [Zone_where_or]
+}
+
+input Zone_where_or {
+  title: Zone_title_operator
+  selectedCountries: Zone_selectedCountries_operator
+  ranges__weigth: Zone_ranges__weigth_operator
+  ranges__price: Zone_ranges__price_operator
+  ranges__id: Zone_ranges__id_operator
+  codes__code: Zone_codes__code_operator
+  codes__id: Zone_codes__id_operator
+  codesRanges__from: Zone_codesRanges__from_operator
+  codesRanges__to: Zone_codesRanges__to_operator
+  codesRanges__id: Zone_codesRanges__id_operator
+  slug: Zone_slug_operator
+  updatedAt: Zone_updatedAt_operator
+  createdAt: Zone_createdAt_operator
+  id: Zone_id_operator
+  AND: [Zone_where_and]
+  OR: [Zone_where_or]
+}
+
+type zonesDocAccess {
+  fields: ZonesDocAccessFields
+  create: ZonesCreateDocAccess
+  read: ZonesReadDocAccess
+  update: ZonesUpdateDocAccess
+  delete: ZonesDeleteDocAccess
+}
+
+type ZonesDocAccessFields {
+  title: ZonesDocAccessFields_title
+  selectedCountries: ZonesDocAccessFields_selectedCountries
+  ranges: ZonesDocAccessFields_ranges
+  codes: ZonesDocAccessFields_codes
+  codesRanges: ZonesDocAccessFields_codesRanges
+  slug: ZonesDocAccessFields_slug
+  updatedAt: ZonesDocAccessFields_updatedAt
+  createdAt: ZonesDocAccessFields_createdAt
+}
+
+type ZonesDocAccessFields_title {
+  create: ZonesDocAccessFields_title_Create
+  read: ZonesDocAccessFields_title_Read
+  update: ZonesDocAccessFields_title_Update
+  delete: ZonesDocAccessFields_title_Delete
+}
+
+type ZonesDocAccessFields_title_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_title_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_title_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_selectedCountries {
+  create: ZonesDocAccessFields_selectedCountries_Create
+  read: ZonesDocAccessFields_selectedCountries_Read
+  update: ZonesDocAccessFields_selectedCountries_Update
+  delete: ZonesDocAccessFields_selectedCountries_Delete
+}
+
+type ZonesDocAccessFields_selectedCountries_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_selectedCountries_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_selectedCountries_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_selectedCountries_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges {
+  create: ZonesDocAccessFields_ranges_Create
+  read: ZonesDocAccessFields_ranges_Read
+  update: ZonesDocAccessFields_ranges_Update
+  delete: ZonesDocAccessFields_ranges_Delete
+  fields: ZonesDocAccessFields_ranges_Fields
+}
+
+type ZonesDocAccessFields_ranges_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_Fields {
+  weigth: ZonesDocAccessFields_ranges_weigth
+  price: ZonesDocAccessFields_ranges_price
+  id: ZonesDocAccessFields_ranges_id
+}
+
+type ZonesDocAccessFields_ranges_weigth {
+  create: ZonesDocAccessFields_ranges_weigth_Create
+  read: ZonesDocAccessFields_ranges_weigth_Read
+  update: ZonesDocAccessFields_ranges_weigth_Update
+  delete: ZonesDocAccessFields_ranges_weigth_Delete
+}
+
+type ZonesDocAccessFields_ranges_weigth_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_weigth_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_weigth_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_weigth_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_price {
+  create: ZonesDocAccessFields_ranges_price_Create
+  read: ZonesDocAccessFields_ranges_price_Read
+  update: ZonesDocAccessFields_ranges_price_Update
+  delete: ZonesDocAccessFields_ranges_price_Delete
+}
+
+type ZonesDocAccessFields_ranges_price_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_price_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_price_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_price_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_id {
+  create: ZonesDocAccessFields_ranges_id_Create
+  read: ZonesDocAccessFields_ranges_id_Read
+  update: ZonesDocAccessFields_ranges_id_Update
+  delete: ZonesDocAccessFields_ranges_id_Delete
+}
+
+type ZonesDocAccessFields_ranges_id_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_id_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_id_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_ranges_id_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes {
+  create: ZonesDocAccessFields_codes_Create
+  read: ZonesDocAccessFields_codes_Read
+  update: ZonesDocAccessFields_codes_Update
+  delete: ZonesDocAccessFields_codes_Delete
+  fields: ZonesDocAccessFields_codes_Fields
+}
+
+type ZonesDocAccessFields_codes_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_Fields {
+  code: ZonesDocAccessFields_codes_code
+  id: ZonesDocAccessFields_codes_id
+}
+
+type ZonesDocAccessFields_codes_code {
+  create: ZonesDocAccessFields_codes_code_Create
+  read: ZonesDocAccessFields_codes_code_Read
+  update: ZonesDocAccessFields_codes_code_Update
+  delete: ZonesDocAccessFields_codes_code_Delete
+}
+
+type ZonesDocAccessFields_codes_code_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_code_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_code_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_code_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_id {
+  create: ZonesDocAccessFields_codes_id_Create
+  read: ZonesDocAccessFields_codes_id_Read
+  update: ZonesDocAccessFields_codes_id_Update
+  delete: ZonesDocAccessFields_codes_id_Delete
+}
+
+type ZonesDocAccessFields_codes_id_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_id_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_id_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codes_id_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges {
+  create: ZonesDocAccessFields_codesRanges_Create
+  read: ZonesDocAccessFields_codesRanges_Read
+  update: ZonesDocAccessFields_codesRanges_Update
+  delete: ZonesDocAccessFields_codesRanges_Delete
+  fields: ZonesDocAccessFields_codesRanges_Fields
+}
+
+type ZonesDocAccessFields_codesRanges_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_Fields {
+  from: ZonesDocAccessFields_codesRanges_from
+  to: ZonesDocAccessFields_codesRanges_to
+  id: ZonesDocAccessFields_codesRanges_id
+}
+
+type ZonesDocAccessFields_codesRanges_from {
+  create: ZonesDocAccessFields_codesRanges_from_Create
+  read: ZonesDocAccessFields_codesRanges_from_Read
+  update: ZonesDocAccessFields_codesRanges_from_Update
+  delete: ZonesDocAccessFields_codesRanges_from_Delete
+}
+
+type ZonesDocAccessFields_codesRanges_from_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_from_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_from_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_from_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_to {
+  create: ZonesDocAccessFields_codesRanges_to_Create
+  read: ZonesDocAccessFields_codesRanges_to_Read
+  update: ZonesDocAccessFields_codesRanges_to_Update
+  delete: ZonesDocAccessFields_codesRanges_to_Delete
+}
+
+type ZonesDocAccessFields_codesRanges_to_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_to_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_to_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_to_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_id {
+  create: ZonesDocAccessFields_codesRanges_id_Create
+  read: ZonesDocAccessFields_codesRanges_id_Read
+  update: ZonesDocAccessFields_codesRanges_id_Update
+  delete: ZonesDocAccessFields_codesRanges_id_Delete
+}
+
+type ZonesDocAccessFields_codesRanges_id_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_id_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_id_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_codesRanges_id_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_slug {
+  create: ZonesDocAccessFields_slug_Create
+  read: ZonesDocAccessFields_slug_Read
+  update: ZonesDocAccessFields_slug_Update
+  delete: ZonesDocAccessFields_slug_Delete
+}
+
+type ZonesDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_slug_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_updatedAt {
+  create: ZonesDocAccessFields_updatedAt_Create
+  read: ZonesDocAccessFields_updatedAt_Read
+  update: ZonesDocAccessFields_updatedAt_Update
+  delete: ZonesDocAccessFields_updatedAt_Delete
+}
+
+type ZonesDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_createdAt {
+  create: ZonesDocAccessFields_createdAt_Create
+  read: ZonesDocAccessFields_createdAt_Read
+  update: ZonesDocAccessFields_createdAt_Update
+  delete: ZonesDocAccessFields_createdAt_Delete
+}
+
+type ZonesDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ZonesCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+type ZonesReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ZonesUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ZonesDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type Tag {
+  id: String
+  title: String!
+  updatedAt: DateTime
+  createdAt: DateTime
 }
 
 type Tags {
@@ -245,11 +1430,6 @@ type TagsCreateDocAccess {
   permission: Boolean!
   where: JSONObject
 }
-
-"""
-The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSONObject
 
 type TagsReadDocAccess {
   permission: Boolean!
@@ -12635,6 +13815,7 @@ type FooterUpdateDocAccess {
 
 type Access {
   canAccessAdmin: Boolean!
+  zones: zonesAccess
   tags: tagsAccess
   posts: postsAccess
   pages: pagesAccess
@@ -12649,6 +13830,433 @@ type Access {
   settings: settingsAccess
   header: headerAccess
   footer: footerAccess
+}
+
+type zonesAccess {
+  fields: ZonesFields
+  create: ZonesCreateAccess
+  read: ZonesReadAccess
+  update: ZonesUpdateAccess
+  delete: ZonesDeleteAccess
+}
+
+type ZonesFields {
+  title: ZonesFields_title
+  selectedCountries: ZonesFields_selectedCountries
+  ranges: ZonesFields_ranges
+  codes: ZonesFields_codes
+  codesRanges: ZonesFields_codesRanges
+  slug: ZonesFields_slug
+  updatedAt: ZonesFields_updatedAt
+  createdAt: ZonesFields_createdAt
+}
+
+type ZonesFields_title {
+  create: ZonesFields_title_Create
+  read: ZonesFields_title_Read
+  update: ZonesFields_title_Update
+  delete: ZonesFields_title_Delete
+}
+
+type ZonesFields_title_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_title_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_title_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_title_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_selectedCountries {
+  create: ZonesFields_selectedCountries_Create
+  read: ZonesFields_selectedCountries_Read
+  update: ZonesFields_selectedCountries_Update
+  delete: ZonesFields_selectedCountries_Delete
+}
+
+type ZonesFields_selectedCountries_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_selectedCountries_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_selectedCountries_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_selectedCountries_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges {
+  create: ZonesFields_ranges_Create
+  read: ZonesFields_ranges_Read
+  update: ZonesFields_ranges_Update
+  delete: ZonesFields_ranges_Delete
+  fields: ZonesFields_ranges_Fields
+}
+
+type ZonesFields_ranges_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_Fields {
+  weigth: ZonesFields_ranges_weigth
+  price: ZonesFields_ranges_price
+  id: ZonesFields_ranges_id
+}
+
+type ZonesFields_ranges_weigth {
+  create: ZonesFields_ranges_weigth_Create
+  read: ZonesFields_ranges_weigth_Read
+  update: ZonesFields_ranges_weigth_Update
+  delete: ZonesFields_ranges_weigth_Delete
+}
+
+type ZonesFields_ranges_weigth_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_weigth_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_weigth_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_weigth_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_price {
+  create: ZonesFields_ranges_price_Create
+  read: ZonesFields_ranges_price_Read
+  update: ZonesFields_ranges_price_Update
+  delete: ZonesFields_ranges_price_Delete
+}
+
+type ZonesFields_ranges_price_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_price_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_price_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_price_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_id {
+  create: ZonesFields_ranges_id_Create
+  read: ZonesFields_ranges_id_Read
+  update: ZonesFields_ranges_id_Update
+  delete: ZonesFields_ranges_id_Delete
+}
+
+type ZonesFields_ranges_id_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_id_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_id_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_ranges_id_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_codes {
+  create: ZonesFields_codes_Create
+  read: ZonesFields_codes_Read
+  update: ZonesFields_codes_Update
+  delete: ZonesFields_codes_Delete
+  fields: ZonesFields_codes_Fields
+}
+
+type ZonesFields_codes_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_Fields {
+  code: ZonesFields_codes_code
+  id: ZonesFields_codes_id
+}
+
+type ZonesFields_codes_code {
+  create: ZonesFields_codes_code_Create
+  read: ZonesFields_codes_code_Read
+  update: ZonesFields_codes_code_Update
+  delete: ZonesFields_codes_code_Delete
+}
+
+type ZonesFields_codes_code_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_code_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_code_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_code_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_id {
+  create: ZonesFields_codes_id_Create
+  read: ZonesFields_codes_id_Read
+  update: ZonesFields_codes_id_Update
+  delete: ZonesFields_codes_id_Delete
+}
+
+type ZonesFields_codes_id_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_id_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_id_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_codes_id_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges {
+  create: ZonesFields_codesRanges_Create
+  read: ZonesFields_codesRanges_Read
+  update: ZonesFields_codesRanges_Update
+  delete: ZonesFields_codesRanges_Delete
+  fields: ZonesFields_codesRanges_Fields
+}
+
+type ZonesFields_codesRanges_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_Fields {
+  from: ZonesFields_codesRanges_from
+  to: ZonesFields_codesRanges_to
+  id: ZonesFields_codesRanges_id
+}
+
+type ZonesFields_codesRanges_from {
+  create: ZonesFields_codesRanges_from_Create
+  read: ZonesFields_codesRanges_from_Read
+  update: ZonesFields_codesRanges_from_Update
+  delete: ZonesFields_codesRanges_from_Delete
+}
+
+type ZonesFields_codesRanges_from_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_from_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_from_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_from_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_to {
+  create: ZonesFields_codesRanges_to_Create
+  read: ZonesFields_codesRanges_to_Read
+  update: ZonesFields_codesRanges_to_Update
+  delete: ZonesFields_codesRanges_to_Delete
+}
+
+type ZonesFields_codesRanges_to_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_to_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_to_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_to_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_id {
+  create: ZonesFields_codesRanges_id_Create
+  read: ZonesFields_codesRanges_id_Read
+  update: ZonesFields_codesRanges_id_Update
+  delete: ZonesFields_codesRanges_id_Delete
+}
+
+type ZonesFields_codesRanges_id_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_id_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_id_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_codesRanges_id_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_slug {
+  create: ZonesFields_slug_Create
+  read: ZonesFields_slug_Read
+  update: ZonesFields_slug_Update
+  delete: ZonesFields_slug_Delete
+}
+
+type ZonesFields_slug_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_slug_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_slug_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_slug_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_updatedAt {
+  create: ZonesFields_updatedAt_Create
+  read: ZonesFields_updatedAt_Read
+  update: ZonesFields_updatedAt_Update
+  delete: ZonesFields_updatedAt_Delete
+}
+
+type ZonesFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ZonesFields_createdAt {
+  create: ZonesFields_createdAt_Create
+  read: ZonesFields_createdAt_Read
+  update: ZonesFields_createdAt_Update
+  delete: ZonesFields_createdAt_Delete
+}
+
+type ZonesFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ZonesFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ZonesFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ZonesFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ZonesCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ZonesReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ZonesUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ZonesDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
 }
 
 type tagsAccess {
@@ -17552,6 +19160,9 @@ type FooterUpdateAccess {
 }
 
 type Mutation {
+  createZone(data: mutationZoneInput!, draft: Boolean, locale: LocaleInputType): Zone
+  updateZone(id: String!, autosave: Boolean, data: mutationZoneUpdateInput!, draft: Boolean, locale: LocaleInputType): Zone
+  deleteZone(id: String!): Zone
   createTag(data: mutationTagInput!, draft: Boolean, locale: LocaleInputType): Tag
   updateTag(id: String!, autosave: Boolean, data: mutationTagUpdateInput!, draft: Boolean, locale: LocaleInputType): Tag
   deleteTag(id: String!): Tag
@@ -17599,6 +19210,566 @@ type Mutation {
   updateSettings(data: mutationSettingsInput!, draft: Boolean, locale: LocaleInputType): Settings
   updateHeader(data: mutationHeaderInput!, draft: Boolean, locale: LocaleInputType): Header
   updateFooter(data: mutationFooterInput!, draft: Boolean, locale: LocaleInputType): Footer
+}
+
+input mutationZoneInput {
+  title: String!
+  selectedCountries: [Zone_selectedCountries_MutationInput]
+  ranges: [mutationZone_RangesInput]
+  codes: [mutationZone_CodesInput]
+  codesRanges: [mutationZone_CodesRangesInput]
+  slug: String
+  updatedAt: String
+  createdAt: String
+}
+
+enum Zone_selectedCountries_MutationInput {
+  AF
+  AX
+  AL
+  DZ
+  AS
+  AD
+  AO
+  AI
+  AQ
+  AG
+  AR
+  AM
+  AW
+  AU
+  AT
+  AZ
+  BS
+  BH
+  BD
+  BB
+  BY
+  BE
+  BZ
+  BJ
+  BM
+  BT
+  BO
+  BQ
+  BA
+  BW
+  BV
+  BR
+  IO
+  BN
+  BG
+  BF
+  BI
+  CV
+  KH
+  CM
+  CA
+  KY
+  CF
+  TD
+  CL
+  CN
+  CX
+  CC
+  CO
+  KM
+  CG
+  CD
+  CK
+  CR
+  HR
+  CU
+  CW
+  CY
+  CZ
+  CI
+  DK
+  DJ
+  DM
+  DO
+  EC
+  EG
+  SV
+  GQ
+  ER
+  EE
+  SZ
+  ET
+  FK
+  FO
+  FJ
+  FI
+  FR
+  GF
+  PF
+  TF
+  GA
+  GM
+  GE
+  DE
+  GH
+  GI
+  GR
+  GL
+  GD
+  GP
+  GU
+  GT
+  GG
+  GN
+  GW
+  GY
+  HT
+  HM
+  VA
+  HN
+  HK
+  HU
+  IS
+  IN
+  ID
+  IR
+  IQ
+  IE
+  IM
+  IL
+  IT
+  JM
+  JP
+  JE
+  JO
+  KZ
+  KE
+  KI
+  KP
+  KR
+  KW
+  KG
+  LA
+  LV
+  LB
+  LS
+  LR
+  LY
+  LI
+  LT
+  LU
+  MO
+  MG
+  MW
+  MY
+  MV
+  ML
+  MT
+  MH
+  MQ
+  MR
+  MU
+  YT
+  MX
+  FM
+  MD
+  MC
+  MN
+  ME
+  MS
+  MA
+  MZ
+  MM
+  NA
+  NR
+  NP
+  NL
+  NC
+  NZ
+  NI
+  NE
+  NG
+  NU
+  NF
+  MK
+  MP
+  NO
+  OM
+  PK
+  PW
+  PS
+  PA
+  PG
+  PY
+  PE
+  PH
+  PN
+  PL
+  PT
+  PR
+  QA
+  RO
+  RU
+  RW
+  RE
+  BL
+  SH
+  KN
+  LC
+  MF
+  PM
+  VC
+  WS
+  SM
+  ST
+  SA
+  SN
+  RS
+  SC
+  SL
+  SG
+  SX
+  SK
+  SI
+  SB
+  SO
+  ZA
+  GS
+  SS
+  ES
+  LK
+  SD
+  SR
+  SJ
+  SE
+  CH
+  SY
+  TW
+  TJ
+  TZ
+  TH
+  TL
+  TG
+  TK
+  TO
+  TT
+  TN
+  TR
+  TM
+  TC
+  TV
+  UG
+  UA
+  AE
+  GB
+  UM
+  US
+  UY
+  UZ
+  VU
+  VE
+  VN
+  VG
+  VI
+  WF
+  EH
+  YE
+  ZM
+  ZW
+}
+
+input mutationZone_RangesInput {
+  weigth: String!
+  price: String!
+  id: String
+}
+
+input mutationZone_CodesInput {
+  code: String!
+  id: String
+}
+
+input mutationZone_CodesRangesInput {
+  from: String!
+  to: String!
+  id: String
+}
+
+input mutationZoneUpdateInput {
+  title: String
+  selectedCountries: [ZoneUpdate_selectedCountries_MutationInput]
+  ranges: [mutationZoneUpdate_RangesInput]
+  codes: [mutationZoneUpdate_CodesInput]
+  codesRanges: [mutationZoneUpdate_CodesRangesInput]
+  slug: String
+  updatedAt: String
+  createdAt: String
+}
+
+enum ZoneUpdate_selectedCountries_MutationInput {
+  AF
+  AX
+  AL
+  DZ
+  AS
+  AD
+  AO
+  AI
+  AQ
+  AG
+  AR
+  AM
+  AW
+  AU
+  AT
+  AZ
+  BS
+  BH
+  BD
+  BB
+  BY
+  BE
+  BZ
+  BJ
+  BM
+  BT
+  BO
+  BQ
+  BA
+  BW
+  BV
+  BR
+  IO
+  BN
+  BG
+  BF
+  BI
+  CV
+  KH
+  CM
+  CA
+  KY
+  CF
+  TD
+  CL
+  CN
+  CX
+  CC
+  CO
+  KM
+  CG
+  CD
+  CK
+  CR
+  HR
+  CU
+  CW
+  CY
+  CZ
+  CI
+  DK
+  DJ
+  DM
+  DO
+  EC
+  EG
+  SV
+  GQ
+  ER
+  EE
+  SZ
+  ET
+  FK
+  FO
+  FJ
+  FI
+  FR
+  GF
+  PF
+  TF
+  GA
+  GM
+  GE
+  DE
+  GH
+  GI
+  GR
+  GL
+  GD
+  GP
+  GU
+  GT
+  GG
+  GN
+  GW
+  GY
+  HT
+  HM
+  VA
+  HN
+  HK
+  HU
+  IS
+  IN
+  ID
+  IR
+  IQ
+  IE
+  IM
+  IL
+  IT
+  JM
+  JP
+  JE
+  JO
+  KZ
+  KE
+  KI
+  KP
+  KR
+  KW
+  KG
+  LA
+  LV
+  LB
+  LS
+  LR
+  LY
+  LI
+  LT
+  LU
+  MO
+  MG
+  MW
+  MY
+  MV
+  ML
+  MT
+  MH
+  MQ
+  MR
+  MU
+  YT
+  MX
+  FM
+  MD
+  MC
+  MN
+  ME
+  MS
+  MA
+  MZ
+  MM
+  NA
+  NR
+  NP
+  NL
+  NC
+  NZ
+  NI
+  NE
+  NG
+  NU
+  NF
+  MK
+  MP
+  NO
+  OM
+  PK
+  PW
+  PS
+  PA
+  PG
+  PY
+  PE
+  PH
+  PN
+  PL
+  PT
+  PR
+  QA
+  RO
+  RU
+  RW
+  RE
+  BL
+  SH
+  KN
+  LC
+  MF
+  PM
+  VC
+  WS
+  SM
+  ST
+  SA
+  SN
+  RS
+  SC
+  SL
+  SG
+  SX
+  SK
+  SI
+  SB
+  SO
+  ZA
+  GS
+  SS
+  ES
+  LK
+  SD
+  SR
+  SJ
+  SE
+  CH
+  SY
+  TW
+  TJ
+  TZ
+  TH
+  TL
+  TG
+  TK
+  TO
+  TT
+  TN
+  TR
+  TM
+  TC
+  TV
+  UG
+  UA
+  AE
+  GB
+  UM
+  US
+  UY
+  UZ
+  VU
+  VE
+  VN
+  VG
+  VI
+  WF
+  EH
+  YE
+  ZM
+  ZW
+}
+
+input mutationZoneUpdate_RangesInput {
+  weigth: String!
+  price: String!
+  id: String
+}
+
+input mutationZoneUpdate_CodesInput {
+  code: String!
+  id: String
+}
+
+input mutationZoneUpdate_CodesRangesInput {
+  from: String!
+  to: String!
+  id: String
 }
 
 input mutationTagInput {
