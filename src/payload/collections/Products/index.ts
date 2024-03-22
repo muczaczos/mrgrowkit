@@ -51,6 +51,11 @@ const Products: CollectionConfig = {
       required: true,
     },
     {
+      name: 'weight',
+      type: 'number',
+      required: true,
+    },
+    {
       name: 'publishedOn',
       type: 'date',
       admin: {

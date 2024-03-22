@@ -19,6 +19,7 @@ export const PRODUCT = `
         id
         title
         price
+        weight
         stripeProductID
         ${PRODUCT_CATEGORIES}
         layout {

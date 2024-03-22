@@ -513,6 +513,7 @@ type Product {
   id: String
   title: String
   price: String
+  weight: Float
   publishedOn: DateTime
   layout: [Product_Layout!]
   stripeProductID: String
@@ -6627,6 +6628,7 @@ type Products {
 input Product_where {
   title: Product_title_operator
   price: Product_price_operator
+  weight: Product_weight_operator
   publishedOn: Product_publishedOn_operator
   stripeProductID: Product_stripeProductID_operator
   priceJSON: Product_priceJSON_operator
@@ -6664,6 +6666,15 @@ input Product_price_operator {
   in: [String]
   not_in: [String]
   all: [String]
+}
+
+input Product_weight_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
 }
 
 input Product_publishedOn_operator {
@@ -6812,6 +6823,7 @@ input Product_id_operator {
 input Product_where_and {
   title: Product_title_operator
   price: Product_price_operator
+  weight: Product_weight_operator
   publishedOn: Product_publishedOn_operator
   stripeProductID: Product_stripeProductID_operator
   priceJSON: Product_priceJSON_operator
@@ -6834,6 +6846,7 @@ input Product_where_and {
 input Product_where_or {
   title: Product_title_operator
   price: Product_price_operator
+  weight: Product_weight_operator
   publishedOn: Product_publishedOn_operator
   stripeProductID: Product_stripeProductID_operator
   priceJSON: Product_priceJSON_operator
@@ -6865,6 +6878,7 @@ type productsDocAccess {
 type ProductsDocAccessFields {
   title: ProductsDocAccessFields_title
   price: ProductsDocAccessFields_price
+  weight: ProductsDocAccessFields_weight
   publishedOn: ProductsDocAccessFields_publishedOn
   layout: ProductsDocAccessFields_layout
   stripeProductID: ProductsDocAccessFields_stripeProductID
@@ -6924,6 +6938,29 @@ type ProductsDocAccessFields_price_Update {
 }
 
 type ProductsDocAccessFields_price_Delete {
+  permission: Boolean!
+}
+
+type ProductsDocAccessFields_weight {
+  create: ProductsDocAccessFields_weight_Create
+  read: ProductsDocAccessFields_weight_Read
+  update: ProductsDocAccessFields_weight_Update
+  delete: ProductsDocAccessFields_weight_Delete
+}
+
+type ProductsDocAccessFields_weight_Create {
+  permission: Boolean!
+}
+
+type ProductsDocAccessFields_weight_Read {
+  permission: Boolean!
+}
+
+type ProductsDocAccessFields_weight_Update {
+  permission: Boolean!
+}
+
+type ProductsDocAccessFields_weight_Delete {
   permission: Boolean!
 }
 
@@ -7362,6 +7399,7 @@ type ProductVersion {
 type ProductVersion_Version {
   title: String
   price: String
+  weight: Float
   publishedOn: DateTime
   layout: [ProductVersion_Version_Layout!]
   stripeProductID: String
@@ -7573,6 +7611,7 @@ input versionsProduct_where {
   parent: versionsProduct_parent_operator
   version__title: versionsProduct_version__title_operator
   version__price: versionsProduct_version__price_operator
+  version__weight: versionsProduct_version__weight_operator
   version__publishedOn: versionsProduct_version__publishedOn_operator
   version__stripeProductID: versionsProduct_version__stripeProductID_operator
   version__priceJSON: versionsProduct_version__priceJSON_operator
@@ -7622,6 +7661,15 @@ input versionsProduct_version__price_operator {
   in: [String]
   not_in: [String]
   all: [String]
+}
+
+input versionsProduct_version__weight_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
 }
 
 input versionsProduct_version__publishedOn_operator {
@@ -7799,6 +7847,7 @@ input versionsProduct_where_and {
   parent: versionsProduct_parent_operator
   version__title: versionsProduct_version__title_operator
   version__price: versionsProduct_version__price_operator
+  version__weight: versionsProduct_version__weight_operator
   version__publishedOn: versionsProduct_version__publishedOn_operator
   version__stripeProductID: versionsProduct_version__stripeProductID_operator
   version__priceJSON: versionsProduct_version__priceJSON_operator
@@ -7825,6 +7874,7 @@ input versionsProduct_where_or {
   parent: versionsProduct_parent_operator
   version__title: versionsProduct_version__title_operator
   version__price: versionsProduct_version__price_operator
+  version__weight: versionsProduct_version__weight_operator
   version__publishedOn: versionsProduct_version__publishedOn_operator
   version__stripeProductID: versionsProduct_version__stripeProductID_operator
   version__priceJSON: versionsProduct_version__priceJSON_operator
@@ -14218,6 +14268,7 @@ type productsAccess {
 type ProductsFields {
   title: ProductsFields_title
   price: ProductsFields_price
+  weight: ProductsFields_weight
   publishedOn: ProductsFields_publishedOn
   layout: ProductsFields_layout
   stripeProductID: ProductsFields_stripeProductID
@@ -14277,6 +14328,29 @@ type ProductsFields_price_Update {
 }
 
 type ProductsFields_price_Delete {
+  permission: Boolean!
+}
+
+type ProductsFields_weight {
+  create: ProductsFields_weight_Create
+  read: ProductsFields_weight_Read
+  update: ProductsFields_weight_Update
+  delete: ProductsFields_weight_Delete
+}
+
+type ProductsFields_weight_Create {
+  permission: Boolean!
+}
+
+type ProductsFields_weight_Read {
+  permission: Boolean!
+}
+
+type ProductsFields_weight_Update {
+  permission: Boolean!
+}
+
+type ProductsFields_weight_Delete {
   permission: Boolean!
 }
 
@@ -17836,6 +17910,7 @@ enum PageUpdate__status_MutationInput {
 input mutationProductInput {
   title: String!
   price: String!
+  weight: Float!
   publishedOn: String
   layout: JSON
   stripeProductID: String
@@ -17866,6 +17941,7 @@ enum Product__status_MutationInput {
 input mutationProductUpdateInput {
   title: String
   price: String
+  weight: Float
   publishedOn: String
   layout: JSON
   stripeProductID: String

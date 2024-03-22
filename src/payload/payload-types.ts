@@ -380,6 +380,7 @@ export interface Product {
   id: string;
   title: string;
   price: string;
+  weight: number;
   publishedOn?: string | null;
   layout?:
     | (
