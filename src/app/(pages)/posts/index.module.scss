@@ -15,11 +15,22 @@
       gap: 48px;
     }
   }
+  
+  .imageTitle {
+    margin-top: 48px;
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    @include small-break {
+      flex-direction: column;
+      margin-top: 24px;
+    }
+  }
 
   .heroText {
     padding-right: 150px;
     padding-left: 150px;
-    padding-top: 100px;
+    padding-top: 48px;
     @include small-break {
       padding: 24px;
     }
