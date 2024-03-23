@@ -6,6 +6,7 @@ import { ORDERS } from '../_graphql/orders'
 import { PAGES } from '../_graphql/pages'
 import { POSTS } from '../_graphql/posts'
 import { PRODUCTS } from '../_graphql/products'
+import { ZONES } from '../_graphql/zones'
 import { GRAPHQL_API_URL } from './shared'
 import { payloadToken } from './token'
 
@@ -29,6 +30,10 @@ const queryMap = {
   posts: {
     query: POSTS,
     key: 'Posts',
+  },
+  zones: {
+    query: ZONES,
+    key: 'Zones',
   },
 }
 

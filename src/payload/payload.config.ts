@@ -20,7 +20,7 @@ import { Posts } from './collections/Posts'
 import Products from './collections/Products'
 import { Tags } from './collections/Tags'
 import Users from './collections/Users'
-import Zones from './collections/Zones'
+import { Zones } from './collections/Zones'
 import BeforeDashboard from './components/BeforeDashboard'
 import BeforeLogin from './components/BeforeLogin'
 import { createPaymentIntent } from './endpoints/create-payment-intent'
@@ -170,7 +170,7 @@ export default buildConfig({
       },
     }),
     redirects({
-      collections: ['pages', 'products', 'posts'],
+      collections: ['pages', 'products', 'posts', 'zones'],
     }),
     nestedDocs({
       collections: ['categories'],

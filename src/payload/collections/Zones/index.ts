@@ -1,13 +1,28 @@
 import countryList from 'react-select-country-list'
 import type { CollectionConfig } from 'payload/types'
+import { admins } from '../../access/admins'
+import { adminsOrPublished } from '../../access/adminsOrPublished'
+import { slugField } from '../../fields/slug'
 
-const Zones: CollectionConfig = {
+export const Zones: CollectionConfig = {
   slug: 'zones',
   admin: {
     useAsTitle: 'title',
+    defaultColumns: ['title', 'slug', 'updatedAt'],
+    preview: doc => {
+      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/next/preview?url=${encodeURIComponent(
+        `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/zones/${doc?.slug}`,
+      )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
+    },
+  },
+  versions: {
+    drafts: true,
   },
   access: {
-    read: () => true,
+    read: adminsOrPublished,
+    update: admins,
+    create: admins,
+    delete: admins,
   },
   fields: [
     {
@@ -88,10 +103,7 @@ const Zones: CollectionConfig = {
         },
       ],
     },
-    {
-      name: 'slug',
-      type: 'text',
-    },
+    slugField(),
   ],
 }
 

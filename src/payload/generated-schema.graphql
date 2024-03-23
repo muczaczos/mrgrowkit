@@ -2,6 +2,8 @@ type Query {
   Zone(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Zone
   Zones(draft: Boolean, where: Zone_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Zones
   docAccessZone(id: String!): zonesDocAccess
+  versionZone(id: String, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): ZoneVersion
+  versionsZones(where: versionsZone_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): versionsZones
   Tag(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Tag
   Tags(draft: Boolean, where: Tag_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Tags
   docAccessTag(id: String!): tagsDocAccess
@@ -56,7 +58,7 @@ type Query {
 
 type Zone {
   id: String
-  title: String!
+  title: String
   selectedCountries: [Zone_selectedCountries!]
   ranges: [Zone_Ranges!]
   codes: [Zone_Codes!]
@@ -64,6 +66,7 @@ type Zone {
   slug: String
   updatedAt: DateTime
   createdAt: DateTime
+  _status: Zone__status
 }
 
 enum Zone_selectedCountries {
@@ -340,6 +343,11 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+enum Zone__status {
+  draft
+  published
+}
+
 enum FallbackLocaleInputType {
   en
   pl
@@ -379,6 +387,7 @@ input Zone_where {
   slug: Zone_slug_operator
   updatedAt: Zone_updatedAt_operator
   createdAt: Zone_createdAt_operator
+  _status: Zone__status_operator
   id: Zone_id_operator
   AND: [Zone_where_and]
   OR: [Zone_where_or]
@@ -771,6 +780,20 @@ input Zone_createdAt_operator {
   exists: Boolean
 }
 
+input Zone__status_operator {
+  equals: Zone__status_Input
+  not_equals: Zone__status_Input
+  in: [Zone__status_Input]
+  not_in: [Zone__status_Input]
+  all: [Zone__status_Input]
+  exists: Boolean
+}
+
+enum Zone__status_Input {
+  draft
+  published
+}
+
 input Zone_id_operator {
   equals: String
   not_equals: String
@@ -796,6 +819,7 @@ input Zone_where_and {
   slug: Zone_slug_operator
   updatedAt: Zone_updatedAt_operator
   createdAt: Zone_createdAt_operator
+  _status: Zone__status_operator
   id: Zone_id_operator
   AND: [Zone_where_and]
   OR: [Zone_where_or]
@@ -815,6 +839,7 @@ input Zone_where_or {
   slug: Zone_slug_operator
   updatedAt: Zone_updatedAt_operator
   createdAt: Zone_createdAt_operator
+  _status: Zone__status_operator
   id: Zone_id_operator
   AND: [Zone_where_and]
   OR: [Zone_where_or]
@@ -826,6 +851,7 @@ type zonesDocAccess {
   read: ZonesReadDocAccess
   update: ZonesUpdateDocAccess
   delete: ZonesDeleteDocAccess
+  readVersions: ZonesReadVersionsDocAccess
 }
 
 type ZonesDocAccessFields {
@@ -837,6 +863,7 @@ type ZonesDocAccessFields {
   slug: ZonesDocAccessFields_slug
   updatedAt: ZonesDocAccessFields_updatedAt
   createdAt: ZonesDocAccessFields_createdAt
+  _status: ZonesDocAccessFields__status
 }
 
 type ZonesDocAccessFields_title {
@@ -1227,6 +1254,29 @@ type ZonesDocAccessFields_createdAt_Delete {
   permission: Boolean!
 }
 
+type ZonesDocAccessFields__status {
+  create: ZonesDocAccessFields__status_Create
+  read: ZonesDocAccessFields__status_Read
+  update: ZonesDocAccessFields__status_Update
+  delete: ZonesDocAccessFields__status_Delete
+}
+
+type ZonesDocAccessFields__status_Create {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields__status_Read {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields__status_Update {
+  permission: Boolean!
+}
+
+type ZonesDocAccessFields__status_Delete {
+  permission: Boolean!
+}
+
 type ZonesCreateDocAccess {
   permission: Boolean!
   where: JSONObject
@@ -1250,6 +1300,846 @@ type ZonesUpdateDocAccess {
 type ZonesDeleteDocAccess {
   permission: Boolean!
   where: JSONObject
+}
+
+type ZonesReadVersionsDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ZoneVersion {
+  parent(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Zone
+  version: ZoneVersion_Version
+  createdAt: DateTime
+  updatedAt: DateTime
+  latest: Boolean
+  id: String
+}
+
+type ZoneVersion_Version {
+  title: String
+  selectedCountries: [ZoneVersion_Version_selectedCountries!]
+  ranges: [ZoneVersion_Version_Ranges!]
+  codes: [ZoneVersion_Version_Codes!]
+  codesRanges: [ZoneVersion_Version_CodesRanges!]
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: ZoneVersion_Version__status
+}
+
+enum ZoneVersion_Version_selectedCountries {
+  AF
+  AX
+  AL
+  DZ
+  AS
+  AD
+  AO
+  AI
+  AQ
+  AG
+  AR
+  AM
+  AW
+  AU
+  AT
+  AZ
+  BS
+  BH
+  BD
+  BB
+  BY
+  BE
+  BZ
+  BJ
+  BM
+  BT
+  BO
+  BQ
+  BA
+  BW
+  BV
+  BR
+  IO
+  BN
+  BG
+  BF
+  BI
+  CV
+  KH
+  CM
+  CA
+  KY
+  CF
+  TD
+  CL
+  CN
+  CX
+  CC
+  CO
+  KM
+  CG
+  CD
+  CK
+  CR
+  HR
+  CU
+  CW
+  CY
+  CZ
+  CI
+  DK
+  DJ
+  DM
+  DO
+  EC
+  EG
+  SV
+  GQ
+  ER
+  EE
+  SZ
+  ET
+  FK
+  FO
+  FJ
+  FI
+  FR
+  GF
+  PF
+  TF
+  GA
+  GM
+  GE
+  DE
+  GH
+  GI
+  GR
+  GL
+  GD
+  GP
+  GU
+  GT
+  GG
+  GN
+  GW
+  GY
+  HT
+  HM
+  VA
+  HN
+  HK
+  HU
+  IS
+  IN
+  ID
+  IR
+  IQ
+  IE
+  IM
+  IL
+  IT
+  JM
+  JP
+  JE
+  JO
+  KZ
+  KE
+  KI
+  KP
+  KR
+  KW
+  KG
+  LA
+  LV
+  LB
+  LS
+  LR
+  LY
+  LI
+  LT
+  LU
+  MO
+  MG
+  MW
+  MY
+  MV
+  ML
+  MT
+  MH
+  MQ
+  MR
+  MU
+  YT
+  MX
+  FM
+  MD
+  MC
+  MN
+  ME
+  MS
+  MA
+  MZ
+  MM
+  NA
+  NR
+  NP
+  NL
+  NC
+  NZ
+  NI
+  NE
+  NG
+  NU
+  NF
+  MK
+  MP
+  NO
+  OM
+  PK
+  PW
+  PS
+  PA
+  PG
+  PY
+  PE
+  PH
+  PN
+  PL
+  PT
+  PR
+  QA
+  RO
+  RU
+  RW
+  RE
+  BL
+  SH
+  KN
+  LC
+  MF
+  PM
+  VC
+  WS
+  SM
+  ST
+  SA
+  SN
+  RS
+  SC
+  SL
+  SG
+  SX
+  SK
+  SI
+  SB
+  SO
+  ZA
+  GS
+  SS
+  ES
+  LK
+  SD
+  SR
+  SJ
+  SE
+  CH
+  SY
+  TW
+  TJ
+  TZ
+  TH
+  TL
+  TG
+  TK
+  TO
+  TT
+  TN
+  TR
+  TM
+  TC
+  TV
+  UG
+  UA
+  AE
+  GB
+  UM
+  US
+  UY
+  UZ
+  VU
+  VE
+  VN
+  VG
+  VI
+  WF
+  EH
+  YE
+  ZM
+  ZW
+}
+
+type ZoneVersion_Version_Ranges {
+  weigth: String
+  price: String
+  id: String
+}
+
+type ZoneVersion_Version_Codes {
+  code: String
+  id: String
+}
+
+type ZoneVersion_Version_CodesRanges {
+  from: String
+  to: String
+  id: String
+}
+
+enum ZoneVersion_Version__status {
+  draft
+  published
+}
+
+type versionsZones {
+  docs: [ZoneVersion]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input versionsZone_where {
+  parent: versionsZone_parent_operator
+  version__title: versionsZone_version__title_operator
+  version__selectedCountries: versionsZone_version__selectedCountries_operator
+  version__ranges__weigth: versionsZone_version__ranges__weigth_operator
+  version__ranges__price: versionsZone_version__ranges__price_operator
+  version__ranges__id: versionsZone_version__ranges__id_operator
+  version__codes__code: versionsZone_version__codes__code_operator
+  version__codes__id: versionsZone_version__codes__id_operator
+  version__codesRanges__from: versionsZone_version__codesRanges__from_operator
+  version__codesRanges__to: versionsZone_version__codesRanges__to_operator
+  version__codesRanges__id: versionsZone_version__codesRanges__id_operator
+  version__slug: versionsZone_version__slug_operator
+  version__updatedAt: versionsZone_version__updatedAt_operator
+  version__createdAt: versionsZone_version__createdAt_operator
+  version___status: versionsZone_version___status_operator
+  createdAt: versionsZone_createdAt_operator
+  updatedAt: versionsZone_updatedAt_operator
+  latest: versionsZone_latest_operator
+  id: versionsZone_id_operator
+  AND: [versionsZone_where_and]
+  OR: [versionsZone_where_or]
+}
+
+input versionsZone_parent_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+input versionsZone_version__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsZone_version__selectedCountries_operator {
+  equals: versionsZone_version__selectedCountries_Input
+  not_equals: versionsZone_version__selectedCountries_Input
+  in: [versionsZone_version__selectedCountries_Input]
+  not_in: [versionsZone_version__selectedCountries_Input]
+  all: [versionsZone_version__selectedCountries_Input]
+  exists: Boolean
+}
+
+enum versionsZone_version__selectedCountries_Input {
+  AF
+  AX
+  AL
+  DZ
+  AS
+  AD
+  AO
+  AI
+  AQ
+  AG
+  AR
+  AM
+  AW
+  AU
+  AT
+  AZ
+  BS
+  BH
+  BD
+  BB
+  BY
+  BE
+  BZ
+  BJ
+  BM
+  BT
+  BO
+  BQ
+  BA
+  BW
+  BV
+  BR
+  IO
+  BN
+  BG
+  BF
+  BI
+  CV
+  KH
+  CM
+  CA
+  KY
+  CF
+  TD
+  CL
+  CN
+  CX
+  CC
+  CO
+  KM
+  CG
+  CD
+  CK
+  CR
+  HR
+  CU
+  CW
+  CY
+  CZ
+  CI
+  DK
+  DJ
+  DM
+  DO
+  EC
+  EG
+  SV
+  GQ
+  ER
+  EE
+  SZ
+  ET
+  FK
+  FO
+  FJ
+  FI
+  FR
+  GF
+  PF
+  TF
+  GA
+  GM
+  GE
+  DE
+  GH
+  GI
+  GR
+  GL
+  GD
+  GP
+  GU
+  GT
+  GG
+  GN
+  GW
+  GY
+  HT
+  HM
+  VA
+  HN
+  HK
+  HU
+  IS
+  IN
+  ID
+  IR
+  IQ
+  IE
+  IM
+  IL
+  IT
+  JM
+  JP
+  JE
+  JO
+  KZ
+  KE
+  KI
+  KP
+  KR
+  KW
+  KG
+  LA
+  LV
+  LB
+  LS
+  LR
+  LY
+  LI
+  LT
+  LU
+  MO
+  MG
+  MW
+  MY
+  MV
+  ML
+  MT
+  MH
+  MQ
+  MR
+  MU
+  YT
+  MX
+  FM
+  MD
+  MC
+  MN
+  ME
+  MS
+  MA
+  MZ
+  MM
+  NA
+  NR
+  NP
+  NL
+  NC
+  NZ
+  NI
+  NE
+  NG
+  NU
+  NF
+  MK
+  MP
+  NO
+  OM
+  PK
+  PW
+  PS
+  PA
+  PG
+  PY
+  PE
+  PH
+  PN
+  PL
+  PT
+  PR
+  QA
+  RO
+  RU
+  RW
+  RE
+  BL
+  SH
+  KN
+  LC
+  MF
+  PM
+  VC
+  WS
+  SM
+  ST
+  SA
+  SN
+  RS
+  SC
+  SL
+  SG
+  SX
+  SK
+  SI
+  SB
+  SO
+  ZA
+  GS
+  SS
+  ES
+  LK
+  SD
+  SR
+  SJ
+  SE
+  CH
+  SY
+  TW
+  TJ
+  TZ
+  TH
+  TL
+  TG
+  TK
+  TO
+  TT
+  TN
+  TR
+  TM
+  TC
+  TV
+  UG
+  UA
+  AE
+  GB
+  UM
+  US
+  UY
+  UZ
+  VU
+  VE
+  VN
+  VG
+  VI
+  WF
+  EH
+  YE
+  ZM
+  ZW
+}
+
+input versionsZone_version__ranges__weigth_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsZone_version__ranges__price_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsZone_version__ranges__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsZone_version__codes__code_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsZone_version__codes__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsZone_version__codesRanges__from_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsZone_version__codesRanges__to_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsZone_version__codesRanges__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsZone_version__slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsZone_version__updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsZone_version__createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsZone_version___status_operator {
+  equals: versionsZone_version___status_Input
+  not_equals: versionsZone_version___status_Input
+  in: [versionsZone_version___status_Input]
+  not_in: [versionsZone_version___status_Input]
+  all: [versionsZone_version___status_Input]
+  exists: Boolean
+}
+
+enum versionsZone_version___status_Input {
+  draft
+  published
+}
+
+input versionsZone_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsZone_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsZone_latest_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input versionsZone_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsZone_where_and {
+  parent: versionsZone_parent_operator
+  version__title: versionsZone_version__title_operator
+  version__selectedCountries: versionsZone_version__selectedCountries_operator
+  version__ranges__weigth: versionsZone_version__ranges__weigth_operator
+  version__ranges__price: versionsZone_version__ranges__price_operator
+  version__ranges__id: versionsZone_version__ranges__id_operator
+  version__codes__code: versionsZone_version__codes__code_operator
+  version__codes__id: versionsZone_version__codes__id_operator
+  version__codesRanges__from: versionsZone_version__codesRanges__from_operator
+  version__codesRanges__to: versionsZone_version__codesRanges__to_operator
+  version__codesRanges__id: versionsZone_version__codesRanges__id_operator
+  version__slug: versionsZone_version__slug_operator
+  version__updatedAt: versionsZone_version__updatedAt_operator
+  version__createdAt: versionsZone_version__createdAt_operator
+  version___status: versionsZone_version___status_operator
+  createdAt: versionsZone_createdAt_operator
+  updatedAt: versionsZone_updatedAt_operator
+  latest: versionsZone_latest_operator
+  id: versionsZone_id_operator
+  AND: [versionsZone_where_and]
+  OR: [versionsZone_where_or]
+}
+
+input versionsZone_where_or {
+  parent: versionsZone_parent_operator
+  version__title: versionsZone_version__title_operator
+  version__selectedCountries: versionsZone_version__selectedCountries_operator
+  version__ranges__weigth: versionsZone_version__ranges__weigth_operator
+  version__ranges__price: versionsZone_version__ranges__price_operator
+  version__ranges__id: versionsZone_version__ranges__id_operator
+  version__codes__code: versionsZone_version__codes__code_operator
+  version__codes__id: versionsZone_version__codes__id_operator
+  version__codesRanges__from: versionsZone_version__codesRanges__from_operator
+  version__codesRanges__to: versionsZone_version__codesRanges__to_operator
+  version__codesRanges__id: versionsZone_version__codesRanges__id_operator
+  version__slug: versionsZone_version__slug_operator
+  version__updatedAt: versionsZone_version__updatedAt_operator
+  version__createdAt: versionsZone_version__createdAt_operator
+  version___status: versionsZone_version___status_operator
+  createdAt: versionsZone_createdAt_operator
+  updatedAt: versionsZone_updatedAt_operator
+  latest: versionsZone_latest_operator
+  id: versionsZone_id_operator
+  AND: [versionsZone_where_and]
+  OR: [versionsZone_where_or]
 }
 
 type Tag {
@@ -1489,11 +2379,6 @@ type Media {
   width: Float
   height: Float
 }
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
 
 input Category_Media_where {
   alt: Category_Media_alt_operator
@@ -12098,9 +12983,10 @@ enum Redirect_To_Reference_RelationTo {
   pages
   products
   posts
+  zones
 }
 
-union Redirect_To_Reference = Page | Product | Post
+union Redirect_To_Reference = Page | Product | Post | Zone
 
 type Redirects {
   docs: [Redirect]
@@ -12160,6 +13046,7 @@ enum Redirect_to__reference_Relation_RelationTo {
   pages
   products
   posts
+  zones
 }
 
 input Redirect_to__url_operator {
@@ -13838,6 +14725,7 @@ type zonesAccess {
   read: ZonesReadAccess
   update: ZonesUpdateAccess
   delete: ZonesDeleteAccess
+  readVersions: ZonesReadVersionsAccess
 }
 
 type ZonesFields {
@@ -13849,6 +14737,7 @@ type ZonesFields {
   slug: ZonesFields_slug
   updatedAt: ZonesFields_updatedAt
   createdAt: ZonesFields_createdAt
+  _status: ZonesFields__status
 }
 
 type ZonesFields_title {
@@ -14239,6 +15128,29 @@ type ZonesFields_createdAt_Delete {
   permission: Boolean!
 }
 
+type ZonesFields__status {
+  create: ZonesFields__status_Create
+  read: ZonesFields__status_Read
+  update: ZonesFields__status_Update
+  delete: ZonesFields__status_Delete
+}
+
+type ZonesFields__status_Create {
+  permission: Boolean!
+}
+
+type ZonesFields__status_Read {
+  permission: Boolean!
+}
+
+type ZonesFields__status_Update {
+  permission: Boolean!
+}
+
+type ZonesFields__status_Delete {
+  permission: Boolean!
+}
+
 type ZonesCreateAccess {
   permission: Boolean!
   where: JSONObject
@@ -14255,6 +15167,11 @@ type ZonesUpdateAccess {
 }
 
 type ZonesDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ZonesReadVersionsAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -19163,6 +20080,7 @@ type Mutation {
   createZone(data: mutationZoneInput!, draft: Boolean, locale: LocaleInputType): Zone
   updateZone(id: String!, autosave: Boolean, data: mutationZoneUpdateInput!, draft: Boolean, locale: LocaleInputType): Zone
   deleteZone(id: String!): Zone
+  restoreVersionZone(id: String): Zone
   createTag(data: mutationTagInput!, draft: Boolean, locale: LocaleInputType): Tag
   updateTag(id: String!, autosave: Boolean, data: mutationTagUpdateInput!, draft: Boolean, locale: LocaleInputType): Tag
   deleteTag(id: String!): Tag
@@ -19221,6 +20139,7 @@ input mutationZoneInput {
   slug: String
   updatedAt: String
   createdAt: String
+  _status: Zone__status_MutationInput
 }
 
 enum Zone_selectedCountries_MutationInput {
@@ -19492,6 +20411,11 @@ input mutationZone_CodesRangesInput {
   id: String
 }
 
+enum Zone__status_MutationInput {
+  draft
+  published
+}
+
 input mutationZoneUpdateInput {
   title: String
   selectedCountries: [ZoneUpdate_selectedCountries_MutationInput]
@@ -19501,6 +20425,7 @@ input mutationZoneUpdateInput {
   slug: String
   updatedAt: String
   createdAt: String
+  _status: ZoneUpdate__status_MutationInput
 }
 
 enum ZoneUpdate_selectedCountries_MutationInput {
@@ -19770,6 +20695,11 @@ input mutationZoneUpdate_CodesRangesInput {
   from: String!
   to: String!
   id: String
+}
+
+enum ZoneUpdate__status_MutationInput {
+  draft
+  published
 }
 
 input mutationTagInput {
@@ -20404,6 +21334,7 @@ enum Redirect_To_ReferenceRelationshipInputRelationTo {
   pages
   products
   posts
+  zones
 }
 
 input mutationRedirectUpdateInput {
@@ -20428,6 +21359,7 @@ enum RedirectUpdate_To_ReferenceRelationshipInputRelationTo {
   pages
   products
   posts
+  zones
 }
 
 input mutationPayloadPreferenceInput {
