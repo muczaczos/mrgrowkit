@@ -8,7 +8,7 @@ function CountrySelector({ setCountry }) {
 
   const changeHandler = value => {
     setValue(value)
-    setCountry(value.label)
+    setCountry(value.value)
   }
 
   return <Select options={options} value={value} onChange={changeHandler} />

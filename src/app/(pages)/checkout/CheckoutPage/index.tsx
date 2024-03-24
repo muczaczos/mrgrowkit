@@ -1,17 +1,18 @@
 'use client'
+import countryList from 'react-select-country-list'
 
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { sha1 } from 'js-sha1'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-
+import { fetchDocs } from '../../../_api/fetchDocs'
 import { Order, Settings } from '../../../../payload/payload-types'
 import { Button } from '../../../_components/Button'
 import { LoadingShimmer } from '../../../_components/LoadingShimmer'
 import { priceFromJSON } from '../../../_components/Price'
 import { useAuth } from '../../../_providers/Auth'
-import { useCart } from '../../../_providers/Cart'
+import { CartProvider, useCart } from '../../../_providers/Cart'
 import { useTheme } from '../../../_providers/Theme'
 import cssVariables from '../../../cssVariables'
 import { CheckoutForm } from '../CheckoutForm'
@@ -22,6 +23,8 @@ import ShippingDetails from './ShippingDetails'
 import ShippingMethods from './ShippingMethods'
 import GatewayLogic from './GatewayLogic'
 import classes from './index.module.scss'
+import { calculateShippingCost } from './CalculateShipping'
+import { CartContext } from '../../../_providers/Cart'
 
 export const CheckoutPage: React.FC<{
   settings: Settings
@@ -48,120 +51,10 @@ export const CheckoutPage: React.FC<{
   const [lockerCode, setLockerCode] = React.useState()
   const [showDisplayCode, setShowDisplayCode] = React.useState()
   const [shippingMethods, setShippingMethods] = React.useState()
+  const [shippingCost, setShippingCost] = React.useState()
   const [additionalInfo, setAdditionalInfo] = React.useState()
-  const { cart, cartIsEmpty, cartTotal, totalAmount } = useCart()
+  const { cart, cartIsEmpty, cartTotal, totalAmount, totalWeight } = useCart()
   var subtotal = 0
-
-  const handleSubmit = async () => {
-    //console.log('dupa')
-    if (method === 'gateway') {
-      //console.log('1')
-      let data = JSON.stringify({
-        title: 'test nr 1',
-        amount: {
-          value: 150,
-          currencyCode: 'pln',
-        },
-        description: 'Order no: 1222',
-        additionalData: 'no: 1222',
-        returnUrl: 'https://www.planet-of-mushrooms.com',
-        negativeReturnUrl: 'https://www.shroom.it',
-        languageCode: 'pl',
-        referer: 'UiTeH',
-        sign: 'string',
-      })
-
-      const dataObj = JSON.parse(data)
-
-      var crypto = sha1(
-        dataObj.title +
-          '' +
-          dataObj.amount.value +
-          '' +
-          dataObj.amount.currencyCode +
-          '' +
-          dataObj.description +
-          '' +
-          dataObj.additionalData +
-          '' +
-          dataObj.additionalData +
-          '' +
-          dataObj.returnUrl +
-          '' +
-          dataObj.negativeReturnUrl +
-          '' +
-          dataObj.languageCode +
-          '' +
-          dataObj.referer +
-          '649998925d9c03ce63525b4c84711054',
-      )
-
-      dataObj.sign = crypto
-
-      let config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: 'https://pay.cashbill.pl/testws/rest/payment/planet-of-mushrooms.com',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'Content-Security-Policy': 'connect-src https://pay.cashbill.pl',
-        },
-        data: data,
-      }
-
-      axios(config)
-        .then(response => {
-          //console.log(JSON.stringify(response.data))
-        })
-        .catch(error => {
-          //console.log('dupa')
-        })
-    } else if (method === 'transfer') {
-      // console.log('1')
-      const orderReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          total: totalAmount,
-          stripePaymentIntentID: '',
-          fullname: fullName,
-          streetAddress: address,
-          city: city,
-          postalCode: postalCode,
-          country: country,
-          phoneNumber: phone,
-          email: email,
-          lockerCode: lockerCode,
-          shippingMethod: shippingMethods,
-          additionalInfo: additionalInfo,
-          items: (cart?.items || [])?.map(({ product, quantity }) => ({
-            product: typeof product === 'string' ? product : product.id,
-            quantity,
-            price:
-              typeof product === 'object' ? priceFromJSON(product.priceJSON, 1, true) : undefined,
-          })),
-        }),
-      })
-
-      const {
-        error: errorFromRes,
-        doc,
-      }: {
-        message?: string
-        error?: string
-        doc: Order
-      } = await orderReq.json()
-      router.push(`/order-confirmation?order_id=${doc.id}`)
-      //console.log('end transfer')
-      
-    } else if (method === 'eth') {
-      //console.log('dupa eth')
-    }
-  }
 
   useEffect(() => {
     if (user !== null && cartIsEmpty) {
@@ -199,10 +92,29 @@ export const CheckoutPage: React.FC<{
       makeIntent()
     }
   }, [cart, user])
+  
+   // calculateShippingCost('1212', '1', 'NL')
+    useEffect(() => {
+       // Tutaj możesz wykorzystać totalWeight i cart, np.
+  console.log('test');
+  console.log(totalWeight);
 
+  // Sprawdź, czy postalCode nie jest null, aby uniknąć wywołania funkcji calculateShippingCost z niezainicjalizowaną wartością
+  if (postalCode) {
+    const fetchData = async () => {
+      console.log(country)
+      const cost = await calculateShippingCost(postalCode, totalWeight, country);
+      setShippingCost(cost);
+    };
+
+    fetchData();
+  }
+    }, [postalCode, totalWeight, country]);
+    
   //if (!user || !stripe) return null
-
+ 
   return (
+    
     <Fragment>
       {!cartIsEmpty && (
         <>
@@ -282,6 +194,10 @@ export const CheckoutPage: React.FC<{
               }
               return null
             })}
+            <div className={classes.orderTotal}>
+              <p>Shippingn Cost</p>
+              <p>{shippingCost}</p>
+            </div>
             <div className={classes.orderTotal}>
               <p>Order Total</p>
               <p>{totalAmount}</p>
