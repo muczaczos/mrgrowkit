@@ -15,6 +15,10 @@ import PostsCards from './PostsCards'
 
 import classes from './index.module.scss'
 
+function removeDash(code) {
+  return code.replace('-', '')
+}
+
 function calculateShippingCost(data, postalCode, weight, countryCode) {
   // Iterating through each object in the data array
   for (const zone of data) {
@@ -25,9 +29,12 @@ function calculateShippingCost(data, postalCode, weight, countryCode) {
         if (codeObj.code === postalCode) {
           // Checking if weight is within the range and finding the appropriate price
           for (const range of zone.ranges) {
-            const rangeWeight = parseFloat(range.weigth);
-            if ((weight <= 1 && rangeWeight === 1) || (weight > 1 && weight < 3 && rangeWeight === 3)) {
-              return range.price;
+            const rangeWeight = parseFloat(range.weigth)
+            if (
+              (weight <= 1 && rangeWeight === 1) ||
+              (weight > 1 && weight < 3 && rangeWeight === 3)
+            ) {
+              return range.price
             }
           }
         }
@@ -35,16 +42,33 @@ function calculateShippingCost(data, postalCode, weight, countryCode) {
 
       // Checking if the postalCode falls within any codesRanges
       for (const rangeObj of zone.codesRanges) {
-        const from = parseInt(rangeObj.from);
-        const to = parseInt(rangeObj.to);
-        const code = parseInt(postalCode);
+        const from = parseInt(rangeObj.from)
+        const to = parseInt(rangeObj.to)
+        const code = parseInt(postalCode)
         if (code >= from && code <= to) {
           // Finding the appropriate price for the weight
           for (const range of zone.ranges) {
-            const rangeWeight = parseFloat(range.weigth);
-            if ((weight <= 1 && rangeWeight === 1) || (weight > 1 && weight < 3 && rangeWeight === 3)) {
-              return range.price;
+            const rangeWeight = parseFloat(range.weigth)
+            if (
+              (weight <= 1 && rangeWeight === 1) ||
+              (weight > 1 && weight < 3 && rangeWeight === 3)
+            ) {
+              return range.price
             }
+          }
+        }
+      }
+
+      // If codes is not in 'special zones'
+      if (zone.codes.length == 0 && zone.codesRanges.length == 0) {
+        // Checking if weight is within the range and finding the appropriate price
+        for (const range of zone.ranges) {
+          const rangeWeight = parseFloat(range.weigth)
+          if (
+            (weight <= 1 && rangeWeight === 1) ||
+            (weight > 1 && weight < 3 && rangeWeight === 3)
+          ) {
+            return range.price
           }
         }
       }
@@ -52,7 +76,7 @@ function calculateShippingCost(data, postalCode, weight, countryCode) {
   }
 
   // If no matching zone found, return null
-  return null;
+  return null
 }
 
 const Posts = async () => {
@@ -84,15 +108,14 @@ const Posts = async () => {
     }
     console.log(zones[0].ranges)
 
+    const postalCode = '1212'
+    const weight = 0.1
+    const countryCode = 'IT'
 
-    const postalCode = '8';
-    const weight = 0.1;
-    const countryCode = 'IT';
-    
-    const shippingCost = calculateShippingCost(zones, postalCode, weight, countryCode);
-    console.log('Shipping cost:', shippingCost);
+    const shippingCost = calculateShippingCost(zones, removeDash(postalCode), weight, countryCode)
+    console.log('Shipping cost:', shippingCost)
 
-
+    console.log(zones[0])
 
     for (let i = 0; i < posts.length; i++) {
       pages[i] = await fetchDoc<Page>({

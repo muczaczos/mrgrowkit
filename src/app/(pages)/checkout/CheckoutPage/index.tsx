@@ -2,7 +2,6 @@
 
 import React, { Fragment, useEffect } from 'react'
 import axios from 'axios'
-import fs from 'fs'
 import { sha1 } from 'js-sha1'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -21,7 +20,7 @@ import AdditionalInfo from './AdditionalInfo'
 import PaymentMethods from './PaymentMethods'
 import ShippingDetails from './ShippingDetails'
 import ShippingMethods from './ShippingMethods'
-
+import GatewayLogic from './GatewayLogic'
 import classes from './index.module.scss'
 
 export const CheckoutPage: React.FC<{
@@ -158,6 +157,7 @@ export const CheckoutPage: React.FC<{
       } = await orderReq.json()
       router.push(`/order-confirmation?order_id=${doc.id}`)
       //console.log('end transfer')
+      
     } else if (method === 'eth') {
       //console.log('dupa eth')
     }
@@ -291,7 +291,21 @@ export const CheckoutPage: React.FC<{
       )}
       <div className={classes.buttons}>
         <Button label="Back to cart" href="/cart" appearance="secondary" />
-        <Button onClick={handleSubmit} label="Place the Order" appearance="primary" />
+        <GatewayLogic 
+          method={method} 
+          totalAmount={totalAmount}
+          fullName={fullName}
+          address={address}
+          city={city}
+          postalCode={postalCode}
+          country={country}
+          phone={phone}
+          email={email}
+          lockerCode={lockerCode}
+          shippingMethods={shippingMethods}
+          additionalInfo={additionalInfo}
+          cart 
+        />
       </div>
     </Fragment>
   )
