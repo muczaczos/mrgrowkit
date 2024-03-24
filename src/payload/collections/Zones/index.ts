@@ -3,7 +3,6 @@ import type { CollectionConfig } from 'payload/types'
 
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
-import { slugField } from '../../fields/slug'
 
 export const Zones: CollectionConfig = {
   slug: 'zones',
@@ -103,7 +102,7 @@ export const Zones: CollectionConfig = {
           required: true,
         },
       ],
-    }
+    },
   ],
 }
 
