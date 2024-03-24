@@ -63,7 +63,6 @@ type Zone {
   ranges: [Zone_Ranges!]
   codes: [Zone_Codes!]
   codesRanges: [Zone_CodesRanges!]
-  slug: String
   updatedAt: DateTime
   createdAt: DateTime
   _status: Zone__status
@@ -384,7 +383,6 @@ input Zone_where {
   codesRanges__from: Zone_codesRanges__from_operator
   codesRanges__to: Zone_codesRanges__to_operator
   codesRanges__id: Zone_codesRanges__id_operator
-  slug: Zone_slug_operator
   updatedAt: Zone_updatedAt_operator
   createdAt: Zone_createdAt_operator
   _status: Zone__status_operator
@@ -747,17 +745,6 @@ input Zone_codesRanges__id_operator {
   exists: Boolean
 }
 
-input Zone_slug_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
 input Zone_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -816,7 +803,6 @@ input Zone_where_and {
   codesRanges__from: Zone_codesRanges__from_operator
   codesRanges__to: Zone_codesRanges__to_operator
   codesRanges__id: Zone_codesRanges__id_operator
-  slug: Zone_slug_operator
   updatedAt: Zone_updatedAt_operator
   createdAt: Zone_createdAt_operator
   _status: Zone__status_operator
@@ -836,7 +822,6 @@ input Zone_where_or {
   codesRanges__from: Zone_codesRanges__from_operator
   codesRanges__to: Zone_codesRanges__to_operator
   codesRanges__id: Zone_codesRanges__id_operator
-  slug: Zone_slug_operator
   updatedAt: Zone_updatedAt_operator
   createdAt: Zone_createdAt_operator
   _status: Zone__status_operator
@@ -860,7 +845,6 @@ type ZonesDocAccessFields {
   ranges: ZonesDocAccessFields_ranges
   codes: ZonesDocAccessFields_codes
   codesRanges: ZonesDocAccessFields_codesRanges
-  slug: ZonesDocAccessFields_slug
   updatedAt: ZonesDocAccessFields_updatedAt
   createdAt: ZonesDocAccessFields_createdAt
   _status: ZonesDocAccessFields__status
@@ -1185,29 +1169,6 @@ type ZonesDocAccessFields_codesRanges_id_Delete {
   permission: Boolean!
 }
 
-type ZonesDocAccessFields_slug {
-  create: ZonesDocAccessFields_slug_Create
-  read: ZonesDocAccessFields_slug_Read
-  update: ZonesDocAccessFields_slug_Update
-  delete: ZonesDocAccessFields_slug_Delete
-}
-
-type ZonesDocAccessFields_slug_Create {
-  permission: Boolean!
-}
-
-type ZonesDocAccessFields_slug_Read {
-  permission: Boolean!
-}
-
-type ZonesDocAccessFields_slug_Update {
-  permission: Boolean!
-}
-
-type ZonesDocAccessFields_slug_Delete {
-  permission: Boolean!
-}
-
 type ZonesDocAccessFields_updatedAt {
   create: ZonesDocAccessFields_updatedAt_Create
   read: ZonesDocAccessFields_updatedAt_Read
@@ -1322,7 +1283,6 @@ type ZoneVersion_Version {
   ranges: [ZoneVersion_Version_Ranges!]
   codes: [ZoneVersion_Version_Codes!]
   codesRanges: [ZoneVersion_Version_CodesRanges!]
-  slug: String
   updatedAt: DateTime
   createdAt: DateTime
   _status: ZoneVersion_Version__status
@@ -1628,7 +1588,6 @@ input versionsZone_where {
   version__codesRanges__from: versionsZone_version__codesRanges__from_operator
   version__codesRanges__to: versionsZone_version__codesRanges__to_operator
   version__codesRanges__id: versionsZone_version__codesRanges__id_operator
-  version__slug: versionsZone_version__slug_operator
   version__updatedAt: versionsZone_version__updatedAt_operator
   version__createdAt: versionsZone_version__createdAt_operator
   version___status: versionsZone_version___status_operator
@@ -2008,17 +1967,6 @@ input versionsZone_version__codesRanges__id_operator {
   exists: Boolean
 }
 
-input versionsZone_version__slug_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
 input versionsZone_version__updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -2106,7 +2054,6 @@ input versionsZone_where_and {
   version__codesRanges__from: versionsZone_version__codesRanges__from_operator
   version__codesRanges__to: versionsZone_version__codesRanges__to_operator
   version__codesRanges__id: versionsZone_version__codesRanges__id_operator
-  version__slug: versionsZone_version__slug_operator
   version__updatedAt: versionsZone_version__updatedAt_operator
   version__createdAt: versionsZone_version__createdAt_operator
   version___status: versionsZone_version___status_operator
@@ -2130,7 +2077,6 @@ input versionsZone_where_or {
   version__codesRanges__from: versionsZone_version__codesRanges__from_operator
   version__codesRanges__to: versionsZone_version__codesRanges__to_operator
   version__codesRanges__id: versionsZone_version__codesRanges__id_operator
-  version__slug: versionsZone_version__slug_operator
   version__updatedAt: versionsZone_version__updatedAt_operator
   version__createdAt: versionsZone_version__createdAt_operator
   version___status: versionsZone_version___status_operator
@@ -14734,7 +14680,6 @@ type ZonesFields {
   ranges: ZonesFields_ranges
   codes: ZonesFields_codes
   codesRanges: ZonesFields_codesRanges
-  slug: ZonesFields_slug
   updatedAt: ZonesFields_updatedAt
   createdAt: ZonesFields_createdAt
   _status: ZonesFields__status
@@ -15056,29 +15001,6 @@ type ZonesFields_codesRanges_id_Update {
 }
 
 type ZonesFields_codesRanges_id_Delete {
-  permission: Boolean!
-}
-
-type ZonesFields_slug {
-  create: ZonesFields_slug_Create
-  read: ZonesFields_slug_Read
-  update: ZonesFields_slug_Update
-  delete: ZonesFields_slug_Delete
-}
-
-type ZonesFields_slug_Create {
-  permission: Boolean!
-}
-
-type ZonesFields_slug_Read {
-  permission: Boolean!
-}
-
-type ZonesFields_slug_Update {
-  permission: Boolean!
-}
-
-type ZonesFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -20136,7 +20058,6 @@ input mutationZoneInput {
   ranges: [mutationZone_RangesInput]
   codes: [mutationZone_CodesInput]
   codesRanges: [mutationZone_CodesRangesInput]
-  slug: String
   updatedAt: String
   createdAt: String
   _status: Zone__status_MutationInput
@@ -20422,7 +20343,6 @@ input mutationZoneUpdateInput {
   ranges: [mutationZoneUpdate_RangesInput]
   codes: [mutationZoneUpdate_CodesInput]
   codesRanges: [mutationZoneUpdate_CodesRangesInput]
-  slug: String
   updatedAt: String
   createdAt: String
   _status: ZoneUpdate__status_MutationInput

@@ -320,7 +320,6 @@ export interface Zone {
         id?: string | null;
       }[]
     | null;
-  slug?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

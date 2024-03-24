@@ -103,8 +103,7 @@ export const Zones: CollectionConfig = {
           required: true,
         },
       ],
-    },
-    slugField(),
+    }
   ],
 }
 
