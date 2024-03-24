@@ -17,19 +17,17 @@ export const ZONES = `
         }
         updatedAt
         createdAt
-        slug
       }
     }
   }
 `
 
 export const ZONE = `
-    query Zone($slug: String, $draft: Boolean) {
-        Zones(where: { slug: { equals: $slug }}, limit: 1, draft: $draft) {
+    query Zone($draft: Boolean) {
+        Zones(where: { limit: 1, draft: $draft) {
             docs {
                 id
                 title
-                slug
                 updatedAt
                 createdAt
                 weight
