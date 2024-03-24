@@ -254,17 +254,17 @@ export const CartProvider = props => {
         )
       }, 0) || 0
 
-      const weight =
+    const weight =
       cart?.items?.reduce((acc, item) => {
         return (
-          acc + 
+          acc +
           (typeof item.product === 'object'
-          ? Number(item?.product?.weight) *
-          (typeof item?.quantity === 'number' ? item?.quantity : 0)
+            ? Number(item?.product?.weight) *
+              (typeof item?.quantity === 'number' ? item?.quantity : 0)
             : 0)
         )
       }, 0) || 0
-      
+
     setTotalAm(newTotal2)
     setTotalW(weight)
     setTotal({

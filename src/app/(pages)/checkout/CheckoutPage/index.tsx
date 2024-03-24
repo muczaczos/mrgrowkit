@@ -1,30 +1,30 @@
 'use client'
-import countryList from 'react-select-country-list'
-
 import React, { Fragment, useContext, useEffect } from 'react'
+import countryList from 'react-select-country-list'
 import axios from 'axios'
 import { sha1 } from 'js-sha1'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { fetchDocs } from '../../../_api/fetchDocs'
+
 import { Order, Settings } from '../../../../payload/payload-types'
+import { fetchDocs } from '../../../_api/fetchDocs'
 import { Button } from '../../../_components/Button'
 import { LoadingShimmer } from '../../../_components/LoadingShimmer'
 import { priceFromJSON } from '../../../_components/Price'
 import { useAuth } from '../../../_providers/Auth'
-import { CartProvider, useCart } from '../../../_providers/Cart'
+import { CartContext, CartProvider, useCart } from '../../../_providers/Cart'
 import { useTheme } from '../../../_providers/Theme'
 import cssVariables from '../../../cssVariables'
 import { CheckoutForm } from '../CheckoutForm'
 import { CheckoutItem } from '../CheckoutItem'
 import AdditionalInfo from './AdditionalInfo'
+import { calculateShippingCost } from './CalculateShipping'
+import GatewayLogic from './GatewayLogic'
 import PaymentMethods from './PaymentMethods'
 import ShippingDetails from './ShippingDetails'
 import ShippingMethods from './ShippingMethods'
-import GatewayLogic from './GatewayLogic'
+
 import classes from './index.module.scss'
-import { calculateShippingCost } from './CalculateShipping'
-import { CartContext } from '../../../_providers/Cart'
 
 export const CheckoutPage: React.FC<{
   settings: Settings
@@ -92,29 +92,28 @@ export const CheckoutPage: React.FC<{
       makeIntent()
     }
   }, [cart, user])
-  
-   // calculateShippingCost('1212', '1', 'NL')
-    useEffect(() => {
-       // Tutaj możesz wykorzystać totalWeight i cart, np.
-  console.log('test');
-  console.log(totalWeight);
 
-  // Sprawdź, czy postalCode nie jest null, aby uniknąć wywołania funkcji calculateShippingCost z niezainicjalizowaną wartością
-  if (postalCode) {
-    const fetchData = async () => {
-      console.log(country)
-      const cost = await calculateShippingCost(postalCode, totalWeight, country);
-      setShippingCost(cost);
-    };
+  // calculateShippingCost('1212', '1', 'NL')
+  useEffect(() => {
+    // Tutaj możesz wykorzystać totalWeight i cart, np.
+    //console.log('test')
+    // console.log(totalWeight)
 
-    fetchData();
-  }
-    }, [postalCode, totalWeight, country]);
-    
+    // Sprawdź, czy postalCode nie jest null, aby uniknąć wywołania funkcji calculateShippingCost z niezainicjalizowaną wartością
+    if (postalCode) {
+      const fetchData = async () => {
+        //console.log(country)
+        const cost = await calculateShippingCost(postalCode, totalWeight, country)
+        setShippingCost(cost)
+      }
+
+      fetchData()
+    }
+  }, [postalCode, totalWeight, country])
+
   //if (!user || !stripe) return null
- 
+
   return (
-    
     <Fragment>
       {!cartIsEmpty && (
         <>
@@ -207,8 +206,8 @@ export const CheckoutPage: React.FC<{
       )}
       <div className={classes.buttons}>
         <Button label="Back to cart" href="/cart" appearance="secondary" />
-        <GatewayLogic 
-          method={method} 
+        <GatewayLogic
+          method={method}
           totalAmount={totalAmount}
           fullName={fullName}
           address={address}
@@ -220,7 +219,7 @@ export const CheckoutPage: React.FC<{
           lockerCode={lockerCode}
           shippingMethods={shippingMethods}
           additionalInfo={additionalInfo}
-          cart 
+          cart
         />
       </div>
     </Fragment>

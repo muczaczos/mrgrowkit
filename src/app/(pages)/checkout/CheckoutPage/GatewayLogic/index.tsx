@@ -1,29 +1,30 @@
 import React, { Fragment, useEffect } from 'react'
-import { sha1 } from "js-sha1"
 import axios from 'axios'
-import { priceFromJSON } from "../../../../_components/Price"
-import { Order } from "../../../../../payload/payload-types"
+import { sha1 } from 'js-sha1'
 import { useRouter } from 'next/navigation'
+
+import { Order } from '../../../../../payload/payload-types'
 import { Button } from '../../../../_components/Button'
+import { priceFromJSON } from '../../../../_components/Price'
 
 const GatewayLogic = ({
-    method,
-    totalAmount,
-    fullName,
-    address,
-    city,
-    postalCode,
-    country,
-    phone,
-    email,
-    lockerCode,
-    shippingMethods,
-    additionalInfo,
-    cart,
-  }) => {
+  method,
+  totalAmount,
+  fullName,
+  address,
+  city,
+  postalCode,
+  country,
+  phone,
+  email,
+  lockerCode,
+  shippingMethods,
+  additionalInfo,
+  cart,
+}) => {
+  const router = useRouter()
 
-const handleSubmit = async () => {
-        const router = useRouter()
+  const handleSubmit = async () => {
     //console.log('dupa')
     if (method === 'gateway') {
       //console.log('1')
@@ -133,13 +134,11 @@ const handleSubmit = async () => {
     }
   }
 
-
   return (
     <Button label="Place the Order" appearance="primary" onClick={handleSubmit}>
       Place the Order
     </Button>
-  );
+  )
+}
 
-};
-
-  export default GatewayLogic
+export default GatewayLogic
