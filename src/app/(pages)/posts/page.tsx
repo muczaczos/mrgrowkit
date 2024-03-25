@@ -9,7 +9,6 @@ import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
 import Categories from '../../_components/Categories'
 import { Gutter } from '../../_components/Gutter'
-import { Hero } from '../../_components/Hero'
 import { HR } from '../../_components/HR'
 import PostsCards from './PostsCards'
 
@@ -42,9 +41,7 @@ const Posts = async () => {
         draft: isDraftMode,
       })
     }
-  } catch (error) {}
-
-  const { hero, layout } = page
+  } catch (error) { }
 
   return (
     <Gutter>
