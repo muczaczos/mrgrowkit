@@ -2,7 +2,6 @@
 
 import React, { Fragment, useEffect } from 'react'
 import axios from 'axios'
-import fs from 'fs'
 import { sha1 } from 'js-sha1'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -18,6 +17,7 @@ import cssVariables from '../../../cssVariables'
 import { CheckoutForm } from '../CheckoutForm'
 import { CheckoutItem } from '../CheckoutItem'
 import AdditionalInfo from './AdditionalInfo'
+import GatewayLogic from './GatewayLogic'
 import PaymentMethods from './PaymentMethods'
 import ShippingDetails from './ShippingDetails'
 import ShippingMethods from './ShippingMethods'
@@ -291,7 +291,21 @@ export const CheckoutPage: React.FC<{
       )}
       <div className={classes.buttons}>
         <Button label="Back to cart" href="/cart" appearance="secondary" />
-        <Button onClick={handleSubmit} label="Place the Order" appearance="primary" />
+        <GatewayLogic
+          method={method}
+          totalAmount={totalAmount}
+          fullName={fullName}
+          address={address}
+          city={city}
+          postalCode={postalCode}
+          country={country}
+          phone={phone}
+          email={email}
+          lockerCode={lockerCode}
+          shippingMethods={shippingMethods}
+          additionalInfo={additionalInfo}
+          cart
+        />
       </div>
     </Fragment>
   )

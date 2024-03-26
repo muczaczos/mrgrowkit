@@ -89,12 +89,12 @@ const Posts = async () => {
     }
     //console.log(zones[0].ranges)
     //console.log('dupa3')
-    const postalCode = '8'
-    const weight = 0.1
+    const postalCode = '1212'
+    const weight = 1.6
     const countryCode = 'IT'
 
     const shippingCost = calculateShippingCost(zones, postalCode, weight, countryCode)
-    //console.log('Shipping cost:', shippingCost)
+    //  console.log('Shipping cost:', shippingCost)
 
     for (let i = 0; i < posts.length; i++) {
       pages[i] = await fetchDoc<Page>({
