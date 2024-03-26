@@ -3,7 +3,7 @@ import { draftMode } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Category, Page, Post } from '../../../payload/payload-types'
+import { Category, Page, Post, Zone } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
@@ -13,6 +13,52 @@ import { HR } from '../../_components/HR'
 import PostsCards from './PostsCards'
 
 import classes from './index.module.scss'
+
+function calculateShippingCost(data, postalCode, weight, countryCode) {
+  // Iterating through each object in the data array
+  for (const zone of data) {
+    // Checking if the countryCode is in the selectedCountries array
+    if (zone.selectedCountries.includes(countryCode)) {
+      // Checking if the postalCode matches any code in the codes array
+      for (const codeObj of zone.codes) {
+        if (codeObj.code === postalCode) {
+          // Checking if weight is within the range and finding the appropriate price
+          for (const range of zone.ranges) {
+            const rangeWeight = parseFloat(range.weigth)
+            if (
+              (weight <= 1 && rangeWeight === 1) ||
+              (weight > 1 && weight < 3 && rangeWeight === 3)
+            ) {
+              return range.price
+            }
+          }
+        }
+      }
+
+      // Checking if the postalCode falls within any codesRanges
+      for (const rangeObj of zone.codesRanges) {
+        const from = parseInt(rangeObj.from)
+        const to = parseInt(rangeObj.to)
+        const code = parseInt(postalCode)
+        if (code >= from && code <= to) {
+          // Finding the appropriate price for the weight
+          for (const range of zone.ranges) {
+            const rangeWeight = parseFloat(range.weigth)
+            if (
+              (weight <= 1 && rangeWeight === 1) ||
+              (weight > 1 && weight < 3 && rangeWeight === 3)
+            ) {
+              return range.price
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // If no matching zone found, return null
+  return null
+}
 
 const Posts = async () => {
   const { isEnabled: isDraftMode } = draftMode()
