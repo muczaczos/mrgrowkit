@@ -27,6 +27,7 @@ export type CartContext = {
   }
   totalAmount: number | 0 //that is total which I use for other type of payment gateway than 'stripe'
   hasInitializedCart: boolean
+  totalWeight: number | 0 //total weight is for calculating shipping cost
 }
 
 const Context = createContext({} as CartContext)
@@ -60,6 +61,7 @@ export const CartProvider = props => {
   })
 
   const [totalAm, setTotalAm] = useState(0)
+  const [totalW, setTotalW] = useState(0)
 
   const hasInitialized = useRef(false)
   const [hasInitializedCart, setHasInitialized] = useState(false)
@@ -252,8 +254,19 @@ export const CartProvider = props => {
         )
       }, 0) || 0
 
-    setTotalAm(newTotal2)
+    const weight =
+      cart?.items?.reduce((acc, item) => {
+        return (
+          acc +
+          (typeof item.product === 'object'
+            ? Number(item?.product?.weight) *
+              (typeof item?.quantity === 'number' ? item?.quantity : 0)
+            : 0)
+        )
+      }, 0) || 0
 
+    setTotalAm(newTotal2)
+    setTotalW(weight)
     setTotal({
       formatted: (newTotal / 100).toLocaleString('en-US', {
         style: 'currency',
@@ -275,6 +288,7 @@ export const CartProvider = props => {
         cartTotal: total,
         totalAmount: totalAm,
         hasInitializedCart,
+        totalWeight: totalW,
       }}
     >
       {children && children}
