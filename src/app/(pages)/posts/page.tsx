@@ -9,10 +9,15 @@ import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
 import Categories from '../../_components/Categories'
 import { Gutter } from '../../_components/Gutter'
+import { Hero } from '../../_components/Hero'
 import { HR } from '../../_components/HR'
 import PostsCards from './PostsCards'
 
 import classes from './index.module.scss'
+
+function removeDash(code) {
+  return code.replace('-', '')
+}
 
 function calculateShippingCost(data, postalCode, weight, countryCode) {
   // Iterating through each object in the data array
@@ -53,6 +58,20 @@ function calculateShippingCost(data, postalCode, weight, countryCode) {
           }
         }
       }
+
+      // If codes is not in 'special zones'
+      if (zone.codes.length == 0 && zone.codesRanges.length == 0) {
+        // Checking if weight is within the range and finding the appropriate price
+        for (const range of zone.ranges) {
+          const rangeWeight = parseFloat(range.weigth)
+          if (
+            (weight <= 1 && rangeWeight === 1) ||
+            (weight > 1 && weight < 3 && rangeWeight === 3)
+          ) {
+            return range.price
+          }
+        }
+      }
     }
   }
 
@@ -63,11 +82,11 @@ function calculateShippingCost(data, postalCode, weight, countryCode) {
 const Posts = async () => {
   const { isEnabled: isDraftMode } = draftMode()
   let page: Page | null = null //Page for layout
-  let posts: Post[] | null = null
-  let pages = []
   let pageZones: Page | null = null //Page for layout
+  let posts: Post[] | null = null
   let zones: Zone[] | null = null
 
+  let pages = []
   try {
     //fetch page and categories
     //1 fetch page with slug 'posts'
@@ -82,19 +101,21 @@ const Posts = async () => {
       */
     })
     posts = await fetchDocs<Post>('posts')
-
+    //   console.log('dupa')
     zones = await fetchDocs<Zone>('zones')
     if (Object.keys(zones[0].codesRanges).length === 0) {
-      // console.log(zones)
+      //console.log(zones)
     }
     //console.log(zones[0].ranges)
-    //console.log('dupa3')
+
     const postalCode = '1212'
-    const weight = 1.6
+    const weight = 1
     const countryCode = 'IT'
 
-    const shippingCost = calculateShippingCost(zones, postalCode, weight, countryCode)
-    //  console.log('Shipping cost:', shippingCost)
+    const shippingCost = calculateShippingCost(zones, removeDash(postalCode), weight, countryCode)
+    //console.log('Shipping cost:', shippingCost)
+
+    //console.log(zones[0])
 
     for (let i = 0; i < posts.length; i++) {
       pages[i] = await fetchDoc<Page>({
@@ -104,6 +125,8 @@ const Posts = async () => {
       })
     }
   } catch (error) {}
+
+  const { hero, layout } = page
 
   return (
     <Gutter>
