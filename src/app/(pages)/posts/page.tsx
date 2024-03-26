@@ -87,7 +87,7 @@ const Posts = async () => {
         draft: isDraftMode,
       })
     }
-  } catch (error) { }
+  } catch (error) {}
 
   return (
     <Gutter>
