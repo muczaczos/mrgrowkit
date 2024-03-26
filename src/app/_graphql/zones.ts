@@ -6,7 +6,7 @@ export const ZONES = `
         title
         selectedCountries
         ranges {
-            weight
+            weigth
             price
         }
         codes {

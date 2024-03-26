@@ -65,6 +65,9 @@ const Posts = async () => {
   let page: Page | null = null //Page for layout
   let posts: Post[] | null = null
   let pages = []
+  let pageZones: Page | null = null //Page for layout
+  let zones: Zone[] | null = null
+
   try {
     //fetch page and categories
     //1 fetch page with slug 'posts'
@@ -79,6 +82,19 @@ const Posts = async () => {
       */
     })
     posts = await fetchDocs<Post>('posts')
+
+    zones = await fetchDocs<Zone>('zones')
+    if (Object.keys(zones[0].codesRanges).length === 0) {
+      // console.log(zones)
+    }
+    //console.log(zones[0].ranges)
+    //console.log('dupa3')
+    const postalCode = '8'
+    const weight = 0.1
+    const countryCode = 'IT'
+
+    const shippingCost = calculateShippingCost(zones, postalCode, weight, countryCode)
+    //console.log('Shipping cost:', shippingCost)
 
     for (let i = 0; i < posts.length; i++) {
       pages[i] = await fetchDoc<Page>({
