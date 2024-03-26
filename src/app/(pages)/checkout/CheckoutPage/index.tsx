@@ -112,7 +112,6 @@ export const CheckoutPage: React.FC<{
   }, [postalCode, totalWeight, country])
 
   //if (!user || !stripe) return null
-
   return (
     <Fragment>
       {!cartIsEmpty && (
