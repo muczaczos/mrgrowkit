@@ -51,10 +51,11 @@ export const CheckoutPage: React.FC<{
   const [lockerCode, setLockerCode] = React.useState()
   const [showDisplayCode, setShowDisplayCode] = React.useState()
   const [shippingMethods, setShippingMethods] = React.useState()
-  const [shippingCost, setShippingCost] = React.useState()
+  const [shippingCost, setShippingCost] = React.useState(0)
   const [additionalInfo, setAdditionalInfo] = React.useState()
   const { cart, cartIsEmpty, cartTotal, totalAmount, totalWeight } = useCart()
   var subtotal = 0
+  let total: number | undefined
 
   useEffect(() => {
     if (user !== null && cartIsEmpty) {
@@ -106,10 +107,11 @@ export const CheckoutPage: React.FC<{
         const cost = await calculateShippingCost(postalCode, totalWeight, country)
         setShippingCost(cost)
       }
-
       fetchData()
     }
-  }, [postalCode, totalWeight, country])
+  }, [postalCode, totalWeight, country, totalAmount])
+
+  total = Number(totalAmount) + Number(shippingCost)
 
   //if (!user || !stripe) return null
   return (
@@ -198,7 +200,7 @@ export const CheckoutPage: React.FC<{
             </div>
             <div className={classes.orderTotal}>
               <p>Order Total</p>
-              <p>{totalAmount}</p>
+              <p>{total}</p>
             </div>
           </ul>
         </div>

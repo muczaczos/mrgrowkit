@@ -47,25 +47,25 @@ const GatewayLogic = ({
 
       var crypto = sha1(
         dataObj.title +
-        '' +
-        dataObj.amount.value +
-        '' +
-        dataObj.amount.currencyCode +
-        '' +
-        dataObj.description +
-        '' +
-        dataObj.additionalData +
-        '' +
-        dataObj.additionalData +
-        '' +
-        dataObj.returnUrl +
-        '' +
-        dataObj.negativeReturnUrl +
-        '' +
-        dataObj.languageCode +
-        '' +
-        dataObj.referer +
-        '649998925d9c03ce63525b4c84711054',
+          '' +
+          dataObj.amount.value +
+          '' +
+          dataObj.amount.currencyCode +
+          '' +
+          dataObj.description +
+          '' +
+          dataObj.additionalData +
+          '' +
+          dataObj.additionalData +
+          '' +
+          dataObj.returnUrl +
+          '' +
+          dataObj.negativeReturnUrl +
+          '' +
+          dataObj.languageCode +
+          '' +
+          dataObj.referer +
+          '649998925d9c03ce63525b4c84711054',
       )
 
       dataObj.sign = crypto

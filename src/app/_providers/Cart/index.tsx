@@ -28,7 +28,6 @@ export type CartContext = {
   totalAmount: number | 0 //that is total which I use for other type of payment gateway than 'stripe'
   hasInitializedCart: boolean
   totalWeight: number | 0 //total weight is for calculating shipping cost
-  setTotalAm: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Context = createContext({} as CartContext)
@@ -239,7 +238,7 @@ export const CartProvider = props => {
           acc +
           (typeof item.product === 'object'
             ? JSON.parse(item?.product?.priceJSON || '{}')?.data?.[0]?.unit_amount *
-            (typeof item?.quantity === 'number' ? item?.quantity : 0)
+              (typeof item?.quantity === 'number' ? item?.quantity : 0)
             : 0)
         )
       }, 0) || 0
@@ -250,7 +249,7 @@ export const CartProvider = props => {
           acc +
           (typeof item.product === 'object'
             ? Number(item?.product?.price) *
-            (typeof item?.quantity === 'number' ? item?.quantity : 0)
+              (typeof item?.quantity === 'number' ? item?.quantity : 0)
             : 0)
         )
       }, 0) || 0
@@ -261,7 +260,7 @@ export const CartProvider = props => {
           acc +
           (typeof item.product === 'object'
             ? Number(item?.product?.weight) *
-            (typeof item?.quantity === 'number' ? item?.quantity : 0)
+              (typeof item?.quantity === 'number' ? item?.quantity : 0)
             : 0)
         )
       }, 0) || 0
@@ -288,7 +287,6 @@ export const CartProvider = props => {
         isProductInCart,
         cartTotal: total,
         totalAmount: totalAm,
-        setTotalAm,
         hasInitializedCart,
         totalWeight: totalW,
       }}
