@@ -113,7 +113,7 @@ const CreateAccountForm: React.FC = () => {
         label="Confirm Password"
         required
         register={register}
-        validate={value => value === passwordValue || 'The passwords do not match'}
+        validate={value => value === passwordValue || `The passwords do not match`}
         error={errors.passwordConfirm}
       />
       <Button

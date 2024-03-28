@@ -26,6 +26,7 @@ const policies = {
     'https://checkout.stripe.com',
     'https://api.stripe.com',
     'https://maps.googleapis.com',
+    'https://pay.cashbill.pl/testws/rest/payment/planet-of-mushrooms.com',
   ],
   
 }

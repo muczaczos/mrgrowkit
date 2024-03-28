@@ -73,7 +73,7 @@ const GatewayLogic = ({
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://pay.cashbill.pl/testws/rest/payment/planet-of-mushrooms.com',
+        url: 'https://pay.cashbill.pl/testws/rest/payment/',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
