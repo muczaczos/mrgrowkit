@@ -45,11 +45,11 @@ export const Input: React.FC<Props> = ({
           validate,
           ...(type === 'email'
             ? {
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: 'Please enter a valid email',
-                },
-              }
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: 'Please enter a valid email',
+              },
+            }
             : {}),
         })}
         disabled={disabled}

@@ -26,6 +26,7 @@ const CreateAccountForm: React.FC = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [passwordValue, setPasswordValue] = useState('')
 
   const {
     register,
@@ -104,6 +105,7 @@ const CreateAccountForm: React.FC = () => {
         required
         register={register}
         error={errors.password}
+        onChange={e => setPasswordValue(e.target.value)}
       />
       <Input
         name="passwordConfirm"
@@ -111,7 +113,7 @@ const CreateAccountForm: React.FC = () => {
         label="Confirm Password"
         required
         register={register}
-        validate={value => value === password.current || 'The passwords do not match'}
+        validate={value => value === passwordValue || 'The passwords do not match'}
         error={errors.passwordConfirm}
       />
       <Button
