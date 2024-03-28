@@ -16,6 +16,7 @@ type FormData = {
   name: string
   password: string
   passwordConfirm: string
+  streetAddress: string
 }
 
 const AccountForm: React.FC = () => {
@@ -59,6 +60,7 @@ const AccountForm: React.FC = () => {
           reset({
             email: json.doc.email,
             name: json.doc.name,
+            streetAddress: json.doc.streetAddress,
             password: '',
             passwordConfirm: '',
           })
@@ -84,6 +86,7 @@ const AccountForm: React.FC = () => {
       reset({
         email: user.email,
         name: user.name,
+        streetAddress: user.streetAddress,
         password: '',
         passwordConfirm: '',
       })
@@ -115,6 +118,12 @@ const AccountForm: React.FC = () => {
             type="email"
           />
           <Input name="name" label="Name" register={register} error={errors.name} />
+          <Input
+            name="streetAddress"
+            label="Street Address"
+            register={register}
+            error={errors.name}
+          />
         </Fragment>
       ) : (
         <Fragment>

@@ -639,6 +639,11 @@ export interface Media {
 export interface User {
   id: string;
   name?: string | null;
+  streetAddress?: string | null;
+  city?: string | null;
+  postalCode?: string | null;
+  country?: string | null;
+  phoneNumber?: string | null;
   roles?: ('admin' | 'customer')[] | null;
   purchases?: (string | Product)[] | null;
   stripeCustomerID?: string | null;
