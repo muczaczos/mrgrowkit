@@ -25,7 +25,7 @@ const Users: CollectionConfig = {
     admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   hooks: {
-    beforeChange: [createStripeCustomer],
+    beforeChange: [],
     afterChange: [loginAfterCreate],
   },
   auth: true,
