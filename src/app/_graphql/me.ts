@@ -7,6 +7,10 @@ export const ME_QUERY = `query {
       email
       name
       streetAddress
+      city
+      postalCode
+      country
+      phoneNumber
       ${CART}
       roles
     }

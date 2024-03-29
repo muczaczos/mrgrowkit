@@ -17,6 +17,10 @@ type FormData = {
   password: string
   passwordConfirm: string
   streetAddress: string
+  city: string
+  postalCode: string
+  country: string
+  phoneNumber: string
 }
 
 const AccountForm: React.FC = () => {
@@ -63,6 +67,10 @@ const AccountForm: React.FC = () => {
             streetAddress: json.doc.streetAddress,
             password: '',
             passwordConfirm: '',
+            city: json.doc.city,
+            postalCode: json.doc.postalCode,
+            country: json.doc.country,
+            phoneNumber: json.doc.phoneNumber,
           })
         } else {
           setError('There was a problem updating your account.')
@@ -89,6 +97,10 @@ const AccountForm: React.FC = () => {
         streetAddress: user.streetAddress,
         password: '',
         passwordConfirm: '',
+        city: user.city,
+        postalCode: user.postalCode,
+        country: user.country,
+        phoneNumber: user.phoneNumber,
       })
     }
   }, [user, router, reset, changePassword])
@@ -124,6 +136,10 @@ const AccountForm: React.FC = () => {
             register={register}
             error={errors.name}
           />
+          <Input name="city" label="City" register={register} error={errors.name} />
+          <Input name="postalCode" label="Postal Code" register={register} error={errors.name} />
+          <Input name="country" label="Country" register={register} error={errors.name} />
+          <Input name="phoneNumber" label="Phone Number" register={register} error={errors.name} />
         </Fragment>
       ) : (
         <Fragment>
