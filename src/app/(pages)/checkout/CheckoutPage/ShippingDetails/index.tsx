@@ -1,15 +1,8 @@
-'use client'
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import Select from 'react-select'
 import countryList from 'react-select-country-list'
-import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
 
-import { Button } from '../../../../_components/Button'
 import { Input } from '../../../../_components/Input'
-import { Message } from '../../../../_components/Message'
-import { useAuth } from '../../../../_providers/Auth'
 import CountrySelector from './CountrySelector'
 
 import classes from './index.module.scss'
@@ -27,6 +20,13 @@ const ShippingDetails = ({
   setCountry,
   setPhone,
   setEmail,
+  defaultFullName = '',
+  defaultAddress = '',
+  defaultCity = '',
+  defaultPostalCode = '',
+  defaultCountry = '',
+  defaultPhone = '',
+  defaultEmail = '',
 }) => {
   const {
     register,
@@ -34,12 +34,41 @@ const ShippingDetails = ({
     formState: { errors, isLoading },
   } = useForm<FormData>()
 
-  const [value, setValue] = useState('')
-  const options = useMemo(() => countryList().getData(), [])
+  const [fullName, setFullNameValue] = useState(defaultFullName)
+  const [address, setAddressValue] = useState(defaultAddress)
+  const [city, setCityValue] = useState(defaultCity)
+  const [postalCode, setPostalCodeValue] = useState(defaultPostalCode)
+  const [country, setCountryValue] = useState(defaultCountry)
+  const [phone, setPhoneValue] = useState(defaultPhone)
+  const [email, setEmailValue] = useState(defaultEmail)
+
+  useEffect(() => {
+    setCity(defaultCity)
+    setFullName(defaultFullName)
+    setAddress(defaultAddress)
+    setPostalCode(defaultPostalCode)
+    setCountry(defaultCountry)
+    setPhone(defaultPhone)
+    setEmail(defaultEmail)
+  }, [
+    defaultCity,
+    defaultFullName,
+    defaultAddress,
+    defaultPostalCode,
+    defaultCountry,
+    defaultPhone,
+    defaultEmail,
+    setCity,
+    setFullName,
+    setAddress,
+    setPostalCode,
+    setCountry,
+    setPhone,
+    setEmail,
+  ])
 
   const handleName = e => {
     setFullName(e.target.value)
-    //console.log(e.target.value)
   }
 
   const handleAddress = e => {
@@ -47,6 +76,7 @@ const ShippingDetails = ({
   }
 
   const handleCity = e => {
+    setCityValue(e.target.value)
     setCity(e.target.value)
   }
 
@@ -74,6 +104,7 @@ const ShippingDetails = ({
             register={register}
             error={null}
             disabled={false}
+            value={fullName}
             onChange={handleName}
           />
         </div>
@@ -84,6 +115,7 @@ const ShippingDetails = ({
             label="Street Address"
             register={register}
             error={null}
+            value={address}
             onChange={handleAddress}
           />
         </div>
@@ -94,6 +126,7 @@ const ShippingDetails = ({
             label="City"
             register={register}
             error={null}
+            value={city}
             onChange={handleCity}
           />
         </div>
@@ -104,6 +137,7 @@ const ShippingDetails = ({
             label="Postal Code"
             register={register}
             error={null}
+            value={postalCode}
             onChange={handlePostalCode}
           />
         </div>
@@ -118,6 +152,7 @@ const ShippingDetails = ({
             label="Phone Number"
             register={register}
             error={null}
+            value={phone}
             onChange={handlePhone}
           />
         </div>
@@ -128,6 +163,7 @@ const ShippingDetails = ({
             label="Email"
             register={register}
             error={null}
+            value={email}
             onChange={handleEmail}
           />
         </div>

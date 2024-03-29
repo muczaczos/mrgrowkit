@@ -40,13 +40,13 @@ export const CheckoutPage: React.FC<{
   const hasMadePaymentIntent = React.useRef(false)
   const { theme } = useTheme()
 
-  const [fullName, setFullName] = React.useState()
-  const [address, setAddress] = React.useState()
-  const [city, setCity] = React.useState()
-  const [postalCode, setPostalCode] = React.useState()
-  const [phone, setPhone] = React.useState()
-  const [country, setCountry] = React.useState()
-  const [email, setEmail] = React.useState()
+  const [fullName, setFullName] = React.useState('')
+  const [address, setAddress] = React.useState('')
+  const [city, setCity] = React.useState('')
+  const [postalCode, setPostalCode] = React.useState('')
+  const [phone, setPhone] = React.useState('')
+  const [country, setCountry] = React.useState('')
+  const [email, setEmail] = React.useState('')
   const [method, setMethod] = React.useState()
   const [lockerCode, setLockerCode] = React.useState()
   const [showDisplayCode, setShowDisplayCode] = React.useState()
@@ -57,42 +57,13 @@ export const CheckoutPage: React.FC<{
   var subtotal = 0
   let total: number | undefined
 
+
   useEffect(() => {
     if (user !== null && cartIsEmpty) {
       router.push('/cart')
     }
   }, [router, user, cartIsEmpty])
 
-  useEffect(() => {
-    if (user && cart && hasMadePaymentIntent.current === false) {
-      hasMadePaymentIntent.current = true
-
-      const makeIntent = async () => {
-        try {
-          const paymentReq = await fetch(
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/api/create-payment-intent`,
-            {
-              method: 'POST',
-              credentials: 'include',
-            },
-          )
-
-          const res = await paymentReq.json()
-
-          if (res.error) {
-            setError(res.error)
-          } else if (res.client_secret) {
-            setError(null)
-            setClientSecret(res.client_secret)
-          }
-        } catch (e) {
-          setError('Something went wrong.')
-        }
-      }
-
-      makeIntent()
-    }
-  }, [cart, user])
 
   // calculateShippingCost('1212', '1', 'NL')
   useEffect(() => {
@@ -119,15 +90,34 @@ export const CheckoutPage: React.FC<{
       {!cartIsEmpty && (
         <>
           <div className={classes.sections}>
-            <ShippingDetails
-              setFullName={setFullName}
-              setAddress={setAddress}
-              setCity={setCity}
-              setPostalCode={setPostalCode}
-              setCountry={setCountry}
-              setPhone={setPhone}
-              setEmail={setEmail}
-            />
+            {user ? ( // Sprawdzanie czy użytkownik jest zalogowany
+              <ShippingDetails
+                setFullName={setFullName}
+                setAddress={setAddress}
+                setCity={setCity}
+                setPostalCode={setPostalCode}
+                setCountry={setCountry}
+                setPhone={setPhone}
+                setEmail={setEmail}
+                defaultFullName={user.name}
+                defaultAddress={user.streetAddress}
+                defaultCity={user.city} // Ustawienie wartości domyślnej na podstawie user.city, jeśli użytkownik jest zalogowany
+                defaultCountry={user.country}
+                defaultPostalCode={user.postalCode}
+                defaultEmail={user.email}
+                defaultPhone={user.phoneNumber}
+              />
+            ) : (
+              <ShippingDetails
+                setFullName={setFullName}
+                setAddress={setAddress}
+                setCity={setCity}
+                setPostalCode={setPostalCode}
+                setCountry={setCountry}
+                setPhone={setPhone}
+                setEmail={setEmail}
+              />
+            )}
             <PaymentMethods method={method} setMethod={setMethod} />
           </div>
           <ShippingMethods

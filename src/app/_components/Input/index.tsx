@@ -15,6 +15,7 @@ type Props = {
   disabled?: boolean
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   className?: string
+  value?: string
 }
 
 export const Input: React.FC<Props> = ({
@@ -26,6 +27,7 @@ export const Input: React.FC<Props> = ({
   type = 'text',
   validate,
   placeholder,
+  value, // Dodany atrybut defaultValue
   disabled,
   onChange,
   className,
@@ -50,15 +52,16 @@ export const Input: React.FC<Props> = ({
           validate,
           ...(type === 'email'
             ? {
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: 'Please enter a valid email',
-                },
-              }
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: 'Please enter a valid email',
+              },
+            }
             : {}),
         })}
         disabled={disabled}
         onChange={onChange}
+        value={value} // Ustawienie wartości domyślnej za pomocą atrybutu defaultValue
         onKeyDown={handleKeyDown} // Dodaliśmy obsługę klawisza Enter
       />
       {error && (
