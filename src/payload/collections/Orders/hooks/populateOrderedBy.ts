@@ -6,7 +6,7 @@ export const populateOrderedBy: FieldHook<Order> = async ({ req, operation, valu
   if ((operation === 'create' || operation === 'update') && !value && req.user) {
     return req.user.id
   } else {
-    return '6606d8bf75a01c63b7234640'
+    return '6607191803c5dc7385c6fb96'
   }
 
   return value

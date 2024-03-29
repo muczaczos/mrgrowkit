@@ -68,10 +68,12 @@ const ShippingDetails = ({
   ])
 
   const handleName = e => {
+    setFullNameValue(e.target.value)
     setFullName(e.target.value)
   }
 
   const handleAddress = e => {
+    setAddressValue(e.target.value)
     setAddress(e.target.value)
   }
 
@@ -81,14 +83,17 @@ const ShippingDetails = ({
   }
 
   const handlePostalCode = e => {
+    setPostalCodeValue(e.target.value)
     setPostalCode(e.target.value)
   }
 
   const handlePhone = e => {
+    setPhoneValue(e.target.value)
     setPhone(e.target.value)
   }
 
   const handleEmail = e => {
+    setEmailValue(e.target.value)
     setEmail(e.target.value)
   }
 
