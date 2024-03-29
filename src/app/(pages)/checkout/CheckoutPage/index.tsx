@@ -57,13 +57,11 @@ export const CheckoutPage: React.FC<{
   var subtotal = 0
   let total: number | undefined
 
-
   useEffect(() => {
     if (user !== null && cartIsEmpty) {
       router.push('/cart')
     }
   }, [router, user, cartIsEmpty])
-
 
   // calculateShippingCost('1212', '1', 'NL')
   useEffect(() => {
