@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
+import { Order } from '../../../payload/payload-types'
 import { Button } from '../../_components/Button'
 import { Gutter } from '../../_components/Gutter'
 import { HR } from '../../_components/HR'
@@ -9,7 +10,9 @@ import { RenderParams } from '../../_components/RenderParams'
 import { LowImpactHero } from '../../_heros/LowImpact'
 import { getMeUser } from '../../_utilities/getMeUser'
 import { mergeOpenGraph } from '../../_utilities/mergeOpenGraph'
+import notFound from '../not-found'
 import AccountForm from './AccountForm'
+import OrdersList from './OrdersList'
 
 import classes from './index.module.scss'
 
@@ -20,6 +23,37 @@ export default async function Account() {
     )}&redirect=${encodeURIComponent('/account')}`,
   })
 
+  const { token } = await getMeUser({
+    nullUserRedirect: `/login?error=${encodeURIComponent(
+      'You must be logged in to view your orders.',
+    )}&redirect=${encodeURIComponent('/orders')}`,
+  })
+
+  let orders: Order[] | null = null
+
+  try {
+    orders = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${token}`,
+      },
+      cache: 'no-store',
+    })
+      ?.then(async res => {
+        if (!res.ok) notFound()
+        const json = await res.json()
+        if ('error' in json && json.error) notFound()
+        if ('errors' in json && json.errors) notFound()
+        return json
+      })
+      ?.then(json => json.docs)
+  } catch (error) {
+    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
+    // so swallow the error here and simply render the page with fallback data where necessary
+    // in production you may want to redirect to a 404  page or at least log the error somewhere
+    // console.error(error)
+  }
+  // console.log(orders)
   return (
     <Fragment>
       <Gutter>
@@ -27,43 +61,22 @@ export default async function Account() {
         <div className={classes.layout}>
           <div className={classes.menu}>
             <ul>
-              <li>Jan Nowak</li>
-              <li>Personal Information</li>
-              <li>My Pucharses</li>
-              <li>My Orders</li>
-              <li>Logout</li>
+              <li className={classes.avatar}>Jan Nowak</li>
+              <li className={classes.menuItem}>Personal Information</li>
+              <li className={classes.menuItem}>My Pucharses</li>
+              <li className={classes.menuItem}>My Orders</li>
+              <li className={classes.menuItem}>Logout</li>
             </ul>
           </div>
           <div className={classes.orders}>
-            <ul>
-              <h5>My orders</h5>
-              <li className={classes.item}>
-                <div className={classes.orderDetails}>
-                  <p>Order: 45465sd4654sd56f4s65df4</p>
-                  <p>Total: $3434</p>
-                  <p>Ordered On: 11/03/2029</p>
-                </div>
-                <div className={classes.viewOrder}>
-                  <p>View Order</p>
-                </div>
-              </li>
-              <li className={classes.item}>
-                <div className={classes.orderDetails}>
-                  <p>Order: 45465sd4654sd56f4s65df4</p>
-                  <p>Total: $3434</p>
-                  <p>Ordered On: 11/03/2029</p>
-                </div>
-                <div className={classes.viewOrder}>
-                  <p>View Order</p>
-                </div>
-              </li>
-            </ul>
+            <h5 className={classes.ordersTitle}>My orders</h5>
+            <OrdersList orders={orders} />
           </div>
         </div>
       </Gutter>
-      
+
       <Gutter>
-       <RenderParams className={classes.params} />
+        <RenderParams className={classes.params} />
       </Gutter>
       <LowImpactHero
         type="lowImpact"

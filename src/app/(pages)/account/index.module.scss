@@ -1,7 +1,7 @@
 .layout {
   display: flex;
   margin-top: 24px;
-  gap: 24px;
+  gap: 48px;
 }
 
 .title {
@@ -9,21 +9,39 @@
   font-size: 30px;
 }
 
+.ordersTitle {
+  padding-left: 12px;
+  padding-bottom: 24px;
+}
+
+.item {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border-top: 1px solid rgb(240, 240, 240);
+  padding: 12px;
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .menu {
   padding: 24px;
   width: 30%;
-  border-right: 1px solid rgb(231, 231, 231);
-  border-bottom: 1px solid rgb(231, 231, 231);
-  border-top: 1px solid rgb(231, 231, 231);
+  border-right: 1px solid rgb(240, 240, 240);
+  border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.menuItem {
+  padding-top: 24px;
+}
+
+.avatar {
+  border-bottom: 1px solid rgb(240, 240, 240);
+  padding-bottom: 24px;
 }
 
 .orders {
   width: 70%;
-}
-
-.item {
-  display: flex;
-  justify-content: space-between;
 }
 
 .account {
