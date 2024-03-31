@@ -23,7 +23,47 @@ export default async function Account() {
   return (
     <Fragment>
       <Gutter>
-        <RenderParams className={classes.params} />
+        <h1 className={classes.title}>My Profile</h1>
+        <div className={classes.layout}>
+          <div className={classes.menu}>
+            <ul>
+              <li>Jan Nowak</li>
+              <li>Personal Information</li>
+              <li>My Pucharses</li>
+              <li>My Orders</li>
+              <li>Logout</li>
+            </ul>
+          </div>
+          <div className={classes.orders}>
+            <ul>
+              <h5>My orders</h5>
+              <li className={classes.item}>
+                <div className={classes.orderDetails}>
+                  <p>Order: 45465sd4654sd56f4s65df4</p>
+                  <p>Total: $3434</p>
+                  <p>Ordered On: 11/03/2029</p>
+                </div>
+                <div className={classes.viewOrder}>
+                  <p>View Order</p>
+                </div>
+              </li>
+              <li className={classes.item}>
+                <div className={classes.orderDetails}>
+                  <p>Order: 45465sd4654sd56f4s65df4</p>
+                  <p>Total: $3434</p>
+                  <p>Ordered On: 11/03/2029</p>
+                </div>
+                <div className={classes.viewOrder}>
+                  <p>View Order</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </Gutter>
+      
+      <Gutter>
+       <RenderParams className={classes.params} />
       </Gutter>
       <LowImpactHero
         type="lowImpact"

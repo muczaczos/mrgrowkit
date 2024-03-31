@@ -1,3 +1,31 @@
+.layout {
+  display: flex;
+  margin-top: 24px;
+  gap: 24px;
+}
+
+.title {
+  margin-top: 36px;
+  font-size: 30px;
+}
+
+.menu {
+  padding: 24px;
+  width: 30%;
+  border-right: 1px solid rgb(231, 231, 231);
+  border-bottom: 1px solid rgb(231, 231, 231);
+  border-top: 1px solid rgb(231, 231, 231);
+}
+
+.orders {
+  width: 70%;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
 .account {
   margin-bottom: var(--block-padding);
 }
