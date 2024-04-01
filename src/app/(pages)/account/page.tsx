@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
+import { BiDoorOpen } from 'react-icons/bi'
+import { FaClipboardList, FaCreditCard, FaIdBadge, FaRegUser } from 'react-icons/fa'
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { FaRegUser, FaIdBadge, FaCreditCard, FaClipboardList} from "react-icons/fa";
-import { BiDoorOpen } from "react-icons/bi";
 
 import { Order } from '../../../payload/payload-types'
 import { Button } from '../../_components/Button'
@@ -66,14 +66,28 @@ export default async function Account() {
               <li className={classes.avatar}>
                 <FaIdBadge className={classes.avatarUser} />
                 <div className={classes.avatarText}>
-                  <p className={classes.avatarName}><strong>{user.name}</strong></p>
+                  <p className={classes.avatarName}>
+                    <strong>{user.name}</strong>
+                  </p>
                   <p className={classes.avatarEmail}>{user.email}</p>
                 </div>
               </li>
-              <li className={classes.menuItem}><FaRegUser />Personal Information</li>
-              <li className={classes.menuItem}><FaCreditCard />My Pucharses</li>
-              <li className={classes.menuItem}><FaClipboardList />My Orders</li>
-              <li className={classes.menuItem + ' ' + classes.menuLogout}><BiDoorOpen />Logout</li>
+              <li className={classes.menuItem}>
+                <FaRegUser />
+                Personal Information
+              </li>
+              <li className={classes.menuItem}>
+                <FaCreditCard />
+                My Pucharses
+              </li>
+              <li className={classes.menuItem}>
+                <FaClipboardList />
+                My Orders
+              </li>
+              <li className={classes.menuItem + ' ' + classes.menuLogout}>
+                <BiDoorOpen />
+                Logout
+              </li>
             </ul>
           </div>
           <div className={classes.orders}>
