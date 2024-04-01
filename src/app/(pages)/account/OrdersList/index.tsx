@@ -30,7 +30,7 @@ const OrdersList: React.FC<Props> = ({ orders }) => {
             <li key={order.id} className={classes.listItem}>
               <Link className={classes.item} href={`/orders/${order.id}`}>
                 <div className={classes.itemContent}>
-                  <h4 className={classes.itemTitle}>{`Order ${order.id}`}</h4>
+                  <h6 className={classes.itemTitle}>{`Order ${order.id}`}</h6>
                   <div className={classes.itemMeta}>
                     <p>{`Ordered On: ${formatDateTime(order.createdAt)}`}</p>
                     <p>
@@ -49,12 +49,10 @@ const OrdersList: React.FC<Props> = ({ orders }) => {
                   el="button"
                 />
               </Link>
-              {index !== orders.length - 1 && <HR />}
             </li>
           ))}
         </ul>
       )}
-      <HR />
     </div>
   )
 }

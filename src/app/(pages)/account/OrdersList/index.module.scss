@@ -28,9 +28,12 @@
 .ordersList {
   padding: 0;
   list-style: none;
+  border-left: 1px solid rgb(230, 230, 230);
 }
 
 .item {
+  border-top: 1px solid rgb(230, 230, 230);
+  padding: 24px;
   display: flex;
   flex-wrap: 1;
   align-items: center;
@@ -41,7 +44,6 @@
 .itemContent {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--base) / 2);
   flex-grow: 1;
 }
 

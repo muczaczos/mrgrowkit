@@ -17,7 +17,7 @@
 .item {
   margin-top: 12px;
   margin-bottom: 12px;
-  border-top: 1px solid rgb(240, 240, 240);
+  border-top: 1px solid rgb(230, 230, 230);
   padding: 12px;
   padding-top: 24px;
   display: flex;
@@ -27,17 +27,38 @@
 .menu {
   padding: 24px;
   width: 30%;
-  border-right: 1px solid rgb(240, 240, 240);
-  border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.menuList {
+  border-right: 1px solid rgb(230, 230, 230);
+}
+
+.menuLogout {
+  border-bottom: 1px solid rgb(230, 230, 230);
+  padding-bottom: 12px;
 }
 
 .menuItem {
+  display: flex;
+  gap: 12px;
   padding-top: 24px;
+  align-items: center;
 }
 
 .avatar {
-  border-bottom: 1px solid rgb(240, 240, 240);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgb(230, 230, 230);
   padding-bottom: 24px;
+}
+
+.avatarUser {
+  font-size: 48px;
+}
+
+.avatarText, .avatarEmail {
+  line-height: 24px;
 }
 
 .orders {

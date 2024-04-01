@@ -128,7 +128,7 @@ const GatewayLogic = ({
         doc: Order
       } = await orderReq.json()
       router.push(`/order-confirmation?order_id=${doc.id}`)
-      //console.log('end transfer')
+     
     } else if (method === 'eth') {
       //console.log('dupa eth')
     }

@@ -208,7 +208,7 @@ export const CheckoutPage: React.FC<{
           lockerCode={lockerCode}
           shippingMethods={shippingMethods}
           additionalInfo={additionalInfo}
-          cart
+          cart={cart}
         />
       </div>
     </Fragment>
