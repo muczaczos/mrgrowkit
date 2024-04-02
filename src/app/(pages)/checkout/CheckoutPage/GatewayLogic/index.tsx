@@ -113,8 +113,7 @@ const GatewayLogic = ({
           items: (cart?.items || [])?.map(({ product, quantity }) => ({
             product: typeof product === 'string' ? product : product.id,
             quantity,
-            price:
-              typeof product === 'object' ? priceFromJSON(product.priceJSON, 1, true) : undefined,
+            price: typeof product === 'number' ? product : Number(product.price),
           })),
         }),
       })

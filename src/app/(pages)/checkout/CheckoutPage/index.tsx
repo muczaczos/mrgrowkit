@@ -197,7 +197,7 @@ export const CheckoutPage: React.FC<{
         <Button label="Back to cart" href="/cart" appearance="secondary" />
         <GatewayLogic
           method={method}
-          totalAmount={totalAmount}
+          totalAmount={total}
           fullName={fullName}
           address={address}
           city={city}

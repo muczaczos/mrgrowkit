@@ -12,7 +12,6 @@ const Personal = async () => {
   const { isEnabled: isDraftMode } = draftMode()
   return (
     <Fragment>
-
       <Gutter className={classes.account}>
         <h1 className={classes.title}>Personal Information</h1>
         <AccountForm />

@@ -96,7 +96,6 @@ export default async function Account() {
           </div>
         </div>
       </Gutter>
-
     </Fragment>
   )
 }
