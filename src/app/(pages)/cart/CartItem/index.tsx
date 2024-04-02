@@ -43,40 +43,39 @@ const CartItem = ({ product, title, metaImage, qty, price, addItemToCart, sub })
           <Media className={classes.media} imgClassName={classes.image} resource={metaImage} fill />
         )}
       </Link>
-        <div className={classes.itemDetails}>
-          <div className={classes.titleWrapper}>
-            <h6>{title}</h6>${price}
-          </div>
-
-          <div className={classes.quantity}>
-            <div className={classes.quantityButton} onClick={decrementQty}>
-              <Image
-                src="/assets/icons/minus.svg"
-                alt="minus"
-                width={24}
-                height={24}
-                className={classes.quantityBtn}
-              />
-            </div>
-
-            <input type="text" className={classes.quantityInput} value={qty} onChange={enterQty} />
-
-            <div className={classes.quantityButton} onClick={incrementQty}>
-              <Image
-                src="/assets/icons/plus.svg"
-                alt="plus"
-                width={24}
-                height={24}
-                className={classes.quantityBtn}
-              />
-            </div>
-          </div>
-
-          </div>
-        <div className={classes.subtotalWrapper}>
-          ${sub}
-          <RemoveFromCartButton product={product} />
+      <div className={classes.itemDetails}>
+        <div className={classes.titleWrapper}>
+          <h6>{title}</h6>${price}
         </div>
+
+        <div className={classes.quantity}>
+          <div className={classes.quantityButton} onClick={decrementQty}>
+            <Image
+              src="/assets/icons/minus.svg"
+              alt="minus"
+              width={24}
+              height={24}
+              className={classes.quantityBtn}
+            />
+          </div>
+
+          <input type="text" className={classes.quantityInput} value={qty} onChange={enterQty} />
+
+          <div className={classes.quantityButton} onClick={incrementQty}>
+            <Image
+              src="/assets/icons/plus.svg"
+              alt="plus"
+              width={24}
+              height={24}
+              className={classes.quantityBtn}
+            />
+          </div>
+        </div>
+      </div>
+      <div className={classes.subtotalWrapper}>
+        ${sub}
+        <RemoveFromCartButton product={product} />
+      </div>
     </li>
   )
 }
