@@ -40,7 +40,7 @@ const ShippingTable = () => {
           </tr>
         </tbody>
       </table>
-    </div >
+    </div>
   )
 }
 

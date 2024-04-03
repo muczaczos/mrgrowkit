@@ -23,6 +23,7 @@ import Users from './collections/Users'
 import Zones from './collections/Zones'
 import BeforeDashboard from './components/BeforeDashboard'
 import BeforeLogin from './components/BeforeLogin'
+import NavigationAlert from './components/NavigationAlerts'
 import { createPaymentIntent } from './endpoints/create-payment-intent'
 import { customersProxy } from './endpoints/customers'
 import { productsProxy } from './endpoints/products'
@@ -32,8 +33,6 @@ import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
 import { priceUpdated } from './stripe/webhooks/priceUpdated'
 import { productUpdated } from './stripe/webhooks/productUpdated'
-import NavigationAlert from './components/NavigationAlerts'
-
 
 import '../../tailwind.css'
 
