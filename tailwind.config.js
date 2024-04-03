@@ -3,10 +3,7 @@ module.exports = {
   important: true,
   darkMode: ['class', '[data-theme="dark"]'],
   content: [
-    './src/app/(pages)/shipping/ShippingTable/index.tsx',
-    './src/**/**/**/**.{js,ts,jsx,tsx,mdx}',
-    './src/**/**/**.{js,ts,jsx,tsx,mdx}',
-    './src/**/**.{js,ts,jsx,tsx,mdx}',
+    "./src/**/*.{tsx,ts}",
   ],
   theme: {
     extend: {},
@@ -15,5 +12,5 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
-  blocklist: ['table'],
+  blocklist: ["table"],
 }

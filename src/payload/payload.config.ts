@@ -32,6 +32,8 @@ import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
 import { priceUpdated } from './stripe/webhooks/priceUpdated'
 import { productUpdated } from './stripe/webhooks/productUpdated'
+import NavigationAlert from './components/NavigationAlerts'
+
 
 import '../../tailwind.css'
 
@@ -62,10 +64,11 @@ dotenv.config({
 
 export default buildConfig({
   admin: {
-    css: path.resolve(__dirname, '../../tailwind.css'),
+    css: path.resolve(__dirname, '../css/compiledTailwind.css'),
     user: Users.slug,
     bundler: webpackBundler(),
     components: {
+      afterNavLinks: [NavigationAlert],
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: [BeforeLogin],
@@ -76,16 +79,6 @@ export default buildConfig({
     webpack: config => {
       return {
         ...config,
-        module: {
-          ...config.module,
-          rules: [
-            ...config.module.rules,
-            {
-              test: /\tailwind.css$/i,
-              use: ['css-loader', 'postcss-loader'],
-            },
-          ],
-        },
         resolve: {
           ...config.resolve,
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
