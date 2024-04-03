@@ -33,6 +33,8 @@ import { Settings } from './globals/Settings'
 import { priceUpdated } from './stripe/webhooks/priceUpdated'
 import { productUpdated } from './stripe/webhooks/productUpdated'
 
+import '../../tailwind.css'
+
 const generateTitle: GenerateTitle = () => {
   return 'My Store'
 }
@@ -60,6 +62,7 @@ dotenv.config({
 
 export default buildConfig({
   admin: {
+    css: path.resolve(__dirname, '../../tailwind.css'),
     user: Users.slug,
     bundler: webpackBundler(),
     components: {
@@ -73,8 +76,19 @@ export default buildConfig({
     webpack: config => {
       return {
         ...config,
+        module: {
+          ...config.module,
+          rules: [
+            ...config.module.rules,
+            {
+              test: /\tailwind.css$/i,
+              use: ['css-loader', 'postcss-loader'],
+            },
+          ],
+        },
         resolve: {
           ...config.resolve,
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
           alias: {
             ...config.resolve?.alias,
             dotenv: path.resolve(__dirname, './dotenv.js'),
