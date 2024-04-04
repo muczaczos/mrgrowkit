@@ -29,7 +29,6 @@ const Shipping = async () => {
       </p>
       <ShippingTable />
       <div className={classes.gap}></div>
-      <HR />
     </Gutter>
   )
 }

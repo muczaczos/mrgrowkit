@@ -3,38 +3,168 @@ import React from 'react'
 
 const ShippingTable = () => {
   return (
-    <div>
+    <div className="pt-10">
       <table className="border-collapse w-full">
         <thead>
-          <tr>
-            <th className="border-solid border-2 border-gray-400 p-2">Zone</th>
-            <th className="border border-gray-400 p-2">Weight Range</th>
-            <th className="border border-gray-400 p-2">Shipping Cost</th>
+          <tr className="border-solid border-1 border-gray-400">
+            <th className="p-2">Zone 1</th>
+            <th className="p-2 text-right">Weight Range</th>
+            <th className="p-2 text-right">Shipping Cost</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td className="border border-gray-400 p-2" rowSpan={5}>
-              Zone 1
+            <td className="border-l-0 border-solid border-1 border-gray-400" rowSpan={5}>
+              <p className="">Czech Republic, Germany, Hungary, Latvia, Lithuania, Slovakia</p>
             </td>
-            <td className="p-2 text-left">0-1kg</td>
-            <td className="border border-gray-400 p-2 text-right">14€</td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              0-1kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              14€
+            </td>
           </tr>
           <tr>
-            <td className="border border-gray-400 p-2 text-right">1-3kg</td>
-            <td className="border border-gray-400 p-2 text-right">18€</td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              1-3kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              18€
+            </td>
           </tr>
           <tr>
-            <td className="border border-gray-400 p-2 text-right">3-10kg</td>
-            <td className="border border-gray-400 p-2 text-right">33€</td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              3-10kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              33€
+            </td>
           </tr>
           <tr>
-            <td className="border border-gray-400 p-2 text-right">10-20kg</td>
-            <td className="border border-gray-400 p-2 text-right">37€</td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              10-20kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              37€
+            </td>
           </tr>
           <tr>
-            <td className="border border-gray-400 p-2 text-right">20-31.5kg</td>
-            <td className="border border-gray-400 p-2 text-right">41€</td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              20-31.5kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              41€
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table className="mt-10 border-collapse w-full">
+        <thead>
+          <tr className="border-solid border-1 border-gray-400">
+            <th className="p-2">Zone 2</th>
+            <th className="p-2 text-right">Weight Range</th>
+            <th className="p-2 text-right">Shipping Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="border-l-0 border-solid border-1 border-gray-400" rowSpan={5}>
+              <p className="">Austria, Belgium, Estonia, Luxembourg, Netherlands, Slovenia</p>
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              0-1kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              16€
+            </td>
+          </tr>
+          <tr>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              1-3kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              20€
+            </td>
+          </tr>
+          <tr>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              3-10kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              35€
+            </td>
+          </tr>
+          <tr>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              10-20kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              39€
+            </td>
+          </tr>
+          <tr>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              20-31.5kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              43€
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table className="mt-10 border-collapse w-full">
+        <thead>
+          <tr className="border-solid border-1 border-gray-400">
+            <th className="p-2">Zone 3</th>
+            <th className="p-2 text-right">Weight Range</th>
+            <th className="p-2 text-right">Shipping Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="w-1/2 border-l-0 border-solid border-1 border-gray-400" rowSpan={5}>
+              <p className="">Bulgaria, Denmark, France, Romania</p>
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              0-1kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              24€
+            </td>
+          </tr>
+          <tr>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              1-3kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              29€
+            </td>
+          </tr>
+          <tr>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              3-10kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              37€
+            </td>
+          </tr>
+          <tr>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              10-20kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              41€
+            </td>
+          </tr>
+          <tr>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              20-31.5kg
+            </td>
+            <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              45€
+            </td>
           </tr>
         </tbody>
       </table>

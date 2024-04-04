@@ -145,7 +145,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
           </div>
           <div className={classes.disclamer}>
             <h3>Disclamer</h3>
-            <p className="underline opacity-0">
+            <p className="">
               www.planet-of-mushrooms.com does not advice growing any illegal substance, such as
               Psilocybe Cubensis (magic mushrooms). While our cubensis growkits, syringes of
               cubensis spores and prints of cubensis spores are capable of growing Psilocybe

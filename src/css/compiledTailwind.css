@@ -42,8 +42,16 @@
   position: relative !important
 }
 
+.mt-10 {
+  margin-top: 2.5rem !important
+}
+
 .block {
   display: block !important
+}
+
+.flex {
+  display: flex !important
 }
 
 .grid {
@@ -58,6 +66,10 @@
   width: 100% !important
 }
 
+.w-1\/2 {
+  width: 50% !important
+}
+
 .grow {
   flex-grow: 1 !important
 }
@@ -70,12 +82,48 @@
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
 }
 
+.flex-row {
+  flex-direction: row !important
+}
+
+.flex-col {
+  flex-direction: column !important
+}
+
+.content-start {
+  align-content: flex-start !important
+}
+
+.justify-start {
+  justify-content: flex-start !important
+}
+
 .border {
   border-width: 1px !important
 }
 
 .border-2 {
   border-width: 2px !important
+}
+
+.border-b-2 {
+  border-bottom-width: 2px !important
+}
+
+.border-t {
+  border-top-width: 1px !important
+}
+
+.border-b {
+  border-bottom-width: 1px !important
+}
+
+.border-l-0 {
+  border-left-width: 0px !important
+}
+
+.border-r-0 {
+  border-right-width: 0px !important
 }
 
 .border-solid {
@@ -92,8 +140,17 @@
   border-color: rgb(203 213 225 / var(--tw-border-opacity)) !important
 }
 
+.border-red-400 {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(248 113 113 / var(--tw-border-opacity)) !important
+}
+
 .p-2 {
   padding: 0.5rem !important
+}
+
+.p-0 {
+  padding: 0px !important
 }
 
 .py-6 {
@@ -101,12 +158,28 @@
   padding-bottom: 1.5rem !important
 }
 
+.pt-4 {
+  padding-top: 1rem !important
+}
+
+.pt-10 {
+  padding-top: 2.5rem !important
+}
+
 .text-left {
   text-align: left !important
 }
 
+.text-center {
+  text-align: center !important
+}
+
 .text-right {
   text-align: right !important
+}
+
+.align-top {
+  vertical-align: top !important
 }
 
 .font-bold {
@@ -141,4 +214,24 @@
 
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important
+}
+
+@media (min-width: 640px) {
+  .sm\:content-center {
+    align-content: center !important
+  }
+
+  .sm\:content-start {
+    align-content: flex-start !important
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:content-center {
+    align-content: center !important
+  }
+
+  .lg\:content-start {
+    align-content: flex-start !important
+  }
 }
