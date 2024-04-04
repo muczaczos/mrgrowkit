@@ -10,6 +10,7 @@ import { InitTheme } from './_providers/Theme/InitTheme'
 import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
 
 import './_css/app.scss'
+import '../css/compiledTailwind.css'
 
 const jost = Jost({
   subsets: ['latin'],

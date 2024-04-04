@@ -1,15 +1,13 @@
 'use client'
 import React from 'react'
 
-import classes from './index.module.scss'
-
 const ShippingTable = () => {
   return (
-    <div className={classes.divClass}>
+    <div>
       <table className="border-collapse w-full">
         <thead>
           <tr>
-            <th className="border border-gray-400 p-2">Zone</th>
+            <th className="border-solid border-2 border-gray-400 p-2">Zone</th>
             <th className="border border-gray-400 p-2">Weight Range</th>
             <th className="border border-gray-400 p-2">Shipping Cost</th>
           </tr>
@@ -19,7 +17,7 @@ const ShippingTable = () => {
             <td className="border border-gray-400 p-2" rowSpan={5}>
               Zone 1
             </td>
-            <td className="border border-gray-400 p-2 text-right">0-1kg</td>
+            <td className="p-2 text-left">0-1kg</td>
             <td className="border border-gray-400 p-2 text-right">14€</td>
           </tr>
           <tr>
