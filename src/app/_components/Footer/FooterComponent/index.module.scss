@@ -12,6 +12,9 @@
 
 .disclamer {
   padding: 24px; 
+  @include small-break {
+    padding: 0px;
+  }
 }
 
 .newsletterInput {
