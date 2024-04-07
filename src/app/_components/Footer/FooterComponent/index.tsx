@@ -129,18 +129,12 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
               </section>
             </div>
           </div>
-          <div className={classes.payments}>
-            <div className={classes.paymentOptions}>
-              <div className={classes.payments1}>
-                <p>Ideal &nbsp;</p>
-                <p>Sofort &nbsp;</p>
-                <p>Cypto &nbsp;</p>
-              </div>
-              <div className={classes.payments2}>
-                <p>Bancontact &nbsp;</p>
-                <p>Giropay &nbsp;</p>
-                <p>Mybank &nbsp;</p>
-              </div>
+          <div className="">
+            <div className="mb-5 flex justify-center items-center pt-3 pb-3 border-solid border-b border-t border-l-0 border-r-0 border-gray-600 gap-5">
+              <p>Revolut &nbsp;</p>
+              <p>Vise &nbsp;</p>
+              <p>Crypto &nbsp;</p>
+              <p>SEPA &nbsp;</p>
             </div>
           </div>
           <div className={classes.disclamer}>

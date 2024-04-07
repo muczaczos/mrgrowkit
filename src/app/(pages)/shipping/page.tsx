@@ -23,7 +23,7 @@ const Shipping = async () => {
           Shipping is the most important thing in an online store. 🍄🎁🎁🎁🚐
         </h2>
       </div>
-      <p className="text-lg">
+      <p className="sm:mt-0 lg:mt-10 mb-10 text-xl lg:text-2xl">
         We take care of your shipments from start to finish. We always send the tracking number
         after shipment. You can check shipping prices by zone on this page. If you don’t see your
         country on that list, please contact us.

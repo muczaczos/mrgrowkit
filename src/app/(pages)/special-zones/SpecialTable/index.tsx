@@ -12,7 +12,7 @@ const SpecialTable = ({ country, codes, ranges, weights }) => {
       <div className="flex gap-4 items-center">
         <button
           onClick={toggleExpand}
-          className="border text-xl border-solid w-full rounded-md mb-2 py-2 px-4 bg-gray-200"
+          className="border text-lg border-solid w-full rounded-md mb-2 py-2 px-4 bg-gray-200"
         >
           Click to show {country} Codes
         </button>
@@ -32,12 +32,12 @@ const SpecialTable = ({ country, codes, ranges, weights }) => {
                 className="w-1/2 border-l-0 border-solid border-1 border-gray-400"
                 rowSpan={weights.length}
               >
-                <p className="">{codes}</p>
+                <p className="text-lg">{codes}</p>
               </td>
-              <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              <td className="text-lg border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
                 {weights[0]}kg
               </td>
-              <td className="border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
+              <td className="text-lg border-l-0 border-r-0 border-solid border-gray-400 text-right p-2">
                 {ranges[0]}€
               </td>
             </tr>
