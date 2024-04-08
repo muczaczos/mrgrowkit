@@ -15,9 +15,9 @@ const PaymentMethods = ({ method, setMethod }) => {
       <h3 className={classes.payment}>Payment Methods</h3>
       <div className={classes.radioAndIcon}>
         <RadioButton
-          label="Bank Trafser"
-          value="transfer"
-          isSelected={method === 'transfer'}
+          label="Bank Trafser to Revolut"
+          value="revolut"
+          isSelected={method === 'revolut'}
           onRadioChange={handlePaymentMethod}
           groupName="method"
         />

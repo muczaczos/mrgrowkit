@@ -89,7 +89,7 @@ const GatewayLogic = ({
         .catch(error => {
           //console.log('dupa')
         })
-    } else if (method === 'transfer') {
+    } else if (method === 'revolut') {
       // console.log('1')
       const orderReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {
         method: 'POST',
@@ -126,7 +126,7 @@ const GatewayLogic = ({
         error?: string
         doc: Order
       } = await orderReq.json()
-      router.push(`/order-confirmation?order_id=${doc.id}`)
+      router.push(`/order-confirmation-revolut?order_id=${doc.id}`)
     } else if (method === 'eth') {
       //console.log('dupa eth')
     }
