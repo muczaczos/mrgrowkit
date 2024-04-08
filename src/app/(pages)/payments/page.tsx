@@ -36,7 +36,7 @@ const Payments = async () => {
             alt="Rovolut bank logo"
             src="/media/revolut.svg"
             height="300"
-            width="300"
+            width="200"
             className="w-50 lg:pl-10 xs:pl-0 mx-auto"
           />
           <p className="pl-5 pr-5 pb-5 lg:pb-0 lg:pt-5 text-xl">
@@ -58,7 +58,7 @@ const Payments = async () => {
             alt="Shipping package with mushrooms growkit"
             src="/media/vise.svg"
             height="300"
-            width="300"
+            width="200"
             className="lg:pl-5 xs:pl-0 w-50 mb-5 mx-auto pt-10 pb-5"
           />
           <p className="mb-5 pl-5 pr-5 lg:mb-0 text-xl">
@@ -81,7 +81,7 @@ const Payments = async () => {
             alt="Logo of the SEPA payment"
             src="/media/sepa.svg"
             height="300"
-            width="300"
+            width="200"
             className="lg:pl-10 xs:pl-5 mt-5 w-50 mb-5 mx-auto"
           />
           <p className="pl-5 pr-5 mb-5 text-xl">
@@ -99,16 +99,16 @@ const Payments = async () => {
       <div className="mt-5 bg-current: bg-orange-100 border-solid border-1 border-orange-300">
         <Link
           href="https://bitcoin.org/en/getting-started"
-          className="mt-5 lg:flex lg:flex-row lg:items-center md:flex xs:flex-col items-center"
+          className="mt-5 lg:flex lg:flex-row lg:items-center xs:flex-col sm:flex sm:items-center"
         >
           <Image
             alt="Logo of the Bitcoin cryptocurency"
             src="/media/bitcoin.png"
             height="300"
-            width="300"
-            className="mt-5 lg:mt-0 w-50 ml-5 mb-5 mx-auto"
+            width="200"
+            className="flex mt-7 mb-7 mx-auto lg:ml-5"
           />
-          <p className="xs:pb-0 lg:pb-5 ml-5 mr-5 mb-5 lg:mb-0 text-xl">
+          <p className="xs:pb-0 lg:pb-5 ml-5 md:ml-9 lg:ml-6 mr-5 mb-5 lg:mb-0 text-xl">
             Unleash the potential of Bitcoin and Ethereum for seamless transactions at our store.
             With decentralized networks and innovative blockchain technology, your payments are
             secure and swift. Say goodbye to conventional currency constraints and embrace the
