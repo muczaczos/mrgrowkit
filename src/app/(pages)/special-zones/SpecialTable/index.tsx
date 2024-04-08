@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 
-const SpecialTable = ({ country, codes, ranges, weights }) => {
+import '/node_modules/flag-icons/css/flag-icons.min.css'
+
+const SpecialTable = ({ country, codes, ranges, weights, countryCode }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const toggleExpand = () => {
@@ -14,7 +16,7 @@ const SpecialTable = ({ country, codes, ranges, weights }) => {
           onClick={toggleExpand}
           className="border text-lg border-solid w-full rounded-md mb-2 py-2 px-4 bg-gray-200"
         >
-          Click to show {country} Codes
+          Click to show {country} Codes <span className={'fi fi-' + countryCode}></span>
         </button>
       </div>
       {isExpanded && (

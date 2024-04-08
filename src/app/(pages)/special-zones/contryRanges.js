@@ -28,6 +28,7 @@ export const finland = {
     83985, 90480`,
   ranges: ['72', '76', '85', '92', '97'],
   weights: [`0-1`, `1-3`, `3-10`, `10-20`, `20-31,5`],
+  countryCode: 'fi',
 }
 
 export const estonia = {
@@ -36,6 +37,7 @@ export const estonia = {
     96027, 96098, 96106`,
   ranges: ['28', '33', '45', '51', '55'],
   weights: [`0-1`, `1-3`, `3-10`, `10-20`, `20-31,5`],
+  countryCode: 'ee',
 }
 
 export const denmark = {
@@ -44,6 +46,7 @@ export const denmark = {
     6720, 7884, 8305,8592, 9940, 9950, 9960`,
   ranges: ['49', '53', '62', '66', '70'],
   weights: [`0-1`, `1-3`, `3-10`, `10-20`, `20-31,5`],
+  countryCode: 'dk',
 }
 
 export const croatia = {
@@ -58,6 +61,7 @@ export const croatia = {
     53294, 53296-53297`,
   ranges: ['47', '51', '61', '67', '72'],
   weights: [`0-1`, `1-3`, `3-10`, `10-20`, `20-31,5`],
+  countryCode: 'hr',
 }
 
 export const france = {
@@ -67,6 +71,7 @@ export const france = {
     29990, 56360, 56590, 56780, 56840, 85330, 85350`,
   ranges: ['37', '41', '49', '53', '58'],
   weights: [`0-1`, `1-3`, `3-10`, `10-20`, `20-31,5`],
+  countryCode: 'fr',
 }
 
 export const germany = {
@@ -76,6 +81,7 @@ export const germany = {
     25999 26465, 26474, 26486, 26548, 26571, 26579, 26757, 27498 78263-78266, 83256`,
   ranges: ['26', '31', '45', '49', '53'],
   weights: [`0-1`, `1-3`, `3-10`, `10-20`, `20-31,5`],
+  countryCode: 'de',
 }
 
 export const greece = {
@@ -84,6 +90,7 @@ export const greece = {
     70000-74999, 80000-85999`,
   ranges: ['52', '56', '65', '71', '76'],
   weights: [`0-1`, `1-3`, `3-10`, `10-20`, `20-31,5`],
+  countryCode: 'gr',
 }
 
 export const italy = {
@@ -93,6 +100,7 @@ export const italy = {
     80073-80077, 80079, 90010, 91017, 91023, 92010, 98050, 98052, 98055`,
   ranges: ['43', '47', '55', '60', '64'],
   weights: [`0-1`, `1-3`, `3-10`, `10-20`, `20-31,5`],
+  countryCode: 'it',
 }
 
 export const holand = {
@@ -101,4 +109,5 @@ export const holand = {
     9161AA-9164ZZ, 9166AA-9166ZZ`,
   ranges: ['28', '33', '47', '51', '55'],
   weights: [`0-1`, `1-3`, `3-10`, `10-20`, `20-31,5`],
+  countryCode: 'nl',
 }

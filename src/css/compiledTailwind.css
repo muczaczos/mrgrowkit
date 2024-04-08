@@ -107,10 +107,6 @@
   width: 100% !important
 }
 
-.flex-auto {
-  flex: 1 1 auto !important
-}
-
 .grow {
   flex-grow: 1 !important
 }
@@ -171,9 +167,9 @@
   border-style: solid !important
 }
 
-.border-gray-100 {
+.border-blue-300 {
   --tw-border-opacity: 1 !important;
-  border-color: rgb(243 244 246 / var(--tw-border-opacity)) !important
+  border-color: rgb(147 197 253 / var(--tw-border-opacity)) !important
 }
 
 .border-gray-400 {
@@ -186,9 +182,9 @@
   border-color: rgb(75 85 99 / var(--tw-border-opacity)) !important
 }
 
-.border-slate-300 {
+.border-green-300 {
   --tw-border-opacity: 1 !important;
-  border-color: rgb(203 213 225 / var(--tw-border-opacity)) !important
+  border-color: rgb(134 239 172 / var(--tw-border-opacity)) !important
 }
 
 .border-orange-300 {
@@ -196,24 +192,14 @@
   border-color: rgb(253 186 116 / var(--tw-border-opacity)) !important
 }
 
-.border-orange-200 {
+.border-slate-300 {
   --tw-border-opacity: 1 !important;
-  border-color: rgb(254 215 170 / var(--tw-border-opacity)) !important
+  border-color: rgb(203 213 225 / var(--tw-border-opacity)) !important
 }
 
 .border-yellow-300 {
   --tw-border-opacity: 1 !important;
   border-color: rgb(253 224 71 / var(--tw-border-opacity)) !important
-}
-
-.border-green-300 {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(134 239 172 / var(--tw-border-opacity)) !important
-}
-
-.border-blue-300 {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(147 197 253 / var(--tw-border-opacity)) !important
 }
 
 .bg-blue-100 {
@@ -286,10 +272,6 @@
 
 .pt-3 {
   padding-top: 0.75rem !important
-}
-
-.pl-10 {
-  padding-left: 2.5rem !important
 }
 
 .text-left {
@@ -366,32 +348,16 @@
     margin-bottom: 0px !important
   }
 
-  .lg\:mb-10 {
-    margin-bottom: 2.5rem !important
+  .lg\:mt-0 {
+    margin-top: 0px !important
   }
 
   .lg\:mt-10 {
     margin-top: 2.5rem !important
   }
 
-  .lg\:mt-0 {
-    margin-top: 0px !important
-  }
-
-  .lg\:ml-10 {
-    margin-left: 2.5rem !important
-  }
-
-  .lg\:mt-5 {
-    margin-top: 1.25rem !important
-  }
-
   .lg\:flex {
     display: flex !important
-  }
-
-  .lg\:w-1\/2 {
-    width: 50% !important
   }
 
   .lg\:flex-row {
@@ -402,18 +368,6 @@
     align-items: center !important
   }
 
-  .lg\:p-10 {
-    padding: 2.5rem !important
-  }
-
-  .lg\:p-5 {
-    padding: 1.25rem !important
-  }
-
-  .lg\:pl-10 {
-    padding-left: 2.5rem !important
-  }
-
   .lg\:pb-0 {
     padding-bottom: 0px !important
   }
@@ -422,12 +376,16 @@
     padding-bottom: 1.25rem !important
   }
 
-  .lg\:pt-5 {
-    padding-top: 1.25rem !important
+  .lg\:pl-10 {
+    padding-left: 2.5rem !important
   }
 
   .lg\:pl-5 {
     padding-left: 1.25rem !important
+  }
+
+  .lg\:pt-5 {
+    padding-top: 1.25rem !important
   }
 
   .lg\:text-2xl {

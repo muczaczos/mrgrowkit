@@ -1,0 +1,11 @@
+.confirmationPage {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.confirmationPage p {
+  margin-top: 16px;
+}/*# sourceMappingURL=index.module.css.map */

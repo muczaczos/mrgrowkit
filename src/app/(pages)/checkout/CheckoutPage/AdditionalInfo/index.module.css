@@ -1,0 +1,21 @@
+.section {
+  border: 1px solid var(--color-dark-50);
+  padding: 24px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .section {
+    padding-bottom: 24px;
+    margin-bottom: 16px;
+  }
+}
+
+.textArea {
+  width: 100%;
+}
+
+.title {
+  padding-bottom: 24px;
+}/*# sourceMappingURL=index.module.css.map */
