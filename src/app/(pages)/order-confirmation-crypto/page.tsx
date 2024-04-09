@@ -7,7 +7,7 @@ import { OrderConfirmationPage } from './OrderConfirmationPage'
 
 import classes from './index.module.scss'
 
-export default async function OrderConfirmationRevolut() {
+export default async function OrderConfirmationCrypto() {
   return (
     <Gutter>
       <Suspense fallback={<div>Loading...</div>}>
@@ -18,10 +18,10 @@ export default async function OrderConfirmationRevolut() {
 }
 
 export const metadata: Metadata = {
-  title: 'Order Confirmation - Revolut',
-  description: 'Your order has been confirmed. Your payment method is Revolut',
+  title: 'Order Confirmation - Crypto',
+  description: 'Your order has been confirmed. Your payment method is Cryptocurency',
   openGraph: mergeOpenGraph({
-    title: 'Order Confirmation - Revolut',
-    url: '/order-confirmation',
+    title: 'Order Confirmation - Crypto',
+    url: '/order-confirmation-crypto',
   }),
 }

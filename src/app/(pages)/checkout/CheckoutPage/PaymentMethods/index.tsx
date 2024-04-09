@@ -1,5 +1,6 @@
 import React from 'react'
 import { BsBank, BsCreditCard2Back, BsCurrencyBitcoin } from 'react-icons/bs'
+import Image from 'next/image'
 
 import { RadioButton } from '../../../../_components/Radio'
 
@@ -21,31 +22,51 @@ const PaymentMethods = ({ method, setMethod }) => {
           onRadioChange={handlePaymentMethod}
           groupName="method"
         />
+        <Image
+          alt="Rovolut bank logo"
+          src="/media/revolut.svg"
+          height="20"
+          width="80"
+          className="w-50"
+        />
+      </div>
+      <hr className="mb-5 mt-5"></hr>
+      <div className={classes.radioAndIcon}>
+        <RadioButton
+          label="Bank Trafser to Wise"
+          value="wise"
+          isSelected={method === 'wise'}
+          onRadioChange={handlePaymentMethod}
+          groupName="method"
+        />
+        <Image alt="Wise bank logo" src="/media/vise.svg" height="40" width="80" className="w-50" />
+      </div>
+      <hr className="mb-5 mt-5"></hr>
+      <div className={classes.radioAndIcon}>
+        <RadioButton
+          label="Bank Trafser - SEPA or others"
+          value="sepa"
+          isSelected={method === 'sepa'}
+          onRadioChange={handlePaymentMethod}
+          groupName="method"
+        />
         <BsBank className={classes.icon} />
       </div>
-      <hr className={classes.hr}></hr>
-      <div className={classes.radioAndIcon}>
+      <hr className="mb-5 mt-5"></hr>
+      <div className="flex justify-between">
         <RadioButton
-          label="Payment Gateway"
-          value="gateway"
-          isSelected={method === 'gateway'}
+          label="Cryptocurency"
+          value="crypto"
+          isSelected={method === 'crypto'}
           onRadioChange={handlePaymentMethod}
           groupName="method"
         />
-        <BsCreditCard2Back className={classes.icon} />
+        <div className="flex gap-2">
+          <Image alt="logo" src="/media/btc-logo.svg" height="40" width="40" className="w-50" />
+          <Image alt="ETH logo" src="/media/eth.svg" height="30" width="25" className="w-50" />
+        </div>
       </div>
-      <hr className={classes.hr}></hr>
-      <div className={classes.radioAndIcon}>
-        <RadioButton
-          label="Cryptocurrency ETH"
-          value="eth"
-          isSelected={method === 'eth'}
-          onRadioChange={handlePaymentMethod}
-          groupName="method"
-        />
-        <BsCurrencyBitcoin className={classes.icon} />
-      </div>
-      <hr className={classes.hr}></hr>
+      <hr className="mb-5 mt-5"></hr>
     </div>
   )
 }
