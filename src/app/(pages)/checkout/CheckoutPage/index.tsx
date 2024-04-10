@@ -206,7 +206,6 @@ export const CheckoutPage: React.FC<{
           phone={phone}
           email={email}
           lockerCode={lockerCode}
-          shippingMethods={shippingMethods}
           additionalInfo={additionalInfo}
           cart={cart}
         />
