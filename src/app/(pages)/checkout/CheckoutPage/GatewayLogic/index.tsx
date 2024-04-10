@@ -1,11 +1,10 @@
-import React, { Fragment, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
 import { sha1 } from 'js-sha1'
 import { useRouter } from 'next/navigation'
 
 import { Order } from '../../../../../payload/payload-types'
 import { Button } from '../../../../_components/Button'
-import { priceFromJSON } from '../../../../_components/Price'
 
 const GatewayLogic = ({
   method,
@@ -18,7 +17,6 @@ const GatewayLogic = ({
   phone,
   email,
   lockerCode,
-  shippingMethods,
   additionalInfo,
   cart,
 }) => {

@@ -40,10 +40,10 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
         <li>
           You can transfer money to our regular account from any bank account around the world.
         </li>
-        <li>You can open an account with Wise. Then transfers to our account will be instant.</li>
+        <li>You can use SEPA transfer for faster processing.</li>
       </ol>
       <p className="text-left text-xl mb-5">
-        Whichever method you choose, remember to include the order number in the transfer reference.
+        Whichever method you choose, remember to include the order ID in the transfer reference.
         This will streamline the purchasing process.
       </p>
 
@@ -60,19 +60,7 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
         <p className="text-xl font-bold text-center">Address:</p>
         <p className="text-xl text-center">Szkolna 1/3, 05-500 Piaseczno, Poland</p>
       </div>
-      <p className="mt-10 text-center text-2xl">Check out Revolut</p>
-      <Link
-        href="https://www.wise.com/"
-        className="mt-5 mb-10 lg:flex lg:flex-row lg:items-center md:flex xs:flex-col items-center"
-      >
-        <Image
-          alt="Wise bank logo"
-          src="/media/vise.svg"
-          height="300"
-          width="200"
-          className="w-50 lg:pl-10 xs:pl-0 mx-auto"
-        />
-      </Link>
+
       <div className={classes.actions}>
         {user && (
           <>

@@ -67,7 +67,7 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
           src="/media/vise.svg"
           height="300"
           width="200"
-          className="w-50 lg:pl-10 xs:pl-0 mx-auto"
+          className="w-50 lg:pl-0 xs:pl-0 mx-auto"
         />
       </Link>
       <div className={classes.actions}>

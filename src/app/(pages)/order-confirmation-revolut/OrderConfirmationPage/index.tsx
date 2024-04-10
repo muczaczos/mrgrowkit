@@ -33,57 +33,43 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
         is <p className="font-bold">{orderID}</p>
       </p>
       <p className="text-xl text-left pt-">
-        You have selected the payment option Cryptocurency. Now you have two options:
+        You have selected the payment option to a Revolut account. Now you have two options:
       </p>
       <ol className="text-left list-decimal pl-5 text-xl pr-0 mb-5">
-        <li>You can use BTC.</li>
-        <li>You can use ETH</li>
+        <li>You can transfer money to our Revolut account from any bank account.</li>
+        <li>
+          You can open an account with Revolut. Then transfers to our account will be instant.
+        </li>
       </ol>
       <p className="text-left text-xl mb-5">
-        Whichever method you choose, send to us email with ID transaction after payment. This will
-        speed up proccesing of your order.
+        Whichever method you choose, remember to include the order ID in the transfer reference.
+        This will streamline the purchasing process.
       </p>
 
       <div className="xs:p-0 lg:p-2 border-solid border border-gray-200">
-        <p className="text-xl text-center">
-          BTC account no: <br />
+        <p className="text-xl text-center">The details for the transfer are as follows:</p>
+        <p className="text-xl font-bold text-center">
+          Account number in IBAN format: <br />
         </p>
-        <p className="font-bold lg:text-xl xs:text-sm text-center">
-          PL12 1212 1212 1212 1212 1212 1212
+        <p className="lg:text-xl xs:text-sm text-center">PL12 1212 1212 1212 1212 1212 1212</p>
+        <p className="text-xl font-bold text-center">
+          Company name: <br />
         </p>
+        <p className="text-xl text-center">UiTeH</p>
+        <p className="text-xl font-bold text-center">Address:</p>
+        <p className="text-xl text-center">Szkolna 1/3, 05-500 Piaseczno, Poland</p>
       </div>
-      <p className="mt-5 text-center text-2xl">Click on the logo and checkout how works BTC</p>
+      <p className="mt-10 text-center text-2xl">Check out Revolut</p>
       <Link
-        href="https://bitcoin.org/en/getting-started"
+        href="https://www.revolut.com/"
         className="mt-5 mb-10 lg:flex lg:flex-row lg:items-center md:flex xs:flex-col items-center"
       >
         <Image
-          alt="Bitcoin logo"
-          src="/media/bitcoin.png"
+          alt="Wise bank logo"
+          src="/media/revolut.svg"
           height="300"
           width="200"
-          className="w-50 lg:pl-10 xs:pl-0 mx-auto"
-        />
-      </Link>
-      <div className="mt-10 xs:p-0 lg:p-2 border-solid border border-gray-200">
-        <p className="text-xl text-center">
-          ETH account no: <br />
-        </p>
-        <p className="font-bold lg:text-xl xs:text-sm text-center">
-          PL12 1212 1212 1212 1212 1212 1212
-        </p>
-      </div>
-      <p className="mt-5 text-center text-2xl">Click on the logo and checkout how works ETH</p>
-      <Link
-        href="https://ethereum.org/en/"
-        className="mt-5 mb-10 lg:flex lg:flex-row lg:items-center md:flex xs:flex-col items-center"
-      >
-        <Image
-          alt="Eth Logo"
-          src="/media/eth.svg"
-          height="300"
-          width="100"
-          className="w-50 lg:pl-10 xs:pl-0 mx-auto"
+          className="w-50 lg:pl-0 xs:pl-0 mx-auto"
         />
       </Link>
       <div className={classes.actions}>
