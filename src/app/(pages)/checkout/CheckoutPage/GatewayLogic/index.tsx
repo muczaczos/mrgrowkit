@@ -71,7 +71,7 @@ const GatewayLogic = ({
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://pay.cashbill.pl/testws/rest/payment/:grzybole.pl',
+        url: 'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
