@@ -38,7 +38,7 @@ const GatewayLogic = ({
         negativeReturnUrl: 'https://www.shroom.it',
         languageCode: 'pl',
         referer: 'UiTeH',
-        sign: 'string',
+        sign: '04f58ee93d486f0b426c09d776e1f540',
       })
 
       const dataObj = JSON.parse(data)
@@ -71,7 +71,7 @@ const GatewayLogic = ({
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://pay.cashbill.pl/testws/rest/payment/',
+        url: 'https://pay.cashbill.pl/testws/rest/payment/:grzybole.pl',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
