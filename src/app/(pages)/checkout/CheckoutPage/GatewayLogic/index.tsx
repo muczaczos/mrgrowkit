@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { sha1 } from 'js-sha1'
+import crypto from 'crypto'
 import { useRouter } from 'next/navigation'
 
 import { Order } from '../../../../../payload/payload-types'
@@ -26,67 +26,59 @@ const GatewayLogic = ({
     //console.log('dupa')
     if (method === 'gateway') {
       //console.log('1')
-      let data = JSON.stringify({
-        title: 'test nr 1',
-        amount: {
-          value: 150,
-          currencyCode: 'pln',
-        },
-        description: 'Order no: 1222',
-        additionalData: 'no: 1222',
-        returnUrl: 'https://www.planet-of-mushrooms.com',
-        negativeReturnUrl: 'https://www.shroom.it',
-        languageCode: 'pl',
-        referer: 'UiTeH',
-        sign: '04f58ee93d486f0b426c09d776e1f540',
-      })
 
-      const dataObj = JSON.parse(data)
+      const https = require('follow-redirects').https
 
-      var crypto = sha1(
-        dataObj.title +
-          '' +
-          dataObj.amount.value +
-          '' +
-          dataObj.amount.currencyCode +
-          '' +
-          dataObj.description +
-          '' +
-          dataObj.additionalData +
-          '' +
-          dataObj.additionalData +
-          '' +
-          dataObj.returnUrl +
-          '' +
-          dataObj.negativeReturnUrl +
-          '' +
-          dataObj.languageCode +
-          '' +
-          dataObj.referer +
-          '649998925d9c03ce63525b4c84711054',
-      )
-
-      dataObj.sign = crypto
-
-      let config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: 'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
+      let options = {
+        method: 'POST',
+        hostname: 'pay.cashbill.pl',
+        path: '/testws/rest/payment/grzybole.pl',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          'Content-Security-Policy': 'connect-src https://pay.cashbill.pl',
         },
-        data: data,
+        maxRedirects: 20,
       }
 
-      axios(config)
-        .then(response => {
-          //console.log(JSON.stringify(response.data))
+      const req = https.request(options, res => {
+        let chunks = []
+
+        res.on('data', chunk => {
+          chunks.push(chunk)
         })
-        .catch(error => {
-          //console.log('dupa')
+
+        res.on('end', chunk => {
+          let body = Buffer.concat(chunks)
+          //   console.log(body.toString())
         })
+
+        res.on('error', error => {
+          //  console.error(error)
+        })
+      })
+
+      let postData = JSON.stringify({
+        title: 'string',
+        sign: 'string',
+      })
+
+      const dataObj = JSON.parse(postData)
+
+      // Utwórz obiekt skrótu MD5
+      const md5 = crypto.createHash('md5')
+
+      // Dodaj dane do obiektu skrótu
+      md5.update(dataObj.title + '04f58ee93d486f0b426c09d776e1f540')
+
+      const hash = md5.digest('hex')
+
+      //  console.log(hash)
+
+      dataObj.sign = hash
+
+      req.write(postData)
+
+      req.end()
     } else if (method === 'revolut') {
       // console.log('1')
       const orderReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {

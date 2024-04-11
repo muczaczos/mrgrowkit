@@ -8,7 +8,7 @@ const policies = {
     'https://js.stripe.com',
     'https://maps.googleapis.com',
     'https://geowidget.inpost.pl/inpost-geowidget.js',
-    
+
   ],
   'child-src': ["'self'"],
   'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
@@ -27,9 +27,11 @@ const policies = {
     'https://api.stripe.com',
     'https://maps.googleapis.com',
     'https://pay.cashbill.pl/testws/rest/payment/planet-of-mushrooms.com',
-    'https://pay.cashbill.pl/testws/rest/payment/'
+    'https://pay.cashbill.pl/testws/rest/payment/',
+    'https://pay.cashbill.pl/ws/rest/payment/grzybole.pl',
+    'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl'
   ],
-  
+
 }
 
 module.exports = Object.entries(policies)

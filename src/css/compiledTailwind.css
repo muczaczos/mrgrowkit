@@ -425,6 +425,10 @@
     padding-bottom: 1.25rem !important
   }
 
+  .lg\:pl-0 {
+    padding-left: 0px !important
+  }
+
   .lg\:pl-10 {
     padding-left: 2.5rem !important
   }
@@ -435,10 +439,6 @@
 
   .lg\:pt-5 {
     padding-top: 1.25rem !important
-  }
-
-  .lg\:pl-0 {
-    padding-left: 0px !important
   }
 
   .lg\:text-2xl {
