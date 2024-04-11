@@ -58,25 +58,36 @@ const GatewayLogic = ({
       })
 
       let postData = JSON.stringify({
-        title: 'string',
-        sign: 'string',
+        title: 'dupa',
+        amount: {
+          value: 100,
+          currencyCode: 'PLN',
+        },
+        sign: '',
       })
 
+      //console.log(postData)
+
       const dataObj = JSON.parse(postData)
+      const hash = crypto.createHash('sha1')
 
-      // Utwórz obiekt skrótu MD5
-      const md5 = crypto.createHash('md5')
+      // Aktualizacja obiektu Hash danymi
+      hash.update(
+        dataObj.title +
+          dataObj.amount.value +
+          dataObj.amount.currencyCode +
+          '04f58ee93d486f0b426c09d776e1f540',
+      )
 
-      // Dodaj dane do obiektu skrótu
-      md5.update(dataObj.title + '04f58ee93d486f0b426c09d776e1f540')
+      // Obliczanie skrótu SHA-1 i przekształcenie wyniku na szesnastkowy
+      const sha1Hash = hash.digest('hex')
 
-      const hash = md5.digest('hex')
+      //   console.log(sha1Hash)
 
-      //  console.log(hash)
-
-      dataObj.sign = hash
-
-      req.write(postData)
+      dataObj.sign = sha1Hash
+      let dupa = JSON.stringify(dataObj)
+      //  console.log(dupa)
+      req.write(dupa)
 
       req.end()
     } else if (method === 'revolut') {

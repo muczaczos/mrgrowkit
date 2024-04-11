@@ -136,6 +136,7 @@ export default buildConfig({
   cors: [
     'https://checkout.stripe.com',
     'https://grzybole.pl',
+    'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
     process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
   ].filter(Boolean),
   csrf: ['https://checkout.stripe.com', process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(
