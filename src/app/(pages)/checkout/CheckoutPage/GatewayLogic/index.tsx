@@ -40,9 +40,9 @@ const GatewayLogic = ({
           data,
         )
 
-        console.log('Response:', response.data)
+        //  console.log('Response:', response.data)
       } catch (error) {
-        console.error('Error:', error.message)
+        //  console.error('Error:', error.message)
       }
     } else if (method === 'revolut') {
       // console.log('1')
