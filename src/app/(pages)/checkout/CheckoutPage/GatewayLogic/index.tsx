@@ -25,71 +25,25 @@ const GatewayLogic = ({
   const handleSubmit = async () => {
     //console.log('dupa')
     if (method === 'gateway') {
-      //console.log('1')
+      try {
+        const data = {
+          title: 'dupa',
+          amount: {
+            value: 100,
+            currencyCode: 'PLN',
+          },
+          sign: '6e15693d71f99cd0c4cd7ffa8a3e4c019a58d1d9',
+        }
 
-      const https = require('follow-redirects').https
+        const response = await axios.post(
+          'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
+          data,
+        )
 
-      let options = {
-        method: 'POST',
-        hostname: 'pay.cashbill.pl',
-        path: '/testws/rest/payment/grzybole.pl',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        maxRedirects: 20,
+        console.log('Response:', response.data)
+      } catch (error) {
+        console.error('Error:', error.message)
       }
-
-      const req = https.request(options, res => {
-        let chunks = []
-
-        res.on('data', chunk => {
-          chunks.push(chunk)
-        })
-
-        res.on('end', chunk => {
-          let body = Buffer.concat(chunks)
-          //   console.log(body.toString())
-        })
-
-        res.on('error', error => {
-          //  console.error(error)
-        })
-      })
-
-      let postData = JSON.stringify({
-        title: 'dupa',
-        amount: {
-          value: 100,
-          currencyCode: 'PLN',
-        },
-        sign: '',
-      })
-
-      //console.log(postData)
-
-      const dataObj = JSON.parse(postData)
-      const hash = crypto.createHash('sha1')
-
-      // Aktualizacja obiektu Hash danymi
-      hash.update(
-        dataObj.title +
-          dataObj.amount.value +
-          dataObj.amount.currencyCode +
-          '04f58ee93d486f0b426c09d776e1f540',
-      )
-
-      // Obliczanie skrótu SHA-1 i przekształcenie wyniku na szesnastkowy
-      const sha1Hash = hash.digest('hex')
-
-      //   console.log(sha1Hash)
-
-      dataObj.sign = sha1Hash
-      let dupa = JSON.stringify(dataObj)
-      //  console.log(dupa)
-      req.write(dupa)
-
-      req.end()
     } else if (method === 'revolut') {
       // console.log('1')
       const orderReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {
