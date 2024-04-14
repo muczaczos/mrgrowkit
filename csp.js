@@ -29,7 +29,9 @@ const policies = {
     'https://pay.cashbill.pl/testws/rest/payment/planet-of-mushrooms.com',
     'https://pay.cashbill.pl/testws/rest/payment/',
     'https://pay.cashbill.pl/ws/rest/payment/grzybole.pl',
-    'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl'
+    'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
+    'http://www.google.pl',
+    'https://jsonplaceholder.typicode.com/users'
   ],
 
 }

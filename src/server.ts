@@ -1,3 +1,4 @@
+import axios from 'axios'
 import dotenv from 'dotenv'
 import next from 'next'
 import nextBuild from 'next/dist/build'
@@ -14,6 +15,30 @@ import { seed } from './payload/seed'
 
 const app = express()
 const PORT = process.env.PORT || 3000
+
+app.post('/cashbill-payment', async (req, res) => {
+  try {
+    // Tutaj możesz umieścić swoją logikę
+    const data = {
+      title: 'dupa',
+      amount: {
+        value: 100,
+        currencyCode: 'PLN',
+      },
+      sign: '6e15693d71f99cd0c4cd7ffa8a3e4c019a58d1d9',
+    }
+
+    const response = await axios.post(
+      'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
+      data,
+    )
+    //   console.log(response)
+    res.status(200).json(response.data)
+  } catch (error: unknown) {
+    // console.error('Error:', error.message)
+    res.status(500).json({ error: 'Internal Server Error' })
+  }
+})
 
 const start = async (): Promise<void> => {
   await payload.init({
