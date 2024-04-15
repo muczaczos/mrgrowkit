@@ -22,14 +22,24 @@ const GatewayLogic = ({
 }) => {
   const router = useRouter()
 
+  const data = {
+    title: 'dupa',
+    amount: {
+      value: 100,
+      currencyCode: 'PLN',
+    },
+    sign: '6e15693d71f99cd0c4cd7ffa8a3e4c019a58d1d9',
+  };
+
+
   const handleSubmit = async () => {
     //console.log('dupa')
     if (method === 'gateway') {
       try {
-        const response = await axios.post('/cashbill-payment', {})
-        //  console.log(response.data)
+        const response = await axios.post('/cashbill-payment', data)
+        console.log(response.data)
       } catch (error) {
-        // console.error('Error:', error.message)
+        console.error('Error:', error.message)
       }
     } else if (method === 'revolut') {
       // console.log('1')

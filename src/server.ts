@@ -16,21 +16,18 @@ import { seed } from './payload/seed'
 const app = express()
 const PORT = process.env.PORT || 3000
 
+// Dodaj middleware, który odczyta dane JSON z ciała żądania
+app.use(express.json())
+
 app.post('/cashbill-payment', async (req, res) => {
   try {
-    // Tutaj możesz umieścić swoją logikę
-    const data = {
-      title: 'dupa',
-      amount: {
-        value: 100,
-        currencyCode: 'PLN',
-      },
-      sign: '6e15693d71f99cd0c4cd7ffa8a3e4c019a58d1d9',
-    }
+    // Odczytaj dane z ciała żądania
+    const requestData = req.body
 
+    // Tutaj możesz użyć danych przekazanych z frontendu
     const response = await axios.post(
       'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
-      data,
+      requestData,
     )
     //   console.log(response)
     res.status(200).json(response.data)
