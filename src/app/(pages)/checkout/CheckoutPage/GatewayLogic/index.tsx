@@ -38,6 +38,7 @@ const GatewayLogic = ({
       try {
         const response = await axios.post('/cashbill-payment', data)
         console.log(response.data)
+        router.push(response.data.redirectUrl);
       } catch (error) {
         console.error('Error:', error.message)
       }
