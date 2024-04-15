@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import crypto from 'crypto'
+import app from 'next/app'
 import { useRouter } from 'next/navigation'
 
 import { Order } from '../../../../../payload/payload-types'
@@ -67,7 +68,7 @@ const GatewayLogic = ({
           value: parseFloat(totalAmount),
           currencyCode: 'PLN',
         },
-        returnUrl: 'https://dupa.pl' + doc.id,
+        returnUrl: 'https://grzybole.pl/order-confirmation?order_id=' + doc.id,
         negativeReturnUrl: 'https://shroom.it',
         sign: '',
       })
@@ -78,11 +79,11 @@ const GatewayLogic = ({
 
       hash.update(
         dataObj.title +
-        dataObj.amount.value +
-        dataObj.amount.currencyCode +
-        dataObj.returnUrl +
-        dataObj.negativeReturnUrl +
-        '04f58ee93d486f0b426c09d776e1f540',
+          dataObj.amount.value +
+          dataObj.amount.currencyCode +
+          dataObj.returnUrl +
+          dataObj.negativeReturnUrl +
+          '04f58ee93d486f0b426c09d776e1f540',
       )
       // Obliczanie skrótu SHA-1 i przekształcenie wyniku na szesnastkowy
       const sha1Hash = hash.digest('hex')
@@ -92,10 +93,10 @@ const GatewayLogic = ({
 
       try {
         const response = await axios.post('/cashbill-payment', dataObj)
-        console.log(response.data)
-        //  router.push(response.data.redirectUrl)
+        //  console.log(response.data)
+        router.push(response.data.redirectUrl)
       } catch (error) {
-        console.error('Error:', error.message)
+        //   console.error('Error:', error.message)
       }
     } else if (method === 'revolut') {
       // console.log('1')
