@@ -23,7 +23,7 @@ app.post('/cashbill-payment', async (req, res) => {
   try {
     // Odczytaj dane z ciała żądania
     const requestData = req.body
-
+    console.log(requestData)
     // Tutaj możesz użyć danych przekazanych z frontendu
     const response = await axios.post(
       'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
