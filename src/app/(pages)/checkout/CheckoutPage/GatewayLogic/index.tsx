@@ -22,23 +22,39 @@ const GatewayLogic = ({
 }) => {
   const router = useRouter()
 
-  const data = {
+  let data = JSON.stringify({
     title: 'dupa',
     amount: {
       value: 100,
       currencyCode: 'PLN',
     },
-    sign: '6e15693d71f99cd0c4cd7ffa8a3e4c019a58d1d9',
-  };
+    sign: '',
+  })
 
+  const crypto = require('crypto')
+  const dataObj = JSON.parse(data)
+  const hash = crypto.createHash('sha1')
+
+  hash.update(
+    dataObj.title +
+    dataObj.amount.value +
+    dataObj.amount.currencyCode +
+    '04f58ee93d486f0b426c09d776e1f540',
+  )
+
+  // Obliczanie skrótu SHA-1 i przekształcenie wyniku na szesnastkowy
+  const sha1Hash = hash.digest('hex')
+
+  // Przypisanie wyliczonego skrótu do pola sign w obiekcie dataObj
+  dataObj.sign = sha1Hash
 
   const handleSubmit = async () => {
     //console.log('dupa')
     if (method === 'gateway') {
       try {
-        const response = await axios.post('/cashbill-payment', data)
+        const response = await axios.post('/cashbill-payment', dataObj)
         console.log(response.data)
-        router.push(response.data.redirectUrl);
+        router.push(response.data.redirectUrl)
       } catch (error) {
         console.error('Error:', error.message)
       }
