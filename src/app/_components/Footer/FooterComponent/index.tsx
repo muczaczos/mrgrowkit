@@ -21,6 +21,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
   } = useForm<FormData>()
   const pathname = usePathname()
   const navItems = footer?.navItems || []
+  
   return (
     <>
       <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>
