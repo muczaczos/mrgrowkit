@@ -61,7 +61,7 @@ const GatewayLogic = ({
         error?: string
         doc: Order
       } = await orderReq.json()
-
+      cart = null
       let data = JSON.stringify({
         title: 'Zamówienie nr: ' + doc.id,
         amount: {
