@@ -150,8 +150,8 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
             </p>
           </div>
           <div className={classes.wrap}>
-            <Link href="/">
-              <Image src="/logo-white.svg" alt="logo" width={170} height={50} />
+            <Link className="mt-5" href="/">
+              <Image src="media/logo-com-white.svg" alt="logo" width={350} height={50} />
             </Link>
 
             <div className={classes.socialLinks}>

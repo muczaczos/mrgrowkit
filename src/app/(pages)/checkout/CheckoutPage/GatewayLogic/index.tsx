@@ -68,7 +68,8 @@ const GatewayLogic = ({
           value: parseFloat(totalAmount),
           currencyCode: 'PLN',
         },
-        returnUrl: 'https://grzybole.pl/order-confirmation?order_id=' + doc.id,
+        //returnUrl: 'https://grzybole.pl/order-confirmation?order_id=' + doc.id,
+        returnUrl: 'https://www.google.pl',
         negativeReturnUrl: 'https://shroom.it',
         sign: '',
       })
