@@ -42,8 +42,6 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
             ))}
           </ul>
         </Gutter>
-
-        <div className="w-full">sdfsfd</div>
         <Image
           src="/media/footer-grass.svg"
           style={{ width: '100%' }}
