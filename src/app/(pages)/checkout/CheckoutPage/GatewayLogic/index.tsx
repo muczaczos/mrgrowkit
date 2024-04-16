@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
-import crypto from 'crypto'
-import app from 'next/app'
 import { useRouter } from 'next/navigation'
 
 import { Order } from '../../../../../payload/payload-types'
 import { Button } from '../../../../_components/Button'
+import { useCart } from '../../../../_providers/Cart'
 
 const GatewayLogic = ({
   method,
@@ -22,6 +21,7 @@ const GatewayLogic = ({
   cart,
 }) => {
   const router = useRouter()
+  const { clearCart } = useCart()
 
   const handleSubmit = async () => {
     //console.log('dupa')
@@ -61,7 +61,7 @@ const GatewayLogic = ({
         error?: string
         doc: Order
       } = await orderReq.json()
-      cart = null
+
       let data = JSON.stringify({
         title: 'Zamówienie nr: ' + doc.id,
         amount: {
@@ -79,17 +79,19 @@ const GatewayLogic = ({
 
       hash.update(
         dataObj.title +
-          dataObj.amount.value +
-          dataObj.amount.currencyCode +
-          dataObj.returnUrl +
-          dataObj.negativeReturnUrl +
-          '04f58ee93d486f0b426c09d776e1f540',
+        dataObj.amount.value +
+        dataObj.amount.currencyCode +
+        dataObj.returnUrl +
+        dataObj.negativeReturnUrl +
+        '04f58ee93d486f0b426c09d776e1f540',
       )
       // Obliczanie skrótu SHA-1 i przekształcenie wyniku na szesnastkowy
       const sha1Hash = hash.digest('hex')
 
       // Przypisanie wyliczonego skrótu do pola sign w obiekcie dataObj
       dataObj.sign = sha1Hash
+
+      clearCart()
 
       try {
         const response = await axios.post('/cashbill-payment', dataObj)

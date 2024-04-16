@@ -30,7 +30,6 @@ export async function calculateShippingCost(postalCode, weight, countryCode) {
               (weight <= 1 && rangeWeight === 1) ||
               (weight > 1 && weight < 3 && rangeWeight === 3)
             ) {
-              //console.log(range.price)
               return range.price
             }
           }
@@ -50,7 +49,6 @@ export async function calculateShippingCost(postalCode, weight, countryCode) {
               (weight <= 1 && rangeWeight === 1) ||
               (weight > 1 && weight < 3 && rangeWeight === 3)
             ) {
-              //  console.log(range.price)
               return range.price
             }
           }
@@ -66,7 +64,6 @@ export async function calculateShippingCost(postalCode, weight, countryCode) {
             (weight <= 1 && rangeWeight === 1) ||
             (weight > 1 && weight < 3 && rangeWeight === 3)
           ) {
-            //  console.log(range.price)
             return range.price
           }
         }

@@ -72,7 +72,6 @@ export const CheckoutPage: React.FC<{
     // Sprawdź, czy postalCode nie jest null, aby uniknąć wywołania funkcji calculateShippingCost z niezainicjalizowaną wartością
     if (postalCode) {
       const fetchData = async () => {
-        //   console.log(country)
         const cost = await calculateShippingCost(postalCode, totalWeight, country)
         setShippingCost(cost)
       }
