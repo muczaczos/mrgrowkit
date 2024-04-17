@@ -256,6 +256,11 @@
   background-color: rgb(254 249 195 / var(--tw-bg-opacity)) !important
 }
 
+.bg-white {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
+}
+
 .p-2 {
   padding: 0.5rem !important
 }
@@ -341,6 +346,11 @@
 .text-black {
   --tw-text-opacity: 1 !important;
   color: rgb(0 0 0 / var(--tw-text-opacity)) !important
+}
+
+.text-white {
+  --tw-text-opacity: 1 !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important
 }
 
 .underline {

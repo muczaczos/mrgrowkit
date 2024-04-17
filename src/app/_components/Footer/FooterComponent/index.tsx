@@ -21,7 +21,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
   } = useForm<FormData>()
   const pathname = usePathname()
   const navItems = footer?.navItems || []
-  
+
   return (
     <>
       <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>
@@ -160,7 +160,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
             </div>
             <div className={classes.wrap}>
               <Link className="mt-5" href="/">
-                <Image src="media/logo-com-white.svg" alt="logo" width={350} height={50} />
+                <Image src="/media/logo-com-white.svg" alt="logo" width={350} height={50} />
               </Link>
 
               <div className={classes.socialLinks}>
