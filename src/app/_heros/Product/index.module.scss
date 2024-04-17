@@ -14,16 +14,14 @@
 .mediaWrapper {
   position: relative;
   min-height: 400px;
-  background-color: var(--color-dark-50);
-
+  background-color: white;
   @include small-break {
     min-height: 250px;
   }
 }
 
 .image {
-  padding: 24px;
-  object-fit: contain;
+  object-fit: cover;
   aspect-ratio: 1/1;
   max-width: 100%;
 }

@@ -12,7 +12,7 @@ const GrowkitsCards = ({ pages, products }) => {
           if (!item) return null
           const src = '/media/' + item.meta.image.filename
           const href = process.env.NEXT_PUBLIC_SERVER_URL + '/products/' + products[index].slug
-          const title = item.meta.title
+          const title = item.title
           const description = item.meta.description
           const price = item.price
           return (
@@ -31,7 +31,7 @@ const GrowkitsCards = ({ pages, products }) => {
               <Link className={classes.link} href={href}>
                 <div className={classes.priceTitle}>
                   <h6 className={classes.title}>{title}</h6>
-                  <p>${price}</p>
+                  <p>€{price}</p>
                 </div>
               </Link>
             </div>
