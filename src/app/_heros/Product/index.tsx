@@ -1,13 +1,15 @@
 'use client'
 
 import React, { Fragment } from 'react'
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 
 import { Product } from '../../../payload/payload-types'
 import { AddToCartButton } from '../../_components/AddToCartButton'
 import { Gutter } from '../../_components/Gutter'
 import { Media } from '../../_components/Media'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+
+import 'react-tabs/style/react-tabs.css'
+
 import classes from './index.module.scss'
 
 export const ProductHero: React.FC<{
@@ -51,16 +53,21 @@ export const ProductHero: React.FC<{
         <p>{`€ ${price}`}</p>
 
         <div className="pt-5 pb-5">
-
           <Tabs>
-          <TabList className="d-flex flex-row">
-            <Tab><h6>Details</h6></Tab>
-            <Tab><h6>Description</h6></Tab>
-            <Tab><h6>Dimennsions</h6></Tab>
-          </TabList>
+            <TabList className="d-flex flex-row">
+              <Tab>
+                <h6>Details</h6>
+              </Tab>
+              <Tab>
+                <h6>Description</h6>
+              </Tab>
+              <Tab>
+                <h6>Dimennsions</h6>
+              </Tab>
+            </TabList>
             <div className="p3">
               <TabPanel>
-              <p>{description}</p>
+                <p>{description}</p>
               </TabPanel>
               <TabPanel>
                 <p>Tutaj umieść treść dla drugiej zakładki.</p>
