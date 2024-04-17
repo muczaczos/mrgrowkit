@@ -131,6 +131,10 @@
   list-style-type: decimal !important
 }
 
+.flex-row {
+  flex-direction: row !important
+}
+
 .items-center {
   align-items: center !important
 }
@@ -227,6 +231,11 @@
   border-color: rgb(253 224 71 / var(--tw-border-opacity)) !important
 }
 
+.border-black {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity)) !important
+}
+
 .bg-blue-100 {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(219 234 254 / var(--tw-bg-opacity)) !important
@@ -263,6 +272,10 @@
 
 .p-2 {
   padding: 0.5rem !important
+}
+
+.p-3 {
+  padding: 0.75rem !important
 }
 
 .px-4 {
@@ -306,6 +319,14 @@
 
 .pt-3 {
   padding-top: 0.75rem !important
+}
+
+.pt-5 {
+  padding-top: 1.25rem !important
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem !important
 }
 
 .text-left {

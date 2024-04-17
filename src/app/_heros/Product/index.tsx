@@ -6,7 +6,8 @@ import { Product } from '../../../payload/payload-types'
 import { AddToCartButton } from '../../_components/AddToCartButton'
 import { Gutter } from '../../_components/Gutter'
 import { Media } from '../../_components/Media'
-
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import classes from './index.module.scss'
 
 export const ProductHero: React.FC<{
@@ -49,9 +50,26 @@ export const ProductHero: React.FC<{
         </div>
         <p>{`€ ${price}`}</p>
 
-        <div className={classes.description}>
-          <h6>Description</h6>
-          <p>{description}</p>
+        <div className="pt-5 pb-5">
+
+          <Tabs>
+          <TabList className="d-flex flex-row">
+            <Tab><h6>Details</h6></Tab>
+            <Tab><h6>Description</h6></Tab>
+            <Tab><h6>Dimennsions</h6></Tab>
+          </TabList>
+            <div className="p3">
+              <TabPanel>
+              <p>{description}</p>
+              </TabPanel>
+              <TabPanel>
+                <p>Tutaj umieść treść dla drugiej zakładki.</p>
+              </TabPanel>
+              <TabPanel>
+                <p>Tutaj umieść treść dla trzeciej zakładki.</p>
+              </TabPanel>
+            </div>
+          </Tabs>
         </div>
         <AddToCartButton product={product} className={classes.addToCartButton} />
       </div>
