@@ -7,7 +7,6 @@ import { Product } from '../../../payload/payload-types'
 import { AddToCartButton } from '../../_components/AddToCartButton'
 import { Gutter } from '../../_components/Gutter'
 import { Media } from '../../_components/Media'
-
 import 'react-tabs/style/react-tabs.css'
 
 import classes from './index.module.scss'
@@ -54,7 +53,7 @@ export const ProductHero: React.FC<{
 
         <div className="pt-5 pb-5">
           <Tabs>
-            <TabList className="d-flex flex-row">
+            <TabList >
               <Tab>
                 <h6>Details</h6>
               </Tab>
@@ -62,11 +61,14 @@ export const ProductHero: React.FC<{
                 <h6>Description</h6>
               </Tab>
               <Tab>
-                <h6>Dimennsions</h6>
+                <h6>FAQ</h6>
+              </Tab>
+              <Tab>
+                <h6>Video</h6>
               </Tab>
             </TabList>
             <div className="p3">
-              <TabPanel>
+              <TabPanel className="">
                 <p>{description}</p>
               </TabPanel>
               <TabPanel>
@@ -78,6 +80,7 @@ export const ProductHero: React.FC<{
             </div>
           </Tabs>
         </div>
+
         <AddToCartButton product={product} className={classes.addToCartButton} />
       </div>
     </Gutter>
