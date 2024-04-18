@@ -7,6 +7,7 @@ import { Product } from '../../../payload/payload-types'
 import { AddToCartButton } from '../../_components/AddToCartButton'
 import { Gutter } from '../../_components/Gutter'
 import { Media } from '../../_components/Media'
+
 import 'react-tabs/style/react-tabs.css'
 
 import classes from './index.module.scss'
@@ -53,7 +54,7 @@ export const ProductHero: React.FC<{
 
         <div className="pt-5 pb-5">
           <Tabs>
-            <TabList >
+            <TabList>
               <Tab>
                 <h6>Details</h6>
               </Tab>
