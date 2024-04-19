@@ -3,30 +3,20 @@
 import React, { Fragment } from 'react'
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 
-import { Content } from '../../../payload/blocks/Content'
 import { Product } from '../../../payload/payload-types'
 import { AddToCartButton } from '../../_components/AddToCartButton'
 import { Gutter } from '../../_components/Gutter'
 import { Media } from '../../_components/Media'
+import RichText from '../../_components/RichText'
 
 import 'react-tabs/style/react-tabs.css'
 
 import classes from './index.module.scss'
-import RichText from '../../_components/RichText'
 
 export const ProductHero: React.FC<{
   product: Product
 }> = ({ product }) => {
-  const {
-    slug,
-    title,
-    categories,
-    price,
-    layout,
-    meta: { image: metaImage, description } = {},
-  } = product
-
-  console.log(layout[0].columns[0].richText[0].children[0].text)
+  const { title, categories, price, layout, meta: { image: metaImage, description } = {} } = product
 
   return (
     <Gutter className={classes.productHero}>
@@ -67,21 +57,34 @@ export const ProductHero: React.FC<{
           <Tabs>
             <TabList>
               <Tab>
-                <h6>Details</h6>
+                <h6>Description</h6>
               </Tab>
               <Tab>
-                <h6>Description</h6>
+                <h6>Details</h6>
               </Tab>
               <Tab>
                 <h6>FAQ</h6>
               </Tab>
+              <Tab>
+                <h6>Movie</h6>
+              </Tab>
             </TabList>
             <div className="p3">
               <TabPanel className="">
-                <p>{description}</p>
-              </TabPanel>
-              <TabPanel>
-                <p></p>
+                <div
+                  style={{
+                    height: '200px', // Stała wysokość ramki
+                    overflowX: 'auto', // Przewijanie poziome w przypadku długiego tekstu
+                    overflowY: 'auto', // Przewijanie pionowe w przypadku długiego tekstu
+                    border: 'none', // Usunięcie obramowania
+                    outline: 'none', // Usunięcie obramowania po kliknięciu
+                    scrollbarWidth: 'thin' /* Grubość paska przewijania */,
+                    scrollbarColor:
+                      'rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0)' /* Kolor paska przewijania */,
+                  }}
+                >
+                  <RichText content={layout[0].columns[0].richText} />
+                </div>
               </TabPanel>
               <TabPanel>
                 <div
@@ -96,7 +99,39 @@ export const ProductHero: React.FC<{
                       'rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0)' /* Kolor paska przewijania */,
                   }}
                 >
-                  <RichText content={layout[0].columns[0].richText} />
+                  <RichText content={layout[0].columns[1].richText} />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div
+                  style={{
+                    height: '200px', // Stała wysokość ramki
+                    overflowX: 'auto', // Przewijanie poziome w przypadku długiego tekstu
+                    overflowY: 'auto', // Przewijanie pionowe w przypadku długiego tekstu
+                    border: 'none', // Usunięcie obramowania
+                    outline: 'none', // Usunięcie obramowania po kliknięciu
+                    scrollbarWidth: 'thin' /* Grubość paska przewijania */,
+                    scrollbarColor:
+                      'rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0)' /* Kolor paska przewijania */,
+                  }}
+                >
+                  <RichText content={layout[0].columns[2].richText} />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div
+                  style={{
+                    height: '200px', // Stała wysokość ramki
+                    overflowX: 'auto', // Przewijanie poziome w przypadku długiego tekstu
+                    overflowY: 'auto', // Przewijanie pionowe w przypadku długiego tekstu
+                    border: 'none', // Usunięcie obramowania
+                    outline: 'none', // Usunięcie obramowania po kliknięciu
+                    scrollbarWidth: 'thin' /* Grubość paska przewijania */,
+                    scrollbarColor:
+                      'rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0)' /* Kolor paska przewijania */,
+                  }}
+                >
+                  <RichText content={layout[0].columns[2].richText} />
                 </div>
               </TabPanel>
             </div>
