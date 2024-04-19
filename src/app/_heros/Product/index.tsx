@@ -128,8 +128,9 @@ export const ProductHero: React.FC<{
                   <h6>Question: Is Grow Kit Cubensis Ecuador legal?</h6>
                   <p>
                     Answer: The legality of growing Cubensis mushrooms varies depending on
-                    jurisdiction. In some places, it may be legal for personal use, in others you can store
-                    mycelium for microscopic research, while in others, it may be prohibited.
+                    jurisdiction. In some places, it may be legal for personal use, in others you
+                    can store mycelium for microscopic research, while in others, it may be
+                    prohibited.
                   </p>
                   <h6>
                     Question: What are the potential risks associated with growing Grow Kit Cubensis
@@ -143,8 +144,8 @@ export const ProductHero: React.FC<{
                   <p>
                     Answer: Cubensis Ecuador mushrooms contain psilocybin, a psychoactive substance
                     that can induce changes in consciousness and psychedelic experiences. They are
-                    used for recreational,therapeutic, and spiritual purposes, but only in countries where
-                    it is legal.
+                    used for recreational,therapeutic, and spiritual purposes, but only in countries
+                    where it is legal.
                   </p>
                 </div>
               </TabPanel>
