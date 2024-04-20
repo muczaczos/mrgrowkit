@@ -84,9 +84,6 @@ export const ProductHero: React.FC<{
               <Tab>
                 <h6>FAQ</h6>
               </Tab>
-              <Tab>
-                <h6>Movie</h6>
-              </Tab>
             </TabList>
             <div className="p3">
               <TabPanel className="">
@@ -119,22 +116,6 @@ export const ProductHero: React.FC<{
                   }}
                 >
                   <RichText content={productDetails.richText} />
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <div
-                  style={{
-                    height: '200px', // Stała wysokość ramki
-                    overflowX: 'auto', // Przewijanie poziome w przypadku długiego tekstu
-                    overflowY: 'auto', // Przewijanie pionowe w przypadku długiego tekstu
-                    border: 'none', // Usunięcie obramowania
-                    outline: 'none', // Usunięcie obramowania po kliknięciu
-                    scrollbarWidth: 'thin' /* Grubość paska przewijania */,
-                    scrollbarColor:
-                      'rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0)' /* Kolor paska przewijania */,
-                  }}
-                >
-                  <RichText content={productFaq.richText} />
                 </div>
               </TabPanel>
               <TabPanel>
