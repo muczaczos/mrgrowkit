@@ -7,6 +7,7 @@ import { Product, Product as ProductType } from '../../../../payload/payload-typ
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
 import { Blocks } from '../../../_components/Blocks'
+import { HR } from '../../../_components/HR'
 import { PaywallBlocks } from '../../../_components/PaywallBlocks'
 import { ProductHero } from '../../../_heros/Product'
 import { generateMeta } from '../../../_utilities/generateMeta'
@@ -39,6 +40,7 @@ export default async function Product({ params: { slug } }) {
   return (
     <>
       <ProductHero product={product} />
+      <HR />
       <Blocks
         disableTopPadding
         blocks={[
