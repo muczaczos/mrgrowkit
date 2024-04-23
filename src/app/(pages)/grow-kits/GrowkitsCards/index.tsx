@@ -6,7 +6,7 @@ import classes from './index.module.scss'
 
 const GrowkitsCards = ({ pages, products }) => {
   return (
-    <section className="mt-10 flex gap-2 flex-wrap justify-center lg:justify-between">
+    <section className="mt-10 flex flex-col gap-5 justify-center md:flex-wrap md:flex-row md:justify-between">
       {pages.map((item, index) => {
         if (item !== null) {
           if (!item) return null
@@ -18,8 +18,8 @@ const GrowkitsCards = ({ pages, products }) => {
           return (
             <div className="">
               <Link className="" href={href}>
-                <div className="">
-                  <Image className="" alt="Cubensis grow kit" src={src} width="300" height="180" />
+                <div className="w-full">
+                  <Image className="" alt="Cubensis grow kit" src={src} width="350" height="180" />
                 </div>
               </Link>
               <Link className={classes.link} href={href}>
