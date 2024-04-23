@@ -131,6 +131,10 @@
   list-style-type: decimal !important
 }
 
+.flex-wrap {
+  flex-wrap: wrap !important
+}
+
 .items-center {
   align-items: center !important
 }
@@ -385,6 +389,10 @@
   .sm\:items-center {
     align-items: center !important
   }
+
+  .sm\:justify-center {
+    justify-content: center !important
+  }
 }
 
 @media (min-width: 768px) {
@@ -424,6 +432,10 @@
 
   .lg\:items-center {
     align-items: center !important
+  }
+
+  .lg\:justify-between {
+    justify-content: space-between !important
   }
 
   .lg\:p-2 {
