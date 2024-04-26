@@ -31,11 +31,7 @@ const GrowKits = async () => {
   } catch (error) {
     // console.log(error)
   }
-  filteredPages = pages.filter(page => {
-    if (page.categories[0]) {
-      return page.categories[0].slug === 'grow-kits'
-    }
-  })
+
 
   return (
     <Gutter>
