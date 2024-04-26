@@ -42,10 +42,6 @@
   position: relative !important
 }
 
-.m-0 {
-  margin: 0px !important
-}
-
 .mx-auto {
   margin-left: auto !important;
   margin-right: auto !important
@@ -95,18 +91,6 @@
   margin-top: 1.75rem !important
 }
 
-.ml-0 {
-  margin-left: 0px !important
-}
-
-.mr-0 {
-  margin-right: 0px !important
-}
-
-.ml-10 {
-  margin-left: 2.5rem !important
-}
-
 .block {
   display: block !important
 }
@@ -139,12 +123,6 @@
   border-collapse: collapse !important
 }
 
-.scale-50 {
-  --tw-scale-x: .5 !important;
-  --tw-scale-y: .5 !important;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
-}
-
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
 }
@@ -153,16 +131,8 @@
   list-style-type: decimal !important
 }
 
-.flex-row {
-  flex-direction: row !important
-}
-
 .flex-col {
   flex-direction: column !important
-}
-
-.flex-wrap {
-  flex-wrap: wrap !important
 }
 
 .items-center {
@@ -294,14 +264,6 @@
   padding: 0.5rem !important
 }
 
-.p-0 {
-  padding: 0px !important
-}
-
-.p-10 {
-  padding: 2.5rem !important
-}
-
 .px-4 {
   padding-left: 1rem !important;
   padding-right: 1rem !important
@@ -420,24 +382,12 @@
     margin-top: 0px !important
   }
 
-  .sm\:ml-0 {
-    margin-left: 0px !important
-  }
-
   .sm\:flex {
     display: flex !important
   }
 
-  .sm\:flex-col {
-    flex-direction: column !important
-  }
-
   .sm\:items-center {
     align-items: center !important
-  }
-
-  .sm\:justify-center {
-    justify-content: center !important
   }
 }
 
@@ -488,16 +438,8 @@
     flex-direction: row !important
   }
 
-  .lg\:flex-wrap {
-    flex-wrap: wrap !important
-  }
-
   .lg\:items-center {
     align-items: center !important
-  }
-
-  .lg\:justify-between {
-    justify-content: space-between !important
   }
 
   .lg\:p-2 {

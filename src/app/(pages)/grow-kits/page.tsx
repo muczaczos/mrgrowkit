@@ -32,7 +32,9 @@ const GrowKits = async () => {
     // console.log(error)
   }
   filteredPages = pages.filter(page => {
-    return page.categories[0].slug === 'grow-kits'
+    if (page.categories[0]) {
+      return page.categories[0].slug === 'grow-kits'
+    }
   })
 
   return (
