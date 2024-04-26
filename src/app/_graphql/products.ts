@@ -37,6 +37,7 @@ export const PRODUCT = `
           ${META}
         }
         ${META}
+        slug
       }
     }
   }

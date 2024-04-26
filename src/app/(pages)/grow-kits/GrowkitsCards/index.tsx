@@ -11,7 +11,7 @@ const GrowkitsCards = ({ pages, products }) => {
         if (item !== null) {
           if (!item) return null
           const src = '/media/' + item.meta.image.filename
-          const href = process.env.NEXT_PUBLIC_SERVER_URL + '/products/' + products[index].slug
+          const href = process.env.NEXT_PUBLIC_SERVER_URL + '/products/' + item.slug
           const title = item.title
           const description = item.meta.description
           const price = item.price
