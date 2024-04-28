@@ -33,19 +33,14 @@ const Products = async () => {
 
     categories = await fetchDocs<Category>('categories')
   } catch (error) {
-    // console.log(error)
-  }
-
-  let layout
-  if (page.layout) {
-    layout = page.layout
+    //console.log(error)
   }
 
   return (
     <div className={classes.container}>
       <Gutter className={classes.products}>
         <Filters categories={categories} />
-        <Blocks blocks={layout} disableTopPadding={true} />
+        <Blocks blocks={page.layout} disableTopPadding={true} />
       </Gutter>
       <HR />
     </div>
