@@ -17,8 +17,8 @@ import { Media } from './collections/Media'
 import { Orders } from './collections/Orders'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
-import { Subscribers } from './collections/Subscribers'
 import Products from './collections/Products'
+import { Subscribers } from './collections/Subscribers'
 import { Tags } from './collections/Tags'
 import Users from './collections/Users'
 import Zones from './collections/Zones'
@@ -105,7 +105,19 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Zones, Tags, Posts, Subscribers, Pages, Products, Orders, Media, Categories, Users, Comments],
+  collections: [
+    Zones,
+    Tags,
+    Posts,
+    Subscribers,
+    Pages,
+    Products,
+    Orders,
+    Media,
+    Categories,
+    Users,
+    Comments,
+  ],
   email,
   localization: {
     locales: [

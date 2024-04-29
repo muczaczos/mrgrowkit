@@ -33,7 +33,7 @@ export const Subscribers: CollectionConfig = {
     {
       name: 'email',
       type: 'text',
-      required: true
+      required: true,
     },
     slugField(),
   ],
