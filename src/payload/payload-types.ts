@@ -23,6 +23,7 @@ export interface Config {
     zones: Zone;
     tags: Tag;
     posts: Post;
+    subscribers: Subscriber;
     pages: Page;
     products: Product;
     orders: Order;
@@ -1039,6 +1040,19 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "subscribers".
+ */
+export interface Subscriber {
+  id: string;
+  title: string;
+  email: string;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "orders".
  */
 export interface Order {
@@ -1105,6 +1119,10 @@ export interface Redirect {
       | ({
           relationTo: 'posts';
           value: string | Post;
+        } | null)
+      | ({
+          relationTo: 'subscribers';
+          value: string | Subscriber;
         } | null);
     url?: string | null;
   };

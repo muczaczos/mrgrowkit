@@ -10,6 +10,11 @@ type Query {
   docAccessPost(id: String!): postsDocAccess
   versionPost(id: String, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PostVersion
   versionsPosts(where: versionsPost_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): versionsPosts
+  Subscriber(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Subscriber
+  Subscribers(draft: Boolean, where: Subscriber_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Subscribers
+  docAccessSubscriber(id: String!): subscribersDocAccess
+  versionSubscriber(id: String, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): SubscriberVersion
+  versionsSubscribers(where: versionsSubscriber_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): versionsSubscribers
   Page(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Page
   Pages(draft: Boolean, where: Page_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, sort: String): Pages
   docAccessPage(id: String!): pagesDocAccess
@@ -5912,6 +5917,530 @@ input versionsPost_where_or {
   id: versionsPost_id_operator
   AND: [versionsPost_where_and]
   OR: [versionsPost_where_or]
+}
+
+type Subscriber {
+  id: String
+  title: String
+  email: String
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: Subscriber__status
+}
+
+enum Subscriber__status {
+  draft
+  published
+}
+
+type Subscribers {
+  docs: [Subscriber]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input Subscriber_where {
+  title: Subscriber_title_operator
+  email: Subscriber_email_operator
+  slug: Subscriber_slug_operator
+  updatedAt: Subscriber_updatedAt_operator
+  createdAt: Subscriber_createdAt_operator
+  _status: Subscriber__status_operator
+  id: Subscriber_id_operator
+  AND: [Subscriber_where_and]
+  OR: [Subscriber_where_or]
+}
+
+input Subscriber_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Subscriber_email_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Subscriber_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Subscriber_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Subscriber_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Subscriber__status_operator {
+  equals: Subscriber__status_Input
+  not_equals: Subscriber__status_Input
+  in: [Subscriber__status_Input]
+  not_in: [Subscriber__status_Input]
+  all: [Subscriber__status_Input]
+  exists: Boolean
+}
+
+enum Subscriber__status_Input {
+  draft
+  published
+}
+
+input Subscriber_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Subscriber_where_and {
+  title: Subscriber_title_operator
+  email: Subscriber_email_operator
+  slug: Subscriber_slug_operator
+  updatedAt: Subscriber_updatedAt_operator
+  createdAt: Subscriber_createdAt_operator
+  _status: Subscriber__status_operator
+  id: Subscriber_id_operator
+  AND: [Subscriber_where_and]
+  OR: [Subscriber_where_or]
+}
+
+input Subscriber_where_or {
+  title: Subscriber_title_operator
+  email: Subscriber_email_operator
+  slug: Subscriber_slug_operator
+  updatedAt: Subscriber_updatedAt_operator
+  createdAt: Subscriber_createdAt_operator
+  _status: Subscriber__status_operator
+  id: Subscriber_id_operator
+  AND: [Subscriber_where_and]
+  OR: [Subscriber_where_or]
+}
+
+type subscribersDocAccess {
+  fields: SubscribersDocAccessFields
+  create: SubscribersCreateDocAccess
+  read: SubscribersReadDocAccess
+  update: SubscribersUpdateDocAccess
+  delete: SubscribersDeleteDocAccess
+  readVersions: SubscribersReadVersionsDocAccess
+}
+
+type SubscribersDocAccessFields {
+  title: SubscribersDocAccessFields_title
+  email: SubscribersDocAccessFields_email
+  slug: SubscribersDocAccessFields_slug
+  updatedAt: SubscribersDocAccessFields_updatedAt
+  createdAt: SubscribersDocAccessFields_createdAt
+  _status: SubscribersDocAccessFields__status
+}
+
+type SubscribersDocAccessFields_title {
+  create: SubscribersDocAccessFields_title_Create
+  read: SubscribersDocAccessFields_title_Read
+  update: SubscribersDocAccessFields_title_Update
+  delete: SubscribersDocAccessFields_title_Delete
+}
+
+type SubscribersDocAccessFields_title_Create {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_title_Read {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_title_Update {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_email {
+  create: SubscribersDocAccessFields_email_Create
+  read: SubscribersDocAccessFields_email_Read
+  update: SubscribersDocAccessFields_email_Update
+  delete: SubscribersDocAccessFields_email_Delete
+}
+
+type SubscribersDocAccessFields_email_Create {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_email_Read {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_email_Update {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_email_Delete {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_slug {
+  create: SubscribersDocAccessFields_slug_Create
+  read: SubscribersDocAccessFields_slug_Read
+  update: SubscribersDocAccessFields_slug_Update
+  delete: SubscribersDocAccessFields_slug_Delete
+}
+
+type SubscribersDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_slug_Delete {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_updatedAt {
+  create: SubscribersDocAccessFields_updatedAt_Create
+  read: SubscribersDocAccessFields_updatedAt_Read
+  update: SubscribersDocAccessFields_updatedAt_Update
+  delete: SubscribersDocAccessFields_updatedAt_Delete
+}
+
+type SubscribersDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_createdAt {
+  create: SubscribersDocAccessFields_createdAt_Create
+  read: SubscribersDocAccessFields_createdAt_Read
+  update: SubscribersDocAccessFields_createdAt_Update
+  delete: SubscribersDocAccessFields_createdAt_Delete
+}
+
+type SubscribersDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields__status {
+  create: SubscribersDocAccessFields__status_Create
+  read: SubscribersDocAccessFields__status_Read
+  update: SubscribersDocAccessFields__status_Update
+  delete: SubscribersDocAccessFields__status_Delete
+}
+
+type SubscribersDocAccessFields__status_Create {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields__status_Read {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields__status_Update {
+  permission: Boolean!
+}
+
+type SubscribersDocAccessFields__status_Delete {
+  permission: Boolean!
+}
+
+type SubscribersCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SubscribersReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SubscribersUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SubscribersDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SubscribersReadVersionsDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SubscriberVersion {
+  parent(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Subscriber
+  version: SubscriberVersion_Version
+  createdAt: DateTime
+  updatedAt: DateTime
+  latest: Boolean
+  id: String
+}
+
+type SubscriberVersion_Version {
+  title: String
+  email: String
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: SubscriberVersion_Version__status
+}
+
+enum SubscriberVersion_Version__status {
+  draft
+  published
+}
+
+type versionsSubscribers {
+  docs: [SubscriberVersion]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input versionsSubscriber_where {
+  parent: versionsSubscriber_parent_operator
+  version__title: versionsSubscriber_version__title_operator
+  version__email: versionsSubscriber_version__email_operator
+  version__slug: versionsSubscriber_version__slug_operator
+  version__updatedAt: versionsSubscriber_version__updatedAt_operator
+  version__createdAt: versionsSubscriber_version__createdAt_operator
+  version___status: versionsSubscriber_version___status_operator
+  createdAt: versionsSubscriber_createdAt_operator
+  updatedAt: versionsSubscriber_updatedAt_operator
+  latest: versionsSubscriber_latest_operator
+  id: versionsSubscriber_id_operator
+  AND: [versionsSubscriber_where_and]
+  OR: [versionsSubscriber_where_or]
+}
+
+input versionsSubscriber_parent_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsSubscriber_version__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsSubscriber_version__email_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsSubscriber_version__slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsSubscriber_version__updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsSubscriber_version__createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsSubscriber_version___status_operator {
+  equals: versionsSubscriber_version___status_Input
+  not_equals: versionsSubscriber_version___status_Input
+  in: [versionsSubscriber_version___status_Input]
+  not_in: [versionsSubscriber_version___status_Input]
+  all: [versionsSubscriber_version___status_Input]
+  exists: Boolean
+}
+
+enum versionsSubscriber_version___status_Input {
+  draft
+  published
+}
+
+input versionsSubscriber_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsSubscriber_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsSubscriber_latest_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input versionsSubscriber_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsSubscriber_where_and {
+  parent: versionsSubscriber_parent_operator
+  version__title: versionsSubscriber_version__title_operator
+  version__email: versionsSubscriber_version__email_operator
+  version__slug: versionsSubscriber_version__slug_operator
+  version__updatedAt: versionsSubscriber_version__updatedAt_operator
+  version__createdAt: versionsSubscriber_version__createdAt_operator
+  version___status: versionsSubscriber_version___status_operator
+  createdAt: versionsSubscriber_createdAt_operator
+  updatedAt: versionsSubscriber_updatedAt_operator
+  latest: versionsSubscriber_latest_operator
+  id: versionsSubscriber_id_operator
+  AND: [versionsSubscriber_where_and]
+  OR: [versionsSubscriber_where_or]
+}
+
+input versionsSubscriber_where_or {
+  parent: versionsSubscriber_parent_operator
+  version__title: versionsSubscriber_version__title_operator
+  version__email: versionsSubscriber_version__email_operator
+  version__slug: versionsSubscriber_version__slug_operator
+  version__updatedAt: versionsSubscriber_version__updatedAt_operator
+  version__createdAt: versionsSubscriber_version__createdAt_operator
+  version___status: versionsSubscriber_version___status_operator
+  createdAt: versionsSubscriber_createdAt_operator
+  updatedAt: versionsSubscriber_updatedAt_operator
+  latest: versionsSubscriber_latest_operator
+  id: versionsSubscriber_id_operator
+  AND: [versionsSubscriber_where_and]
+  OR: [versionsSubscriber_where_or]
 }
 
 type Pages {
@@ -12293,9 +12822,10 @@ enum Redirect_To_Reference_RelationTo {
   pages
   products
   posts
+  subscribers
 }
 
-union Redirect_To_Reference = Page | Product | Post
+union Redirect_To_Reference = Page | Product | Post | Subscriber
 
 type Redirects {
   docs: [Redirect]
@@ -12355,6 +12885,7 @@ enum Redirect_to__reference_Relation_RelationTo {
   pages
   products
   posts
+  subscribers
 }
 
 input Redirect_to__url_operator {
@@ -14013,6 +14544,7 @@ type Access {
   zones: zonesAccess
   tags: tagsAccess
   posts: postsAccess
+  subscribers: subscribersAccess
   pages: pagesAccess
   products: productsAccess
   orders: ordersAccess
@@ -15402,6 +15934,187 @@ type PostsDeleteAccess {
 }
 
 type PostsReadVersionsAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type subscribersAccess {
+  fields: SubscribersFields
+  create: SubscribersCreateAccess
+  read: SubscribersReadAccess
+  update: SubscribersUpdateAccess
+  delete: SubscribersDeleteAccess
+  readVersions: SubscribersReadVersionsAccess
+}
+
+type SubscribersFields {
+  title: SubscribersFields_title
+  email: SubscribersFields_email
+  slug: SubscribersFields_slug
+  updatedAt: SubscribersFields_updatedAt
+  createdAt: SubscribersFields_createdAt
+  _status: SubscribersFields__status
+}
+
+type SubscribersFields_title {
+  create: SubscribersFields_title_Create
+  read: SubscribersFields_title_Read
+  update: SubscribersFields_title_Update
+  delete: SubscribersFields_title_Delete
+}
+
+type SubscribersFields_title_Create {
+  permission: Boolean!
+}
+
+type SubscribersFields_title_Read {
+  permission: Boolean!
+}
+
+type SubscribersFields_title_Update {
+  permission: Boolean!
+}
+
+type SubscribersFields_title_Delete {
+  permission: Boolean!
+}
+
+type SubscribersFields_email {
+  create: SubscribersFields_email_Create
+  read: SubscribersFields_email_Read
+  update: SubscribersFields_email_Update
+  delete: SubscribersFields_email_Delete
+}
+
+type SubscribersFields_email_Create {
+  permission: Boolean!
+}
+
+type SubscribersFields_email_Read {
+  permission: Boolean!
+}
+
+type SubscribersFields_email_Update {
+  permission: Boolean!
+}
+
+type SubscribersFields_email_Delete {
+  permission: Boolean!
+}
+
+type SubscribersFields_slug {
+  create: SubscribersFields_slug_Create
+  read: SubscribersFields_slug_Read
+  update: SubscribersFields_slug_Update
+  delete: SubscribersFields_slug_Delete
+}
+
+type SubscribersFields_slug_Create {
+  permission: Boolean!
+}
+
+type SubscribersFields_slug_Read {
+  permission: Boolean!
+}
+
+type SubscribersFields_slug_Update {
+  permission: Boolean!
+}
+
+type SubscribersFields_slug_Delete {
+  permission: Boolean!
+}
+
+type SubscribersFields_updatedAt {
+  create: SubscribersFields_updatedAt_Create
+  read: SubscribersFields_updatedAt_Read
+  update: SubscribersFields_updatedAt_Update
+  delete: SubscribersFields_updatedAt_Delete
+}
+
+type SubscribersFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type SubscribersFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type SubscribersFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type SubscribersFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type SubscribersFields_createdAt {
+  create: SubscribersFields_createdAt_Create
+  read: SubscribersFields_createdAt_Read
+  update: SubscribersFields_createdAt_Update
+  delete: SubscribersFields_createdAt_Delete
+}
+
+type SubscribersFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type SubscribersFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type SubscribersFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type SubscribersFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type SubscribersFields__status {
+  create: SubscribersFields__status_Create
+  read: SubscribersFields__status_Read
+  update: SubscribersFields__status_Update
+  delete: SubscribersFields__status_Delete
+}
+
+type SubscribersFields__status_Create {
+  permission: Boolean!
+}
+
+type SubscribersFields__status_Read {
+  permission: Boolean!
+}
+
+type SubscribersFields__status_Update {
+  permission: Boolean!
+}
+
+type SubscribersFields__status_Delete {
+  permission: Boolean!
+}
+
+type SubscribersCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SubscribersReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SubscribersUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SubscribersDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type SubscribersReadVersionsAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -19485,6 +20198,10 @@ type Mutation {
   updatePost(id: String!, autosave: Boolean, data: mutationPostUpdateInput!, draft: Boolean, locale: LocaleInputType): Post
   deletePost(id: String!): Post
   restoreVersionPost(id: String): Post
+  createSubscriber(data: mutationSubscriberInput!, draft: Boolean, locale: LocaleInputType): Subscriber
+  updateSubscriber(id: String!, autosave: Boolean, data: mutationSubscriberUpdateInput!, draft: Boolean, locale: LocaleInputType): Subscriber
+  deleteSubscriber(id: String!): Subscriber
+  restoreVersionSubscriber(id: String): Subscriber
   createPage(data: mutationPageInput!, draft: Boolean, locale: LocaleInputType): Page
   updatePage(id: String!, autosave: Boolean, data: mutationPageUpdateInput!, draft: Boolean, locale: LocaleInputType): Page
   deletePage(id: String!): Page
@@ -20257,6 +20974,34 @@ enum PostUpdate__status_MutationInput {
   published
 }
 
+input mutationSubscriberInput {
+  title: String!
+  email: String!
+  slug: String
+  updatedAt: String
+  createdAt: String
+  _status: Subscriber__status_MutationInput
+}
+
+enum Subscriber__status_MutationInput {
+  draft
+  published
+}
+
+input mutationSubscriberUpdateInput {
+  title: String
+  email: String
+  slug: String
+  updatedAt: String
+  createdAt: String
+  _status: SubscriberUpdate__status_MutationInput
+}
+
+enum SubscriberUpdate__status_MutationInput {
+  draft
+  published
+}
+
 input mutationPageInput {
   title: String
   publishedOn: String
@@ -20729,6 +21474,7 @@ enum Redirect_To_ReferenceRelationshipInputRelationTo {
   pages
   products
   posts
+  subscribers
 }
 
 input mutationRedirectUpdateInput {
@@ -20753,6 +21499,7 @@ enum RedirectUpdate_To_ReferenceRelationshipInputRelationTo {
   pages
   products
   posts
+  subscribers
 }
 
 input mutationPayloadPreferenceInput {
