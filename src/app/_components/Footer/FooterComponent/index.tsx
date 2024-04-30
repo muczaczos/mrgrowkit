@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -19,9 +19,15 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
     handleSubmit,
     formState: { errors, isLoading },
   } = useForm<FormData>()
+  const [email, setEmailValue] = useState('')
   const pathname = usePathname()
   const navItems = footer?.navItems || []
-  const handleSubscriber = async () => { }
+  const handleAddress = e => {
+    setEmailValue(e.target.value)
+  }
+  const handleSubscriber = async () => {
+    console.log(email)
+  }
   return (
     <>
       <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>
@@ -61,7 +67,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                 register={register}
                 error={null}
                 disabled={false}
-                onChange={null}
+                onChange={handleAddress}
                 className={classes.newsletterInput}
               />
               <Button
