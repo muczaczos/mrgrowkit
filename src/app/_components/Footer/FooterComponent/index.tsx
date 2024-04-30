@@ -21,7 +21,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
   } = useForm<FormData>()
   const pathname = usePathname()
   const navItems = footer?.navItems || []
-
+  const handleSubscriber = async () => { }
   return (
     <>
       <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>
@@ -65,11 +65,10 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                 className={classes.newsletterInput}
               />
               <Button
-                className={classes.newsButton}
                 label="Subscribe"
-                href="/cart"
-                appearance="primary"
-              />
+                onClick={handleSubscriber}
+                className={classes.newsButton}
+              ></Button>
             </div>
             <div className={classes.menu}>
               <div className={classes.menuCol}>
