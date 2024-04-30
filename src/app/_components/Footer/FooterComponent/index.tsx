@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
+import { useRouter } from 'next/navigation'
 import { Footer, Media } from '../../../../payload/payload-types'
 import { Button } from '../../../_components/Button'
 import { inclusions, noHeaderFooterUrls, profileNavItems } from '../../../constants'
@@ -12,6 +12,7 @@ import { Gutter } from '../../Gutter'
 import { Input } from '../../Input'
 
 import classes from './index.module.scss'
+import router from 'next/router'
 
 const FooterComponent = ({ footer }: { footer: Footer }) => {
   const {
@@ -19,6 +20,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
     handleSubmit,
     formState: { errors, isLoading },
   } = useForm<FormData>()
+  const router = useRouter()
   const [email, setEmailValue] = useState('')
   const pathname = usePathname()
   const navItems = footer?.navItems || []
@@ -26,8 +28,10 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
     setEmailValue(e.target.value)
   }
   const handleSubscriber = async () => {
-    console.log(email)
+    router.push(`/subscribe?email=${email}`)
+    //console.log(email)
   }
+  
   return (
     <>
       <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>
