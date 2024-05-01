@@ -4,6 +4,7 @@ import type { Config } from '../../payload/payload-types'
 import { ORDER } from '../_graphql/orders'
 import { PAGE } from '../_graphql/pages'
 import { POST } from '../_graphql/posts'
+import { SUBSCRIBER } from '../_graphql/subscribers'
 import { PRODUCT } from '../_graphql/products'
 import { GRAPHQL_API_URL } from './shared'
 import { payloadToken } from './token'
@@ -16,6 +17,10 @@ const queryMap = {
   products: {
     query: PRODUCT,
     key: 'Products',
+  },
+  subscribers: {
+    query: SUBSCRIBER,
+    key: 'Subscribers',
   },
   orders: {
     query: ORDER,

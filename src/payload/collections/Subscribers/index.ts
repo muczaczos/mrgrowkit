@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { slugField } from '../../fields/slug'
+import { anyone } from '../../access/anyone'
 
 export const Subscribers: CollectionConfig = {
   slug: 'subscribers',
@@ -21,7 +22,7 @@ export const Subscribers: CollectionConfig = {
   access: {
     read: adminsOrPublished,
     update: admins,
-    create: admins,
+    create: anyone,
     delete: admins,
   },
   fields: [

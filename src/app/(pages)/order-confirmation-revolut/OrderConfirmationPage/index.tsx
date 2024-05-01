@@ -30,7 +30,7 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
       <h1 className="mb-5">Thank you for your order!</h1>
       <p className="text-xl text-left mb-5">
         Your order has been confirmed. You will receive an email confirmation shortly. Your order ID
-        is <p className="font-bold">{orderID}</p>
+        is {orderID}
       </p>
       <p className="text-xl text-left pt-">
         You have selected the payment option to a Revolut account. Now you have two options:
