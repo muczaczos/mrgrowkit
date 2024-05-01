@@ -24,9 +24,13 @@
 }
 
 .image {
+  scale: 2;
   object-fit: contain;
   max-width: 100%;
   aspect-ratio: 1/1;
+  @include small-break {
+    scale: 1.2
+  }
 }
 
 .itemDetails {
