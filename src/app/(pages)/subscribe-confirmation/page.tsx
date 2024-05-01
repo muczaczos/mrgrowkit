@@ -6,7 +6,6 @@ import { mergeOpenGraph } from '../../_utilities/mergeOpenGraph'
 import { SubscribeConfiramtionPage } from './SubscribeConfirmationPage'
 
 export default async function SubscribeConfirmation() {
-
   return (
     <Gutter>
       <Suspense fallback={<div>Loading...</div>}>
@@ -15,7 +14,3 @@ export default async function SubscribeConfirmation() {
     </Gutter>
   )
 }
-
-
-
-

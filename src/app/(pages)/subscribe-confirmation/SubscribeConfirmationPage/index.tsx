@@ -1,7 +1,7 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
 import React, { Fragment } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 export const SubscribeConfiramtionPage: React.FC<{}> = () => {
   const searchParams = useSearchParams()

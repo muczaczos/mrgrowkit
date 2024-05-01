@@ -1,36 +1,37 @@
 'use client'
 
 import React, { Fragment, useState } from 'react'
-import { Subscriber } from '../../../../payload/payload-types'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { Input } from '../../../_components/Input'
-import { Button } from '../../../_components/Button'
-
 import { useForm } from 'react-hook-form'
+import { useRouter, useSearchParams } from 'next/navigation'
+
+import { Subscriber } from '../../../../payload/payload-types'
+import { Button } from '../../../_components/Button'
+import { Input } from '../../../_components/Input'
+
 import classes from './index.module.scss'
 
 export const SubscribePage: React.FC<{}> = () => {
   const searchParams = useSearchParams()
   const email = searchParams.get('email')
   const error = searchParams.get('error')
-  const [isChecked, setIsChecked] = useState(false);
-  const [isButtonActive, setIsButtonActive] = useState(false);
+  const [isChecked, setIsChecked] = useState(false)
+  const [isButtonActive, setIsButtonActive] = useState(false)
   const [firstName, setFirstName] = useState('')
   const [customerEmail, setCustomerEmail] = useState('')
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('')
   const router = useRouter()
-  
+
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-    setIsButtonActive(!isButtonActive); // Button becomes active when the checkbox is checked
-  };
+    setIsChecked(!isChecked)
+    setIsButtonActive(!isButtonActive) // Button becomes active when the checkbox is checked
+  }
 
   const handleButtonClick = () => {
     // Handle button click action
-  };
-  
+  }
+
   const handleSubscriber = async () => {
-    if(firstName != '') { 
+    if (firstName != '') {
       setMessage('')
       const subscriberReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/subscribers`, {
         method: 'POST',
@@ -53,8 +54,8 @@ export const SubscribePage: React.FC<{}> = () => {
         doc: Subscriber
       } = await subscriberReq.json()
       router.push(`/subscribe-confirmation?firstName=${firstName}`)
-    }else {
-      setMessage('Please enter your name into the form.');
+    } else {
+      setMessage('Please enter your name into the form.')
     }
   }
 
@@ -76,22 +77,18 @@ export const SubscribePage: React.FC<{}> = () => {
     <Fragment>
       <h1 className="mb-5">Subscribe to our newsletter!</h1>
       <p className="text-xl text-left mb-5">
-        By providing your email address: {email}, you agree to receive periodic updates, promotions, 
-        and information related to mushroom cultivation, spore microscopy, and exclusive offers. 
-        Your email address will only be used for the purpose of sending our newsletter and will 
-        not be shared with any third parties. You can unsubscribe at any time. For more information, 
+        By providing your email address: {email}, you agree to receive periodic updates, promotions,
+        and information related to mushroom cultivation, spore microscopy, and exclusive offers.
+        Your email address will only be used for the purpose of sending our newsletter and will not
+        be shared with any third parties. You can unsubscribe at any time. For more information,
         please refer to our Privacy Policy.
       </p>
       <label>
-        <input
-          type="checkbox"
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-        />
-        I want to subscribe to the newsletter and I agree to the privacy policy of planet-of-mushrooms.com.
+        <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />I want to
+        subscribe to the newsletter and I agree to the privacy policy of planet-of-mushrooms.com.
       </label>
       <div className={`${isButtonActive ? 'opacity-100' : 'opacity-50'}`}>
-      <div className="mt-5">
+        <div className="mt-5">
           <Input
             disabled={!isButtonActive}
             name="firstName"
@@ -119,14 +116,13 @@ export const SubscribePage: React.FC<{}> = () => {
         </div>
         <div className="flex justify-end mt-10">
           <Button
-                disabled={!isButtonActive}
-                label="Subscribe"
-                onClick={handleSubscriber}
-                className="bg-black text-white"
+            disabled={!isButtonActive}
+            label="Subscribe"
+            onClick={handleSubscriber}
+            className="bg-black text-white"
           ></Button>
         </div>
-        </div>
-
+      </div>
     </Fragment>
   )
 }

@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import router from 'next/router'
+
 import { Footer, Media } from '../../../../payload/payload-types'
 import { Button } from '../../../_components/Button'
 import { inclusions, noHeaderFooterUrls, profileNavItems } from '../../../constants'
@@ -12,7 +13,6 @@ import { Gutter } from '../../Gutter'
 import { Input } from '../../Input'
 
 import classes from './index.module.scss'
-import router from 'next/router'
 
 const FooterComponent = ({ footer }: { footer: Footer }) => {
   const {
@@ -31,7 +31,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
     router.push(`/subscribe?email=${email}`)
     //console.log(email)
   }
-  
+
   return (
     <>
       <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>

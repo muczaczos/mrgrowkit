@@ -1,4 +1,3 @@
-
 import React, { Suspense } from 'react'
 import { Metadata } from 'next'
 
@@ -17,5 +16,3 @@ export default async function Subscribe() {
     </Gutter>
   )
 }
-
-
