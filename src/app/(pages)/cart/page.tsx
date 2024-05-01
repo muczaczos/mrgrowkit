@@ -7,6 +7,7 @@ import { staticCart } from '../../../payload/seed/cart-static'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchSettings } from '../../_api/fetchGlobals'
 import { Blocks } from '../../_components/Blocks'
+import { Button } from '../../_components/Button'
 import { Gutter } from '../../_components/Gutter'
 import { generateMeta } from '../../_utilities/generateMeta'
 import { CartPage } from './CartPage'
@@ -59,8 +60,10 @@ export default async function Cart() {
       <Gutter>
         <h3>Cart</h3>
         <CartPage settings={settings} page={page} />
+        <div className="p-10 w-full bg-gray-100 mt-10 ">
+          <Button label="Continue Shopping" href="/products" appearance="secondary" />
+        </div>
       </Gutter>
-      <Blocks blocks={page?.layout} />
     </div>
   )
 }

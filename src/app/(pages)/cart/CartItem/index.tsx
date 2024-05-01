@@ -37,7 +37,7 @@ const CartItem = ({ product, title, metaImage, qty, price, addItemToCart, sub })
 
   return (
     <li key={title} className={classes.item}>
-      <Link href={`/products/${product.slug}`} >
+      <Link href={`/products/${product.slug}`}>
         {!metaImage && <span>No image</span>}
         {metaImage && typeof metaImage !== 'string' && (
           <Media className={classes.media} imgClassName={classes.image} resource={metaImage} fill />

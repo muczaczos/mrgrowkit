@@ -179,6 +179,10 @@
   border-width: 2px !important
 }
 
+.border-0 {
+  border-width: 0px !important
+}
+
 .border-b {
   border-bottom-width: 1px !important
 }
@@ -239,6 +243,11 @@
   border-color: rgb(253 224 71 / var(--tw-border-opacity)) !important
 }
 
+.border-black {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity)) !important
+}
+
 .bg-blue-100 {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(219 234 254 / var(--tw-bg-opacity)) !important
@@ -278,8 +287,22 @@
   background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important
 }
 
+.bg-slate-100 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity)) !important
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important
+}
+
 .p-2 {
   padding: 0.5rem !important
+}
+
+.p-10 {
+  padding: 2.5rem !important
 }
 
 .px-4 {
