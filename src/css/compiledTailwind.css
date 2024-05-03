@@ -42,8 +42,40 @@
   position: static !important
 }
 
+.absolute {
+  position: absolute !important
+}
+
 .relative {
   position: relative !important
+}
+
+.inset-0 {
+  inset: 0px !important
+}
+
+.right-0 {
+  right: 0px !important
+}
+
+.top-0 {
+  top: 0px !important
+}
+
+.left-0 {
+  left: 0px !important
+}
+
+.z-10 {
+  z-index: 10 !important
+}
+
+.z-0 {
+  z-index: 0 !important
+}
+
+.m-5 {
+  margin: 1.25rem !important
 }
 
 .mx-auto {
@@ -95,6 +127,38 @@
   margin-top: 1.75rem !important
 }
 
+.mb-96 {
+  margin-bottom: 24rem !important
+}
+
+.mb-24 {
+  margin-bottom: 6rem !important
+}
+
+.mb-48 {
+  margin-bottom: 12rem !important
+}
+
+.mt-12 {
+  margin-top: 3rem !important
+}
+
+.mb-36 {
+  margin-bottom: 9rem !important
+}
+
+.ml-48 {
+  margin-left: 12rem !important
+}
+
+.mb-20 {
+  margin-bottom: 5rem !important
+}
+
+.mb-16 {
+  margin-bottom: 4rem !important
+}
+
 .block {
   display: block !important
 }
@@ -111,12 +175,44 @@
   display: none !important
 }
 
+.h-screen {
+  height: 100vh !important
+}
+
+.h-1\/2 {
+  height: 50% !important
+}
+
+.h-12 {
+  height: 3rem !important
+}
+
+.h-96 {
+  height: 24rem !important
+}
+
+.h-3\/4 {
+  height: 75% !important
+}
+
+.h-4\/5 {
+  height: 80% !important
+}
+
+.h-5\/6 {
+  height: 83.333333% !important
+}
+
 .w-1\/2 {
   width: 50% !important
 }
 
 .w-full {
   width: 100% !important
+}
+
+.w-screen {
+  width: 100vw !important
 }
 
 .grow {
@@ -169,6 +265,18 @@
 
 .rounded-md {
   border-radius: 0.375rem !important
+}
+
+.rounded-lg {
+  border-radius: 0.5rem !important
+}
+
+.rounded {
+  border-radius: 0.25rem !important
+}
+
+.rounded-xl {
+  border-radius: 0.75rem !important
 }
 
 .border {
@@ -297,12 +405,50 @@
   background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important
 }
 
+.bg-sky-400 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(56 189 248 / var(--tw-bg-opacity)) !important
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity)) !important
+}
+
+.bg-opacity-75 {
+  --tw-bg-opacity: 0.75 !important
+}
+
+.bg-cover {
+  background-size: cover !important
+}
+
+.bg-right {
+  background-position: right !important
+}
+
+.bg-left {
+  background-position: left !important
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat !important
+}
+
 .p-2 {
   padding: 0.5rem !important
 }
 
 .p-10 {
   padding: 2.5rem !important
+}
+
+.p-5 {
+  padding: 1.25rem !important
+}
+
+.p-6 {
+  padding: 1.5rem !important
 }
 
 .px-4 {
@@ -438,6 +584,40 @@
   opacity: 1 !important
 }
 
+.opacity-75 {
+  opacity: 0.75 !important
+}
+
+.opacity-85 {
+  opacity: 0.85 !important
+}
+
+.opacity-40 {
+  opacity: 0.4 !important
+}
+
+.opacity-70 {
+  opacity: 0.7 !important
+}
+
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important
+}
+
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important
+}
+
 .outline {
   outline-style: solid !important
 }
@@ -466,16 +646,52 @@
 }
 
 @media (min-width: 768px) {
+  .md\:relative {
+    position: relative !important
+  }
+
   .md\:ml-9 {
     margin-left: 2.25rem !important
+  }
+
+  .md\:ml-96 {
+    margin-left: 24rem !important
+  }
+
+  .md\:ml-80 {
+    margin-left: 20rem !important
+  }
+
+  .md\:ml-48 {
+    margin-left: 12rem !important
+  }
+
+  .md\:ml-24 {
+    margin-left: 6rem !important
+  }
+
+  .md\:block {
+    display: block !important
   }
 
   .md\:flex {
     display: flex !important
   }
 
+  .md\:hidden {
+    display: none !important
+  }
+
+  .md\:w-1\/2 {
+    width: 50% !important
+  }
+
   .md\:flex-row {
     flex-direction: row !important
+  }
+
+  .md\:flex-col {
+    flex-direction: column !important
   }
 
   .md\:flex-wrap {
@@ -488,6 +704,14 @@
 }
 
 @media (min-width: 1024px) {
+  .lg\:absolute {
+    position: absolute !important
+  }
+
+  .lg\:relative {
+    position: relative !important
+  }
+
   .lg\:mb-0 {
     margin-bottom: 0px !important
   }
@@ -502,6 +726,22 @@
 
   .lg\:mt-10 {
     margin-top: 2.5rem !important
+  }
+
+  .lg\:mb-96 {
+    margin-bottom: 24rem !important
+  }
+
+  .lg\:ml-96 {
+    margin-left: 24rem !important
+  }
+
+  .lg\:ml-80 {
+    margin-left: 20rem !important
+  }
+
+  .lg\:ml-48 {
+    margin-left: 12rem !important
   }
 
   .lg\:flex {
@@ -552,5 +792,11 @@
   .lg\:text-xl {
     font-size: 1.25rem !important;
     line-height: 1.75rem !important
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:ml-80 {
+    margin-left: 20rem !important
   }
 }
