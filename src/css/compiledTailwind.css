@@ -159,6 +159,14 @@
   margin-bottom: 4rem !important
 }
 
+.mb-0 {
+  margin-bottom: 0px !important
+}
+
+.mt-3 {
+  margin-top: 0.75rem !important
+}
+
 .block {
   display: block !important
 }
@@ -415,6 +423,21 @@
   background-color: rgb(249 250 251 / var(--tw-bg-opacity)) !important
 }
 
+.bg-blue-400 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity)) !important
+}
+
+.bg-pink-50 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(253 242 248 / var(--tw-bg-opacity)) !important
+}
+
+.bg-white {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
+}
+
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75 !important
 }
@@ -508,6 +531,10 @@
 
 .text-right {
   text-align: right !important
+}
+
+.align-middle {
+  vertical-align: middle !important
 }
 
 .text-2xl {
