@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { BsFacebook, BsInstagram, BsTwitter } from 'react-icons/bs'
 import { Metadata } from 'next'
@@ -5,6 +6,7 @@ import Image from 'next/image'
 
 import { Page } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
+import { Button } from '../../_components/Button'
 import { Gutter } from '../../_components/Gutter'
 import { generateMeta } from '../../_utilities/generateMeta'
 
@@ -14,19 +16,16 @@ import classes from './index.module.scss'
 // See the note in '../[slug]/page.tsx' about this
 export const dynamic = 'force-dynamic'
 
-export default async function Contact() {
-  let page: Page | null = null
-
-  try {
-    page = await fetchDoc<Page>({
-      collection: 'pages',
-      slug: 'about',
-    })
-  } catch (error) {
-    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
-    // so swallow the error here and simply render the page with fallback data where necessary
-    // in production you may want to redirect to a 404  page or at least log the error somewhere
-    // console.error(error)
+export default function Contact() {
+  const handleWhatsAppClick = () => {
+    // Twój numer telefonu WhatsApp
+    const phoneNumber = '1234567890'
+    // Twój wiadomość, którą chcesz wysłać
+    const message = 'Cześć! Jestem zainteresowany Twoją ofertą.'
+    // Tworzymy link do WhatsApp z numerem telefonu i wiadomością
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+    // Przekierowanie użytkownika do aplikacji WhatsApp
+    window.location.href = whatsappUrl
   }
 
   return (
@@ -59,15 +58,12 @@ export default async function Contact() {
                 alt="James is avatar"
                 width={200}
                 height={200}
-                className={classes.avatar}
+                className="opacity-70 mb-5"
               />
               <h3>James</h3>
               <h4>Mushrooms Grower</h4>
-              <p>
-                My name is James and I have been a mushroom farmer for fifteen years. I’ve worked in
-                a few cubensis grow kit stores, but now I work with Arek. I want to share my
-                knowledge with you. You can contact me via chat from 9am to 5pm.
-              </p>
+              <p>Chat with Whatsapp</p>
+              <Button onClick={handleWhatsAppClick}>Skontaktuj się przez WhatsApp</Button>
             </div>
             <div className="bg-gray-50 rounded-xl p-6 shadow-xl mb-5">
               <Image
@@ -75,7 +71,7 @@ export default async function Contact() {
                 alt="Adiva is avatar"
                 width={200}
                 height={200}
-                className={classes.avatar}
+                className="opacity-70 mb-5"
               />
               <h3>Adiva</h3>
               <h4>Help Desk</h4>
@@ -91,7 +87,7 @@ export default async function Contact() {
                 alt="Arek is avatar"
                 width={200}
                 height={200}
-                className={classes.avatar}
+                className="opacity-70 mb-5"
               />
               <h3>Arek</h3>
               <h4>IT Technican</h4>
@@ -106,26 +102,4 @@ export default async function Contact() {
       </Gutter>
     </div>
   )
-}
-
-export async function generateMetadata(): Promise<Metadata> {
-  let page: Page | null = null
-
-  try {
-    page = await fetchDoc<Page>({
-      collection: 'pages',
-      slug: 'contact',
-    })
-  } catch (error) {
-    // don't throw an error if the fetch fails
-    // this is so that we can render a static cart page for the demo
-    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
-    // in production you may want to redirect to a 404  page or at least log the error somewhere
-  }
-
-  if (!page) {
-    page = null
-  }
-
-  return generateMeta({ doc: page })
 }
