@@ -2,9 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 
-import { Order } from '../../../../../payload/payload-types'
-import { Button } from '../../../../_components/Button'
-import { useCart } from '../../../../_providers/Cart'
+import { Order } from '../../../payload/payload-types'
+import { useCart } from '../../_providers/Cart'
+import { Button } from '../Button'
 
 const GatewayLogic = ({
   method,

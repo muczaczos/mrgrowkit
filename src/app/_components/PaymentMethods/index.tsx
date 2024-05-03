@@ -2,7 +2,7 @@ import React from 'react'
 import { BsBank, BsCreditCard2Back, BsCurrencyBitcoin } from 'react-icons/bs'
 import Image from 'next/image'
 
-import { RadioButton } from '../../../../_components/Radio'
+import { RadioButton } from '../Radio'
 
 import classes from './index.module.scss'
 

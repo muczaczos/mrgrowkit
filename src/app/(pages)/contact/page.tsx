@@ -96,7 +96,7 @@ export default function Contact() {
                 className="opacity-70 mb-5"
               />
               <h3>James</h3>
-              <h4>Mushrooms Grower</h4>
+              <h4>Cap Grower</h4>
               <h5 className="text-center">Contact via WhatsApp.</h5>
               <h6 className="text-center">7days / week (8am - 8pm) GMT+01:00</h6>
               <Button onClick={handleWhatsAppClick}>
@@ -155,7 +155,7 @@ export default function Contact() {
             </div>
           </section>
         </div>
-        <div id="mail" className="rounded-xl shadow-xl bg-pink-50 p-5">
+        <div id="mail" className="rounded-xl shadow-xl bg-blue-100 p-5">
           <div>
             <h3 className="mb-3">Contact Form</h3>
             <div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import countryList from 'react-select-country-list'
 
-import { Input } from '../../../../_components/Input'
+import { Input } from '../Input'
 import CountrySelector from './CountrySelector'
 
 import classes from './index.module.scss'

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Zone } from '../../../../../payload/payload-types'
-import { fetchDocs } from '../../../../_api/fetchDocs'
+import { Zone } from '../../../payload/payload-types'
+import { fetchDocs } from '../../_api/fetchDocs'
 
 let zones: Zone[] | null = null
 
