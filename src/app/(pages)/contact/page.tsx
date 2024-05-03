@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { BsFacebook, BsInstagram, BsTwitter } from 'react-icons/bs'
 import { Metadata } from 'next'
 import Image from 'next/image'
@@ -8,23 +9,21 @@ import { Page } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { Button } from '../../_components/Button'
 import { Gutter } from '../../_components/Gutter'
+import { Input } from '../../_components/Input'
+import RichText from '../../_components/RichText'
 import { generateMeta } from '../../_utilities/generateMeta'
 
 import classes from './index.module.scss'
-import { Input } from '../../_components/Input'
-import { useForm } from 'react-hook-form'
-import RichText from '../../_components/RichText'
 
 // Force this page to be dynamic so that Next.js does not cache it
 // See the note in '../[slug]/page.tsx' about this
 export const dynamic = 'force-dynamic'
 
 export default function Contact() {
-
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
-  
+
   const handleChange = event => {
     // console.log(event.target.value)
     setMessage(event.target.value)
@@ -43,12 +42,12 @@ export default function Contact() {
 
   const handleCallClick = () => {
     // Twój numer telefonu
-    const phoneNumber = '+48691586665';
+    const phoneNumber = '+48691586665'
     // Tworzymy link do wybierania połączenia na telefonie
-    const callUrl = `tel:${phoneNumber}`;
+    const callUrl = `tel:${phoneNumber}`
     // Przekierowanie użytkownika do wybierania połączenia
-    window.location.href = callUrl;
-  };
+    window.location.href = callUrl
+  }
 
   const {
     register,
@@ -154,47 +153,46 @@ export default function Contact() {
                 />
               </Button>
             </div>
-            
           </section>
         </div>
         <div id="mail" className="rounded-xl shadow-xl bg-pink-50 p-5">
           <div>
             <h3 className="mb-3">Contact Form</h3>
             <div>
-                <Input
-                  name="name"
-                  type="text"
-                  label="Name"
-                  register={register}
-                  error={null}
-                  disabled={false}
-                  value={name}
-                  onChange={handleName}
-                  className="mb-5 bg-white"
-                />
-                <Input
-                  name="email"
-                  type="email"
-                  label="Email"
-                  register={register}
-                  error={null}
-                  value={email}
-                  onChange={handleEmail}
-                  className="bg-white"
-                />
-                <p className="mt-3 mb-2">Message</p>
-                <textarea
-                  className="w-full rounded-xl"
-                  onChange={handleChange}
-                  name="mailContent"
-                  rows={15}
-                  cols={40}
-                />
-                <Button className="mt-5 p-5 w-full bg-black" onClick={handleCallClick}>
-                  <p className="text-white text-2xl">Send a message</p>
-                </Button>
+              <Input
+                name="name"
+                type="text"
+                label="Name"
+                register={register}
+                error={null}
+                disabled={false}
+                value={name}
+                onChange={handleName}
+                className="mb-5 bg-white"
+              />
+              <Input
+                name="email"
+                type="email"
+                label="Email"
+                register={register}
+                error={null}
+                value={email}
+                onChange={handleEmail}
+                className="bg-white"
+              />
+              <p className="mt-3 mb-2">Message</p>
+              <textarea
+                className="w-full rounded-xl"
+                onChange={handleChange}
+                name="mailContent"
+                rows={15}
+                cols={40}
+              />
+              <Button className="mt-5 p-5 w-full bg-black" onClick={handleCallClick}>
+                <p className="text-white text-2xl">Send a message</p>
+              </Button>
             </div>
-          </div>    
+          </div>
         </div>
       </Gutter>
     </div>
