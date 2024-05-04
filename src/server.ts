@@ -45,7 +45,7 @@ app.post('/send-email', async (req, res) => {
       to: 'muczaczos@gmail.com',
       from: 'shop@planet-of-mushrooms.com',
       subject: 'New Message from: ' + requestData.name,
-      html: 'Email: ' + requestData.email + ' Content: ' + requestData.message
+      html: 'Email: ' + requestData.email + ' Content: ' + requestData.message,
     })
   } catch (error: unknown) {
     // console.error('Error:', error.message)

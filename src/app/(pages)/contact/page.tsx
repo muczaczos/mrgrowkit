@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { BsFacebook, BsInstagram, BsTwitter } from 'react-icons/bs'
+import axios from 'axios'
 import { Metadata } from 'next'
 import Image from 'next/image'
 
@@ -12,8 +13,8 @@ import { Gutter } from '../../_components/Gutter'
 import { Input } from '../../_components/Input'
 import RichText from '../../_components/RichText'
 import { generateMeta } from '../../_utilities/generateMeta'
+
 import classes from './index.module.scss'
-import axios from 'axios'
 
 // Force this page to be dynamic so that Next.js does not cache it
 // See the note in '../[slug]/page.tsx' about this
@@ -23,10 +24,10 @@ export default function Contact() {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
-  const [ errorNameMessage, setErrorNameMessage] = useState('')
-  const [ errorEmailMessage, setErrorEmailMessage] = useState('')
-  const [ errorMessageMessage, setErrorMessageMessage] = useState('')
-  const [ noErrorMessage, setNoErrorMessage ] = useState('')
+  const [errorNameMessage, setErrorNameMessage] = useState('')
+  const [errorEmailMessage, setErrorEmailMessage] = useState('')
+  const [errorMessageMessage, setErrorMessageMessage] = useState('')
+  const [noErrorMessage, setNoErrorMessage] = useState('')
 
   const handleChange = event => {
     // console.log(event.target.value)
@@ -59,15 +60,15 @@ export default function Contact() {
     setErrorNameMessage('')
     setNoErrorMessage('')
 
-    if (name!=''){
-      if(email!=''){
-        if(message!=''){
+    if (name != '') {
+      if (email != '') {
+        if (message != '') {
           let data = null
-            data = JSON.stringify({
-              name: name,
-              email: email,
-              message: message
-            })
+          data = JSON.stringify({
+            name: name,
+            email: email,
+            message: message,
+          })
           const dataObj = JSON.parse(data)
           setNoErrorMessage('Your message has been sent')
           try {
@@ -85,7 +86,6 @@ export default function Contact() {
     } else {
       setErrorNameMessage('Please fill the name field')
     }
-
   }
 
   const {
