@@ -600,6 +600,11 @@
   color: rgb(220 38 38 / var(--tw-text-opacity)) !important
 }
 
+.text-green-600 {
+  --tw-text-opacity: 1 !important;
+  color: rgb(22 163 74 / var(--tw-text-opacity)) !important
+}
+
 .underline {
   text-decoration-line: underline !important
 }
@@ -630,6 +635,14 @@
 
 .opacity-70 {
   opacity: 0.7 !important
+}
+
+.opacity-80 {
+  opacity: 0.8 !important
+}
+
+.opacity-90 {
+  opacity: 0.9 !important
 }
 
 .shadow-md {

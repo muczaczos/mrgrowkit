@@ -37,6 +37,22 @@ app.post('/cashbill-payment', async (req, res) => {
   }
 })
 
+app.post('/send-email', async (req, res) => {
+  try {
+    // Odczytaj dane z ciała żądania
+    const requestData = req.body
+    await payload.sendEmail({
+      to: 'muczaczos@gmail.com',
+      from: 'shop@planet-of-mushrooms.com',
+      subject: 'New Message from: ' + requestData.name,
+      html: 'Email: ' + requestData.email + ' Content: ' + requestData.message
+    })
+  } catch (error: unknown) {
+    // console.error('Error:', error.message)
+    res.status(500).json({ error: 'Internal Server Error' })
+  }
+})
+
 const start = async (): Promise<void> => {
   await payload.init({
     secret: process.env.PAYLOAD_SECRET || '',
