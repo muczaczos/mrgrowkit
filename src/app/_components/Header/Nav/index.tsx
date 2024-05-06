@@ -9,6 +9,8 @@ import { Button } from '../../Button'
 import { CartLink } from '../../CartLink'
 import { CMSLink } from '../../Link'
 
+import '/node_modules/flag-icons/css/flag-icons.min.css'
+
 import classes from './index.module.scss'
 
 export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
@@ -31,6 +33,12 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
           onClick={() => (window.location.href = '/login')}
         />
       )}
+      <Link href="www.google.pl">
+        <span className="border-r-1 border-b-0 border-black border-solid fi fi-gb"></span>
+      </Link>
+      <Link href="www.google.pl">
+        <span className="border-r-1 border-b-0 border-black border-solid fi fi-pl"></span>
+      </Link>
     </nav>
   )
 }
