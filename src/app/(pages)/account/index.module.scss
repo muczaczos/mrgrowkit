@@ -1,7 +1,13 @@
+@import '../../_css/common.scss';
+
 .layout {
   display: flex;
   margin-top: 24px;
   gap: 48px;
+  @include small-break {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .title {
@@ -27,15 +33,25 @@
 .menu {
   padding: 24px;
   width: 30%;
+  @include small-break {
+    width: 100%;
+    font-size: larger;
+  }
 }
 
 .menuList {
   border-right: 1px solid rgb(230, 230, 230);
+  @include small-break {
+    border-right: none;
+  }
 }
 
 .menuLogout {
   border-bottom: 1px solid rgb(230, 230, 230);
   padding-bottom: 12px;
+  @include small-break {
+    border-bottom: none;
+  }
 }
 
 .menuItem {
@@ -51,6 +67,9 @@
   gap: 12px;
   border-bottom: 1px solid rgb(230, 230, 230);
   padding-bottom: 24px;
+  @include small-break {
+   border-bottom: none;
+  }
 }
 
 .avatarUser {
@@ -63,6 +82,9 @@
 
 .orders {
   width: 70%;
+  @include small-break {
+    width: 100%;
+  }
 }
 
 .account {
