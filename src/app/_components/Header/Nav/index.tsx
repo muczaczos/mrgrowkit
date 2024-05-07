@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { Header as HeaderType } from '../../../../payload/payload-types'
@@ -34,10 +35,10 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
         />
       )}
       <Link href="www.google.pl">
-        <span className="border-r-1 border-b-0 border-black border-solid fi fi-gb"></span>
+        <span className="fi fi-gb"></span>
       </Link>
       <Link href="www.google.pl">
-        <span className="border-r-1 border-b-0 border-black border-solid fi fi-pl"></span>
+        <Image alt="Planet of mushrooms" src="/media/polska.png" height="25" width="25" />
       </Link>
     </nav>
   )

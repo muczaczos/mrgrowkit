@@ -82,26 +82,23 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
             </div>
             <div className={classes.menu}>
               <div className={classes.menuCol}>
-                <section>
+                <section className="w-1/2">
                   <label>Products</label>
                   <ul>
                     <li>
                       <Link href="/grow-kits">Growkits</Link>
                     </li>
                     <li>
-                      <Link href="/spores">Spores</Link>
+                      <Link href="/cubensis-spore-syringes">Syringes</Link>
                     </li>
                     <li>
-                      <Link href="/cultures">Liquid cultures</Link>
+                      <Link href="/cubensis-liquid-cultures">Liquids</Link>
                     </li>
                     <li>
-                      <Link href="/equipment">Equipment</Link>
+                      <Link href="/cubensis-spore-prints">Prints</Link>
                     </li>
                     <li>
-                      <Link href="/best-products">Best Products</Link>
-                    </li>
-                    <li>
-                      <Link href="/wholesale">Wholesale</Link>
+                      <Link href="/cubensis-plate-cultures">Plates</Link>
                     </li>
                   </ul>
                 </section>
@@ -135,12 +132,6 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                     </li>
                     <li>
                       <Link href="/privacy">Privacy Policy</Link>
-                    </li>
-                    <li>
-                      <Link href="/discretion">Discretion</Link>
-                    </li>
-                    <li>
-                      <Link href="/taxes">Taxes</Link>
                     </li>
                   </ul>
                 </section>
