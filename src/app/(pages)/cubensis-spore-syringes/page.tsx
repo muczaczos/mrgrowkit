@@ -41,18 +41,17 @@ const CubensisSporeSyringes = async () => {
   return (
     <Gutter>
       <div className={classes.imageTitle}>
-        <Image alt="Planet of mushrooms" src="/media/growkit.jpeg" height="500" width="600" />
+        <Image alt="Planet of mushrooms" src="/media/syringe.jpg" height="500" width="600" />
         <h2 className={classes.title}>
-          Start Your Mushroom Journey: Beginner-Friendly Cubensis Grow Kits 🍄 🍄 🍄
+          Cubensis Spore Syringes: Premium Cultivation Essentials 💉💉💉
         </h2>
       </div>
       <p className={classes.heroText}>
-        Embark on a captivating journey into the world 🌎 of fungi with our premium Cubensis Grow
-        Kits, designed to bring the magic of mushroom cultivation to your fingertips. Elevate your
-        gardening experience and unlock the satisfaction of growing your own fresh, organic
-        mushrooms right at home. Join countless enthusiasts 👩🏿‍🤝‍👩🏾👩🏼‍🤝‍🧑🏼👩🏿‍🤝‍🧑🏾 who have discovered
-        the joy and rewards of cultivating their own delicious harvest – start your mushroom
-        adventure today! 💪 🍄
+        Discover our premium range of Cubensis Spore Syringes, meticulously crafted for superior
+        mushroom cultivation 🍄. With carefully selected strains and rigorous preparation 👨🏻‍⚕️, our
+        syringes guarantee optimal mycelium growth and abundant yields. Whether you're a novice or a
+        seasoned cultivator, our syringes offer the perfect blend of convenience and reliability for
+        your mushroom growing journey.🛸
       </p>
       <div className={classes.gap}></div>
       <SyringesCards pages={filteredPages} products={products} />
