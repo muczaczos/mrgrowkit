@@ -36,6 +36,10 @@
   align-items: center;
   gap: calc(var(--base) / 2);
   text-decoration: none;
+  font-size: small;
+  @include small-break {
+    flex-direction: column;
+  }
 }
 
 .itemContent {
@@ -48,6 +52,10 @@
 .itemTitle {
   margin-top: 0;
   margin-bottom: 0;
+  font-size: x-large;
+  @include small-break {
+    font-size: large;
+  }
 }
 
 .itemMeta {

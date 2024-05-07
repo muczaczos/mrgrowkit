@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import classes from './index.module.scss'
 
-const LiquidsCards = ({ pages, products }) => {
+const PlatesCards = ({ pages, products }) => {
   return (
     <section className="mt-10 flex flex-col gap-5 justify-center md:flex-wrap md:flex-row md:justify-between">
       {pages.map((item, index) => {
@@ -21,7 +21,7 @@ const LiquidsCards = ({ pages, products }) => {
                 <div className="w-full">
                   <Image
                     className=""
-                    alt="Cubensis liquid culture"
+                    alt="Cubensis plate culture"
                     src={src}
                     width="350"
                     height="180"
@@ -43,4 +43,4 @@ const LiquidsCards = ({ pages, products }) => {
   )
 }
 
-export default LiquidsCards
+export default PlatesCards
