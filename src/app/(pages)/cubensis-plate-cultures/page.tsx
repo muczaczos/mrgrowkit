@@ -50,11 +50,11 @@ const CubensisPlatesCultures = async () => {
         <h2 className={classes.title}>Cultivate with Precision: Cubensis Plate Cultures! 🧫🧫🧫</h2>
       </div>
       <p className="text-xl lg:pt-10">
-        Enhance your mushroom cultivation endeavors with our premium Cubensis Plate Cultures 🍽️. Designed 
-        to streamline the cultivation process, our petri dish cultures are meticulously prepared to 
-        deliver exceptional results. Each plate contains a carefully isolated strain, ensuring purity 
-        and potency for successful cultivation 💪. Elevate your growing experience with our high-quality 
-        plate cultures today 🚀.
+        Enhance your mushroom cultivation endeavors with our premium Cubensis Plate Cultures 🍽️.
+        Designed to streamline the cultivation process, our petri dish cultures are meticulously
+        prepared to deliver exceptional results. Each plate contains a carefully isolated strain,
+        ensuring purity and potency for successful cultivation 💪. Elevate your growing experience
+        with our high-quality plate cultures today 🚀.
       </p>
       <div className={classes.gap}></div>
       <PlatesCards pages={filteredPages} products={products} />

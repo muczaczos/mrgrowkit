@@ -20,26 +20,30 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
 
   return (
     <nav className={[classes.nav, user === undefined && classes.hide].filter(Boolean).join(' ')}>
-      {navItems.map(({ link }, i) => {
-        return <CMSLink key={i} {...link} appearance="none" />
-      })}
-      <CartLink />
-      {user && <Link href="/account">Account</Link>}
-      {!user && (
-        <Button
-          el="link"
-          href="/login"
-          label="Login"
-          appearance="primary"
-          onClick={() => (window.location.href = '/login')}
-        />
-      )}
-      <Link href="www.google.pl">
-        <span className="fi fi-gb"></span>
-      </Link>
-      <Link href="www.google.pl">
-        <Image alt="Planet of mushrooms" src="/media/polska.png" height="25" width="25" />
-      </Link>
+
+          {navItems.map(({ link }, i) => {
+            return <CMSLink key={i} {...link} appearance="none" />
+          })}
+          <CartLink />
+          {user && <Link href="/account">Account</Link>}
+          {!user && (
+            <Button
+              el="link"
+              href="/login"
+              label="Login"
+              appearance="primary"
+              onClick={() => (window.location.href = '/login')}
+            />
+          )}
+          <div className="flex items-center gap-2">
+          <Link href="www.google.pl">
+            <span className="fi fi-gb"></span>
+          </Link>
+          <Link href="www.google.pl">
+            <Image alt="Planet of mushrooms" src="/media/polska.png" height="25" width="25" />
+          </Link>
+          </div>
+        
     </nav>
   )
 }
