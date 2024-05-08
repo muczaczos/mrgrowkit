@@ -189,7 +189,7 @@ export const CheckoutPage: React.FC<{
       )}
       <label>
         <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />I have read and
-        agree with{' '}
+        I agree with{' '}
         <Link className="underline" href="/conditions">
           terms and conditions
         </Link>
@@ -201,7 +201,9 @@ export const CheckoutPage: React.FC<{
       </label>
       <div
         className={`${
-          isButtonActive ? 'opacity-100 flex justify-between' : 'opacity-50 flex justify-between'
+          isButtonActive
+            ? 'opacity-100 flex justify-between mt-10'
+            : 'opacity-50 flex justify-between mt-10'
         }`}
       >
         <Button label="Back to cart" href="/cart" appearance="secondary" />
