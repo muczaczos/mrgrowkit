@@ -1,27 +1,19 @@
 'use client'
-import React, { Fragment, useContext, useEffect } from 'react'
-import countryList from 'react-select-country-list'
-import axios from 'axios'
-import { sha1 } from 'js-sha1'
+import React, { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-import { Order, Settings } from '../../../../payload/payload-types'
-import { fetchDocs } from '../../../_api/fetchDocs'
+import { Settings } from '../../../../payload/payload-types'
 import AdditionalInfo from '../../../_components/AdditionalInfo'
 import { Button } from '../../../_components/Button'
 import { calculateShippingCost } from '../../../_components/CalculateShipping'
 import GatewayLogic from '../../../_components/GatewayLogic'
-import { LoadingShimmer } from '../../../_components/LoadingShimmer'
 import PaymentMethods from '../../../_components/PaymentMethods'
-import { priceFromJSON } from '../../../_components/Price'
 import ShippingDetails from '../../../_components/ShippingDetails'
 import ShippingMethods from '../../../_components/ShippingMethods'
 import { useAuth } from '../../../_providers/Auth'
-import { CartContext, CartProvider, useCart } from '../../../_providers/Cart'
+import { useCart } from '../../../_providers/Cart'
 import { useTheme } from '../../../_providers/Theme'
-import cssVariables from '../../../cssVariables'
-import { CheckoutForm } from '../CheckoutForm'
 import { CheckoutItem } from '../CheckoutItem'
 
 import classes from './index.module.scss'
@@ -35,10 +27,6 @@ export const CheckoutPage: React.FC<{
 
   const { user } = useAuth()
   const router = useRouter()
-  const [error, setError] = React.useState<string | null>(null)
-  const [clientSecret, setClientSecret] = React.useState()
-  const hasMadePaymentIntent = React.useRef(false)
-  const { theme } = useTheme()
 
   const [fullName, setFullName] = React.useState('')
   const [address, setAddress] = React.useState('')
@@ -53,9 +41,16 @@ export const CheckoutPage: React.FC<{
   const [shippingMethods, setShippingMethods] = React.useState()
   const [shippingCost, setShippingCost] = React.useState(0)
   const [additionalInfo, setAdditionalInfo] = React.useState()
-  const { cart, cartIsEmpty, cartTotal, totalAmount, totalWeight } = useCart()
+  const { cart, cartIsEmpty, totalAmount, totalWeight } = useCart()
   var subtotal = 0
   let total: number | undefined
+  const [isChecked, setIsChecked] = useState(false)
+  const [isButtonActive, setIsButtonActive] = useState(false)
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked)
+    setIsButtonActive(!isButtonActive) // Button becomes active when the checkbox is checked
+  }
 
   useEffect(() => {
     if (user !== null && cartIsEmpty) {
@@ -192,9 +187,26 @@ export const CheckoutPage: React.FC<{
           </ul>
         </div>
       )}
-      <div className={classes.buttons}>
+      <label>
+        <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />I have read and
+        agree with{' '}
+        <Link className="underline" href="/conditions">
+          terms and conditions
+        </Link>
+        , and{' '}
+        <Link className="underline" href="privacy">
+          privacy policy
+        </Link>{' '}
+        from planet-of-mushrooms.com
+      </label>
+      <div
+        className={`${
+          isButtonActive ? 'opacity-100 flex justify-between' : 'opacity-50 flex justify-between'
+        }`}
+      >
         <Button label="Back to cart" href="/cart" appearance="secondary" />
         <GatewayLogic
+          disabled={!isButtonActive}
           method={method}
           totalAmount={total}
           fullName={fullName}

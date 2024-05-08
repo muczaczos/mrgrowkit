@@ -7,6 +7,7 @@ import { useCart } from '../../_providers/Cart'
 import { Button } from '../Button'
 
 const GatewayLogic = ({
+  disabled,
   method,
   totalAmount,
   fullName,
@@ -256,7 +257,14 @@ const GatewayLogic = ({
     }
   }
 
-  return <Button label="Place the Order" appearance="primary" onClick={handleSubmit}></Button>
+  return (
+    <Button
+      disabled={disabled}
+      label="Place the Order"
+      appearance="primary"
+      onClick={handleSubmit}
+    ></Button>
+  )
 }
 
 export default GatewayLogic
