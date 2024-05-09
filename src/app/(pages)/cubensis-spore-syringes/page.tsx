@@ -34,7 +34,7 @@ const CubensisSporeSyringes = async () => {
 
   filteredPages = pages.filter(page => {
     if (page.categories[0]) {
-      return page.categories[0].slug === 'spore-syringes'
+      return page.categories[0].slug === 'cubensis-spore-syringes'
     }
   })
 

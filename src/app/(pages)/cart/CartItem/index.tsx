@@ -45,7 +45,7 @@ const CartItem = ({ product, title, metaImage, qty, price, addItemToCart, sub })
       </Link>
       <div className={classes.itemDetails}>
         <div className={classes.titleWrapper}>
-          <h6>{title}</h6>${price}
+          <h6>{title}</h6>€{price}
         </div>
 
         <div className={classes.quantity}>
@@ -73,7 +73,7 @@ const CartItem = ({ product, title, metaImage, qty, price, addItemToCart, sub })
         </div>
       </div>
       <div className={classes.subtotalWrapper}>
-        ${sub}
+        €{sub}
         <RemoveFromCartButton product={product} />
       </div>
     </li>

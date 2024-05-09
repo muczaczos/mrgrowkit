@@ -101,7 +101,7 @@ export const CartPage: React.FC<{
 
                 <div className={classes.row}>
                   <p className={classes.cartTotal}>Grand Total</p>
-                  <p className={classes.cartTotal}>${totalAmount}</p>
+                  <p className={classes.cartTotal}>€{totalAmount}</p>
                 </div>
 
                 <Button

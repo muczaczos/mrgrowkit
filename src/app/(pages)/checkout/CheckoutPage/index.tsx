@@ -178,11 +178,11 @@ export const CheckoutPage: React.FC<{
             })}
             <div className={classes.orderTotal}>
               <p>Shippingn Cost</p>
-              <p>{shippingCost}</p>
+              <p>€{shippingCost}</p>
             </div>
             <div className={classes.orderTotal}>
               <p>Order Total</p>
-              <p>{total}</p>
+              <p>€{total}</p>
             </div>
           </ul>
         </div>

@@ -34,7 +34,7 @@ const CubensisPlatesCultures = async () => {
 
   filteredPages = pages.filter(page => {
     if (page.categories[0]) {
-      return page.categories[0].slug === 'plate-cultures'
+      return page.categories[0].slug === 'cubensis-plate-cultures'
     }
   })
 

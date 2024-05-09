@@ -34,7 +34,7 @@ const CubensisLiquidCultures = async () => {
 
   filteredPages = pages.filter(page => {
     if (page.categories[0]) {
-      return page.categories[0].slug === 'liquid-cultures'
+      return page.categories[0].slug === 'cubensis-liquid-cultures'
     }
   })
 
@@ -49,7 +49,7 @@ const CubensisLiquidCultures = async () => {
         />
         <h2 className={classes.title}>Cultivate with Cubensis Liquid Cultures! 🧪🧪🧪🍄</h2>
       </div>
-      <p className="text-lg">
+      <p className="mt-5 text-lg">
         Experience Effortless Growth with Cubensis Liquid Cultures! Our premium liquid cultures
         offer a hassle-free solution for mushroom cultivation. Inject 💉 vitality into your
         substrate and witness rapid mycelial colonization 🚀, leading to bountiful harvests. Perfect

@@ -34,7 +34,7 @@ const CubensisSporePrints = async () => {
 
   filteredPages = pages.filter(page => {
     if (page.categories[0]) {
-      return page.categories[0].slug === 'spore-prints'
+      return page.categories[0].slug === 'cubensis-spore-prints'
     }
   })
 
