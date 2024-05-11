@@ -58,6 +58,10 @@
   z-index: 0 !important
 }
 
+.m-5 {
+  margin: 1.25rem !important
+}
+
 .mx-auto {
   margin-left: auto !important;
   margin-right: auto !important
@@ -115,6 +119,14 @@
   margin-top: 1.75rem !important
 }
 
+.mb-0 {
+  margin-bottom: 0px !important
+}
+
+.mt-0 {
+  margin-top: 0px !important
+}
+
 .block {
   display: block !important
 }
@@ -141,6 +153,10 @@
 
 .w-1\/2 {
   width: 50% !important
+}
+
+.w-80 {
+  width: 20rem !important
 }
 
 .w-full {
@@ -271,6 +287,11 @@
   border-color: rgb(253 224 71 / var(--tw-border-opacity)) !important
 }
 
+.border-gray-100 {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(243 244 246 / var(--tw-border-opacity)) !important
+}
+
 .bg-black {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important
@@ -320,8 +341,40 @@
   background-color: rgb(254 249 195 / var(--tw-bg-opacity)) !important
 }
 
+.bg-\[url\(\'\/media\/hero\.png\'\)\] {
+  background-image: url('/media/hero.png') !important
+}
+
+.bg-\[url\(\'\/media\/hero2\.png\'\)\] {
+  background-image: url('/media/hero2.png') !important
+}
+
 .bg-cover {
   background-size: cover !important
+}
+
+.bg-contain {
+  background-size: contain !important
+}
+
+.bg-auto {
+  background-size: auto !important
+}
+
+.bg-fixed {
+  background-attachment: fixed !important
+}
+
+.bg-center {
+  background-position: center !important
+}
+
+.bg-top {
+  background-position: top !important
+}
+
+.bg-bottom {
+  background-position: bottom !important
 }
 
 .bg-no-repeat {
@@ -391,6 +444,10 @@
   padding-top: 1.25rem !important
 }
 
+.pb-10 {
+  padding-bottom: 2.5rem !important
+}
+
 .text-left {
   text-align: left !important
 }
@@ -422,8 +479,40 @@
   font-weight: 700 !important
 }
 
+.font-normal {
+  font-weight: 400 !important
+}
+
+.font-thin {
+  font-weight: 100 !important
+}
+
+.font-light {
+  font-weight: 300 !important
+}
+
 .italic {
   font-style: italic !important
+}
+
+.leading-\[0\.1rem\] {
+  line-height: 0.1rem !important
+}
+
+.leading-\[1rem\] {
+  line-height: 1rem !important
+}
+
+.leading-\[3rem\] {
+  line-height: 3rem !important
+}
+
+.leading-\[100px\] {
+  line-height: 100px !important
+}
+
+.leading-\[1px\] {
+  line-height: 1px !important
 }
 
 .text-black {

@@ -8,6 +8,7 @@ import { staticHome } from '../../../payload/seed/home-static'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
+import { Button } from '../../_components/Button'
 import Categories from '../../_components/Categories'
 import { Gutter } from '../../_components/Gutter'
 import { Hero } from '../../_components/Hero'
@@ -61,8 +62,24 @@ export default async function Page({ params: { slug = 'home' } }) {
     <React.Fragment>
       {slug === 'home' ? (
         <section>
-          <Hero {...hero} />
-
+          <div className="bg-no-repeat bg-bottom bg-[url('/media/hero2.png')] pt-10 pb-10 p-6 bg-gray-50 border-l-0 border-r-0 border-2 border-solid border-gray-100">
+            <h1 className="text-white w-80% mb-0">
+              Be <br />
+              yourself <br /> and...
+            </h1>
+            <p className="text-white mt-2">
+              <span className="font-thin text-2xl ">
+                ...Unleash your <br />
+                own imagination.
+              </span>
+            </p>
+            <Button
+              className="mt-10 mb-5"
+              label="SHOP NOW"
+              appearance="primary"
+              href="/products"
+            ></Button>
+          </div>
           <Gutter className="classes.home">
             <Categories categories={categories} />
             <Promotion />
