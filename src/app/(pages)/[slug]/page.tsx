@@ -62,7 +62,7 @@ export default async function Page({ params: { slug = 'home' } }) {
     <React.Fragment>
       {slug === 'home' ? (
         <section>
-          <div className="bg-no-repeat bg-right bg-[url('/media/new-hero.png')] pt-10 pb-10 p-6 bg-gray-50 border-l-0 border-r-0 border-2 border-solid border-gray-100">
+          <div className="bg-no-repeat bg-right bg-[url('/media/hero-bike.png')] md:bg-left pt-10 pb-10 p-6 bg-gray-50 border-l-0 border-r-0 border-2 border-solid border-gray-100">
             <h1 className="text-white w-80% mb-0">
               Be <br />
               yourself <br /> and...
@@ -74,7 +74,7 @@ export default async function Page({ params: { slug = 'home' } }) {
               </span>
             </p>
             <Button
-              className="mt-10 mb-5"
+              className="mt-5 mb-5"
               label="SHOP NOW"
               appearance="primary"
               href="/products"

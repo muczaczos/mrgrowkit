@@ -357,6 +357,10 @@
   background-image: url('/media/new-hero.png') !important
 }
 
+.bg-\[url\(\'\/media\/hero-bike\.png\'\)\] {
+  background-image: url('/media/hero-bike.png') !important
+}
+
 .bg-cover {
   background-size: cover !important
 }
@@ -635,6 +639,10 @@
 
   .md\:justify-between {
     justify-content: space-between !important
+  }
+
+  .md\:bg-left {
+    background-position: left !important
   }
 }
 
