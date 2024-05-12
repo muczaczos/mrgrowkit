@@ -349,6 +349,14 @@
   background-image: url('/media/hero2.png') !important
 }
 
+.bg-\[url\(\'\/media\/long-hero\.png\'\)\] {
+  background-image: url('/media/long-hero.png') !important
+}
+
+.bg-\[url\(\'\/media\/new-hero\.png\'\)\] {
+  background-image: url('/media/new-hero.png') !important
+}
+
 .bg-cover {
   background-size: cover !important
 }
@@ -375,6 +383,10 @@
 
 .bg-bottom {
   background-position: bottom !important
+}
+
+.bg-right {
+  background-position: right !important
 }
 
 .bg-no-repeat {
