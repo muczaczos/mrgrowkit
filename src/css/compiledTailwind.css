@@ -617,6 +617,14 @@
     margin-left: 2.25rem !important
   }
 
+  .md\:mt-10 {
+    margin-top: 2.5rem !important
+  }
+
+  .md\:ml-10 {
+    margin-left: 2.5rem !important
+  }
+
   .md\:block {
     display: block !important
   }
@@ -627,6 +635,10 @@
 
   .md\:hidden {
     display: none !important
+  }
+
+  .md\:h-96 {
+    height: 24rem !important
   }
 
   .md\:flex-row {
@@ -643,6 +655,10 @@
 
   .md\:bg-left {
     background-position: left !important
+  }
+
+  .md\:bg-top {
+    background-position: top !important
   }
 }
 
