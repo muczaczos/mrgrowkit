@@ -62,7 +62,7 @@ export default async function Page({ params: { slug = 'home' } }) {
     <React.Fragment>
       {slug === 'home' ? (
         <section>
-          <div className="md:h-96 bg-no-repeat bg-right bg-[url('/media/hero-bike.png')] pt-10 pb-10 p-6 bg-gray-50 border-l-0 border-r-0 border-2 border-solid border-gray-100">
+          <div className="lg:hidden md:h-96 bg-no-repeat bg-right bg-[url('/media/hero-bike.png')] pt-10 pb-10 p-6 bg-gray-50 border-l-0 border-r-0 border-2 border-solid border-gray-100">
             <h1 className="text-white w-80% mb-0 md:mt-10 md:ml-10">
               Be <br className="md:hidden" />
               yourself <br className="md:hidden" /> and...
@@ -80,6 +80,24 @@ export default async function Page({ params: { slug = 'home' } }) {
               href="/products"
             ></Button>
           </div>
+          <Gutter>
+            <div className="hidden lg:block lg:h-[385px] 2xl:h-[44rem] bg-no-repeat bg-contain bg-[url('/media/hero-big.png')] pt-10 pb-10 p-6 bg-gray-50 border-l-0 border-r-0 border-2 border-solid border-gray-100">
+              <h1 className="text-white lg:text-3xl lg:mt-5 lg:ml-3 w-80% mb-0 mt-52 ml-10">
+                Be yourself and...
+              </h1>
+              <p className="text-white mt-2 lg:ml-3 md:ml-10">
+                <span className="font-thin lg:text-xl text-2xl ">
+                  ...Unleash your own imagination.
+                </span>
+              </p>
+              <Button
+                className="mt-5 mb-5 lg:ml-3 md:mt-10 md:ml-10"
+                label="SHOP NOW"
+                appearance="primary"
+                href="/products"
+              ></Button>
+            </div>
+          </Gutter>
           <Gutter className="classes.home">
             <Categories categories={categories} />
             <Promotion />
