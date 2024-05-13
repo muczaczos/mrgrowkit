@@ -81,13 +81,13 @@ export default async function Page({ params: { slug = 'home' } }) {
             ></Button>
           </div>
           <Gutter>
-            <div className="hidden lg:block lg:h-[385px] 2xl:h-[44rem] bg-no-repeat bg-contain bg-[url('/media/hero-big.png')] pt-10 pb-10 p-6 bg-gray-50 border-l-0 border-r-0 border-2 border-solid border-gray-100">
+            <div className="hidden lg:block lg:h-[28rem] xl:h-[35rem] 2xl:h-[44rem] bg-no-repeat bg-cover bg-right bg-[url('/media/hero-big.png')] pt-10 pb-10 p-6 bg-gray-50 border-l-0 border-r-0 border-2 border-solid border-gray-100">
               <h1 className="text-white lg:text-3xl lg:mt-5 lg:ml-3 w-80% mb-0 mt-52 ml-10">
                 Be yourself and...
               </h1>
               <p className="text-white mt-2 lg:ml-3 md:ml-10">
                 <span className="font-thin lg:text-xl text-2xl ">
-                  ...Unleash your own imagination.
+                  ...Unleash your <br className="xl:hidden" /> own imagination.
                 </span>
               </p>
               <Button
