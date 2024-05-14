@@ -8,7 +8,7 @@ import { AddToCartButton } from '../../_components/AddToCartButton'
 import { Gutter } from '../../_components/Gutter'
 import { Media } from '../../_components/Media'
 import RichText from '../../_components/RichText'
-
+import Gal from '../../_components/Gal'
 import 'react-tabs/style/react-tabs.css'
 
 import classes from './index.module.scss'
@@ -20,6 +20,12 @@ export const ProductHero: React.FC<{
   let productDescription
   let productDetails
   let productFaq
+
+  const images = [
+    '/media/growkit-cubensis-ecuador.jpg',
+    '/media/growkit-cubensis-ecuador.jpg',
+    '/media/growkit-cubensis-b-plus.jpg'
+  ]
 
   // Sprawdź, czy istnieje layout w produkcie, aby uniknąć błędów w czasie wykonania
   if (product.layout) {
@@ -42,7 +48,7 @@ export const ProductHero: React.FC<{
       <div className={classes.mediaWrapper}>
         {!metaImage && <div className={classes.placeholder}>No image</div>}
         {metaImage && typeof metaImage !== 'string' && (
-          <Media imgClassName={classes.image} resource={metaImage} fill />
+          <Gal images={images} />
         )}
       </div>
 
