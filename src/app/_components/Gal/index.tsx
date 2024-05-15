@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 const Gal = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(images[0])
 
-  const handleImageClick = (image) => {
+  const handleImageClick = image => {
     setSelectedImage(image)
   }
 
   return (
     <div className="max-w-lg mx-auto">
       {/* Główne zdjęcie */}
-      <img src={selectedImage} alt="Main" className="w-full" />
+      <Image src={selectedImage} alt="Main" className="w-full" />
 
       {/* Miniatury */}
       <div className="flex justify-center mt-4">
         {images.map((image, index) => (
-          <img
+          <Image
             key={index}
             src={image}
             alt={`Thumbnail ${index}`}
