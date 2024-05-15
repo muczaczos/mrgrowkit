@@ -184,12 +184,27 @@
   max-width: 32rem !important
 }
 
+.flex-auto {
+  flex: 1 1 auto !important
+}
+
 .grow {
   flex-grow: 1 !important
 }
 
 .border-collapse {
   border-collapse: collapse !important
+}
+
+.scale-50 {
+  --tw-scale-x: .5 !important;
+  --tw-scale-y: .5 !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
+}
+
+.scale-x-50 {
+  --tw-scale-x: .5 !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
 }
 
 .transform {
@@ -222,6 +237,10 @@
 
 .justify-between {
   justify-content: space-between !important
+}
+
+.justify-items-center {
+  justify-items: center !important
 }
 
 .gap-2 {
