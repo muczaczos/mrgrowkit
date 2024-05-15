@@ -672,6 +672,9 @@ export interface Product {
   title: string;
   price: string;
   weight: number;
+  media1?: string | Media | null;
+  media2?: string | Media | null;
+  media3?: string | Media | null;
   publishedOn?: string | null;
   layout?:
     | (

@@ -17,16 +17,21 @@ import classes from './index.module.scss'
 export const ProductHero: React.FC<{
   product: Product
 }> = ({ product }) => {
-  const { title, categories, price, layout, meta: { image: metaImage, description } = {} } = product
+  const {
+    title,
+    categories,
+    price,
+    media1,
+    media2,
+    media3,
+    layout,
+    meta: { image: metaImage, description } = {},
+  } = product
   let productDescription
   let productDetails
   let productFaq
 
-  const images = [
-    '/media/growkit-cubensis-ecuador.jpg',
-    '/media/growkit-cubensis-ecuador.jpg',
-    '/media/growkit-cubensis-b-plus.jpg',
-  ]
+  const images = [media1['url'], media2['url'], media3['url']]
 
   // Sprawdź, czy istnieje layout w produkcie, aby uniknąć błędów w czasie wykonania
   if (product.layout) {

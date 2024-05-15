@@ -20,6 +20,24 @@ export const PRODUCT = `
         title
         price
         weight
+        media1 {
+          alt
+          width
+          height
+          url
+        }
+        media2 {
+          alt
+          width
+          height
+          url
+        }
+        media3 {
+          alt
+          width
+          height
+          url
+        }
         stripeProductID
         ${PRODUCT_CATEGORIES}
         layout {

@@ -56,6 +56,24 @@ const Products: CollectionConfig = {
       required: true,
     },
     {
+      name: 'media1',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
+    {
+      name: 'media2',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
+    {
+      name: 'media3',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
+    {
       name: 'publishedOn',
       type: 'date',
       admin: {

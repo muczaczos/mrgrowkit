@@ -11,12 +11,14 @@ const Gal = ({ images }) => {
   return (
     <div className="max-w-lg mx-auto">
       {/* Główne zdjęcie */}
-      <Image src={selectedImage} alt="Main" className="w-full" />
+      <Image width={800} height={800} src={selectedImage} alt="Main" className="w-full" />
 
       {/* Miniatury */}
       <div className="flex justify-center mt-4">
         {images.map((image, index) => (
           <Image
+            width={200}
+            height={200}
             key={index}
             src={image}
             alt={`Thumbnail ${index}`}
