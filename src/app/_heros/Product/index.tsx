@@ -31,7 +31,17 @@ export const ProductHero: React.FC<{
   let productDetails
   let productFaq
 
-  const images = [media1['url'], media2['url'], media3['url']]
+  let images = []
+
+  if (media1) {
+    images.push(media1['url'])
+  }
+  if (media2) {
+    images.push(media2['url'])
+  }
+  if (media3) {
+    images.push(media3['url'])
+  }
 
   // Sprawdź, czy istnieje layout w produkcie, aby uniknąć błędów w czasie wykonania
   if (product.layout) {

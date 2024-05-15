@@ -15,17 +15,18 @@ const Gal = ({ images }) => {
 
       {/* Miniatury */}
       <div className="flex justify-center mt-4">
-        {images.map((image, index) => (
-          <Image
-            width={200}
-            height={200}
-            key={index}
-            src={image}
-            alt={`Thumbnail ${index}`}
-            className="w-16 h-16 object-cover cursor-pointer mx-2"
-            onClick={() => handleImageClick(image)}
-          />
-        ))}
+        {images &&
+          images.map((image, index) => (
+            <Image
+              width={200}
+              height={200}
+              key={index}
+              src={image}
+              alt={`Thumbnail ${index}`}
+              className="w-16 h-16 object-cover cursor-pointer mx-2"
+              onClick={() => handleImageClick(image)}
+            />
+          ))}
       </div>
     </div>
   )
