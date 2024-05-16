@@ -76,7 +76,7 @@ export const PostHero: React.FC<{
             )}
           </p>
           <div>
-            <p className={classes.description}>{`${description ? `${description} ` : ''}`}</p>
+            <p className="text-xl">{`${description ? `${description} ` : ''}`}</p>
           </div>
         </div>
         <div className={classes.media}>
