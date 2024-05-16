@@ -21,10 +21,17 @@ const PostsCards = ({ pages, posts }) => {
           return (
             <div className={classes.link}>
               <Link className={classes.link} href={href}>
-                <div className="">
-                  <Image className={classes.image} alt="dupa" src={src} width="300" height="180" />
+                <div className="h-40">
+                  <Image
+                    className="max-h-full max-w-full"
+                    alt="Magic Mushroom post image"
+                    src={src}
+                    width={300}
+                    height={200}
+                  />
                 </div>
               </Link>
+
               <h6 className={classes.title}>{title}</h6>
               <p className={classes.description}>{description}</p>
             </div>
