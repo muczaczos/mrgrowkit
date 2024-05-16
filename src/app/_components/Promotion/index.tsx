@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
+import Image from 'next/image'
 
 import classes from './index.module.scss'
-import Image from 'next/image'
 
 export const Promotion = () => {
   const [time, setTime] = useState({
@@ -56,7 +56,13 @@ export const Promotion = () => {
         </ul>
       </div>
       <div className="flex-auto aligns-items-center">
-        <Image className="w-1/2" width={800} height={800} src={"/media/airpods-max-2.png"} alt={"Promotion"} />
+        <Image
+          className="w-1/2"
+          width={800}
+          height={800}
+          src={'/media/airpods-max-2.png'}
+          alt={'Promotion'}
+        />
       </div>
     </section>
   )
