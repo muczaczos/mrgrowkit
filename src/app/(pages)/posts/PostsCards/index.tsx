@@ -21,7 +21,7 @@ const PostsCards = ({ pages, posts }) => {
           return (
             <div className={classes.link}>
               <Link className={classes.link} href={href}>
-                <div className={classes.frame}>
+                <div className="">
                   <Image className={classes.image} alt="dupa" src={src} width="300" height="180" />
                 </div>
               </Link>
