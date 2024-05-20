@@ -16,7 +16,7 @@ const PostsCards = ({ pages, posts }) => {
           // console.log(process.env.NEXT_PUBLIC_SERVER_URL + '/' + posts[index].slug)
           const src = '/media/' + pages[index].meta.image.filename
           const href = process.env.NEXT_PUBLIC_SERVER_URL + '/posts/' + posts[index].slug
-          const title = pages[index].title.substring(0, 35) + '...'
+          const title = pages[index].title
           const description = pages[index].meta.description.substring(0, 40) + '...'
           return (
             <div className={classes.link}>
@@ -33,7 +33,6 @@ const PostsCards = ({ pages, posts }) => {
               </Link>
 
               <h6 className={classes.title}>{title}</h6>
-              <p className={classes.description}>{description}</p>
             </div>
           )
         }
