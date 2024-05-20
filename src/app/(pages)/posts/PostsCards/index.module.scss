@@ -5,6 +5,7 @@
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
+  justify-content:center;
   @include small-break {
     margin-top: 24px;
   }
