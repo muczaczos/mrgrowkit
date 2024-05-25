@@ -13,26 +13,40 @@ export const Promotion = () => {
     seconds: 0,
   })
 
-  const targetDate = useMemo(() => new Date('06.25.2024'), []) //month is first :)
-  targetDate.setDate(targetDate.getDate())
+  const targetDate = useMemo(() => {
+    // Use ISO 8601 format for date parsing
+    const date = new Date('2024-06-25T00:00:00Z')
+    if (isNaN(date.getTime())) {
+      //console.error('Invalid date format')
+      return new Date() // fallback to current date in case of parsing error
+    }
+    return date
+  }, [])
 
   useEffect(() => {
-    const timerInterval = setInterval(() => {
+    const updateTimer = () => {
       const currentTime = new Date()
-      const timeDifference = Math.max(Number(targetDate) - Number(currentTime), 0)
+      const timeDifference = Math.max(targetDate.getTime() - currentTime.getTime(), 0)
 
       const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
       const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
       const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60))
       const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000)
 
-      setTime({ days, hours, minutes, seconds })
+      setTime({
+        days: isNaN(days) ? 0 : days,
+        hours: isNaN(hours) ? 0 : hours,
+        minutes: isNaN(minutes) ? 0 : minutes,
+        seconds: isNaN(seconds) ? 0 : seconds,
+      })
 
       if (timeDifference === 0) {
         clearInterval(timerInterval)
-        // You can add code here to handle what happens when the target date is reached.
       }
-    }, 1000)
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000)
+    updateTimer() // Ensure the timer updates immediately
 
     return () => {
       clearInterval(timerInterval) // Cleanup the interval when the component unmounts.
