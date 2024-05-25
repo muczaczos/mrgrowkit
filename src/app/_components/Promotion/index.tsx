@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import classes from './index.module.scss'
 
@@ -12,7 +13,7 @@ export const Promotion = () => {
     seconds: 0,
   })
 
-  const targetDate = useMemo(() => new Date('02.25.2024'), [])
+  const targetDate = useMemo(() => new Date('06.25.2024'), []) //month is first :)
   targetDate.setDate(targetDate.getDate())
 
   useEffect(() => {
@@ -55,15 +56,15 @@ export const Promotion = () => {
           <StatBox label="Seconds" value={time.seconds} />
         </ul>
       </div>
-      <div className="flex-auto aligns-items-center">
+      <Link className="flex-auto aligns-items-center" href="/grow-kits">
         <Image
-          className="w-1/2"
+          className=""
           width={800}
           height={800}
-          src={'/media/airpods-max-2.png'}
+          src={'/media/discount.jpg'}
           alt={'Promotion'}
         />
-      </div>
+      </Link>
     </section>
   )
 }
