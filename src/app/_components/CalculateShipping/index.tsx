@@ -19,16 +19,22 @@ export async function calculateShippingCost(postalCode, weight, countryCode) {
   // Iterating through each object in the data array
   for (const zone of data) {
     // Checking if the countryCode is in the selectedCountries array
+
     if (zone.selectedCountries.includes(countryCode)) {
       // Checking if the postalCode matches any code in the codes array
       for (const codeObj of zone.codes) {
-        if (codeObj.code === postalCode) {
+        // Split the codes by comma and trim whitespace
+        const codesArray = codeObj.code.split(',').map(code => code.trim())
+        if (codesArray.includes(postalCode)) {
           // Checking if weight is within the range and finding the appropriate price
           for (const range of zone.ranges) {
             const rangeWeight = parseFloat(range.weigth)
             if (
               (weight <= 1 && rangeWeight === 1) ||
-              (weight > 1 && weight < 3 && rangeWeight === 3)
+              (weight > 1 && weight <= 2 && rangeWeight === 2) ||
+              (weight > 2 && weight <= 5 && rangeWeight === 5) ||
+              (weight > 5 && weight <= 15 && rangeWeight === 15) ||
+              (weight > 15 && weight <= 30 && rangeWeight === 30)
             ) {
               return range.price
             }
@@ -47,7 +53,10 @@ export async function calculateShippingCost(postalCode, weight, countryCode) {
             const rangeWeight = parseFloat(range.weigth)
             if (
               (weight <= 1 && rangeWeight === 1) ||
-              (weight > 1 && weight < 3 && rangeWeight === 3)
+              (weight > 1 && weight <= 2 && rangeWeight === 2) ||
+              (weight > 2 && weight <= 5 && rangeWeight === 5) ||
+              (weight > 5 && weight <= 15 && rangeWeight === 15) ||
+              (weight > 15 && weight <= 30 && rangeWeight === 30)
             ) {
               return range.price
             }
@@ -62,7 +71,10 @@ export async function calculateShippingCost(postalCode, weight, countryCode) {
           const rangeWeight = parseFloat(range.weigth)
           if (
             (weight <= 1 && rangeWeight === 1) ||
-            (weight > 1 && weight < 3 && rangeWeight === 3)
+            (weight > 1 && weight <= 2 && rangeWeight === 2) ||
+            (weight > 2 && weight <= 5 && rangeWeight === 5) ||
+            (weight > 5 && weight <= 15 && rangeWeight === 15) ||
+            (weight > 15 && weight <= 30 && rangeWeight === 30)
           ) {
             return range.price
           }
@@ -70,6 +82,7 @@ export async function calculateShippingCost(postalCode, weight, countryCode) {
       }
     }
   }
+
   // If no matching zone found, return null
   return null
 }
