@@ -8,6 +8,7 @@ import AdditionalInfo from '../../../_components/AdditionalInfo'
 import { Button } from '../../../_components/Button'
 import { calculateShippingCost } from '../../../_components/CalculateShipping'
 import GatewayLogic from '../../../_components/GatewayLogic'
+import Message from '../../../_components/GatewayLogic/Message'
 import PaymentMethods from '../../../_components/PaymentMethods'
 import ShippingDetails from '../../../_components/ShippingDetails'
 import ShippingMethods from '../../../_components/ShippingMethods'
@@ -46,6 +47,15 @@ export const CheckoutPage: React.FC<{
   let total: number | undefined
   const [isChecked, setIsChecked] = useState(false)
   const [isButtonActive, setIsButtonActive] = useState(false)
+  const [showMessage, setShowMessage] = useState(false)
+
+  const handleShowMessage = () => {
+    setShowMessage(true)
+  }
+
+  const handleCloseMessage = () => {
+    setShowMessage(false)
+  }
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
@@ -121,6 +131,9 @@ export const CheckoutPage: React.FC<{
             <h3 className={classes.showCode}>Wybrany paczkomat to: {lockerCode}</h3>
           )}
           <AdditionalInfo setAdditionalInfo={setAdditionalInfo} />
+          {showMessage && (
+            <Message message="Please choose your payment method." onClose={handleCloseMessage} />
+          )}
         </>
       )}
       {cartIsEmpty && (
@@ -208,6 +221,7 @@ export const CheckoutPage: React.FC<{
       >
         <Button label="Back to cart" href="/cart" appearance="secondary" />
         <GatewayLogic
+          setShowMessage={setShowMessage}
           disabled={!isButtonActive}
           method={method}
           totalAmount={total}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 
@@ -7,6 +7,7 @@ import { useCart } from '../../_providers/Cart'
 import { Button } from '../Button'
 
 const GatewayLogic = ({
+  setShowMessage,
   disabled,
   method,
   totalAmount,
@@ -254,6 +255,8 @@ const GatewayLogic = ({
         doc: Order
       } = await orderReq.json()
       router.push(`/order-confirmation-sepa?order_id=${doc.id}`)
+    } else {
+      setShowMessage(true)
     }
   }
 
