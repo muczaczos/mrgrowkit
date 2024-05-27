@@ -112,11 +112,11 @@ export const CheckoutPage: React.FC<{
             )}
             <PaymentMethods method={method} setMethod={setMethod} />
           </div>
-          <ShippingMethods
+          {/*<ShippingMethods   //use that with multiple method of shipping avaiable
             setShippingMethods={setShippingMethods}
             setLockerCode={setLockerCode}
             setShowDisplayCode={setShowDisplayCode}
-          />
+            />*/}
           {showDisplayCode && (
             <h3 className={classes.showCode}>Wybrany paczkomat to: {lockerCode}</h3>
           )}

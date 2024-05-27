@@ -14,7 +14,7 @@ const PaymentMethods = ({ method, setMethod }) => {
   return (
     <div className={classes.paymentSection}>
       <h3 className={classes.payment}>Payment Methods</h3>
-      <div className={classes.radioAndIcon}>
+      {/* <div className={classes.radioAndIcon}>
         <RadioButton
           label="Payment Gateway"
           value="gateway"
@@ -29,10 +29,10 @@ const PaymentMethods = ({ method, setMethod }) => {
           width="80"
           className="w-50"
         />
-      </div>
+      </div> */}
       <div className={classes.radioAndIcon}>
         <RadioButton
-          label="Bank Trafser to Revolut"
+          label="Trafser to Revolut"
           value="revolut"
           isSelected={method === 'revolut'}
           onRadioChange={handlePaymentMethod}
@@ -49,7 +49,7 @@ const PaymentMethods = ({ method, setMethod }) => {
       <hr className="mb-5 mt-5"></hr>
       <div className={classes.radioAndIcon}>
         <RadioButton
-          label="Bank Trafser to Wise"
+          label="Trafser to Wise"
           value="wise"
           isSelected={method === 'wise'}
           onRadioChange={handlePaymentMethod}
@@ -60,7 +60,7 @@ const PaymentMethods = ({ method, setMethod }) => {
       <hr className="mb-5 mt-5"></hr>
       <div className={classes.radioAndIcon}>
         <RadioButton
-          label="Bank Trafser - SEPA or others"
+          label="SEPA transfer or others"
           value="sepa"
           isSelected={method === 'sepa'}
           onRadioChange={handlePaymentMethod}
