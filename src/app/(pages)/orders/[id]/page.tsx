@@ -55,11 +55,8 @@ export default async function Order({ params: { id } }) {
         <p>{`ID: ${order.id}`}</p>
         <p>{`Ordered On: ${formatDateTime(order.createdAt)}`}</p>
         <p className={classes.total}>
-          {'Total: '}
-          {new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'usd',
-          }).format(order.total)}
+          {'Total: €'}
+          {order.total}
         </p>
       </div>
       <HR />
@@ -99,8 +96,8 @@ export default async function Order({ params: { id } }) {
                       </Link>
                     </h5>
                     <p>{`Quantity: ${quantity}`}</p>
-                    <p>{`Price: ${price}`}</p>
-                    <p>{`Subtotal (price * quantity): ${price * quantity}`}</p>
+                    <p>{`Price: €${price}`}</p>
+                    <p>{`Subtotal (price * quantity): €${price * quantity}`}</p>
                   </div>
                 </div>
                 {!isLast && <HR />}

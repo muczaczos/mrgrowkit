@@ -34,11 +34,8 @@ const OrdersList: React.FC<Props> = ({ orders }) => {
                   <div className={classes.itemMeta}>
                     <p>{`Ordered On: ${formatDateTime(order.createdAt)}`}</p>
                     <p>
-                      {'Total: '}
-                      {new Intl.NumberFormat('en-US', {
-                        style: 'currency',
-                        currency: 'usd',
-                      }).format(order.total)}
+                      {'Total: €'}
+                      {order.total}
                     </p>
                   </div>
                 </div>
