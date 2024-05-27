@@ -177,7 +177,7 @@ export const CheckoutPage: React.FC<{
               return null
             })}
             <div className={classes.orderTotal}>
-              <p>Shippingn Cost</p>
+              <p>Shipping</p>
               <p>€{shippingCost}</p>
             </div>
             <div className={classes.orderTotal}>
@@ -200,11 +200,10 @@ export const CheckoutPage: React.FC<{
         from planet-of-mushrooms.com
       </label>
       <div
-        className={`${
-          isButtonActive
+        className={`${isButtonActive
             ? 'opacity-100 flex justify-between mt-10'
             : 'opacity-50 flex justify-between mt-10'
-        }`}
+          }`}
       >
         <Button label="Back to cart" href="/cart" appearance="secondary" />
         <GatewayLogic

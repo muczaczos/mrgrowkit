@@ -84,5 +84,5 @@ export async function calculateShippingCost(postalCode, weight, countryCode) {
   }
 
   // If no matching zone found, return null
-  return null
+  return '1000 Your country is not in our system. Please contact us to calculate the shipping cost.'
 }
