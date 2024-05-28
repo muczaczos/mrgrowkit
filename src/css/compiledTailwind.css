@@ -554,6 +554,10 @@
   text-align: right !important
 }
 
+.align-baseline {
+  vertical-align: baseline !important
+}
+
 .text-2xl {
   font-size: 1.5rem !important;
   line-height: 2rem !important

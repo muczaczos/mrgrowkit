@@ -32,7 +32,7 @@ const PaymentMethods = ({ method, setMethod }) => {
       </div> */}
       <div className={classes.radioAndIcon}>
         <RadioButton
-          label="Trafser to Revolut"
+          label="Trafser to: "
           value="revolut"
           isSelected={method === 'revolut'}
           onRadioChange={handlePaymentMethod}
@@ -49,7 +49,7 @@ const PaymentMethods = ({ method, setMethod }) => {
       <hr className="mb-5 mt-5"></hr>
       <div className={classes.radioAndIcon}>
         <RadioButton
-          label="Trafser to Wise"
+          label="Trafser to: "
           value="wise"
           isSelected={method === 'wise'}
           onRadioChange={handlePaymentMethod}

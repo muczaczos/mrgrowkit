@@ -49,12 +49,14 @@ export const CheckoutPage: React.FC<{
   const [isButtonActive, setIsButtonActive] = useState(false)
   const [showMessage, setShowMessage] = useState(false)
 
-  const handleShowMessage = () => {
-    setShowMessage(true)
-  }
-
   const handleCloseMessage = () => {
     setShowMessage(false)
+  }
+
+  const [showMessage2, setShowMessage2] = useState(false)
+
+  const handleCloseMessage2 = () => {
+    setShowMessage2(false)
   }
 
   const handleCheckboxChange = () => {
@@ -133,6 +135,9 @@ export const CheckoutPage: React.FC<{
           <AdditionalInfo setAdditionalInfo={setAdditionalInfo} />
           {showMessage && (
             <Message message="Please choose your payment method." onClose={handleCloseMessage} />
+          )}
+          {showMessage2 && (
+            <Message message="Please fill the shipping details." onClose={handleCloseMessage2} />
           )}
         </>
       )}
@@ -222,6 +227,7 @@ export const CheckoutPage: React.FC<{
         <Button label="Back to cart" href="/cart" appearance="secondary" />
         <GatewayLogic
           setShowMessage={setShowMessage}
+          setShowMessage2={setShowMessage2}
           disabled={!isButtonActive}
           method={method}
           totalAmount={total}
