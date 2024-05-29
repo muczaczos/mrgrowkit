@@ -11,7 +11,6 @@ import GatewayLogic from '../../../_components/GatewayLogic'
 import Message from '../../../_components/GatewayLogic/Message'
 import PaymentMethods from '../../../_components/PaymentMethods'
 import ShippingDetails from '../../../_components/ShippingDetails'
-import ShippingMethods from '../../../_components/ShippingMethods'
 import { useAuth } from '../../../_providers/Auth'
 import { useCart } from '../../../_providers/Cart'
 import { useTheme } from '../../../_providers/Theme'
@@ -40,6 +39,7 @@ export const CheckoutPage: React.FC<{
   const [lockerCode, setLockerCode] = React.useState()
   const [showDisplayCode, setShowDisplayCode] = React.useState()
   const [shippingMethods, setShippingMethods] = React.useState()
+  const [paymentMethods, setPaymentMethods] = React.useState()
   const [shippingCost, setShippingCost] = React.useState(0)
   const [additionalInfo, setAdditionalInfo] = React.useState()
   const { cart, cartIsEmpty, totalAmount, totalWeight } = useCart()

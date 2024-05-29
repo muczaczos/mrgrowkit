@@ -88,6 +88,10 @@ export const Orders: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'paymentMethod',
+      type: 'text',
+    },
+    {
       name: 'additionalInfo',
       type: 'textarea',
     },

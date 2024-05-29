@@ -1072,6 +1072,7 @@ export interface Order {
   email?: string | null;
   lockerCode?: string | null;
   shippingMethod?: string | null;
+  paymentMethod?: string | null;
   additionalInfo?: string | null;
   items?:
     | {

@@ -10729,6 +10729,7 @@ type Order {
   email: String
   lockerCode: String
   shippingMethod: String
+  paymentMethod: String
   additionalInfo: String
   items: [Order_Items!]
   updatedAt: DateTime
@@ -10769,6 +10770,7 @@ input Order_where {
   email: Order_email_operator
   lockerCode: Order_lockerCode_operator
   shippingMethod: Order_shippingMethod_operator
+  paymentMethod: Order_paymentMethod_operator
   additionalInfo: Order_additionalInfo_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
@@ -10909,6 +10911,17 @@ input Order_shippingMethod_operator {
   exists: Boolean
 }
 
+input Order_paymentMethod_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Order_additionalInfo_operator {
   equals: String
   not_equals: String
@@ -11002,6 +11015,7 @@ input Order_where_and {
   email: Order_email_operator
   lockerCode: Order_lockerCode_operator
   shippingMethod: Order_shippingMethod_operator
+  paymentMethod: Order_paymentMethod_operator
   additionalInfo: Order_additionalInfo_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
@@ -11027,6 +11041,7 @@ input Order_where_or {
   email: Order_email_operator
   lockerCode: Order_lockerCode_operator
   shippingMethod: Order_shippingMethod_operator
+  paymentMethod: Order_paymentMethod_operator
   additionalInfo: Order_additionalInfo_operator
   items__product: Order_items__product_operator
   items__price: Order_items__price_operator
@@ -11060,6 +11075,7 @@ type OrdersDocAccessFields {
   email: OrdersDocAccessFields_email
   lockerCode: OrdersDocAccessFields_lockerCode
   shippingMethod: OrdersDocAccessFields_shippingMethod
+  paymentMethod: OrdersDocAccessFields_paymentMethod
   additionalInfo: OrdersDocAccessFields_additionalInfo
   items: OrdersDocAccessFields_items
   updatedAt: OrdersDocAccessFields_updatedAt
@@ -11339,6 +11355,29 @@ type OrdersDocAccessFields_shippingMethod_Update {
 }
 
 type OrdersDocAccessFields_shippingMethod_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_paymentMethod {
+  create: OrdersDocAccessFields_paymentMethod_Create
+  read: OrdersDocAccessFields_paymentMethod_Read
+  update: OrdersDocAccessFields_paymentMethod_Update
+  delete: OrdersDocAccessFields_paymentMethod_Delete
+}
+
+type OrdersDocAccessFields_paymentMethod_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_paymentMethod_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_paymentMethod_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_paymentMethod_Delete {
   permission: Boolean!
 }
 
@@ -18490,6 +18529,7 @@ type OrdersFields {
   email: OrdersFields_email
   lockerCode: OrdersFields_lockerCode
   shippingMethod: OrdersFields_shippingMethod
+  paymentMethod: OrdersFields_paymentMethod
   additionalInfo: OrdersFields_additionalInfo
   items: OrdersFields_items
   updatedAt: OrdersFields_updatedAt
@@ -18769,6 +18809,29 @@ type OrdersFields_shippingMethod_Update {
 }
 
 type OrdersFields_shippingMethod_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_paymentMethod {
+  create: OrdersFields_paymentMethod_Create
+  read: OrdersFields_paymentMethod_Read
+  update: OrdersFields_paymentMethod_Update
+  delete: OrdersFields_paymentMethod_Delete
+}
+
+type OrdersFields_paymentMethod_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_paymentMethod_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_paymentMethod_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_paymentMethod_Delete {
   permission: Boolean!
 }
 
@@ -22395,6 +22458,7 @@ input mutationOrderInput {
   email: String
   lockerCode: String
   shippingMethod: String
+  paymentMethod: String
   additionalInfo: String
   items: [mutationOrder_ItemsInput]
   updatedAt: String
@@ -22421,6 +22485,7 @@ input mutationOrderUpdateInput {
   email: String
   lockerCode: String
   shippingMethod: String
+  paymentMethod: String
   additionalInfo: String
   items: [mutationOrderUpdate_ItemsInput]
   updatedAt: String

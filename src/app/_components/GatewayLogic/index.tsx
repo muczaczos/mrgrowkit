@@ -57,7 +57,8 @@ const GatewayLogic = ({
             phoneNumber: phone,
             email: email,
             lockerCode: lockerCode,
-            shippingMethod: method,
+            shippingMethod: 'DPD or Inpost',
+            paymentMethod: method,
             additionalInfo: additionalInfo,
             items: (cart?.items || [])?.map(({ product, quantity }) => ({
               product: typeof product === 'string' ? product : product.id,
@@ -134,7 +135,8 @@ const GatewayLogic = ({
             phoneNumber: phone,
             email: email,
             lockerCode: lockerCode,
-            shippingMethod: method,
+            shippingMethod: 'DPD or Inpost',
+            paymentMethod: method,
             additionalInfo: additionalInfo,
             items: (cart?.items || [])?.map(({ product, quantity }) => ({
               product: typeof product === 'string' ? product : product.id,
@@ -172,7 +174,8 @@ const GatewayLogic = ({
             phoneNumber: phone,
             email: email,
             lockerCode: lockerCode,
-            shippingMethod: method,
+            shippingMethod: 'DPD or Inpost',
+            paymentMethod: method,
             additionalInfo: additionalInfo,
             items: (cart?.items || [])?.map(({ product, quantity }) => ({
               product: typeof product === 'string' ? product : product.id,
@@ -210,7 +213,8 @@ const GatewayLogic = ({
             phoneNumber: phone,
             email: email,
             lockerCode: lockerCode,
-            shippingMethod: method,
+            shippingMethod: 'DPD or Inpost',
+            paymentMethod: method,
             additionalInfo: additionalInfo,
             items: (cart?.items || [])?.map(({ product, quantity }) => ({
               product: typeof product === 'string' ? product : product.id,
@@ -248,7 +252,8 @@ const GatewayLogic = ({
             phoneNumber: phone,
             email: email,
             lockerCode: lockerCode,
-            shippingMethod: method,
+            shippingMethod: 'DPD or Inpost',
+            paymentMethod: method,
             additionalInfo: additionalInfo,
             items: (cart?.items || [])?.map(({ product, quantity }) => ({
               product: typeof product === 'string' ? product : product.id,
