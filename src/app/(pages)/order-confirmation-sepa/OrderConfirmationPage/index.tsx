@@ -15,6 +15,7 @@ import classes from './index.module.scss'
 export const OrderConfirmationPage: React.FC<{}> = () => {
   const searchParams = useSearchParams()
   const orderID = searchParams.get('order_id')
+  const total = searchParams.get('total')
   const error = searchParams.get('error')
 
   const { clearCart } = useCart()
@@ -52,7 +53,19 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
         <p className="text-xl font-bold text-center">
           Account number in IBAN format: <br />
         </p>
-        <p className="lg:text-xl xs:text-sm text-center">PL12 1212 1212 1212 1212 1212 1212</p>
+        <p className="lg:text-xl xs:text-sm text-center">PL05 1140 2004 0000 3512 0691 6805</p>
+        <p className="text-xl font-bold text-center">
+          BIC / SWIFT: <br />
+        </p>
+        <p className="lg:text-xl xs:text-sm text-center">BREXPLPWMBK</p>
+        <p className="text-xl font-bold text-center">
+          Reference: <br />
+        </p>
+        <p className="lg:text-xl xs:text-sm text-center">Order ID: {orderID}</p>
+        <p className="text-xl font-bold text-center">
+          Total amount: <br />
+        </p>
+        <p className="lg:text-xl xs:text-sm text-center">€{total}</p>
         <p className="text-xl font-bold text-center">
           Company name: <br />
         </p>

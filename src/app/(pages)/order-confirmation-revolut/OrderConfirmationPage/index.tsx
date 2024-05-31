@@ -16,6 +16,7 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
   const searchParams = useSearchParams()
   const orderID = searchParams.get('order_id')
   const error = searchParams.get('error')
+  const total = searchParams.get('total')
 
   const { clearCart } = useCart()
 
@@ -51,7 +52,19 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
         <p className="text-xl font-bold text-center">
           Account number in IBAN format: <br />
         </p>
-        <p className="lg:text-xl xs:text-sm text-center">PL12 1212 1212 1212 1212 1212 1212</p>
+        <p className="lg:text-xl xs:text-sm text-center">LT56 3250 0003 8523 2427</p>
+        <p className="text-xl font-bold text-center">
+          BIC / SWIFT: <br />
+        </p>
+        <p className="lg:text-xl xs:text-sm text-center">REVOLT21</p>
+        <p className="text-xl font-bold text-center">
+          Reference: <br />
+        </p>
+        <p className="lg:text-xl xs:text-sm text-center">Order id: {orderID}</p>
+        <p className="text-xl font-bold text-center">
+          Total amount: <br />
+        </p>
+        <p className="lg:text-xl xs:text-sm text-center">€{total}</p>
         <p className="text-xl font-bold text-center">
           Company name: <br />
         </p>

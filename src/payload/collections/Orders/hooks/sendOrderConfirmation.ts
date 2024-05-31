@@ -5,14 +5,61 @@ import type { Order } from '../../../payload-types'
 export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc }) => {
   const { payload } = req
   let text = ''
+
   if (doc.paymentMethod === 'revolut') {
     text = `The details for the transfer are as follows:<br/>
-    Account number in IBAN format:<br/>
-    PL12 1212 1212 1212 1212 1212 1212<br/>
-    Company name:<br/>
+    <strong>Account number in IBAN format:</strong><br/>
+    LT56 3250 0003 8523 2427<br/>
+    <strong>BIC / SWIFT code:</strong><br/>
+    REVOLT21 <br/>
+    <strong>Total Amount:</strong> <br/>
+    €${doc.total}<br/>
+    <strong>Reference</strong><br/>
+    Order id: ${doc.id}<br/>
+    <strong>Company name:</strong><br/>
     UiTeH<br/>
-    Address:<br/>
-    Szkolna 1/3, 05-500 Piaseczno, Poland<br/>`
+    <strong>Address:</strong><br/>
+    Szkolna 1/3, <br/> 
+    05-500 Piaseczno, <br/> 
+    Poland<br/>`
+  } else if (doc.paymentMethod === 'wise') {
+    text = `The details for the transfer are as follows:<br/>
+    <strong>Account number in IBAN format:</strong><br/>
+    BE03 9679 8908 2084<br/>
+    <strong>BIC / SWIFT code:</strong> <br/>
+    TRWIBEB1XXX<br/>
+    <strong>Total Amount:</strong> <br/>
+    €${doc.total}<br/>
+    <strong>Reference</strong><br/>
+    Order id: ${doc.id}<br/>
+    <strong>Company name:</strong><br/>
+    UiTeH<br/>
+    <strong>Address:</strong><br/>
+    Szkolna 1/3, <br/> 
+    05-500 Piaseczno, <br/> 
+    Poland<br/>`
+  } else if (doc.paymentMethod === 'crypto') {
+    text = `The details for the transfer are as follows:<br/>
+    <strong>BTC wallet address:</strong><br/>
+    1DZj35SBrLXGPNtp9XnS8E1vArvBmXDtQn<br/>
+    <strong>ETH wallet address:</strong><br/>
+    0xf4f656a1316838cffebe664d279170ef2ba20e61<br/>`
+  } else if (doc.paymentMethod === 'sepa') {
+    text = `The details for the transfer are as follows:<br/>
+    <strong>Account number in IBAN format:</strong><br/>
+    PL05 1140 2004 0000 3512 0691 6805<br/>
+    <strong>BIC / SWIFT code:</strong></br>
+    BREXPLPWMBK</br>
+    <strong>Total Amount:</strong></br>
+    €${doc.total}</br>
+    <strong>Reference</strong></br>
+    Order id: ${doc.id}</br>
+    <strong>Company name:</strong><br/>
+    UiTeH<br/>
+    <strong>Address:</strong><br/>
+    Szkolna 1/3, <br/> 
+    05-500 Piaseczno, <br/> 
+    Poland<br/>`
   }
 
   await payload.sendEmail({
@@ -20,7 +67,7 @@ export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc }
     from: 'shop@planet-of-mushrooms.com',
     subject: 'New Order',
     html:
-      '<b>Hey there!</b><br/>Thank you for your order. Total Amount of your order is: ' +
+      '<b>Hey there!</b><br/>Thank you for your order. Total Amount of your order is: €' +
       doc.total +
       '.' +
       '<br/>' +

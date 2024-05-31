@@ -195,7 +195,7 @@ export const CheckoutPage: React.FC<{
               return null
             })}
             <div className={classes.orderTotal}>
-              <p>Shipping</p>
+              <p>Shipping by DPD (Inpost in PL)</p>
               <p>€{shippingCost}</p>
             </div>
             <div className={classes.orderTotal}>

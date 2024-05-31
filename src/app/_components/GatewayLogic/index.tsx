@@ -154,7 +154,7 @@ const GatewayLogic = ({
           error?: string
           doc: Order
         } = await orderReq.json()
-        router.push(`/order-confirmation-revolut?order_id=${doc.id}`)
+        router.push(`/order-confirmation-revolut?order_id=${doc.id}&total=${doc.total}`)
       } else if (method === 'crypto') {
         // console.log('1')
         const orderReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {
@@ -232,7 +232,7 @@ const GatewayLogic = ({
           error?: string
           doc: Order
         } = await orderReq.json()
-        router.push(`/order-confirmation-wise?order_id=${doc.id}`)
+        router.push(`/order-confirmation-wise?order_id=${doc.id}&total=${doc.total}`)
       } else if (method === 'sepa') {
         // console.log('1')
         const orderReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders`, {
@@ -271,7 +271,7 @@ const GatewayLogic = ({
           error?: string
           doc: Order
         } = await orderReq.json()
-        router.push(`/order-confirmation-sepa?order_id=${doc.id}`)
+        router.push(`/order-confirmation-sepa?order_id=${doc.id}&total=${doc.total}`)
       } else {
         setShowMessage(true)
       }

@@ -46,10 +46,10 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
 
       <div className="xs:p-0 lg:p-2 border-solid border border-gray-200">
         <p className="text-xl text-center">
-          BTC account no: <br />
+          BTC wallet address: <br />
         </p>
         <p className="font-bold lg:text-xl xs:text-sm text-center">
-          PL12 1212 1212 1212 1212 1212 1212
+          1DZj35SBrLXGPNtp9XnS8E1vArvBmXDtQn
         </p>
       </div>
       <p className="mt-5 text-center text-2xl">Click on the logo and checkout how works BTC</p>
@@ -67,10 +67,10 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
       </Link>
       <div className="mt-10 xs:p-0 lg:p-2 border-solid border border-gray-200">
         <p className="text-xl text-center">
-          ETH account no: <br />
+          ETH wallet address: <br />
         </p>
         <p className="font-bold lg:text-xl xs:text-sm text-center">
-          PL12 1212 1212 1212 1212 1212 1212
+          0xf4f656a1316838cffebe664d279170ef2ba20e61
         </p>
       </div>
       <p className="mt-5 text-center text-2xl">Click on the logo and checkout how works ETH</p>
