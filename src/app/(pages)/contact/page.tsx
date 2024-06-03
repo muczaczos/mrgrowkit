@@ -119,11 +119,10 @@ export default function Contact() {
       <Gutter className="relative z-0">
         <div className="md:ml-24 lg:ml-48">
           <h1 className="mt-10 text-right">Contact us</h1>
-          <h4 className="text-right">UiTeH</h4>
-          <h4 className="text-right">Zbyszewska 17</h4>
-          <h4 className="text-right">05-600 Grójec</h4>
+          <h4 className="text-right">Planet-of-Mushrooms s.r.o</h4>
+          <h4 className="text-right">Szkolna 1/3</h4>
+          <h4 className="text-right">05-500 Piaseczno</h4>
           <h4 className="text-right">Poland</h4>
-          <h4 className="text-right">VatUE: PL7971643224</h4>
 
           <section className="flex flex-col lg:flex-row gap-5 mt-10 mb-16">
             <div className="flex flex-col items-center bg-gray-50 rounded-xl p-6 shadow-xl mb-5">
