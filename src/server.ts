@@ -16,6 +16,10 @@ import { seed } from './payload/seed'
 const app = express()
 const PORT = process.env.PORT || 3000
 
+// set trust proxy to true if you use nginx
+// when NodeJS app are served behind nginx reverse proxies and similar.
+app.set('trust proxy', true)
+
 // Dodaj middleware, który odczyta dane JSON z ciała żądania
 app.use(express.json())
 
