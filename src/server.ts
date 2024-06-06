@@ -18,7 +18,25 @@ const PORT = process.env.PORT || 3000
 
 // set trust proxy to true if you use nginx
 // when NodeJS app are served behind nginx reverse proxies and similar.
-app.set('trustProxy', true)
+// after that you must config your nginx server
+/*
+server {
+    listen 80;
+    server_name yourdomain.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}*/
+app.set('trust proxy', true)
 
 // Dodaj middleware, który odczyta dane JSON z ciała żądania
 app.use(express.json())
