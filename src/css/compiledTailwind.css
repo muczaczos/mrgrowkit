@@ -537,6 +537,11 @@
   line-height: 1.75rem !important
 }
 
+.text-3xl {
+  font-size: 1.875rem !important;
+  line-height: 2.25rem !important
+}
+
 .font-bold {
   font-weight: 700 !important
 }
@@ -807,6 +812,10 @@
   .lg\:text-xl {
     font-size: 1.25rem !important;
     line-height: 1.75rem !important
+  }
+
+  .lg\:font-bold {
+    font-weight: 700 !important
   }
 }
 

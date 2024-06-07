@@ -35,10 +35,10 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
         />
       )}
       <div className="flex items-center gap-2">
-        <Link href="www.google.pl">
+        <Link href="/" aria-label="Change language to english">
           <span className="fi fi-gb"></span>
         </Link>
-        <Link href="www.google.pl">
+        <Link href="/" aria-label="Change langueage to polish">
           <Image alt="Planet of mushrooms" src="/media/polska.png" height="25" width="25" />
         </Link>
       </div>
