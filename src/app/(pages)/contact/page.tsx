@@ -36,7 +36,7 @@ export default function Contact() {
 
   const handleWhatsAppClick = () => {
     // Twój numer telefonu WhatsApp
-    const phoneNumber = '+48691586665'
+    const phoneNumber = '+48609164574'
     // Twój wiadomość, którą chcesz wysłać
     const message = 'Cześć! Jestem zainteresowany Twoją ofertą.'
     // Tworzymy link do WhatsApp z numerem telefonu i wiadomością
