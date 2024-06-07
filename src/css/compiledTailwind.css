@@ -422,6 +422,10 @@
   background-image: url('/media/hero-bike.png') !important
 }
 
+.bg-\[url\(\'\/media\/hero-bike\.webp\'\)\] {
+  background-image: url('/media/hero-bike.webp') !important
+}
+
 .bg-cover {
   background-size: cover !important
 }
