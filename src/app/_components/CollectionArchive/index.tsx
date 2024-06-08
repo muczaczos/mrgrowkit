@@ -111,6 +111,10 @@ export const CollectionArchive: React.FC<Props> = props => {
         }
       }, 500)
 
+      //filter categories in payload CMS dashboard
+      if (categories !== '' && categoryFilters.length < 1) {
+        categoryFilters.push(categories)
+      }
       const searchQuery = qs.stringify(
         {
           depth: 1,
@@ -118,13 +122,10 @@ export const CollectionArchive: React.FC<Props> = props => {
           page,
           sort,
           where: {
-            ...(categoryFilters && categoryFilters?.length > 0
+            ...(categoryFilters && categoryFilters.length > 0
               ? {
                   categories: {
-                    in:
-                      typeof categoryFilters === 'string'
-                        ? [categoryFilters]
-                        : categoryFilters.map((cat: string) => cat).join(','),
+                    in: categoryFilters,
                   },
                 }
               : {}),
@@ -167,7 +168,7 @@ export const CollectionArchive: React.FC<Props> = props => {
     return () => {
       if (timer) clearTimeout(timer)
     }
-  }, [categoryFilters, page, categories, relationTo, onResultChange, sort, limit, populateBy])
+  }, [categories, categoryFilters, page, relationTo, onResultChange, sort, limit, populateBy])
 
   return (
     <div className={[classes.collectionArchive, className].filter(Boolean).join(' ')}>

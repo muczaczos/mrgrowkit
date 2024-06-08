@@ -31,16 +31,18 @@ export const ArchiveBlock: React.FC<
           <RichText content={introContent} />
         </Gutter>
       )}
-      <CollectionArchive
-        populateBy={populateBy}
-        relationTo={relationTo}
-        populatedDocs={populatedDocs}
-        populatedDocsTotal={populatedDocsTotal}
-        selectedDocs={selectedDocs}
-        categories={categories}
-        limit={limit}
-        sort="-publishedOn"
-      />
+      <Gutter>
+        <CollectionArchive
+          populateBy={populateBy}
+          relationTo={relationTo}
+          populatedDocs={populatedDocs}
+          populatedDocsTotal={populatedDocsTotal}
+          selectedDocs={selectedDocs}
+          categories={categories}
+          limit={limit}
+          sort="-publishedOn"
+        />
+      </Gutter>
     </div>
   )
 }
