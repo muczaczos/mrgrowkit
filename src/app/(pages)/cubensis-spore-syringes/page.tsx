@@ -1,7 +1,9 @@
 import React from 'react'
+import { Metadata } from 'next'
+import Head from 'next/head'
 import { draftMode } from 'next/headers'
 import Image from 'next/image'
-import { Metadata } from 'next'
+import { title } from 'process'
 
 import { Category, Page, Product } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
@@ -12,8 +14,6 @@ import { HR } from '../../_components/HR'
 import SyringesCards from './SyringesCards'
 
 import classes from './index.module.scss'
-import Head from 'next/head'
-import { title } from 'process'
 
 const Syringes = async () => {
   const { isEnabled: isDraftMode } = draftMode()
@@ -69,14 +69,16 @@ const Syringes = async () => {
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Cubensis Spore Syringes: Premium Cultivation Essentials', //60 char
-  description: 'Unlock the mysteries of the fungal world with our premium Cubensis Spore Syringes. Perfect for both beginners and experienced cultivators', //150 char
-  keywords: 'Cubensis spore syringe, Cubensis spore print, magic mushrooms, Cubensis spores, Fungi, Organic Mushrooms',
+  description:
+    'Unlock the mysteries of the fungal world with our premium Cubensis Spore Syringes. Perfect for both beginners and experienced cultivators', //150 char
+  keywords:
+    'Cubensis spore syringe, Cubensis spore print, magic mushrooms, Cubensis spores, Fungi, Organic Mushrooms',
   openGraph: {
     images: ['/media/growkit.jpeg'],
     title: 'Cubensis Spore Syringes: Premium Cultivation Essentials',
     url: 'https://planet-of-mushrooms.com/cubensis-spore-syringes',
-    type: 'website'
-  }
+    type: 'website',
+  },
 }
 
 export default Syringes
