@@ -1,15 +1,12 @@
 import React from 'react'
 import { Metadata } from 'next'
-import Head from 'next/head'
 import { draftMode } from 'next/headers'
 import Image from 'next/image'
-import { title } from 'process'
 
 import { Category, Page, Product } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Gutter } from '../../_components/Gutter'
-import { Hero } from '../../_components/Hero'
 import { HR } from '../../_components/HR'
 import SyringesCards from './SyringesCards'
 
@@ -45,7 +42,7 @@ const Syringes = async () => {
     <>
       <Gutter>
         <div className={classes.imageTitle}>
-          <Image alt="Planet of mushrooms" src="/media/growkit.jpeg" height="500" width="600" />
+          <Image alt="Planet of mushrooms" src="/media/syringes.webp" height="500" width="600" />
           <h2 className={classes.title}>
             Cubensis Spore Syringes: Premium Cultivation Essentials 💉💉💉
           </h2>
@@ -74,8 +71,10 @@ export const metadata: Metadata = {
   keywords:
     'Cubensis spore syringe, Cubensis spore print, magic mushrooms, Cubensis spores, Fungi, Organic Mushrooms',
   openGraph: {
-    images: ['/media/growkit.jpeg'],
+    images: ['/media/syringes.webp'],
     title: 'Cubensis Spore Syringes: Premium Cultivation Essentials',
+    description:
+      'Unlock the mysteries of the fungal world with our premium Cubensis Spore Syringes. Perfect for both beginners and experienced cultivators',
     url: 'https://planet-of-mushrooms.com/cubensis-spore-syringes',
     type: 'website',
   },

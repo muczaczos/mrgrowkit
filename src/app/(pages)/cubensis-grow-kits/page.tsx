@@ -1,13 +1,13 @@
 import React from 'react'
+import { Metadata } from 'next'
 import Head from 'next/head'
 import { draftMode } from 'next/headers'
 import Image from 'next/image'
 
-import { Category, Page, Product } from '../../../payload/payload-types'
+import { Page, Product } from '../../../payload/payload-types'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Gutter } from '../../_components/Gutter'
-import { Hero } from '../../_components/Hero'
 import { HR } from '../../_components/HR'
 import GrowkitsCards from './GrowkitsCards'
 
@@ -84,6 +84,23 @@ const GrowKits = async () => {
       </Gutter>
     </>
   )
+}
+
+// either Static metadata
+export const metadata: Metadata = {
+  title: 'Beginner-Friendly Cubensis Grow Kit - Psychodelic Mushrooms', //60 char
+  description:
+    'Embark on a captivating journey into the world 🌎 of fungi with our premium Cubensis Grow Kits, designed to bring the magic of mushroom cultivation', //150 char
+  keywords:
+    'Cubensis grow kit, growkits, magic mushrooms growkit, Cubensis spore print, Fungi, Organic Mushrooms',
+  openGraph: {
+    images: ['/media/growkit.jpg'],
+    title: 'Beginner-Friendly Cubensis Grow Kit - Psychodelic Mushrooms',
+    description:
+      'Embark on a captivating journey into the world 🌎 of fungi with our premium Cubensis Grow Kits, designed to bring the magic of mushroom cultivation',
+    url: 'https://planet-of-mushrooms.com/cubensis-grow-kits',
+    type: 'website',
+  },
 }
 
 export default GrowKits
