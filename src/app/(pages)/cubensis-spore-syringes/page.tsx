@@ -9,11 +9,11 @@ import { fetchDocs } from '../../_api/fetchDocs'
 import { Gutter } from '../../_components/Gutter'
 import { Hero } from '../../_components/Hero'
 import { HR } from '../../_components/HR'
-import GrowkitsCards from './GrowkitsCards'
+import SyringesCards from './SyringesCards'
 
 import classes from './index.module.scss'
 
-const GrowKits = async () => {
+const Syringes = async () => {
   const { isEnabled: isDraftMode } = draftMode()
   let products: Product[] | null = null
   let pages = []
@@ -35,7 +35,7 @@ const GrowKits = async () => {
 
   filteredPages = pages.filter(page => {
     if (page.categories[0]) {
-      return page.categories[0].slug === 'grow-kits'
+      return page.categories[0].slug === 'cubensis-spore-syringes'
     }
   })
 
@@ -43,47 +43,50 @@ const GrowKits = async () => {
     <>
       <Head>
         {/* 60 char */}
-        <title>Beginner-Friendly Cubensis Grow Kit - Psychodelic Mushrooms</title>
+        <title>Cubensis Spore Syringes: Premium Cultivation Essentials</title>
         {/* 150 char */}
         <meta
           name="description"
-          content="Embark on a captivating journey into the world 🌎 of fungi with our premium Cubensis Grow Kits, designed to bring the magic of mushroom cultivation"
+          content="Unlock the mysteries of the fungal world with our premium Cubensis Spore Syringes. Perfect for both beginners and experienced cultivators"
         />
         <meta
           name="keywords"
-          content="Cubensis grow kits, Cubensis mushrooms cultivation, Cubensis, Cubensis spores, Fungi, Organic Mushrooms"
+          content="Cubensis spore syringe, Cubensis spore print, magic mushrooms, Cubensis spores, Fungi, Organic Mushrooms"
         />
         <meta name="author" content="www.planet-of-mushrooms" />
-        <meta property="og:title" content="Grow Kits - Start Your Mushroom Journey" />
+        <meta
+          property="og:title"
+          content="Cubensis Spore Syringes: Premium Cultivation Essentials"
+        />
         <meta
           property="og:description"
-          content="Embark on a captivating journey into the world of fungi with our premium Cubensis Grow Kits, designed to bring the magic of mushroom cultivation"
+          content="Unlock the mysteries of the fungal world with our premium Cubensis Spore Syringes. Perfect for both beginners and experienced cultivators"
         />
-        <meta property="og:image" content="/media/growkit.jpeg" />
-        <meta property="og:url" content="https://planet-of-mushrooms.com/grow-kits" />
+        <meta property="og:image" content="/media/syringes.webp" />
+        <meta property="og:url" content="https://planet-of-mushrooms.com/cubensis-spore-syringes" />
         <meta property="og:type" content="website" />
       </Head>
       <Gutter>
         <div className={classes.imageTitle}>
           <Image alt="Planet of mushrooms" src="/media/growkit.jpeg" height="500" width="600" />
           <h2 className={classes.title}>
-            Start Your Mushroom Journey: Beginner-Friendly Cubensis Grow Kits 🍄 🍄 🍄
+            Cubensis Spore Syringes: Premium Cultivation Essentials 💉💉💉
           </h2>
         </div>
         <p className={classes.heroText}>
-          Embark on a captivating journey into the world 🌎 of fungi with our premium Cubensis Grow
-          Kits, designed to bring the magic of mushroom cultivation to your fingertips. Elevate your
-          gardening experience and unlock the satisfaction of growing your own fresh, organic
-          mushrooms right at home. Join countless enthusiasts 👩🏿‍🤝‍👩🏾👩🏼‍🤝‍🧑🏼👩🏿‍🤝‍🧑🏾 who have discovered
-          the joy and rewards of cultivating their own delicious harvest – start your mushroom
-          adventure today! 💪 🍄
+          Unlock the mysteries of the fungal world with our premium Cubensis Spore Syringes. Perfect
+          for both beginners and experienced cultivators, these syringes contain high-quality,
+          viable spores ready to kickstart your mushroom-growing adventure. Experience the joy and
+          satisfaction of cultivating your own organic mushrooms at home. Join a vibrant community
+          of enthusiasts and discover the rewards of growing your own harvest. Begin your
+          fascinating journey into mycology today! 🌍🍄
         </p>
         <div className={classes.gap}></div>
-        <GrowkitsCards pages={filteredPages} products={products} />
+        <SyringesCards pages={filteredPages} products={products} />
         <HR />
       </Gutter>
     </>
   )
 }
 
-export default GrowKits
+export default Syringes
