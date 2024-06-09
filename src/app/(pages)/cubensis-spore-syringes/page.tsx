@@ -1,5 +1,5 @@
+'use client'
 import React from 'react'
-import Head from 'next/head'
 import { draftMode } from 'next/headers'
 import Image from 'next/image'
 
@@ -12,6 +12,7 @@ import { HR } from '../../_components/HR'
 import SyringesCards from './SyringesCards'
 
 import classes from './index.module.scss'
+import Head from 'next/head'
 
 const Syringes = async () => {
   const { isEnabled: isDraftMode } = draftMode()
