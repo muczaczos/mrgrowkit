@@ -70,11 +70,7 @@ export default buildConfig({
     bundler: webpackBundler(),
     components: {
       afterNavLinks: [NavigationAlert],
-      // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
       beforeLogin: [BeforeLogin],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
       beforeDashboard: [BeforeDashboard],
     },
     webpack: config => {
@@ -86,8 +82,26 @@ export default buildConfig({
             ...config.module.rules,
             {
               test: /\.css$/,
-              use: ['style-loader', 'css-loader'],
-              include: [path.resolve(__dirname, '../css/admin.css')],
+              use: [
+                'style-loader',
+                'css-loader',
+                'postcss-loader',
+              ],
+              include: [
+                path.resolve(__dirname, '../css/extraStyles.css'),
+              ],
+            },
+            {
+              test: /\.scss$/,
+              use: [
+                'style-loader',
+                'css-loader',
+                'postcss-loader',
+                'sass-loader',
+              ],
+              include: [
+                path.resolve(__dirname, '../scss/'), // Ścieżka do plików SCSS, jeśli takie masz
+              ],
             },
           ],
         },
@@ -98,8 +112,7 @@ export default buildConfig({
             ...config.resolve?.alias,
             dotenv: path.resolve(__dirname, './dotenv.js'),
             [path.resolve(__dirname, 'collections/Products/hooks/beforeChange')]: mockModulePath,
-            [path.resolve(__dirname, 'collections/Users/hooks/createStripeCustomer')]:
-              mockModulePath,
+            [path.resolve(__dirname, 'collections/Users/hooks/createStripeCustomer')]: mockModulePath,
             [path.resolve(__dirname, 'collections/Users/endpoints/customer')]: mockModulePath,
             [path.resolve(__dirname, 'endpoints/create-payment-intent')]: mockModulePath,
             [path.resolve(__dirname, 'endpoints/customers')]: mockModulePath,
@@ -109,7 +122,7 @@ export default buildConfig({
             express: mockModulePath,
           },
         },
-      }
+      };
     },
   },
   editor: slateEditor({}),
@@ -164,9 +177,7 @@ export default buildConfig({
     'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
     process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
   ].filter(Boolean),
-  csrf: ['https://checkout.stripe.com', process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(
-    Boolean,
-  ),
+  csrf: ['https://checkout.stripe.com', process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(Boolean),
   endpoints: [
     {
       path: '/create-payment-intent',
@@ -183,8 +194,6 @@ export default buildConfig({
       method: 'get',
       handler: productsProxy,
     },
-    // The seed endpoint is used to populate the database with some example data
-    // You should delete this endpoint before deploying your site to production
     {
       path: '/seed',
       method: 'get',
@@ -216,4 +225,5 @@ export default buildConfig({
     }),
     payloadCloud(),
   ],
-})
+});
+
