@@ -36,6 +36,7 @@ import { priceUpdated } from './stripe/webhooks/priceUpdated'
 import { productUpdated } from './stripe/webhooks/productUpdated'
 
 import '../../tailwind.css'
+import '../css/admin.css'
 
 const generateTitle: GenerateTitle = () => {
   return 'My Store'
@@ -79,6 +80,17 @@ export default buildConfig({
     webpack: config => {
       return {
         ...config,
+        module: {
+          ...config.module,
+          rules: [
+            ...config.module.rules,
+            {
+              test: /\.css$/,
+              use: ['style-loader', 'css-loader'],
+              include: [path.resolve(__dirname, '../css/admin.css')],
+            },
+          ],
+        },
         resolve: {
           ...config.resolve,
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
