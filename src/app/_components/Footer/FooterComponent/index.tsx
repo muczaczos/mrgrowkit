@@ -86,7 +86,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                   <label>Products</label>
                   <ul>
                     <li>
-                      <Link href="/grow-kits">Growkits</Link>
+                      <Link href="/cubensis-grow-kits">Growkits</Link>
                     </li>
                     <li>
                       <Link href="/cubensis-spore-syringes">Syringes</Link>
