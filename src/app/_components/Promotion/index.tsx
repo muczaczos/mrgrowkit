@@ -70,7 +70,7 @@ export const Promotion = () => {
           <StatBox label="Seconds" value={time.seconds} />
         </ul>
       </div>
-      <Link className="flex-auto aligns-items-center" href="/grow-kits">
+      <Link className="flex-auto aligns-items-center" href="/cubensis-grow-kits">
         <Image
           className=""
           width={800}
