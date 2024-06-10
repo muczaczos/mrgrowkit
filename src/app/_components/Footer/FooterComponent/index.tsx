@@ -47,7 +47,7 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
                   className={classes.icon}
                 />
 
-                <h5 className={classes.title}>{inclusion.title}</h5>
+                <p className="text-xl font-bold">{inclusion.title}</p>
                 <p>{inclusion.description}</p>
               </li>
             ))}
