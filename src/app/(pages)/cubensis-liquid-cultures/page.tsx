@@ -1,4 +1,5 @@
 import React from 'react'
+import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import Image from 'next/image'
 
@@ -62,6 +63,23 @@ const CubensisLiquidCultures = async () => {
       <HR />
     </Gutter>
   )
+}
+
+// either Static metadata
+export const metadata: Metadata = {
+  title: 'Cultivate with Cubensis Liquid Cultures - Easy inoculation', //60 char
+  description:
+    'Experience Effortless Growth with Cubensis Liquid Cultures! Our premium liquid cultures offer a hassle-free solution for mushroom cultivation', //150 char
+  keywords:
+    'Cubensis liquid cultures, mushroom mycelium, Azurescens spores, Cubensis spore print, Fungus, Organic Mushrooms Mycelium',
+  openGraph: {
+    images: ['/media/cultures.jpeg'],
+    title: 'Cultivate with Cubensis Liquid Cultures - Easy inoculation',
+    description:
+      'Experience Effortless Growth with Cubensis Liquid Cultures! Our premium liquid cultures offer a hassle-free solution for mushroom cultivation',
+    url: 'https://planet-of-mushrooms.com/cubensis-liquid-cultures',
+    type: 'website',
+  },
 }
 
 export default CubensisLiquidCultures

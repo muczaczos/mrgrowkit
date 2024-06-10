@@ -1,4 +1,5 @@
 import React from 'react'
+import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import Image from 'next/image'
 
@@ -58,6 +59,23 @@ const CubensisSporePrints = async () => {
       <HR />
     </Gutter>
   )
+}
+
+// either Static metadata
+export const metadata: Metadata = {
+  title: 'Cubensis Spore Prints: High-Quality Mushroom Genetics', //60 char
+  description:
+    'Explore 🔎 our diverse collection of Cubensis Spore Prints 🧫🧫🧫, each meticulously harvested to ensure optimal genetics 🍄.', //150 char
+  keywords:
+    'Cubensis spore prints, spore syringes, Azurescens spores, mushrooms spore print, mycelium, Organic Mushrooms Spores',
+  openGraph: {
+    images: ['/media/prints.jpeg'],
+    title: 'Cubensis Spore Prints: High-Quality Mushroom Genetics',
+    description:
+      'Explore 🔎 our diverse collection of Cubensis Spore Prints 🧫🧫🧫, each meticulously harvested to ensure optimal genetics 🍄.',
+    url: 'https://planet-of-mushrooms.com/cubensis-spore-prints',
+    type: 'website',
+  },
 }
 
 export default CubensisSporePrints

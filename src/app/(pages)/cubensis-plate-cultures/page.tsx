@@ -1,4 +1,5 @@
 import React from 'react'
+import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import Image from 'next/image'
 
@@ -61,6 +62,23 @@ const CubensisPlatesCultures = async () => {
       <HR />
     </Gutter>
   )
+}
+
+// either Static metadata
+export const metadata: Metadata = {
+  title: 'Cultivate with Precision: Psilocybe Cubensis Plate Cultures!', //60 char
+  description:
+    'Enhance your mushroom cultivation endeavors with our premium Cubensis Plate Cultures 🍽️. Designed to streamline the cultivation process', //150 char
+  keywords:
+    'Cubensis spore prints, spore syringes, Azurescens spores, mushrooms spore print, mycelium, Organic Mushrooms Spores',
+  openGraph: {
+    images: ['/media/cultures.jpeg'],
+    title: 'Cultivate with Precision: Psilocybe Cubensis Plate Cultures!',
+    description:
+      'Enhance your mushroom cultivation endeavors with our premium Cubensis Plate Cultures 🍽️. Designed to streamline the cultivation process',
+    url: 'https://planet-of-mushrooms.com/cubensis-plate-cultures',
+    type: 'website',
+  },
 }
 
 export default CubensisPlatesCultures
