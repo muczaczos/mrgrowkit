@@ -31,7 +31,7 @@ export const ArchiveBlock: React.FC<
           <RichText content={introContent} />
         </Gutter>
       )}
-      <Gutter>
+      <Gutter left={false}>
         <CollectionArchive
           populateBy={populateBy}
           relationTo={relationTo}
