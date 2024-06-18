@@ -1,6 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next'
 import { Jost } from 'next/font/google'
+import Script from 'next/script'
 
 import { AdminBar } from './_components/AdminBar'
 import { Footer } from './_components/Footer'
@@ -25,6 +26,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <InitTheme />
         <link rel="icon" href="/media/el2-icon.svg" sizes="32x32" />
         <link rel="icon" href="/media/el2-icon.svg" type="image/svg+xml" />
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DJ62PVHDXD"></Script>
+        <Script id="google-analitics">
+          {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-DJ62PVHDXD');
+            `}
+        </Script>
       </head>
       <body className={jost.variable}>
         <Providers>
