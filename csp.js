@@ -8,6 +8,8 @@ const policies = {
     'https://js.stripe.com',
     'https://maps.googleapis.com',
     'https://geowidget.inpost.pl/inpost-geowidget.js',
+    'https://www.googletagmanager.com/',
+    'https://region1.google-analytics.com/'
 
   ],
   'child-src': ["'self'"],
@@ -31,7 +33,9 @@ const policies = {
     'https://pay.cashbill.pl/ws/rest/payment/grzybole.pl',
     'https://pay.cashbill.pl/testws/rest/payment/grzybole.pl',
     'http://www.google.pl',
-    'https://jsonplaceholder.typicode.com/users'
+    'https://jsonplaceholder.typicode.com/users',
+    'https://www.googletagmanager.com/',
+    'https://region1.google-analytics.com/'
   ],
 
 }
