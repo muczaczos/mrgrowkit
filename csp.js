@@ -9,7 +9,8 @@ const policies = {
     'https://maps.googleapis.com',
     'https://geowidget.inpost.pl/inpost-geowidget.js',
     'https://www.googletagmanager.com/',
-    'https://region1.google-analytics.com/'
+    'https://region1.google-analytics.com/',
+    'https://www.google-analytics.com'
 
   ],
   'child-src': ["'self'"],
@@ -35,7 +36,8 @@ const policies = {
     'http://www.google.pl',
     'https://jsonplaceholder.typicode.com/users',
     'https://www.googletagmanager.com/',
-    'https://region1.google-analytics.com/'
+    'https://region1.google-analytics.com/',
+    'https://www.google-analytics.com'
   ],
 
 }
