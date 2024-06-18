@@ -3,27 +3,76 @@ import { connectToDatabase } from './connectMongo'
 export default async function sitemap() {
   const client = await connectToDatabase()
   const db = client.db('planet2')
-  const data = await db.collection('posts').find({}).toArray()
+  const postsData = await db.collection('posts').find({}).toArray()
+  const pagesData = await db.collection('pages').find({}).toArray()
+  const productsData = await db.collection('products').find({}).toArray()
 
-  console.log(data)
+  const posts = postsData.map(item => ({
+    url: `${process.env.NEXT_PUBLIC_SERVER_URL}/posts/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.5,
+  }))
+
+  const pages = pagesData.map(item => ({
+    url: `${process.env.NEXT_PUBLIC_SERVER_URL}/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.5,
+  }))
+
+  const products = productsData.map(item => ({
+    url: `${process.env.NEXT_PUBLIC_SERVER_URL}/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.5,
+  }))
+
   return [
     {
-      url: 'http://localhost:3000/',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 1,
-    },
-    {
-      url: 'https://acme.com/about',
+      url: process.env.NEXT_PUBLIC_SERVER_URL,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://acme.com/blog',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
       priority: 0.5,
     },
+    {
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL}/Cubensis-grow-kits`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL}/Cubensis-spore-syringes`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cubensis-liquid-cultures`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cubensis-spore-prints`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cubensis-plate-cultures`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    ...pages,
+    ...posts,
+    ...products,
   ]
 }
