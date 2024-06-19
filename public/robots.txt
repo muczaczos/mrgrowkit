@@ -1,0 +1,17 @@
+  GNU nano 6.2                                                              robots.txt
+# Block all crawlers for /accounts
+User-agent: *
+Disallow: /account
+Disallow: /cart
+Disallow: /admin
+Disallow: /login
+Disallow: /create-account
+Disallow: /recover-password
+Disallow: /personal
+Disallow: /purchases
+Disallow: /orders
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
