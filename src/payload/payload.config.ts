@@ -115,6 +115,9 @@ export default buildConfig({
       }
     },
   },
+  rateLimit: {
+    trustProxy: true
+  },
   editor: slateEditor({}),
   db: mongooseAdapter({
     url: process.env.DATABASE_URI,

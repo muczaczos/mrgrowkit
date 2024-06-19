@@ -36,7 +36,7 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 }*/
-app.set('trust proxy', true)
+//app.set('trust proxy', true)
 
 // Dodaj middleware, który odczyta dane JSON z ciała żądania
 app.use(express.json())
