@@ -116,7 +116,7 @@ export default buildConfig({
     },
   },
   rateLimit: {
-    trustProxy: true
+    trustProxy: true,
   },
   editor: slateEditor({}),
   db: mongooseAdapter({
