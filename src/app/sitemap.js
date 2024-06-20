@@ -22,7 +22,7 @@ export default async function sitemap() {
   }))
 
   const products = productsData.map(item => ({
-    url: `${process.env.NEXT_PUBLIC_SERVER_URL}/${item.slug}`,
+    url: `${process.env.NEXT_PUBLIC_SERVER_URL}/products/${item.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.5,
