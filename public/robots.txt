@@ -9,6 +9,7 @@ Disallow: /recover-password
 Disallow: /personal
 Disallow: /purchases
 Disallow: /orders
+Disallow: /_next
 
 # Allow all crawlers
 User-agent: *
