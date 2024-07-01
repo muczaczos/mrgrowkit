@@ -16,14 +16,14 @@ const Users: CollectionConfig = {
     forgotPassword: {
       generateEmailHTML: ({ token }) => {
         // Use the token provided to allow your user to reset their password
-        const resetPasswordURL = `https://localhost:3000/reset-password?token=${token}`
+        const resetPasswordURL = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/reset-password?token=${token}`
 
         return `
           <!doctype html>
           <html>
             <body>
-              <h1>Here is my custom email template!</h1>
-              <p>Hello, dupa!</p>
+              <h1>Reset Password!</h1>
+              <p>Hello!</p>
               <p>Click below to reset your password.</p>
               <p>
                 <a href="${resetPasswordURL}">${resetPasswordURL}</a>
