@@ -12,6 +12,31 @@ import { CustomerSelect } from './ui/CustomerSelect'
 
 const Users: CollectionConfig = {
   slug: 'users',
+  auth: {
+    forgotPassword: {
+      generateEmailHTML: ({ token }) => {
+        // Use the token provided to allow your user to reset their password
+        const resetPasswordURL = `https://localhost:3000/reset-password?token=${token}`
+
+        return `
+          <!doctype html>
+          <html>
+            <body>
+              <h1>Here is my custom email template!</h1>
+              <p>Hello, dupa!</p>
+              <p>Click below to reset your password.</p>
+              <p>
+                <a href="${resetPasswordURL}">${resetPasswordURL}</a>
+              </p>
+            </body>
+          </html>
+        `
+      },
+      generateEmailSubject: ({ user }) => {
+        return `Hey ${user.email}, reset your password!`
+      },
+    },
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'email'],
@@ -27,7 +52,6 @@ const Users: CollectionConfig = {
     beforeChange: [],
     afterChange: [loginAfterCreate],
   },
-  auth: true,
   endpoints: [
     {
       path: '/:teamID/customer',

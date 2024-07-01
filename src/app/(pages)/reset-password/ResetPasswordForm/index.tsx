@@ -48,7 +48,6 @@ export const ResetPasswordForm: React.FC = () => {
 
         // Automatically log the user in after they successfully reset password
         await login({ email: json.user.email, password: data.password })
-
         // Redirect them to `/account` with success message in URL
         router.push('/account?success=Password reset successfully.')
       } else {

@@ -39,7 +39,7 @@ import '../../tailwind.css'
 import '../css/admin.css'
 
 const generateTitle: GenerateTitle = () => {
-  return 'My Store'
+  return 'Cubensis Growkit'
 }
 
 export const email = {
