@@ -2,7 +2,7 @@ import type { AfterChangeHook } from 'payload/dist/collections/config/types'
 
 import type { Order } from '../../../payload-types'
 
-export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc }) => {
+export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc, operation }) => {
   const { payload } = req
   let text = ''
 
@@ -61,23 +61,36 @@ export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc }
     05-500 Piaseczno, <br/> 
     Poland<br/>`
   }
-
-  await payload.sendEmail({
-    to: doc.email,
-    from: 'shop@planet-of-mushrooms.com',
-    subject: 'New Order',
-    html:
-      '<b>Hey there!</b><br/>Thank you for your order. Total Amount of your order is: €' +
-      doc.total +
-      '.' +
-      '<br/>' +
-      'Your payment methof is: ' +
-      doc.paymentMethod +
-      '<br/>' +
-      '<p>' +
-      text +
-      '</p>',
-  })
-
+  if (operation === 'create') {
+    await payload.sendEmail({
+      to: doc.email,
+      from: 'shop@planet-of-mushrooms.com',
+      subject: 'New Order',
+      html:
+        '<b>Hey there!</b><br/>Thank you for your order. Total Amount of your order is: €' +
+        doc.total +
+        '.' +
+        '<br/>' +
+        'Your payment methof is: ' +
+        doc.paymentMethod +
+        '<br/>' +
+        '<p>' +
+        text +
+        '</p>',
+    })
+  }
+  if (operation === 'update') {
+    await payload.sendEmail({
+      to: doc.email,
+      from: 'shop@planet-of-mushrooms.com',
+      subject: 'Order Updated',
+      html:
+        '<b>Hey there!</b><br/>You order is now updated' +
+        '<br/>' +
+        'Status of your order is: ' +
+        doc.orderStatus +
+        '<br/>',
+    })
+  }
   return
 }

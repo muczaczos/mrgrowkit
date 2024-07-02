@@ -7,7 +7,6 @@ import { clearUserCart } from './hooks/clearUserCart'
 import { populateOrderedBy } from './hooks/populateOrderedBy'
 import { sendOrderConfirmation } from './hooks/sendOrderConfirmation'
 import { updateUserPurchases } from './hooks/updateUserPurchases'
-import { LinkToPaymentIntent } from './ui/LinkToPaymentIntent'
 
 export const Orders: CollectionConfig = {
   slug: 'orders',
@@ -35,14 +34,16 @@ export const Orders: CollectionConfig = {
       },
     },
     {
-      name: 'stripePaymentIntentID',
-      label: 'Stripe Payment Intent ID',
-      type: 'text',
+      name: 'orderStatus',
+      label: 'Change Order Status',
+      type: 'select',
+      options: [
+        { label: 'Payment Accepted', value: 'PaymentAccepted' },
+        { label: 'Package Sended', value: 'PackageSended' },
+        { label: 'Order Canceled', value: 'OrderCanceled' },
+      ],
       admin: {
         position: 'sidebar',
-        components: {
-          Field: LinkToPaymentIntent,
-        },
       },
     },
     {

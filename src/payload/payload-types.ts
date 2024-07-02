@@ -1061,7 +1061,7 @@ export interface Subscriber {
 export interface Order {
   id: string;
   orderedBy?: (string | null) | User;
-  stripePaymentIntentID?: string | null;
+  orderStatus?: ('PaymentAccepted' | 'PackageSended' | 'OrderCanceled') | null;
   total: number;
   fullname?: string | null;
   streetAddress?: string | null;

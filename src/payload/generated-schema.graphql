@@ -10718,7 +10718,7 @@ input versionsProduct_where_or {
 type Order {
   id: String
   orderedBy(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
-  stripePaymentIntentID: String
+  orderStatus: Order_orderStatus
   total: Float!
   fullname: String
   streetAddress: String
@@ -10734,6 +10734,12 @@ type Order {
   items: [Order_Items!]
   updatedAt: DateTime
   createdAt: DateTime
+}
+
+enum Order_orderStatus {
+  PaymentAccepted
+  PackageSended
+  OrderCanceled
 }
 
 type Order_Items {
@@ -10759,7 +10765,7 @@ type Orders {
 
 input Order_where {
   orderedBy: Order_orderedBy_operator
-  stripePaymentIntentID: Order_stripePaymentIntentID_operator
+  orderStatus: Order_orderStatus_operator
   total: Order_total_operator
   fullname: Order_fullname_operator
   streetAddress: Order_streetAddress_operator
@@ -10792,15 +10798,19 @@ input Order_orderedBy_operator {
   exists: Boolean
 }
 
-input Order_stripePaymentIntentID_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+input Order_orderStatus_operator {
+  equals: Order_orderStatus_Input
+  not_equals: Order_orderStatus_Input
+  in: [Order_orderStatus_Input]
+  not_in: [Order_orderStatus_Input]
+  all: [Order_orderStatus_Input]
   exists: Boolean
+}
+
+enum Order_orderStatus_Input {
+  PaymentAccepted
+  PackageSended
+  OrderCanceled
 }
 
 input Order_total_operator {
@@ -11004,7 +11014,7 @@ input Order_id_operator {
 
 input Order_where_and {
   orderedBy: Order_orderedBy_operator
-  stripePaymentIntentID: Order_stripePaymentIntentID_operator
+  orderStatus: Order_orderStatus_operator
   total: Order_total_operator
   fullname: Order_fullname_operator
   streetAddress: Order_streetAddress_operator
@@ -11030,7 +11040,7 @@ input Order_where_and {
 
 input Order_where_or {
   orderedBy: Order_orderedBy_operator
-  stripePaymentIntentID: Order_stripePaymentIntentID_operator
+  orderStatus: Order_orderStatus_operator
   total: Order_total_operator
   fullname: Order_fullname_operator
   streetAddress: Order_streetAddress_operator
@@ -11064,7 +11074,7 @@ type ordersDocAccess {
 
 type OrdersDocAccessFields {
   orderedBy: OrdersDocAccessFields_orderedBy
-  stripePaymentIntentID: OrdersDocAccessFields_stripePaymentIntentID
+  orderStatus: OrdersDocAccessFields_orderStatus
   total: OrdersDocAccessFields_total
   fullname: OrdersDocAccessFields_fullname
   streetAddress: OrdersDocAccessFields_streetAddress
@@ -11105,26 +11115,26 @@ type OrdersDocAccessFields_orderedBy_Delete {
   permission: Boolean!
 }
 
-type OrdersDocAccessFields_stripePaymentIntentID {
-  create: OrdersDocAccessFields_stripePaymentIntentID_Create
-  read: OrdersDocAccessFields_stripePaymentIntentID_Read
-  update: OrdersDocAccessFields_stripePaymentIntentID_Update
-  delete: OrdersDocAccessFields_stripePaymentIntentID_Delete
+type OrdersDocAccessFields_orderStatus {
+  create: OrdersDocAccessFields_orderStatus_Create
+  read: OrdersDocAccessFields_orderStatus_Read
+  update: OrdersDocAccessFields_orderStatus_Update
+  delete: OrdersDocAccessFields_orderStatus_Delete
 }
 
-type OrdersDocAccessFields_stripePaymentIntentID_Create {
+type OrdersDocAccessFields_orderStatus_Create {
   permission: Boolean!
 }
 
-type OrdersDocAccessFields_stripePaymentIntentID_Read {
+type OrdersDocAccessFields_orderStatus_Read {
   permission: Boolean!
 }
 
-type OrdersDocAccessFields_stripePaymentIntentID_Update {
+type OrdersDocAccessFields_orderStatus_Update {
   permission: Boolean!
 }
 
-type OrdersDocAccessFields_stripePaymentIntentID_Delete {
+type OrdersDocAccessFields_orderStatus_Delete {
   permission: Boolean!
 }
 
@@ -18518,7 +18528,7 @@ type ordersAccess {
 
 type OrdersFields {
   orderedBy: OrdersFields_orderedBy
-  stripePaymentIntentID: OrdersFields_stripePaymentIntentID
+  orderStatus: OrdersFields_orderStatus
   total: OrdersFields_total
   fullname: OrdersFields_fullname
   streetAddress: OrdersFields_streetAddress
@@ -18559,26 +18569,26 @@ type OrdersFields_orderedBy_Delete {
   permission: Boolean!
 }
 
-type OrdersFields_stripePaymentIntentID {
-  create: OrdersFields_stripePaymentIntentID_Create
-  read: OrdersFields_stripePaymentIntentID_Read
-  update: OrdersFields_stripePaymentIntentID_Update
-  delete: OrdersFields_stripePaymentIntentID_Delete
+type OrdersFields_orderStatus {
+  create: OrdersFields_orderStatus_Create
+  read: OrdersFields_orderStatus_Read
+  update: OrdersFields_orderStatus_Update
+  delete: OrdersFields_orderStatus_Delete
 }
 
-type OrdersFields_stripePaymentIntentID_Create {
+type OrdersFields_orderStatus_Create {
   permission: Boolean!
 }
 
-type OrdersFields_stripePaymentIntentID_Read {
+type OrdersFields_orderStatus_Read {
   permission: Boolean!
 }
 
-type OrdersFields_stripePaymentIntentID_Update {
+type OrdersFields_orderStatus_Update {
   permission: Boolean!
 }
 
-type OrdersFields_stripePaymentIntentID_Delete {
+type OrdersFields_orderStatus_Delete {
   permission: Boolean!
 }
 
@@ -22447,7 +22457,7 @@ enum ProductUpdate__status_MutationInput {
 
 input mutationOrderInput {
   orderedBy: String
-  stripePaymentIntentID: String
+  orderStatus: Order_orderStatus_MutationInput
   total: Float!
   fullname: String
   streetAddress: String
@@ -22465,6 +22475,12 @@ input mutationOrderInput {
   createdAt: String
 }
 
+enum Order_orderStatus_MutationInput {
+  PaymentAccepted
+  PackageSended
+  OrderCanceled
+}
+
 input mutationOrder_ItemsInput {
   product: String
   price: Float
@@ -22474,7 +22490,7 @@ input mutationOrder_ItemsInput {
 
 input mutationOrderUpdateInput {
   orderedBy: String
-  stripePaymentIntentID: String
+  orderStatus: OrderUpdate_orderStatus_MutationInput
   total: Float
   fullname: String
   streetAddress: String
@@ -22490,6 +22506,12 @@ input mutationOrderUpdateInput {
   items: [mutationOrderUpdate_ItemsInput]
   updatedAt: String
   createdAt: String
+}
+
+enum OrderUpdate_orderStatus_MutationInput {
+  PaymentAccepted
+  PackageSended
+  OrderCanceled
 }
 
 input mutationOrderUpdate_ItemsInput {
