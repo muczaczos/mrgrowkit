@@ -1061,7 +1061,9 @@ export interface Subscriber {
 export interface Order {
   id: string;
   orderedBy?: (string | null) | User;
-  orderStatus?: ('PaymentAccepted' | 'PackageSended' | 'OrderCanceled') | null;
+  orderStatus?: ('Payment Accepted' | 'Package Sended' | 'Order Canceled') | null;
+  privateMessage?: boolean | null;
+  messageContent?: string | null;
   total: number;
   fullname?: string | null;
   streetAddress?: string | null;

@@ -80,17 +80,27 @@ export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc, 
     })
   }
   if (operation === 'update') {
-    await payload.sendEmail({
-      to: doc.email,
-      from: 'shop@planet-of-mushrooms.com',
-      subject: 'Order Updated',
-      html:
-        '<b>Hey there!</b><br/>You order is now updated' +
-        '<br/>' +
-        'Status of your order is: ' +
-        doc.orderStatus +
-        '<br/>',
-    })
+    if (doc.privateMessage === true) {
+      await payload.sendEmail({
+        to: doc.email,
+        from: 'shop@planet-of-mushrooms.com',
+        subject: 'Private Message',
+        html: doc.messageContent + '<br/>',
+      })
+    } else {
+      await payload.sendEmail({
+        to: doc.email,
+        from: 'shop@planet-of-mushrooms.com',
+        subject: 'Order Updated',
+        html:
+          '<b>Hey there!</b><br/>You order is now updated' +
+          '<br/>' +
+          'Status of your order is: ' +
+          doc.orderStatus +
+          '<br/>',
+      })
+    }
   }
+
   return
 }

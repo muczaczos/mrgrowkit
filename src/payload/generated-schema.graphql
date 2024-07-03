@@ -10719,6 +10719,8 @@ type Order {
   id: String
   orderedBy(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
   orderStatus: Order_orderStatus
+  privateMessage: Boolean
+  messageContent: String
   total: Float!
   fullname: String
   streetAddress: String
@@ -10766,6 +10768,8 @@ type Orders {
 input Order_where {
   orderedBy: Order_orderedBy_operator
   orderStatus: Order_orderStatus_operator
+  privateMessage: Order_privateMessage_operator
+  messageContent: Order_messageContent_operator
   total: Order_total_operator
   fullname: Order_fullname_operator
   streetAddress: Order_streetAddress_operator
@@ -10811,6 +10815,20 @@ enum Order_orderStatus_Input {
   PaymentAccepted
   PackageSended
   OrderCanceled
+}
+
+input Order_privateMessage_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input Order_messageContent_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
 }
 
 input Order_total_operator {
@@ -11015,6 +11033,8 @@ input Order_id_operator {
 input Order_where_and {
   orderedBy: Order_orderedBy_operator
   orderStatus: Order_orderStatus_operator
+  privateMessage: Order_privateMessage_operator
+  messageContent: Order_messageContent_operator
   total: Order_total_operator
   fullname: Order_fullname_operator
   streetAddress: Order_streetAddress_operator
@@ -11041,6 +11061,8 @@ input Order_where_and {
 input Order_where_or {
   orderedBy: Order_orderedBy_operator
   orderStatus: Order_orderStatus_operator
+  privateMessage: Order_privateMessage_operator
+  messageContent: Order_messageContent_operator
   total: Order_total_operator
   fullname: Order_fullname_operator
   streetAddress: Order_streetAddress_operator
@@ -11075,6 +11097,8 @@ type ordersDocAccess {
 type OrdersDocAccessFields {
   orderedBy: OrdersDocAccessFields_orderedBy
   orderStatus: OrdersDocAccessFields_orderStatus
+  privateMessage: OrdersDocAccessFields_privateMessage
+  messageContent: OrdersDocAccessFields_messageContent
   total: OrdersDocAccessFields_total
   fullname: OrdersDocAccessFields_fullname
   streetAddress: OrdersDocAccessFields_streetAddress
@@ -11135,6 +11159,52 @@ type OrdersDocAccessFields_orderStatus_Update {
 }
 
 type OrdersDocAccessFields_orderStatus_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessage {
+  create: OrdersDocAccessFields_privateMessage_Create
+  read: OrdersDocAccessFields_privateMessage_Read
+  update: OrdersDocAccessFields_privateMessage_Update
+  delete: OrdersDocAccessFields_privateMessage_Delete
+}
+
+type OrdersDocAccessFields_privateMessage_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessage_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessage_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessage_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_messageContent {
+  create: OrdersDocAccessFields_messageContent_Create
+  read: OrdersDocAccessFields_messageContent_Read
+  update: OrdersDocAccessFields_messageContent_Update
+  delete: OrdersDocAccessFields_messageContent_Delete
+}
+
+type OrdersDocAccessFields_messageContent_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_messageContent_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_messageContent_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_messageContent_Delete {
   permission: Boolean!
 }
 
@@ -18529,6 +18599,8 @@ type ordersAccess {
 type OrdersFields {
   orderedBy: OrdersFields_orderedBy
   orderStatus: OrdersFields_orderStatus
+  privateMessage: OrdersFields_privateMessage
+  messageContent: OrdersFields_messageContent
   total: OrdersFields_total
   fullname: OrdersFields_fullname
   streetAddress: OrdersFields_streetAddress
@@ -18589,6 +18661,52 @@ type OrdersFields_orderStatus_Update {
 }
 
 type OrdersFields_orderStatus_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessage {
+  create: OrdersFields_privateMessage_Create
+  read: OrdersFields_privateMessage_Read
+  update: OrdersFields_privateMessage_Update
+  delete: OrdersFields_privateMessage_Delete
+}
+
+type OrdersFields_privateMessage_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessage_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessage_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessage_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_messageContent {
+  create: OrdersFields_messageContent_Create
+  read: OrdersFields_messageContent_Read
+  update: OrdersFields_messageContent_Update
+  delete: OrdersFields_messageContent_Delete
+}
+
+type OrdersFields_messageContent_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_messageContent_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_messageContent_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_messageContent_Delete {
   permission: Boolean!
 }
 
@@ -22458,6 +22576,8 @@ enum ProductUpdate__status_MutationInput {
 input mutationOrderInput {
   orderedBy: String
   orderStatus: Order_orderStatus_MutationInput
+  privateMessage: Boolean
+  messageContent: String
   total: Float!
   fullname: String
   streetAddress: String
@@ -22491,6 +22611,8 @@ input mutationOrder_ItemsInput {
 input mutationOrderUpdateInput {
   orderedBy: String
   orderStatus: OrderUpdate_orderStatus_MutationInput
+  privateMessage: Boolean
+  messageContent: String
   total: Float
   fullname: String
   streetAddress: String

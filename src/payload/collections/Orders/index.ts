@@ -38,10 +38,26 @@ export const Orders: CollectionConfig = {
       label: 'Change Order Status',
       type: 'select',
       options: [
-        { label: 'Payment Accepted', value: 'PaymentAccepted' },
-        { label: 'Package Sended', value: 'PackageSended' },
-        { label: 'Order Canceled', value: 'OrderCanceled' },
+        { label: 'Payment Accepted', value: 'Payment Accepted' },
+        { label: 'Package Sended', value: 'Package Sended' },
+        { label: 'Order Canceled', value: 'Order Canceled' },
       ],
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'privateMessage',
+      label: 'Send Private Message',
+      type: 'checkbox',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'messageContent',
+      label: 'Private Message',
+      type: 'textarea',
       admin: {
         position: 'sidebar',
       },
