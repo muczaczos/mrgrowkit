@@ -64,7 +64,7 @@ app.post('/send-email', async (req, res) => {
     // Odczytaj dane z ciała żądania
     const requestData = req.body
     await payload.sendEmail({
-      to: 'muczaczos@gmail.com',
+      to: 'shop@planet-of-mushrooms.com',
       from: 'shop@planet-of-mushrooms.com',
       subject: 'New Message from: ' + requestData.name,
       html: 'Email: ' + requestData.email + ' Content: ' + requestData.message,
