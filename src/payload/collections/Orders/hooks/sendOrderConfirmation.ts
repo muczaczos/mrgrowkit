@@ -47,7 +47,7 @@ export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc, 
   } else if (doc.paymentMethod === 'sepa') {
     text = `The details for the transfer are as follows:<br/>
     <strong>Account number in IBAN format:</strong><br/>
-    PL05 1140 2004 0000 3512 0691 6805<br/>
+    PL66 1140 2004 0000 3302 6390 2175<br/>
     <strong>BIC / SWIFT code:</strong></br>
     BREXPLPWMBK</br>
     <strong>Total Amount:</strong></br>
