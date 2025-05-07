@@ -41,27 +41,30 @@ export default async function Products({ params: { slug } }) {
     <>
       <ProductHero product={product} />
       <HR />
-      <Blocks
-        disableTopPadding
-        blocks={[
-          {
-            blockType: 'relatedProducts',
-            blockName: 'Related Product',
-            relationTo: 'products',
-            introContent: [
-              {
-                type: 'h3',
-                children: [
-                  {
-                    text: 'Related Products',
-                  },
-                ],
-              },
-            ],
-            docs: relatedProducts,
-          },
-        ]}
-      />
+
+      {Array.isArray(relatedProducts) && relatedProducts.length > 0 && (
+        <Blocks
+          disableTopPadding
+          blocks={[
+            {
+              blockType: 'relatedProducts',
+              blockName: 'Related Product',
+              relationTo: 'products',
+              introContent: [
+                {
+                  type: 'h3',
+                  children: [
+                    {
+                      text: 'Related Products',
+                    },
+                  ],
+                },
+              ],
+              docs: relatedProducts,
+            },
+          ]}
+        />
+      )}
     </>
   )
 }
@@ -86,7 +89,9 @@ export async function generateMetadata({ params: { slug } }): Promise<Metadata> 
       slug,
       draft: isDraftMode,
     })
-  } catch (error) {}
+  } catch (error) {
+    error
+  }
 
   return generateMeta({ doc: product })
 }

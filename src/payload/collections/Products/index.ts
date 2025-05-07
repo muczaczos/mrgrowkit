@@ -161,6 +161,7 @@ const Products: CollectionConfig = {
       type: 'relationship',
       relationTo: 'products',
       hasMany: true,
+      required: false,
       filterOptions: ({ id }) => {
         return {
           id: {
