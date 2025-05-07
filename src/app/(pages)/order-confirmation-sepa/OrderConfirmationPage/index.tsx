@@ -53,7 +53,7 @@ export const OrderConfirmationPage: React.FC<{}> = () => {
         <p className="text-xl font-bold text-center">
           Account number in IBAN format: <br />
         </p>
-        <p className="lg:text-xl xs:text-sm text-center">PL05 1140 2004 0000 3512 0691 6805</p>
+        <p className="lg:text-xl xs:text-sm text-center">PL66 1140 2004 0000 3302 6390 2175</p>
         <p className="text-xl font-bold text-center">
           BIC / SWIFT: <br />
         </p>
