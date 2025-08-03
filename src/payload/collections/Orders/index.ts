@@ -7,6 +7,7 @@ import { clearUserCart } from './hooks/clearUserCart'
 import { populateOrderedBy } from './hooks/populateOrderedBy'
 import { sendOrderConfirmation } from './hooks/sendOrderConfirmation'
 import { updateUserPurchases } from './hooks/updateUserPurchases'
+import SendEmailButton from '../../components/SendEmailButton'
 
 export const Orders: CollectionConfig = {
   slug: 'orders',
@@ -50,6 +51,7 @@ export const Orders: CollectionConfig = {
       name: 'privateMessage',
       label: 'Send Private Message',
       type: 'checkbox',
+      defaultValue: false,
       admin: {
         position: 'sidebar',
       },
@@ -60,6 +62,17 @@ export const Orders: CollectionConfig = {
       type: 'textarea',
       admin: {
         position: 'sidebar',
+      },
+    },
+    // w kolekcji orders.ts
+    {
+      name: 'sendPrivateMessageButton',
+      type: 'ui',
+      admin: {
+        position: 'sidebar',
+        components: {
+          Field: SendEmailButton, // patrz Krok 2
+        },
       },
     },
     {

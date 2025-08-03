@@ -26,6 +26,9 @@ import BeforeDashboard from './components/BeforeDashboard'
 import BeforeLogin from './components/BeforeLogin'
 import NavigationAlert from './components/NavigationAlerts'
 import { createPaymentIntent } from './endpoints/create-payment-intent'
+import { sendPrivateMessage } from './endpoints/send-private-message'
+console.log('sendPrivateMessage import:', typeof sendPrivateMessage)
+import { testEndpoint } from './endpoints/test-endpoint'
 import { customersProxy } from './endpoints/customers'
 import { productsProxy } from './endpoints/products'
 import { seed } from './endpoints/seed'
@@ -179,6 +182,16 @@ export default buildConfig({
       path: '/create-payment-intent',
       method: 'post',
       handler: createPaymentIntent,
+    },
+    {
+      path: '/test-endpoint',
+      method: 'get',
+      handler: testEndpoint,
+    },
+    {
+      path: '/send-private-message',
+      method: 'post',
+      handler: sendPrivateMessage,
     },
     {
       path: '/stripe/customers',
