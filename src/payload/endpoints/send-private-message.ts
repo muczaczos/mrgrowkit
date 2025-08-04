@@ -22,6 +22,8 @@ export const sendPrivateMessage: PayloadHandler = async (req: PayloadRequest, re
     const order = await req.payload.findByID({
       collection: 'orders',
       id,
+      depth: 2,
+      overrideAccess: true,
     })
 
     if (!order) {
@@ -33,6 +35,8 @@ export const sendPrivateMessage: PayloadHandler = async (req: PayloadRequest, re
     }
 
     const htmlContent = `<p>${order.messageContent || 'No message content provided.'}</p>`
+
+    console.log(order)
 
     try {
       await req.payload.sendEmail({

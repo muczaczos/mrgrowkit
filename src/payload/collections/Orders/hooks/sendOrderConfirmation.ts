@@ -1,34 +1,105 @@
-import payload from 'payload'
-import type { AfterOperationHook } from 'payload/dist/collections/config/types'
+import type { AfterChangeHook } from 'payload/dist/collections/config/types'
+
 import type { Order } from '../../../payload-types'
 
-export const sendOrderConfirmation: AfterOperationHook = async ({
-  req,
-  result,
-  operation,
-  collection,
-}) => {
-  console.log('HOOK AFTER OPERATION - operation:', operation, 'collection:', collection)
+export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc, operation }) => {
+  const { payload } = req
+  let text = ''
 
-  // Sprawdzamy, czy to nasza kolekcja Orders
-  if (collection === 'orders' && operation === 'update' && req.body?.email === true) {
-    // Rzutujemy "result" na Order (typ runtime - nie da się tego inaczej zrobić)
-    const order = result as Order
-
-    try {
-      await payload.sendEmail({
-        to: order.email,
-        from: 'shop@planet-of-mushrooms.com',
-        subject: 'TEST - mail przy update',
-        html: `<p>To jest testowy mail wysłany przy update dla zamówienia ${order.id}</p>`,
-      })
-      console.log('Mail wysłany poprawnie')
-    } catch (error) {
-      console.error('Błąd wysyłania maila:', error)
-    }
-  } else {
-    console.log('Mail nie wysłany - warunki nie spełnione lub inna kolekcja')
+  if (doc.paymentMethod === 'revolut') {
+    text = `The details for the transfer are as follows:<br/>
+    <strong>Account number in IBAN format:</strong><br/>
+    LT56 3250 0003 8523 2427<br/>
+    <strong>BIC / SWIFT code:</strong><br/>
+    REVOLT21 <br/>
+    <strong>Total Amount:</strong> <br/>
+    €${doc.total}<br/>
+    <strong>Reference</strong><br/>
+    Order id: ${doc.id}<br/>
+    <strong>Company name:</strong><br/>
+    UiTeH<br/>
+    <strong>Address:</strong><br/>
+    Szkolna 1/3, <br/> 
+    05-500 Piaseczno, <br/> 
+    Poland<br/>`
+  } else if (doc.paymentMethod === 'wise') {
+    text = `The details for the transfer are as follows:<br/>
+    <strong>Account number in IBAN format:</strong><br/>
+    BE03 9679 8908 2084<br/>
+    <strong>BIC / SWIFT code:</strong> <br/>
+    TRWIBEB1XXX<br/>
+    <strong>Total Amount:</strong> <br/>
+    €${doc.total}<br/>
+    <strong>Reference</strong><br/>
+    Order id: ${doc.id}<br/>
+    <strong>Company name:</strong><br/>
+    UiTeH<br/>
+    <strong>Address:</strong><br/>
+    Szkolna 1/3, <br/> 
+    05-500 Piaseczno, <br/> 
+    Poland<br/>`
+  } else if (doc.paymentMethod === 'crypto') {
+    text = `The details for the transfer are as follows:<br/>
+    <strong>BTC wallet address:</strong><br/>
+    1DZj35SBrLXGPNtp9XnS8E1vArvBmXDtQn<br/>
+    <strong>ETH wallet address:</strong><br/>
+    0xf4f656a1316838cffebe664d279170ef2ba20e61<br/>`
+  } else if (doc.paymentMethod === 'sepa') {
+    text = `The details for the transfer are as follows:<br/>
+    <strong>Account number in IBAN format:</strong><br/>
+    PL46 1140 2004 0000 3112 2487 7171<br/>
+    <strong>BIC / SWIFT code:</strong></br>
+    BREXPLPWMBK</br>
+    <strong>Total Amount:</strong></br>
+    €${doc.total}</br>
+    <strong>Reference</strong></br>
+    Order id: ${doc.id}</br>
+    <strong>Company name:</strong><br/>
+    UiTeH<br/>
+    <strong>Address:</strong><br/>
+    Szkolna 1/3, <br/> 
+    05-500 Piaseczno, <br/> 
+    Poland<br/>`
   }
 
-  return result
+  if (operation === 'create') {
+    await payload.sendEmail({
+      to: doc.email,
+      from: 'shop@planet-of-mushrooms.com',
+      subject: 'New Order',
+      html:
+        '<b>Hey there!</b><br/>Thank you for your order. Total Amount of your order is: €' +
+        doc.total +
+        '.' +
+        '<br/>' +
+        'Your payment methof is: ' +
+        doc.paymentMethod +
+        '<br/>' +
+        '<p>' +
+        text +
+        '</p>',
+    })
+  } else if (operation === 'update') {
+    if (doc.privateMessage === true) {
+      await payload.sendEmail({
+        to: doc.email,
+        from: 'shop@planet-of-mushrooms.com',
+        subject: 'Private Message',
+        html: doc.messageContent + '<br/>',
+      })
+    } else {
+      await payload.sendEmail({
+        to: doc.email,
+        from: 'shop@planet-of-mushrooms.com',
+        subject: 'Order Updated',
+        html:
+          '<b>Hey there!</b><br/>You order is now updated' +
+          '<br/>' +
+          'Status of your order is: ' +
+          doc.orderStatus +
+          '<br/>',
+      })
+      return
+    }
+  }
 }

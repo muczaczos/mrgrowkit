@@ -63,6 +63,9 @@ export const Orders: CollectionConfig = {
       admin: {
         position: 'sidebar',
       },
+      access: {
+        read: () => true,
+      },
     },
     // w kolekcji orders.ts
     {
