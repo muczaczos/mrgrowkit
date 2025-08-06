@@ -91,6 +91,7 @@ export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc, 
       await payload.sendEmail({
         to: doc.email,
         from: 'shop@planet-of-mushrooms.com',
+        replyTo: 'shop@planet-of-mushrooms.com',
         subject: 'Order Updated',
         html:
           '<b>Hey there!</b><br/>You order is now updated' +
@@ -98,6 +99,9 @@ export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc, 
           'Status of your order is: ' +
           doc.orderStatus +
           '<br/>',
+        headers: {
+          'Message-ID': `<${Date.now()}@planet-of-mushrooms.com>`,
+        },
       })
       return
     }
