@@ -1,14 +1,15 @@
-import React from 'react'
-import { useForm, useFormFields } from 'payload/components/forms'
+import React, { useState } from 'react'
+import { useFormFields } from 'payload/components/forms'
 import { useDocumentInfo } from 'payload/components/utilities'
 
 const SendEmailButton: React.FC = () => {
   const { id } = useDocumentInfo()
   const fields = useFormFields(([fields]) => fields)
-  const { submit } = useForm() // ← dodane
 
   const email = fields.email?.value
   const messageContent = fields.messageContent?.value
+
+  const [isSending, setIsSending] = useState(false)
 
   const sendEmail = async () => {
     if (!id || !email || !messageContent) {
@@ -16,36 +17,45 @@ const SendEmailButton: React.FC = () => {
       return
     }
 
-    const res = await fetch(`/api/send-private-message`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, email, messageContent }),
-    })
+    setIsSending(true)
 
-    if (res.ok) {
-      alert('Email został wysłany!')
-      window.location.reload()
-    } else {
-      alert('Błąd podczas wysyłki emaila.')
+    try {
+      const res = await fetch(`/api/send-private-message`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, email, messageContent }),
+      })
+
+      if (res.ok) {
+        alert('Email został wysłany!')
+        window.location.reload()
+      } else {
+        alert('Błąd podczas wysyłki emaila.')
+      }
+    } catch (error) {
+      alert('Wystąpił błąd podczas wysyłki emaila.')
+      console.error(error)
+    } finally {
+      setIsSending(false)
     }
   }
-
 
   return (
     <button
       type="button"
       onClick={sendEmail}
+      disabled={isSending}
       style={{
         padding: '8px 12px',
-        backgroundColor: '#000',
+        backgroundColor: isSending ? '#555' : '#000',
         color: '#fff',
         border: 'none',
         borderRadius: '4px',
-        cursor: 'pointer',
+        cursor: isSending ? 'not-allowed' : 'pointer',
         marginTop: '10px',
       }}
     >
-      Wyślij wiadomość prywatną
+      {isSending ? 'Wysyłanie...' : 'Wyślij wiadomość prywatną'}
     </button>
   )
 }
