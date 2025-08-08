@@ -79,6 +79,48 @@ export const Orders: CollectionConfig = {
       },
     },
     {
+      name: 'privateMessages',
+      label: 'Messages history',
+      type: 'array',
+      admin: {
+        position: 'sidebar', // lub 'main' jeśli chcesz na środku
+        components: {
+          RowLabel: ({ data }) => data?.sentAt || 'Nowa wiadomość',
+        },
+      },
+      access: {
+        create: () => true,
+        update: () => true,
+      },
+      fields: [
+        {
+          name: 'sentAt',
+          label: 'Sent At',
+          type: 'date',
+          admin: {
+            readOnly: true,
+          },
+        },
+        {
+          name: 'content',
+          label: 'Content',
+          type: 'textarea',
+          admin: {
+            readOnly: true,
+          },
+        },
+        {
+          name: 'sentBy',
+          label: 'Sent by',
+          type: 'relationship',
+          relationTo: 'users',
+          admin: {
+            readOnly: true,
+          },
+        },
+      ],
+    },
+    {
       name: 'total',
       type: 'number',
       required: true,

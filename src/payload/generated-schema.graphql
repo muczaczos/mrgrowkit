@@ -10721,6 +10721,7 @@ type Order {
   orderStatus: Order_orderStatus
   privateMessage: Boolean
   messageContent: String
+  privateMessages: [Order_PrivateMessages!]
   total: Float!
   fullname: String
   streetAddress: String
@@ -10742,6 +10743,13 @@ enum Order_orderStatus {
   PaymentAccepted
   PackageSended
   OrderCanceled
+}
+
+type Order_PrivateMessages {
+  sentAt: DateTime
+  content: String
+  sentBy(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): User
+  id: String
 }
 
 type Order_Items {
@@ -10770,6 +10778,10 @@ input Order_where {
   orderStatus: Order_orderStatus_operator
   privateMessage: Order_privateMessage_operator
   messageContent: Order_messageContent_operator
+  privateMessages__sentAt: Order_privateMessages__sentAt_operator
+  privateMessages__content: Order_privateMessages__content_operator
+  privateMessages__sentBy: Order_privateMessages__sentBy_operator
+  privateMessages__id: Order_privateMessages__id_operator
   total: Order_total_operator
   fullname: Order_fullname_operator
   streetAddress: Order_streetAddress_operator
@@ -10828,6 +10840,45 @@ input Order_messageContent_operator {
   not_equals: String
   like: String
   contains: String
+  exists: Boolean
+}
+
+input Order_privateMessages__sentAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Order_privateMessages__content_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input Order_privateMessages__sentBy_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input Order_privateMessages__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
   exists: Boolean
 }
 
@@ -11035,6 +11086,10 @@ input Order_where_and {
   orderStatus: Order_orderStatus_operator
   privateMessage: Order_privateMessage_operator
   messageContent: Order_messageContent_operator
+  privateMessages__sentAt: Order_privateMessages__sentAt_operator
+  privateMessages__content: Order_privateMessages__content_operator
+  privateMessages__sentBy: Order_privateMessages__sentBy_operator
+  privateMessages__id: Order_privateMessages__id_operator
   total: Order_total_operator
   fullname: Order_fullname_operator
   streetAddress: Order_streetAddress_operator
@@ -11063,6 +11118,10 @@ input Order_where_or {
   orderStatus: Order_orderStatus_operator
   privateMessage: Order_privateMessage_operator
   messageContent: Order_messageContent_operator
+  privateMessages__sentAt: Order_privateMessages__sentAt_operator
+  privateMessages__content: Order_privateMessages__content_operator
+  privateMessages__sentBy: Order_privateMessages__sentBy_operator
+  privateMessages__id: Order_privateMessages__id_operator
   total: Order_total_operator
   fullname: Order_fullname_operator
   streetAddress: Order_streetAddress_operator
@@ -11099,6 +11158,7 @@ type OrdersDocAccessFields {
   orderStatus: OrdersDocAccessFields_orderStatus
   privateMessage: OrdersDocAccessFields_privateMessage
   messageContent: OrdersDocAccessFields_messageContent
+  privateMessages: OrdersDocAccessFields_privateMessages
   total: OrdersDocAccessFields_total
   fullname: OrdersDocAccessFields_fullname
   streetAddress: OrdersDocAccessFields_streetAddress
@@ -11205,6 +11265,129 @@ type OrdersDocAccessFields_messageContent_Update {
 }
 
 type OrdersDocAccessFields_messageContent_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages {
+  create: OrdersDocAccessFields_privateMessages_Create
+  read: OrdersDocAccessFields_privateMessages_Read
+  update: OrdersDocAccessFields_privateMessages_Update
+  delete: OrdersDocAccessFields_privateMessages_Delete
+  fields: OrdersDocAccessFields_privateMessages_Fields
+}
+
+type OrdersDocAccessFields_privateMessages_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_Fields {
+  sentAt: OrdersDocAccessFields_privateMessages_sentAt
+  content: OrdersDocAccessFields_privateMessages_content
+  sentBy: OrdersDocAccessFields_privateMessages_sentBy
+  id: OrdersDocAccessFields_privateMessages_id
+}
+
+type OrdersDocAccessFields_privateMessages_sentAt {
+  create: OrdersDocAccessFields_privateMessages_sentAt_Create
+  read: OrdersDocAccessFields_privateMessages_sentAt_Read
+  update: OrdersDocAccessFields_privateMessages_sentAt_Update
+  delete: OrdersDocAccessFields_privateMessages_sentAt_Delete
+}
+
+type OrdersDocAccessFields_privateMessages_sentAt_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_sentAt_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_sentAt_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_sentAt_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_content {
+  create: OrdersDocAccessFields_privateMessages_content_Create
+  read: OrdersDocAccessFields_privateMessages_content_Read
+  update: OrdersDocAccessFields_privateMessages_content_Update
+  delete: OrdersDocAccessFields_privateMessages_content_Delete
+}
+
+type OrdersDocAccessFields_privateMessages_content_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_content_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_content_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_content_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_sentBy {
+  create: OrdersDocAccessFields_privateMessages_sentBy_Create
+  read: OrdersDocAccessFields_privateMessages_sentBy_Read
+  update: OrdersDocAccessFields_privateMessages_sentBy_Update
+  delete: OrdersDocAccessFields_privateMessages_sentBy_Delete
+}
+
+type OrdersDocAccessFields_privateMessages_sentBy_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_sentBy_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_sentBy_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_sentBy_Delete {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_id {
+  create: OrdersDocAccessFields_privateMessages_id_Create
+  read: OrdersDocAccessFields_privateMessages_id_Read
+  update: OrdersDocAccessFields_privateMessages_id_Update
+  delete: OrdersDocAccessFields_privateMessages_id_Delete
+}
+
+type OrdersDocAccessFields_privateMessages_id_Create {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_id_Read {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_id_Update {
+  permission: Boolean!
+}
+
+type OrdersDocAccessFields_privateMessages_id_Delete {
   permission: Boolean!
 }
 
@@ -18601,6 +18784,7 @@ type OrdersFields {
   orderStatus: OrdersFields_orderStatus
   privateMessage: OrdersFields_privateMessage
   messageContent: OrdersFields_messageContent
+  privateMessages: OrdersFields_privateMessages
   total: OrdersFields_total
   fullname: OrdersFields_fullname
   streetAddress: OrdersFields_streetAddress
@@ -18707,6 +18891,129 @@ type OrdersFields_messageContent_Update {
 }
 
 type OrdersFields_messageContent_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages {
+  create: OrdersFields_privateMessages_Create
+  read: OrdersFields_privateMessages_Read
+  update: OrdersFields_privateMessages_Update
+  delete: OrdersFields_privateMessages_Delete
+  fields: OrdersFields_privateMessages_Fields
+}
+
+type OrdersFields_privateMessages_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_Fields {
+  sentAt: OrdersFields_privateMessages_sentAt
+  content: OrdersFields_privateMessages_content
+  sentBy: OrdersFields_privateMessages_sentBy
+  id: OrdersFields_privateMessages_id
+}
+
+type OrdersFields_privateMessages_sentAt {
+  create: OrdersFields_privateMessages_sentAt_Create
+  read: OrdersFields_privateMessages_sentAt_Read
+  update: OrdersFields_privateMessages_sentAt_Update
+  delete: OrdersFields_privateMessages_sentAt_Delete
+}
+
+type OrdersFields_privateMessages_sentAt_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_sentAt_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_sentAt_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_sentAt_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_content {
+  create: OrdersFields_privateMessages_content_Create
+  read: OrdersFields_privateMessages_content_Read
+  update: OrdersFields_privateMessages_content_Update
+  delete: OrdersFields_privateMessages_content_Delete
+}
+
+type OrdersFields_privateMessages_content_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_content_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_content_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_content_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_sentBy {
+  create: OrdersFields_privateMessages_sentBy_Create
+  read: OrdersFields_privateMessages_sentBy_Read
+  update: OrdersFields_privateMessages_sentBy_Update
+  delete: OrdersFields_privateMessages_sentBy_Delete
+}
+
+type OrdersFields_privateMessages_sentBy_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_sentBy_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_sentBy_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_sentBy_Delete {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_id {
+  create: OrdersFields_privateMessages_id_Create
+  read: OrdersFields_privateMessages_id_Read
+  update: OrdersFields_privateMessages_id_Update
+  delete: OrdersFields_privateMessages_id_Delete
+}
+
+type OrdersFields_privateMessages_id_Create {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_id_Read {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_id_Update {
+  permission: Boolean!
+}
+
+type OrdersFields_privateMessages_id_Delete {
   permission: Boolean!
 }
 
@@ -22578,6 +22885,7 @@ input mutationOrderInput {
   orderStatus: Order_orderStatus_MutationInput
   privateMessage: Boolean
   messageContent: String
+  privateMessages: [mutationOrder_PrivateMessagesInput]
   total: Float!
   fullname: String
   streetAddress: String
@@ -22601,6 +22909,13 @@ enum Order_orderStatus_MutationInput {
   OrderCanceled
 }
 
+input mutationOrder_PrivateMessagesInput {
+  sentAt: String
+  content: String
+  sentBy: String
+  id: String
+}
+
 input mutationOrder_ItemsInput {
   product: String
   price: Float
@@ -22613,6 +22928,7 @@ input mutationOrderUpdateInput {
   orderStatus: OrderUpdate_orderStatus_MutationInput
   privateMessage: Boolean
   messageContent: String
+  privateMessages: [mutationOrderUpdate_PrivateMessagesInput]
   total: Float
   fullname: String
   streetAddress: String
@@ -22634,6 +22950,13 @@ enum OrderUpdate_orderStatus_MutationInput {
   PaymentAccepted
   PackageSended
   OrderCanceled
+}
+
+input mutationOrderUpdate_PrivateMessagesInput {
+  sentAt: String
+  content: String
+  sentBy: String
+  id: String
 }
 
 input mutationOrderUpdate_ItemsInput {

@@ -6,12 +6,10 @@ import { checkRole } from '../collections/Users/checkRole'
 const logs = process.env.LOGS_SEND_EMAIL === '1'
 
 export const sendPrivateMessage: PayloadHandler = async (req: PayloadRequest, res) => {
-  // 🔹 Odbieramy dane z formularza
   const { id, email, messageContent } = req.body
 
   console.log('✅ Endpoint send-private-message został załadowany')
 
-  // 🔐 Sprawdzamy uprawnienia admina
   if (!req.user || !checkRole(['admin'], req.user)) {
     if (logs) req.payload.logger.error({ err: `Unauthorized email attempt` })
     return res.status(401).json({ error: 'Not authorized' })
@@ -21,9 +19,8 @@ export const sendPrivateMessage: PayloadHandler = async (req: PayloadRequest, re
     return res.status(400).json({ error: 'Missing data in request body' })
   }
 
-  // 🔸 Pomijamy pobieranie ordera z bazy, bo dane już są w req.body
-
   try {
+    // Wysyłka maila
     await req.payload.sendEmail({
       to: email,
       from: 'Planet of Mushrooms <shop@planet-of-mushrooms.com>',
@@ -36,11 +33,47 @@ export const sendPrivateMessage: PayloadHandler = async (req: PayloadRequest, re
       },
     })
 
+    // Pobranie zamówienia
+    const order = await req.payload.findByID({
+      collection: 'orders',
+      id,
+      overrideAccess: true,
+      depth: 0,
+    })
+
+    console.log('Order before update:', order)
+
+    const now = new Date().toISOString()
+
+    const updatedMessages = [
+      ...(order.privateMessages || []),
+      {
+        sentAt: now,
+        content: messageContent,
+        sentBy: req.user.id,
+      },
+    ]
+
+    // Zapis do bazy bez pomijania hooków
+    await req.payload.update({
+      collection: 'orders',
+      id,
+      overrideAccess: true,
+      data: {
+        privateMessages: updatedMessages,
+      },
+      context: {
+        skipEmailHook: true,  // <-- to jest kluczowe
+      },
+    })
+
     if (logs) req.payload.logger.info({ msg: `✅ Sent private message to ${email}` })
 
-    res.status(200).json({ success: true })
+    return res.status(200).json({ success: true })
   } catch (error: unknown) {
+    console.error('❌ Błąd w sendPrivateMessage:', error)
     if (logs) req.payload.logger.error({ err: `❌ Error sending message: ${error}` })
-    res.status(500).json({ error: 'Error sending message' })
+
+    return res.status(500).json({ error: 'Error sending message' })
   }
 }

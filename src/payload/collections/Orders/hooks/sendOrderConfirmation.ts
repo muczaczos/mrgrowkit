@@ -2,9 +2,18 @@ import type { AfterChangeHook } from 'payload/dist/collections/config/types'
 
 import type { Order } from '../../../payload-types'
 
-export const sendOrderConfirmation: AfterChangeHook<Order> = async ({ req, doc, operation }) => {
+export const sendOrderConfirmation: AfterChangeHook<Order> = async ({
+  context,
+  req,
+  doc,
+  operation,
+}) => {
   const { payload } = req
   let text = ''
+
+  if (context?.skipEmailHook) {
+    return doc // pomijamy wysyłkę
+  }
 
   if (doc.paymentMethod === 'revolut') {
     text = `The details for the transfer are as follows:<br/>

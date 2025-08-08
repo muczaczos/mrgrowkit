@@ -1,36 +1,40 @@
 import React from 'react'
-import { useFormFields } from 'payload/components/forms'
+import { useForm, useFormFields } from 'payload/components/forms'
 import { useDocumentInfo } from 'payload/components/utilities'
 
 const SendEmailButton: React.FC = () => {
-  // 🔹 Pobieramy ID aktualnego dokumentu (zamówienia)
   const { id } = useDocumentInfo()
-
-  // 🔹 Używamy hooka do pobrania pól formularza w czasie rzeczywistym
   const fields = useFormFields(([fields]) => fields)
+  const { submit } = useForm() // ← dodane
 
-  // 🔹 Pobieramy wartości z formularza – BEZ zapisywania do bazy
   const email = fields.email?.value
   const messageContent = fields.messageContent?.value
 
   const sendEmail = async () => {
-    // 🔸 Prosta walidacja
     if (!id || !email || !messageContent) {
       alert('Brakuje ID, adresu email lub treści wiadomości.')
       return
     }
 
-    // 🔹 Wysyłamy dane do customowego endpointu bez zapisu w kolekcji
     const res = await fetch(`/api/send-private-message`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id, email, messageContent }), // ⬅️ Wysyłamy aktualną treść z formularza
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, email, messageContent }),
     })
 
     if (res.ok) {
       alert('Email został wysłany!')
+      // 🔹 odśwież widok dokumentu, żeby historia była od razu widoczna
+
+      if (res.ok) {
+        alert('Email został wysłany!')
+        // Odśwież widok dokumentu, by zobaczyć zaktualizowaną historię
+        window.location.reload()
+      } else {
+        alert('Błąd podczas wysyłki emaila.')
+      }
+
+
     } else {
       alert('Błąd podczas wysyłki emaila.')
     }

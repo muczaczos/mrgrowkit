@@ -1064,6 +1064,14 @@ export interface Order {
   orderStatus?: ('Payment Accepted' | 'Package Sended' | 'Order Canceled') | null;
   privateMessage?: boolean | null;
   messageContent?: string | null;
+  privateMessages?:
+    | {
+        sentAt?: string | null;
+        content?: string | null;
+        sentBy?: (string | null) | User;
+        id?: string | null;
+      }[]
+    | null;
   total: number;
   fullname?: string | null;
   streetAddress?: string | null;
