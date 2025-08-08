@@ -24,21 +24,12 @@ const SendEmailButton: React.FC = () => {
 
     if (res.ok) {
       alert('Email został wysłany!')
-      // 🔹 odśwież widok dokumentu, żeby historia była od razu widoczna
-
-      if (res.ok) {
-        alert('Email został wysłany!')
-        // Odśwież widok dokumentu, by zobaczyć zaktualizowaną historię
-        window.location.reload()
-      } else {
-        alert('Błąd podczas wysyłki emaila.')
-      }
-
-
+      window.location.reload()
     } else {
       alert('Błąd podczas wysyłki emaila.')
     }
   }
+
 
   return (
     <button
