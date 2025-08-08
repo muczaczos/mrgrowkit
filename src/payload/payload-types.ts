@@ -1062,7 +1062,6 @@ export interface Order {
   id: string;
   orderedBy?: (string | null) | User;
   orderStatus?: ('Payment Accepted' | 'Package Sended' | 'Order Canceled') | null;
-  privateMessage?: boolean | null;
   messageContent?: string | null;
   privateMessages?:
     | {

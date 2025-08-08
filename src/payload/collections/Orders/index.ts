@@ -2,12 +2,12 @@ import type { CollectionConfig } from 'payload/types'
 
 import { admins } from '../../access/admins'
 import { anyone } from '../../access/anyone'
+import SendEmailButton from '../../components/SendEmailButton'
 import { adminsOrOrderedBy } from './access/adminsOrOrderedBy'
 import { clearUserCart } from './hooks/clearUserCart'
 import { populateOrderedBy } from './hooks/populateOrderedBy'
 import { sendOrderConfirmation } from './hooks/sendOrderConfirmation'
 import { updateUserPurchases } from './hooks/updateUserPurchases'
-import SendEmailButton from '../../components/SendEmailButton'
 
 export const Orders: CollectionConfig = {
   slug: 'orders',
@@ -43,15 +43,6 @@ export const Orders: CollectionConfig = {
         { label: 'Package Sended', value: 'Package Sended' },
         { label: 'Order Canceled', value: 'Order Canceled' },
       ],
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
-      name: 'privateMessage',
-      label: 'Send Private Message',
-      type: 'checkbox',
-      defaultValue: false,
       admin: {
         position: 'sidebar',
       },
