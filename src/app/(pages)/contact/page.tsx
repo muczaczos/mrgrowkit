@@ -47,7 +47,7 @@ export default function Contact() {
 
   const handleCallClick = () => {
     // Twój numer telefonu
-    const phoneNumber = '+48691586665'
+    const phoneNumber = '+48609164574'
     // Tworzymy link do wybierania połączenia na telefonie
     const callUrl = `tel:${phoneNumber}`
     // Przekierowanie użytkownika do wybierania połączenia
